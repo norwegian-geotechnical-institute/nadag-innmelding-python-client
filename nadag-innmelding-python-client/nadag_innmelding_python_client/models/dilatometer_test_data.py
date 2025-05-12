@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -32,9 +33,9 @@ class DilatometerTestData:
     ekspansjon_trykk_p1: Union[Unset, float] = UNSET
     horisontal_kraft: Union[Unset, float] = UNSET
     poretrykk: Union[Unset, float] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         boret_dybde = self.boret_dybde
 
         observasjon_merknad = self.observasjon_merknad
@@ -49,7 +50,7 @@ class DilatometerTestData:
 
         poretrykk = self.poretrykk
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if boret_dybde is not UNSET:
@@ -70,8 +71,8 @@ class DilatometerTestData:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         boret_dybde = d.pop("boretDybde", UNSET)
 
         observasjon_merknad = d.pop("observasjonMerknad", UNSET)
@@ -100,7 +101,7 @@ class DilatometerTestData:
         return dilatometer_test_data
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

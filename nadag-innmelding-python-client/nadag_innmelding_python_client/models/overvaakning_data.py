@@ -1,5 +1,6 @@
 import datetime
-from typing import Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -33,9 +34,9 @@ class OvervaakningData:
     ø_vre_alarm_niv_å: Union[Unset, float] = UNSET
     m_å_le_dato: Union[Unset, datetime.date] = UNSET
     observasjon_merknad: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         akvifer: Union[Unset, str] = UNSET
         if not isinstance(self.akvifer, Unset):
             akvifer = self.akvifer.value
@@ -54,7 +55,7 @@ class OvervaakningData:
 
         observasjon_merknad = self.observasjon_merknad
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if akvifer is not UNSET:
@@ -73,8 +74,8 @@ class OvervaakningData:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         _akvifer = d.pop("akvifer", UNSET)
         akvifer: Union[Unset, AkviferType]
         if isinstance(_akvifer, Unset):
@@ -115,7 +116,7 @@ class OvervaakningData:
         return overvaakning_data
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

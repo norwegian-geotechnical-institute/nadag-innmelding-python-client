@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -52,9 +53,9 @@ class TrykksonderingData:
     skj_æ_rb_ø_lge_hastighet: Union[Unset, float] = UNSET
     temperatur: Union[Unset, float] = UNSET
     nedpressing_trykk: Union[Unset, float] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         anvendt_last = self.anvendt_last
 
         boret_dybde = self.boret_dybde
@@ -91,7 +92,7 @@ class TrykksonderingData:
 
         nedpressing_trykk = self.nedpressing_trykk
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if anvendt_last is not UNSET:
@@ -134,8 +135,8 @@ class TrykksonderingData:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         anvendt_last = d.pop("anvendtLast", UNSET)
 
         boret_dybde = d.pop("boretDybde", UNSET)
@@ -197,7 +198,7 @@ class TrykksonderingData:
         return trykksondering_data
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

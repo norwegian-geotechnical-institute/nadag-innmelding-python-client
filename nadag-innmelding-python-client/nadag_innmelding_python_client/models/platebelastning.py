@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -36,7 +37,7 @@ class Platebelastning:
             insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]):
             lasttrinn_antall (Union[Unset, int]):
             areal_plate (Union[Unset, float]):
-            platebelastning_observasjon (Union[Unset, List['PlatebelastningData']]):
+            platebelastning_observasjon (Union[Unset, list['PlatebelastningData']]):
     """
 
     json_type: Union[Literal["Platebelastning"], Unset] = UNSET
@@ -47,13 +48,13 @@ class Platebelastning:
     insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime] = UNSET
     lasttrinn_antall: Union[Unset, int] = UNSET
     areal_plate: Union[Unset, float] = UNSET
-    platebelastning_observasjon: Union[Unset, List["PlatebelastningData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    platebelastning_observasjon: Union[Unset, list["PlatebelastningData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -73,14 +74,14 @@ class Platebelastning:
 
         areal_plate = self.areal_plate
 
-        platebelastning_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        platebelastning_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.platebelastning_observasjon, Unset):
             platebelastning_observasjon = []
             for platebelastning_observasjon_item_data in self.platebelastning_observasjon:
                 platebelastning_observasjon_item = platebelastning_observasjon_item_data.to_dict()
                 platebelastning_observasjon.append(platebelastning_observasjon_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if json_type is not UNSET:
@@ -105,11 +106,11 @@ class Platebelastning:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.identifikasjon import Identifikasjon
         from ..models.platebelastning_data import PlatebelastningData
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         json_type = cast(Union[Literal["Platebelastning"], Unset], d.pop("jsonType", UNSET))
         if json_type != "Platebelastning" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'Platebelastning', got '{json_type}'")
@@ -166,7 +167,7 @@ class Platebelastning:
         return platebelastning
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

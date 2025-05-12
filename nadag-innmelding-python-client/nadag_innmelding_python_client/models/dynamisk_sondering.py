@@ -1,4 +1,5 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -32,7 +33,7 @@ class DynamiskSondering:
             til_borlengde (Union[Unset, float]):
             torv_tykkelse (Union[Unset, float]):
             ant_pr_ø_veuttak_forstyrret_matr (Union[Unset, int]):
-            dynamisk_sondering_observasjon (Union[Unset, List['DynamiskSonderingData']]):
+            dynamisk_sondering_observasjon (Union[Unset, list['DynamiskSonderingData']]):
     """
 
     json_type: Union[Literal["DynamiskSondering"], Unset] = UNSET
@@ -41,13 +42,13 @@ class DynamiskSondering:
     til_borlengde: Union[Unset, float] = UNSET
     torv_tykkelse: Union[Unset, float] = UNSET
     ant_pr_ø_veuttak_forstyrret_matr: Union[Unset, int] = UNSET
-    dynamisk_sondering_observasjon: Union[Unset, List["DynamiskSonderingData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dynamisk_sondering_observasjon: Union[Unset, list["DynamiskSonderingData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -59,14 +60,14 @@ class DynamiskSondering:
 
         ant_pr_ø_veuttak_forstyrret_matr = self.ant_pr_ø_veuttak_forstyrret_matr
 
-        dynamisk_sondering_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        dynamisk_sondering_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.dynamisk_sondering_observasjon, Unset):
             dynamisk_sondering_observasjon = []
             for dynamisk_sondering_observasjon_item_data in self.dynamisk_sondering_observasjon:
                 dynamisk_sondering_observasjon_item = dynamisk_sondering_observasjon_item_data.to_dict()
                 dynamisk_sondering_observasjon.append(dynamisk_sondering_observasjon_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if json_type is not UNSET:
@@ -87,11 +88,11 @@ class DynamiskSondering:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dynamisk_sondering_data import DynamiskSonderingData
         from ..models.identifikasjon import Identifikasjon
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         json_type = cast(Union[Literal["DynamiskSondering"], Unset], d.pop("jsonType", UNSET))
         if json_type != "DynamiskSondering" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'DynamiskSondering', got '{json_type}'")
@@ -134,7 +135,7 @@ class DynamiskSondering:
         return dynamisk_sondering
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

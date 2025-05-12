@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -101,20 +102,20 @@ class GeotekniskObservasjonNADAG:
     forboring_metode: Union[Unset, str] = UNSET
     stopp_kode: Union[Unset, GeotekniskStoppkode] = UNSET
     forboret_start_lengde: Union[Unset, float] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         datafangstdato: Union[Unset, str] = UNSET
         if not isinstance(self.datafangstdato, Unset):
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        kvalitet: Union[Unset, Dict[str, Any]] = UNSET
+        kvalitet: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.kvalitet, Unset):
             kvalitet = self.kvalitet.to_dict()
 
@@ -122,7 +123,7 @@ class GeotekniskObservasjonNADAG:
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
-        posisjon: Union[Unset, Dict[str, Any]] = UNSET
+        posisjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
@@ -146,7 +147,7 @@ class GeotekniskObservasjonNADAG:
 
         boret_lengde = self.boret_lengde
 
-        boret_lengde_til_berg: Union[Unset, Dict[str, Any]] = UNSET
+        boret_lengde_til_berg: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = self.boret_lengde_til_berg.to_dict()
 
@@ -164,7 +165,7 @@ class GeotekniskObservasjonNADAG:
 
         unders_ø_kelse_nr = self.unders_ø_kelse_nr
 
-        ekstern_identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
@@ -186,7 +187,7 @@ class GeotekniskObservasjonNADAG:
 
         forboret_start_lengde = self.forboret_start_lengde
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if datafangstdato is not UNSET:
@@ -253,14 +254,14 @@ class GeotekniskObservasjonNADAG:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.borlengde_til_berg import BorlengdeTilBerg
         from ..models.ekstern_identifikasjon import EksternIdentifikasjon
         from ..models.identifikasjon import Identifikasjon
         from ..models.point import Point
         from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _datafangstdato = d.pop("datafangstdato", UNSET)
         datafangstdato: Union[Unset, datetime.datetime]
         if isinstance(_datafangstdato, Unset):
@@ -413,7 +414,7 @@ class GeotekniskObservasjonNADAG:
         return geoteknisk_observasjon_nadag
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

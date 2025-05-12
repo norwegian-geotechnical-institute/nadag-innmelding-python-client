@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -45,7 +46,7 @@ class GeotekniskFeltUnders:
         høyde (Union[Unset, float]):
         h_ø_yde_referanse (Union[Unset, str]):
         feltunders_nr (Union[Unset, str]):
-        har_dokument (Union[Unset, List['GeotekniskDokument']]):
+        har_dokument (Union[Unset, list['GeotekniskDokument']]):
     """
 
     identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
@@ -59,15 +60,15 @@ class GeotekniskFeltUnders:
     høyde: Union[Unset, float] = UNSET
     h_ø_yde_referanse: Union[Unset, str] = UNSET
     feltunders_nr: Union[Unset, str] = UNSET
-    har_dokument: Union[Unset, List["GeotekniskDokument"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        posisjon: Union[Unset, Dict[str, Any]] = UNSET
+        posisjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
@@ -75,7 +76,7 @@ class GeotekniskFeltUnders:
         if not isinstance(self.geoteknisk_felt_unders_metode, Unset):
             geoteknisk_felt_unders_metode = self.geoteknisk_felt_unders_metode.value
 
-        eksternidentifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        eksternidentifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.eksternidentifikasjon, Unset):
             eksternidentifikasjon = self.eksternidentifikasjon.to_dict()
 
@@ -99,14 +100,14 @@ class GeotekniskFeltUnders:
 
         feltunders_nr = self.feltunders_nr
 
-        har_dokument: Union[Unset, List[Dict[str, Any]]] = UNSET
+        har_dokument: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_dokument, Unset):
             har_dokument = []
             for har_dokument_item_data in self.har_dokument:
                 har_dokument_item = har_dokument_item_data.to_dict()
                 har_dokument.append(har_dokument_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if identifikasjon is not UNSET:
@@ -137,13 +138,13 @@ class GeotekniskFeltUnders:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ekstern_identifikasjon import EksternIdentifikasjon
         from ..models.geoteknisk_dokument import GeotekniskDokument
         from ..models.identifikasjon import Identifikasjon
         from ..models.point import Point
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _identifikasjon = d.pop("identifikasjon", UNSET)
         identifikasjon: Union[Unset, Identifikasjon]
         if isinstance(_identifikasjon, Unset):
@@ -227,7 +228,7 @@ class GeotekniskFeltUnders:
         return geoteknisk_felt_unders
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

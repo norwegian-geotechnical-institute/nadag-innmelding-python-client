@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -59,9 +60,9 @@ class GeotekniskTolketLag:
     posisjon: Union[Unset, "Point"] = UNSET
     høyde: Union[Unset, float] = UNSET
     h_ø_yde_referanse: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         tolket_lag_id = self.tolket_lag_id
 
         klassifisering_metode: Union[Unset, str] = UNSET
@@ -90,11 +91,11 @@ class GeotekniskTolketLag:
 
         under_terreng_overflate = self.under_terreng_overflate
 
-        ekstern_identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
-        posisjon: Union[Unset, Dict[str, Any]] = UNSET
+        posisjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
@@ -102,7 +103,7 @@ class GeotekniskTolketLag:
 
         h_ø_yde_referanse = self.h_ø_yde_referanse
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if tolket_lag_id is not UNSET:
@@ -139,11 +140,11 @@ class GeotekniskTolketLag:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ekstern_identifikasjon import EksternIdentifikasjon
         from ..models.point import Point
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         tolket_lag_id = d.pop("tolketLagID", UNSET)
 
         _klassifisering_metode = d.pop("klassifiseringMetode", UNSET)
@@ -221,7 +222,7 @@ class GeotekniskTolketLag:
         return geoteknisk_tolket_lag
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

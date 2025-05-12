@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -38,7 +39,7 @@ class DilatometerTest:
             material_indeks (Union[Unset, float]):
             horisontal_spenning_indeks (Union[Unset, float]):
             dilatometer_modulus (Union[Unset, float]):
-            dilatometer_observasjon (Union[Unset, List['DilatometerTestData']]):
+            dilatometer_observasjon (Union[Unset, list['DilatometerTestData']]):
     """
 
     json_type: Union[Literal["DilatometerTest"], Unset] = UNSET
@@ -50,13 +51,13 @@ class DilatometerTest:
     material_indeks: Union[Unset, float] = UNSET
     horisontal_spenning_indeks: Union[Unset, float] = UNSET
     dilatometer_modulus: Union[Unset, float] = UNSET
-    dilatometer_observasjon: Union[Unset, List["DilatometerTestData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dilatometer_observasjon: Union[Unset, list["DilatometerTestData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -78,14 +79,14 @@ class DilatometerTest:
 
         dilatometer_modulus = self.dilatometer_modulus
 
-        dilatometer_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        dilatometer_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.dilatometer_observasjon, Unset):
             dilatometer_observasjon = []
             for dilatometer_observasjon_item_data in self.dilatometer_observasjon:
                 dilatometer_observasjon_item = dilatometer_observasjon_item_data.to_dict()
                 dilatometer_observasjon.append(dilatometer_observasjon_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if json_type is not UNSET:
@@ -112,11 +113,11 @@ class DilatometerTest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dilatometer_test_data import DilatometerTestData
         from ..models.identifikasjon import Identifikasjon
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         json_type = cast(Union[Literal["DilatometerTest"], Unset], d.pop("jsonType", UNSET))
         if json_type != "DilatometerTest" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'DilatometerTest', got '{json_type}'")
@@ -176,7 +177,7 @@ class DilatometerTest:
         return dilatometer_test
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -47,9 +48,9 @@ class GeotekniskDokument:
     opprettet_dato: Union[Unset, datetime.datetime] = UNSET
     dokument_nr: Union[Unset, str] = UNSET
     dokument_dato: Union[Unset, datetime.datetime] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         dokument_id = self.dokument_id
 
         dokument_nø_kkel = self.dokument_nø_kkel
@@ -64,7 +65,7 @@ class GeotekniskDokument:
 
         beskrivelse = self.beskrivelse
 
-        ekstern_identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
@@ -80,7 +81,7 @@ class GeotekniskDokument:
         if not isinstance(self.dokument_dato, Unset):
             dokument_dato = self.dokument_dato.isoformat()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if dokument_id is not UNSET:
@@ -111,10 +112,10 @@ class GeotekniskDokument:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ekstern_identifikasjon import EksternIdentifikasjon
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         dokument_id = d.pop("dokumentID", UNSET)
 
         dokument_nø_kkel = d.pop("dokumentNøkkel", UNSET)
@@ -173,7 +174,7 @@ class GeotekniskDokument:
         return geoteknisk_dokument
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

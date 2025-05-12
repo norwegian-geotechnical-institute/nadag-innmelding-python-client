@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -68,7 +69,7 @@ class GeotekniskBorehullUnders:
             oppdateringsdato (Union[Unset, datetime.datetime]):
             posisjon (Union[Unset, Point]):
             bore_beskrivelse (Union[Unset, str]):
-            borehull_forl_ø_p (Union[Unset, List['Point']]):
+            borehull_forl_ø_p (Union[Unset, list['Point']]):
             boret_azimuth (Union[Unset, float]):
             boret_helningsgrad (Union[Unset, float]):
             boret_lengde (Union[Unset, float]):
@@ -99,12 +100,12 @@ class GeotekniskBorehullUnders:
             stopp_kode (Union[Unset, GeotekniskStoppkode]): oversikt over koder for stopp av boring ved utførelse av en
                 grunnundersøkelse <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>
             forboret_start_lengde (Union[Unset, float]):
-            metode (Union[Unset, List[Union['BlokkProeve', 'DilatometerTest', 'DynamiskSondering', 'GassMaaling',
+            metode (Union[Unset, list[Union['BlokkProeve', 'DilatometerTest', 'DynamiskSondering', 'GassMaaling',
                 'GassProeve', 'GeotekniskProeveserie', 'GraveProeve', 'GrunnvannMaaling', 'HydrauliskTest', 'KanneProeve',
                 'KjerneBoring', 'KjerneProeve', 'KombinasjonSondering', 'MiljoeUndersoekelse', 'NaverProeve', 'Platebelastning',
                 'PoretrykkMaaling', 'RamProeve', 'SedimentProeve', 'SkovlProeve', 'StatiskSondering', 'StempelProeve',
                 'Trykksondering', 'VannProeve', 'Vingeboring']]]):
-            har_dokument (Union[Unset, List['GeotekniskDokument']]):
+            har_dokument (Union[Unset, list['GeotekniskDokument']]):
     """
 
     datafangstdato: Union[Unset, datetime.datetime] = UNSET
@@ -114,7 +115,7 @@ class GeotekniskBorehullUnders:
     oppdateringsdato: Union[Unset, datetime.datetime] = UNSET
     posisjon: Union[Unset, "Point"] = UNSET
     bore_beskrivelse: Union[Unset, str] = UNSET
-    borehull_forl_ø_p: Union[Unset, List["Point"]] = UNSET
+    borehull_forl_ø_p: Union[Unset, list["Point"]] = UNSET
     boret_azimuth: Union[Unset, float] = UNSET
     boret_helningsgrad: Union[Unset, float] = UNSET
     boret_lengde: Union[Unset, float] = UNSET
@@ -140,7 +141,7 @@ class GeotekniskBorehullUnders:
     forboret_start_lengde: Union[Unset, float] = UNSET
     metode: Union[
         Unset,
-        List[
+        list[
             Union[
                 "BlokkProeve",
                 "DilatometerTest",
@@ -170,10 +171,10 @@ class GeotekniskBorehullUnders:
             ]
         ],
     ] = UNSET
-    har_dokument: Union[Unset, List["GeotekniskDokument"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         from ..models.blokk_proeve import BlokkProeve
         from ..models.dilatometer_test import DilatometerTest
         from ..models.dynamisk_sondering import DynamiskSondering
@@ -205,11 +206,11 @@ class GeotekniskBorehullUnders:
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        kvalitet: Union[Unset, Dict[str, Any]] = UNSET
+        kvalitet: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.kvalitet, Unset):
             kvalitet = self.kvalitet.to_dict()
 
@@ -217,13 +218,13 @@ class GeotekniskBorehullUnders:
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
-        posisjon: Union[Unset, Dict[str, Any]] = UNSET
+        posisjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
         bore_beskrivelse = self.bore_beskrivelse
 
-        borehull_forl_ø_p: Union[Unset, List[Dict[str, Any]]] = UNSET
+        borehull_forl_ø_p: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.borehull_forl_ø_p, Unset):
             borehull_forl_ø_p = []
             for componentsschemas_line_string_item_data in self.borehull_forl_ø_p:
@@ -236,7 +237,7 @@ class GeotekniskBorehullUnders:
 
         boret_lengde = self.boret_lengde
 
-        boret_lengde_til_berg: Union[Unset, Dict[str, Any]] = UNSET
+        boret_lengde_til_berg: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = self.boret_lengde_til_berg.to_dict()
 
@@ -264,7 +265,7 @@ class GeotekniskBorehullUnders:
 
         unders_ø_kelse_nr = self.unders_ø_kelse_nr
 
-        ekstern_identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
@@ -290,11 +291,11 @@ class GeotekniskBorehullUnders:
 
         forboret_start_lengde = self.forboret_start_lengde
 
-        metode: Union[Unset, List[Dict[str, Any]]] = UNSET
+        metode: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.metode, Unset):
             metode = []
             for metode_item_data in self.metode:
-                metode_item: Dict[str, Any]
+                metode_item: dict[str, Any]
                 if isinstance(metode_item_data, BlokkProeve):
                     metode_item = metode_item_data.to_dict()
                 elif isinstance(metode_item_data, DilatometerTest):
@@ -348,14 +349,14 @@ class GeotekniskBorehullUnders:
 
                 metode.append(metode_item)
 
-        har_dokument: Union[Unset, List[Dict[str, Any]]] = UNSET
+        har_dokument: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_dokument, Unset):
             har_dokument = []
             for har_dokument_item_data in self.har_dokument:
                 har_dokument_item = har_dokument_item_data.to_dict()
                 har_dokument.append(har_dokument_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if datafangstdato is not UNSET:
@@ -428,7 +429,7 @@ class GeotekniskBorehullUnders:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.blokk_proeve import BlokkProeve
         from ..models.borlengde_til_berg import BorlengdeTilBerg
         from ..models.dilatometer_test import DilatometerTest
@@ -461,7 +462,7 @@ class GeotekniskBorehullUnders:
         from ..models.vann_proeve import VannProeve
         from ..models.vingeboring import Vingeboring
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _datafangstdato = d.pop("datafangstdato", UNSET)
         datafangstdato: Union[Unset, datetime.datetime]
         if isinstance(_datafangstdato, Unset):
@@ -871,7 +872,7 @@ class GeotekniskBorehullUnders:
         return geoteknisk_borehull_unders
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

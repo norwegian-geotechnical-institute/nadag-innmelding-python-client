@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -41,7 +42,7 @@ class Vingeboring:
             vinge_diameter (Union[Unset, float]):
             vinge_hø_yde (Union[Unset, float]):
             vinge_identitet (Union[Unset, str]):
-            vingeboring_observasjon (Union[Unset, List['VingeboringData']]):
+            vingeboring_observasjon (Union[Unset, list['VingeboringData']]):
     """
 
     json_type: Union[Literal["Vingeboring"], Unset] = UNSET
@@ -57,13 +58,13 @@ class Vingeboring:
     vinge_diameter: Union[Unset, float] = UNSET
     vinge_hø_yde: Union[Unset, float] = UNSET
     vinge_identitet: Union[Unset, str] = UNSET
-    vingeboring_observasjon: Union[Unset, List["VingeboringData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    vingeboring_observasjon: Union[Unset, list["VingeboringData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -93,14 +94,14 @@ class Vingeboring:
 
         vinge_identitet = self.vinge_identitet
 
-        vingeboring_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        vingeboring_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.vingeboring_observasjon, Unset):
             vingeboring_observasjon = []
             for vingeboring_observasjon_item_data in self.vingeboring_observasjon:
                 vingeboring_observasjon_item = vingeboring_observasjon_item_data.to_dict()
                 vingeboring_observasjon.append(vingeboring_observasjon_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if json_type is not UNSET:
@@ -135,11 +136,11 @@ class Vingeboring:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.identifikasjon import Identifikasjon
         from ..models.vingeboring_data import VingeboringData
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         json_type = cast(Union[Literal["Vingeboring"], Unset], d.pop("jsonType", UNSET))
         if json_type != "Vingeboring" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'Vingeboring', got '{json_type}'")
@@ -211,7 +212,7 @@ class Vingeboring:
         return vingeboring
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

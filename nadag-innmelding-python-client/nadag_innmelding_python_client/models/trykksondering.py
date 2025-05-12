@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -59,9 +60,9 @@ class Trykksondering:
             spiss_type (Union[Unset, str]):
             atmosferisk_trykk_korreksjon (Union[Unset, float]):
             hylse_radie_korreksjon (Union[Unset, float]):
-            in_situ_poretrykk_observasjon (Union[Unset, List['PoretrykkDataInsitu']]):
-            trykksondering_observasjon (Union[Unset, List['TrykksonderingData']]):
-            dissipasjon_observasjon (Union[Unset, List['DissipasjonData']]):
+            in_situ_poretrykk_observasjon (Union[Unset, list['PoretrykkDataInsitu']]):
+            trykksondering_observasjon (Union[Unset, list['TrykksonderingData']]):
+            dissipasjon_observasjon (Union[Unset, list['DissipasjonData']]):
     """
 
     json_type: Union[Literal["Trykksondering"], Unset] = UNSET
@@ -87,15 +88,15 @@ class Trykksondering:
     spiss_type: Union[Unset, str] = UNSET
     atmosferisk_trykk_korreksjon: Union[Unset, float] = UNSET
     hylse_radie_korreksjon: Union[Unset, float] = UNSET
-    in_situ_poretrykk_observasjon: Union[Unset, List["PoretrykkDataInsitu"]] = UNSET
-    trykksondering_observasjon: Union[Unset, List["TrykksonderingData"]] = UNSET
-    dissipasjon_observasjon: Union[Unset, List["DissipasjonData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    in_situ_poretrykk_observasjon: Union[Unset, list["PoretrykkDataInsitu"]] = UNSET
+    trykksondering_observasjon: Union[Unset, list["TrykksonderingData"]] = UNSET
+    dissipasjon_observasjon: Union[Unset, list["DissipasjonData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -151,28 +152,28 @@ class Trykksondering:
 
         hylse_radie_korreksjon = self.hylse_radie_korreksjon
 
-        in_situ_poretrykk_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        in_situ_poretrykk_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.in_situ_poretrykk_observasjon, Unset):
             in_situ_poretrykk_observasjon = []
             for in_situ_poretrykk_observasjon_item_data in self.in_situ_poretrykk_observasjon:
                 in_situ_poretrykk_observasjon_item = in_situ_poretrykk_observasjon_item_data.to_dict()
                 in_situ_poretrykk_observasjon.append(in_situ_poretrykk_observasjon_item)
 
-        trykksondering_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        trykksondering_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.trykksondering_observasjon, Unset):
             trykksondering_observasjon = []
             for trykksondering_observasjon_item_data in self.trykksondering_observasjon:
                 trykksondering_observasjon_item = trykksondering_observasjon_item_data.to_dict()
                 trykksondering_observasjon.append(trykksondering_observasjon_item)
 
-        dissipasjon_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        dissipasjon_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.dissipasjon_observasjon, Unset):
             dissipasjon_observasjon = []
             for dissipasjon_observasjon_item_data in self.dissipasjon_observasjon:
                 dissipasjon_observasjon_item = dissipasjon_observasjon_item_data.to_dict()
                 dissipasjon_observasjon.append(dissipasjon_observasjon_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if json_type is not UNSET:
@@ -231,13 +232,13 @@ class Trykksondering:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dissipasjon_data import DissipasjonData
         from ..models.identifikasjon import Identifikasjon
         from ..models.poretrykk_data_insitu import PoretrykkDataInsitu
         from ..models.trykksondering_data import TrykksonderingData
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         json_type = cast(Union[Literal["Trykksondering"], Unset], d.pop("jsonType", UNSET))
         if json_type != "Trykksondering" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'Trykksondering', got '{json_type}'")
@@ -370,7 +371,7 @@ class Trykksondering:
         return trykksondering
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,5 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,21 +19,21 @@ class GeotekniskUndersoekelseGrense:
     investigations</engelsk>
 
         Attributes:
-            grense (Union[Unset, List['Point']]):
+            grense (Union[Unset, list['Point']]):
     """
 
-    grense: Union[Unset, List["Point"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    grense: Union[Unset, list["Point"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        grense: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        grense: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.grense, Unset):
             grense = []
             for componentsschemas_line_string_item_data in self.grense:
                 componentsschemas_line_string_item = componentsschemas_line_string_item_data.to_dict()
                 grense.append(componentsschemas_line_string_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if grense is not UNSET:
@@ -41,10 +42,10 @@ class GeotekniskUndersoekelseGrense:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.point import Point
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         grense = []
         _grense = d.pop("grense", UNSET)
         for componentsschemas_line_string_item_data in _grense or []:
@@ -60,7 +61,7 @@ class GeotekniskUndersoekelseGrense:
         return geoteknisk_undersoekelse_grense
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,18 +13,18 @@ T = TypeVar("T", bound="MultiPolygon")
 class MultiPolygon:
     """
     Attributes:
-        type (Union[Literal['MultiPolygon'], Unset]):
-        coordinates (Union[Unset, List[List[List[List[float]]]]]):
+        type_ (Union[Literal['MultiPolygon'], Unset]):
+        coordinates (Union[Unset, list[list[list[list[float]]]]]):
     """
 
-    type: Union[Literal["MultiPolygon"], Unset] = UNSET
-    coordinates: Union[Unset, List[List[List[List[float]]]]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: Union[Literal["MultiPolygon"], Unset] = UNSET
+    coordinates: Union[Unset, list[list[list[list[float]]]]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        type = self.type
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_
 
-        coordinates: Union[Unset, List[List[List[List[float]]]]] = UNSET
+        coordinates: Union[Unset, list[list[list[list[float]]]]] = UNSET
         if not isinstance(self.coordinates, Unset):
             coordinates = []
             for coordinates_item_data in self.coordinates:
@@ -39,22 +40,22 @@ class MultiPolygon:
 
                 coordinates.append(coordinates_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if coordinates is not UNSET:
             field_dict["coordinates"] = coordinates
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        type = cast(Union[Literal["MultiPolygon"], Unset], d.pop("type", UNSET))
-        if type != "MultiPolygon" and not isinstance(type, Unset):
-            raise ValueError(f"type must match const 'MultiPolygon', got '{type}'")
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        type_ = cast(Union[Literal["MultiPolygon"], Unset], d.pop("type", UNSET))
+        if type_ != "MultiPolygon" and not isinstance(type_, Unset):
+            raise ValueError(f"type must match const 'MultiPolygon', got '{type_}'")
 
         coordinates = []
         _coordinates = d.pop("coordinates", UNSET)
@@ -66,7 +67,7 @@ class MultiPolygon:
                 _componentsschemas_coordinates_lists_item = componentsschemas_coordinates_lists_item_data
                 for componentsschemas_coordinates_list_item_data in _componentsschemas_coordinates_lists_item:
                     componentsschemas_coordinates_list_item = cast(
-                        List[float], componentsschemas_coordinates_list_item_data
+                        list[float], componentsschemas_coordinates_list_item_data
                     )
 
                     componentsschemas_coordinates_lists_item.append(componentsschemas_coordinates_list_item)
@@ -76,7 +77,7 @@ class MultiPolygon:
             coordinates.append(coordinates_item)
 
         multi_polygon = cls(
-            type=type,
+            type_=type_,
             coordinates=coordinates,
         )
 
@@ -84,7 +85,7 @@ class MultiPolygon:
         return multi_polygon
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

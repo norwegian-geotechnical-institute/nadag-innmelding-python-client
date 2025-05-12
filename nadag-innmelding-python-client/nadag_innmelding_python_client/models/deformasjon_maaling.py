@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -77,8 +78,8 @@ class DeformasjonMaaling:
             installasjon_niv_å (Union[Unset, float]):
             målertype (Union[Unset, str]):
             målepunkt (Union[Unset, float]):
-            har_overv_å_kning_observasjon (Union[Unset, List['DeformasjonOvervaakningData']]):
-            har_setning_observasjon (Union[Unset, List['DeformasjonMaaleData']]):
+            har_overv_å_kning_observasjon (Union[Unset, list['DeformasjonOvervaakningData']]):
+            har_setning_observasjon (Union[Unset, list['DeformasjonMaaleData']]):
     """
 
     json_type: Union[Literal["DeformasjonMaaling"], Unset] = UNSET
@@ -117,11 +118,11 @@ class DeformasjonMaaling:
     installasjon_niv_å: Union[Unset, float] = UNSET
     målertype: Union[Unset, str] = UNSET
     målepunkt: Union[Unset, float] = UNSET
-    har_overv_å_kning_observasjon: Union[Unset, List["DeformasjonOvervaakningData"]] = UNSET
-    har_setning_observasjon: Union[Unset, List["DeformasjonMaaleData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    har_overv_å_kning_observasjon: Union[Unset, list["DeformasjonOvervaakningData"]] = UNSET
+    har_setning_observasjon: Union[Unset, list["DeformasjonMaaleData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
         datafangstdato: Union[Unset, str] = UNSET
@@ -130,11 +131,11 @@ class DeformasjonMaaling:
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        kvalitet: Union[Unset, Dict[str, Any]] = UNSET
+        kvalitet: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.kvalitet, Unset):
             kvalitet = self.kvalitet.to_dict()
 
@@ -142,7 +143,7 @@ class DeformasjonMaaling:
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
-        posisjon: Union[Unset, Dict[str, Any]] = UNSET
+        posisjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
@@ -166,7 +167,7 @@ class DeformasjonMaaling:
 
         boret_lengde = self.boret_lengde
 
-        boret_lengde_til_berg: Union[Unset, Dict[str, Any]] = UNSET
+        boret_lengde_til_berg: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = self.boret_lengde_til_berg.to_dict()
 
@@ -184,7 +185,7 @@ class DeformasjonMaaling:
 
         unders_ø_kelse_nr = self.unders_ø_kelse_nr
 
-        ekstern_identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
@@ -218,21 +219,21 @@ class DeformasjonMaaling:
 
         målepunkt = self.målepunkt
 
-        har_overv_å_kning_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        har_overv_å_kning_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_overv_å_kning_observasjon, Unset):
             har_overv_å_kning_observasjon = []
             for har_overv_å_kning_observasjon_item_data in self.har_overv_å_kning_observasjon:
                 har_overv_å_kning_observasjon_item = har_overv_å_kning_observasjon_item_data.to_dict()
                 har_overv_å_kning_observasjon.append(har_overv_å_kning_observasjon_item)
 
-        har_setning_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        har_setning_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_setning_observasjon, Unset):
             har_setning_observasjon = []
             for har_setning_observasjon_item_data in self.har_setning_observasjon:
                 har_setning_observasjon_item = har_setning_observasjon_item_data.to_dict()
                 har_setning_observasjon.append(har_setning_observasjon_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if json_type is not UNSET:
@@ -315,7 +316,7 @@ class DeformasjonMaaling:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.borlengde_til_berg import BorlengdeTilBerg
         from ..models.deformasjon_maale_data import DeformasjonMaaleData
         from ..models.deformasjon_overvaakning_data import DeformasjonOvervaakningData
@@ -324,7 +325,7 @@ class DeformasjonMaaling:
         from ..models.point import Point
         from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         json_type = cast(Union[Literal["DeformasjonMaaling"], Unset], d.pop("jsonType", UNSET))
         if json_type != "DeformasjonMaaling" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'DeformasjonMaaling', got '{json_type}'")
@@ -520,7 +521,7 @@ class DeformasjonMaaling:
         return deformasjon_maaling
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

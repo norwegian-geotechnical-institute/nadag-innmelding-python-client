@@ -1,5 +1,6 @@
 import datetime
-from typing import Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -25,9 +26,9 @@ class EksternIdentifikasjon:
     ekstern_navnerom: Union[Unset, str] = UNSET
     ekstern_versjon_id: Union[Unset, str] = UNSET
     ekstern_levering_dato: Union[Unset, datetime.datetime] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ekstern_id = self.ekstern_id
 
         ekstern_navnerom = self.ekstern_navnerom
@@ -38,7 +39,7 @@ class EksternIdentifikasjon:
         if not isinstance(self.ekstern_levering_dato, Unset):
             ekstern_levering_dato = self.ekstern_levering_dato.isoformat()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ekstern_id is not UNSET:
@@ -53,8 +54,8 @@ class EksternIdentifikasjon:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         ekstern_id = d.pop("eksternId", UNSET)
 
         ekstern_navnerom = d.pop("eksternNavnerom", UNSET)
@@ -79,7 +80,7 @@ class EksternIdentifikasjon:
         return ekstern_identifikasjon
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

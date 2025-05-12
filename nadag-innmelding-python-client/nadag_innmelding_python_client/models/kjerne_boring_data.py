@@ -1,4 +1,5 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -63,9 +64,9 @@ class KjerneBoringData:
     sprekke_material_type: Union[Unset, str] = UNSET
     str_ø_k_fall_fall: Union[Unset, int] = UNSET
     str_ø_k_fall_str_ø_k: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         boret_lengde = self.boret_lengde
 
         forvitringsgrad = self.forvitringsgrad
@@ -114,7 +115,7 @@ class KjerneBoringData:
 
         str_ø_k_fall_str_ø_k = self.str_ø_k_fall_str_ø_k
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if boret_lengde is not UNSET:
@@ -169,8 +170,8 @@ class KjerneBoringData:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         boret_lengde = d.pop("boretLengde", UNSET)
 
         forvitringsgrad = d.pop("forvitringsgrad", UNSET)
@@ -250,7 +251,7 @@ class KjerneBoringData:
         return kjerne_boring_data
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

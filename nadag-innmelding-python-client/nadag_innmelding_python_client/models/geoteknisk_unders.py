@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -52,10 +53,10 @@ class GeotekniskUnders:
             prosjekt_nr (Union[Unset, str]):
             opphav (Union[Unset, str]):
             unders_ø_kelse_å_r_antatt (Union[Unset, int]):
-            unders_pkt (Union[Unset, List['GeotekniskBorehull']]):
-            felt_unders (Union[Unset, List['GeotekniskFeltUnders']]):
-            har_tolkning (Union[Unset, List['GeotekniskTolketPunkt']]):
-            har_dokument (Union[Unset, List['GeotekniskDokument']]):
+            unders_pkt (Union[Unset, list['GeotekniskBorehull']]):
+            felt_unders (Union[Unset, list['GeotekniskFeltUnders']]):
+            har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):
+            har_dokument (Union[Unset, list['GeotekniskDokument']]):
     """
 
     identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
@@ -74,14 +75,14 @@ class GeotekniskUnders:
     prosjekt_nr: Union[Unset, str] = UNSET
     opphav: Union[Unset, str] = UNSET
     unders_ø_kelse_å_r_antatt: Union[Unset, int] = UNSET
-    unders_pkt: Union[Unset, List["GeotekniskBorehull"]] = UNSET
-    felt_unders: Union[Unset, List["GeotekniskFeltUnders"]] = UNSET
-    har_tolkning: Union[Unset, List["GeotekniskTolketPunkt"]] = UNSET
-    har_dokument: Union[Unset, List["GeotekniskDokument"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    unders_pkt: Union[Unset, list["GeotekniskBorehull"]] = UNSET
+    felt_unders: Union[Unset, list["GeotekniskFeltUnders"]] = UNSET
+    har_tolkning: Union[Unset, list["GeotekniskTolketPunkt"]] = UNSET
+    har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -91,7 +92,7 @@ class GeotekniskUnders:
 
         beskrivelse = self.beskrivelse
 
-        område: Union[Unset, Dict[str, Any]] = UNSET
+        område: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.område, Unset):
             område = self.område.to_dict()
 
@@ -105,7 +106,7 @@ class GeotekniskUnders:
         if not isinstance(self.unders_ø_kelse_periode_fra, Unset):
             unders_ø_kelse_periode_fra = self.unders_ø_kelse_periode_fra.isoformat()
 
-        sammensattområde: Union[Unset, Dict[str, Any]] = UNSET
+        sammensattområde: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.sammensattområde, Unset):
             sammensattområde = self.sammensattområde.to_dict()
 
@@ -113,7 +114,7 @@ class GeotekniskUnders:
         if not isinstance(self.unders_ø_kelse_periode_til, Unset):
             unders_ø_kelse_periode_til = self.unders_ø_kelse_periode_til.isoformat()
 
-        ekstern_identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
@@ -131,35 +132,35 @@ class GeotekniskUnders:
 
         unders_ø_kelse_å_r_antatt = self.unders_ø_kelse_å_r_antatt
 
-        unders_pkt: Union[Unset, List[Dict[str, Any]]] = UNSET
+        unders_pkt: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.unders_pkt, Unset):
             unders_pkt = []
             for unders_pkt_item_data in self.unders_pkt:
                 unders_pkt_item = unders_pkt_item_data.to_dict()
                 unders_pkt.append(unders_pkt_item)
 
-        felt_unders: Union[Unset, List[Dict[str, Any]]] = UNSET
+        felt_unders: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.felt_unders, Unset):
             felt_unders = []
             for felt_unders_item_data in self.felt_unders:
                 felt_unders_item = felt_unders_item_data.to_dict()
                 felt_unders.append(felt_unders_item)
 
-        har_tolkning: Union[Unset, List[Dict[str, Any]]] = UNSET
+        har_tolkning: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_tolkning, Unset):
             har_tolkning = []
             for har_tolkning_item_data in self.har_tolkning:
                 har_tolkning_item = har_tolkning_item_data.to_dict()
                 har_tolkning.append(har_tolkning_item)
 
-        har_dokument: Union[Unset, List[Dict[str, Any]]] = UNSET
+        har_dokument: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_dokument, Unset):
             har_dokument = []
             for har_dokument_item_data in self.har_dokument:
                 har_dokument_item = har_dokument_item_data.to_dict()
                 har_dokument.append(har_dokument_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if identifikasjon is not UNSET:
@@ -206,7 +207,7 @@ class GeotekniskUnders:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ekstern_identifikasjon import EksternIdentifikasjon
         from ..models.geoteknisk_borehull import GeotekniskBorehull
         from ..models.geoteknisk_dokument import GeotekniskDokument
@@ -216,7 +217,7 @@ class GeotekniskUnders:
         from ..models.multi_polygon import MultiPolygon
         from ..models.polygon import Polygon
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _identifikasjon = d.pop("identifikasjon", UNSET)
         identifikasjon: Union[Unset, Identifikasjon]
         if isinstance(_identifikasjon, Unset):
@@ -349,7 +350,7 @@ class GeotekniskUnders:
         return geoteknisk_unders
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,5 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,42 +17,42 @@ T = TypeVar("T", bound="GeometryCollection")
 class GeometryCollection:
     """
     Attributes:
-        type (Union[Literal['GeometryCollection'], Unset]):
-        geometries (Union[Unset, List['Geometry']]):
+        type_ (Union[Literal['GeometryCollection'], Unset]):
+        geometries (Union[Unset, list['Geometry']]):
     """
 
-    type: Union[Literal["GeometryCollection"], Unset] = UNSET
-    geometries: Union[Unset, List["Geometry"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: Union[Literal["GeometryCollection"], Unset] = UNSET
+    geometries: Union[Unset, list["Geometry"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        type = self.type
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_
 
-        geometries: Union[Unset, List[Dict[str, Any]]] = UNSET
+        geometries: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.geometries, Unset):
             geometries = []
             for geometries_item_data in self.geometries:
                 geometries_item = geometries_item_data.to_dict()
                 geometries.append(geometries_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if geometries is not UNSET:
             field_dict["geometries"] = geometries
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.geometry import Geometry
 
-        d = src_dict.copy()
-        type = cast(Union[Literal["GeometryCollection"], Unset], d.pop("type", UNSET))
-        if type != "GeometryCollection" and not isinstance(type, Unset):
-            raise ValueError(f"type must match const 'GeometryCollection', got '{type}'")
+        d = dict(src_dict)
+        type_ = cast(Union[Literal["GeometryCollection"], Unset], d.pop("type", UNSET))
+        if type_ != "GeometryCollection" and not isinstance(type_, Unset):
+            raise ValueError(f"type must match const 'GeometryCollection', got '{type_}'")
 
         geometries = []
         _geometries = d.pop("geometries", UNSET)
@@ -61,7 +62,7 @@ class GeometryCollection:
             geometries.append(geometries_item)
 
         geometry_collection = cls(
-            type=type,
+            type_=type_,
             geometries=geometries,
         )
 
@@ -69,7 +70,7 @@ class GeometryCollection:
         return geometry_collection
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

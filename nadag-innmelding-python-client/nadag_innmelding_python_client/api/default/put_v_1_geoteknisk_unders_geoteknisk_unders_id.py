@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union, cast
+from typing import Any, Optional, Union, cast
 
 import httpx
 
@@ -16,17 +16,17 @@ def _get_kwargs(
     *,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    params: Dict[str, Any] = {}
+    params: dict[str, Any] = {}
 
     json_epsg_code = epsg_code.value
     params["epsgCode"] = json_epsg_code
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "put",
         "url": f"/v1/GeotekniskUnders/{geoteknisk_unders_id}",
         "params": params,

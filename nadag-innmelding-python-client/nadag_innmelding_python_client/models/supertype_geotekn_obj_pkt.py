@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -43,20 +44,20 @@ class SupertypeGeoteknObjPkt:
     identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
     kvalitet: Union[Unset, "PosisjonskvalitetNADAG"] = UNSET
     oppdateringsdato: Union[Unset, datetime.datetime] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         datafangstdato: Union[Unset, str] = UNSET
         if not isinstance(self.datafangstdato, Unset):
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        kvalitet: Union[Unset, Dict[str, Any]] = UNSET
+        kvalitet: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.kvalitet, Unset):
             kvalitet = self.kvalitet.to_dict()
 
@@ -64,7 +65,7 @@ class SupertypeGeoteknObjPkt:
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if datafangstdato is not UNSET:
@@ -81,11 +82,11 @@ class SupertypeGeoteknObjPkt:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.identifikasjon import Identifikasjon
         from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _datafangstdato = d.pop("datafangstdato", UNSET)
         datafangstdato: Union[Unset, datetime.datetime]
         if isinstance(_datafangstdato, Unset):
@@ -128,7 +129,7 @@ class SupertypeGeoteknObjPkt:
         return supertype_geotekn_obj_pkt
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

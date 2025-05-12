@@ -1,5 +1,6 @@
 import datetime
-from typing import TYPE_CHECKING, Any, Dict, List, Literal, Type, TypeVar, Union, cast
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -43,8 +44,8 @@ class GrunnvannMaaling:
         r_ø_r_bunn (Union[Unset, float]):
         r_ø_r_topp (Union[Unset, float]):
         r_ø_r_type (Union[Unset, str]):
-        grunnvann_observasjon (Union[Unset, List['GrunnvannData']]):
-        overv_å_kning_obervasjon (Union[Unset, List['OvervaakningData']]):
+        grunnvann_observasjon (Union[Unset, list['GrunnvannData']]):
+        overv_å_kning_obervasjon (Union[Unset, list['OvervaakningData']]):
     """
 
     json_type: Union[Literal["GrunnvannMaaling"], Unset] = UNSET
@@ -61,14 +62,14 @@ class GrunnvannMaaling:
     r_ø_r_bunn: Union[Unset, float] = UNSET
     r_ø_r_topp: Union[Unset, float] = UNSET
     r_ø_r_type: Union[Unset, str] = UNSET
-    grunnvann_observasjon: Union[Unset, List["GrunnvannData"]] = UNSET
-    overv_å_kning_obervasjon: Union[Unset, List["OvervaakningData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    grunnvann_observasjon: Union[Unset, list["GrunnvannData"]] = UNSET
+    overv_å_kning_obervasjon: Union[Unset, list["OvervaakningData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, Dict[str, Any]] = UNSET
+        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -102,21 +103,21 @@ class GrunnvannMaaling:
 
         r_ø_r_type = self.r_ø_r_type
 
-        grunnvann_observasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        grunnvann_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.grunnvann_observasjon, Unset):
             grunnvann_observasjon = []
             for grunnvann_observasjon_item_data in self.grunnvann_observasjon:
                 grunnvann_observasjon_item = grunnvann_observasjon_item_data.to_dict()
                 grunnvann_observasjon.append(grunnvann_observasjon_item)
 
-        overv_å_kning_obervasjon: Union[Unset, List[Dict[str, Any]]] = UNSET
+        overv_å_kning_obervasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.overv_å_kning_obervasjon, Unset):
             overv_å_kning_obervasjon = []
             for overv_å_kning_obervasjon_item_data in self.overv_å_kning_obervasjon:
                 overv_å_kning_obervasjon_item = overv_å_kning_obervasjon_item_data.to_dict()
                 overv_å_kning_obervasjon.append(overv_å_kning_obervasjon_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if json_type is not UNSET:
@@ -155,12 +156,12 @@ class GrunnvannMaaling:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.grunnvann_data import GrunnvannData
         from ..models.identifikasjon import Identifikasjon
         from ..models.overvaakning_data import OvervaakningData
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         json_type = cast(Union[Literal["GrunnvannMaaling"], Unset], d.pop("jsonType", UNSET))
         if json_type != "GrunnvannMaaling" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'GrunnvannMaaling', got '{json_type}'")
@@ -248,7 +249,7 @@ class GrunnvannMaaling:
         return grunnvann_maaling
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

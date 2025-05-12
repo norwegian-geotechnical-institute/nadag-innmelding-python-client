@@ -1,4 +1,5 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -22,7 +23,7 @@ class GeotekniskProeveseriedel:
         fra_lengde (Union[Unset, float]):
         til_lengde (Union[Unset, float]):
         pr_ø_veseriedel_id (Union[Unset, str]):
-        har_data (Union[Unset, List['GeotekniskProeveseriedelData']]):
+        har_data (Union[Unset, list['GeotekniskProeveseriedelData']]):
     """
 
     pr_ø_ve_metode: Union[Unset, str] = UNSET
@@ -30,10 +31,10 @@ class GeotekniskProeveseriedel:
     fra_lengde: Union[Unset, float] = UNSET
     til_lengde: Union[Unset, float] = UNSET
     pr_ø_veseriedel_id: Union[Unset, str] = UNSET
-    har_data: Union[Unset, List["GeotekniskProeveseriedelData"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    har_data: Union[Unset, list["GeotekniskProeveseriedelData"]] = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         pr_ø_ve_metode = self.pr_ø_ve_metode
 
         pr_ø_veseriedel_navn = self.pr_ø_veseriedel_navn
@@ -44,14 +45,14 @@ class GeotekniskProeveseriedel:
 
         pr_ø_veseriedel_id = self.pr_ø_veseriedel_id
 
-        har_data: Union[Unset, List[Dict[str, Any]]] = UNSET
+        har_data: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_data, Unset):
             har_data = []
             for har_data_item_data in self.har_data:
                 har_data_item = har_data_item_data.to_dict()
                 har_data.append(har_data_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if pr_ø_ve_metode is not UNSET:
@@ -70,10 +71,10 @@ class GeotekniskProeveseriedel:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.geoteknisk_proeveseriedel_data import GeotekniskProeveseriedelData
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         pr_ø_ve_metode = d.pop("prøveMetode", UNSET)
 
         pr_ø_veseriedel_navn = d.pop("prøveseriedelNavn", UNSET)
@@ -104,7 +105,7 @@ class GeotekniskProeveseriedel:
         return geoteknisk_proeveseriedel
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:
