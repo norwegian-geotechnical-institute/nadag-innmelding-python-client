@@ -10,10 +10,11 @@ from ...types import Response
 
 def _get_kwargs(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
 ) -> dict[str, Any]:
     _kwargs: dict[str, Any] = {
         "method": "delete",
-        "url": f"/v1/GeotekniskUnders/{geoteknisk_unders_id}",
+        "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}/GeotekniskBorehull/{geoteknisk_borehull_id}",
     }
 
     return _kwargs
@@ -39,15 +40,17 @@ def _build_response(*, client: Union[AuthenticatedClient, Client], response: htt
 
 def sync_detailed(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
 ) -> Response[Any]:
-    """Deletes a GeotekniskUnders.
+    """Deletes a GeotekniskBorehull.
 
-     Deletes a GeotekniskUnders.
+     Deletes a GeotekniskBorehull.
 
     Args:
         geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -59,6 +62,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
     )
 
     response = client.get_httpx_client().request(
@@ -70,15 +74,17 @@ def sync_detailed(
 
 async def asyncio_detailed(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
 ) -> Response[Any]:
-    """Deletes a GeotekniskUnders.
+    """Deletes a GeotekniskBorehull.
 
-     Deletes a GeotekniskUnders.
+     Deletes a GeotekniskBorehull.
 
     Args:
         geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -90,6 +96,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)

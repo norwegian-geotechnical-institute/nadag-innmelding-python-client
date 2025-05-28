@@ -1,26 +1,35 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any, Optional, Union, cast
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.geoteknisk_borehull import GeotekniskBorehull
-from ...models.validated_geoteknisk_borehull import ValidatedGeotekniskBorehull
-from ...types import Response
+from ...models.epsg_code import EpsgCode
+from ...models.geoteknisk_unders import GeotekniskUnders
+from ...models.validated_geoteknisk_unders import ValidatedGeotekniskUnders
+from ...types import UNSET, Response
 
 
 def _get_kwargs(
     geoteknisk_unders_id: str,
-    geoteknisk_borehull_id: str,
     *,
-    body: GeotekniskBorehull,
+    body: GeotekniskUnders,
+    epsg_code: EpsgCode,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
+    params: dict[str, Any] = {}
+
+    json_epsg_code = epsg_code.value
+    params["epsgCode"] = json_epsg_code
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
     _kwargs: dict[str, Any] = {
         "method": "put",
-        "url": f"/v1/GeotekniskUnders/{geoteknisk_unders_id}/GeotekniskBorehull/{geoteknisk_borehull_id}",
+        "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}",
+        "params": params,
     }
 
     _body = body.to_dict()
@@ -34,9 +43,12 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[ValidatedGeotekniskBorehull]:
+) -> Optional[Union[Any, ValidatedGeotekniskUnders]]:
+    if response.status_code == 401:
+        response_401 = cast(Any, None)
+        return response_401
     if response.status_code == 200:
-        response_200 = ValidatedGeotekniskBorehull.from_dict(response.json())
+        response_200 = ValidatedGeotekniskUnders.from_dict(response.json())
 
         return response_200
     if client.raise_on_unexpected_status:
@@ -47,7 +59,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[ValidatedGeotekniskBorehull]:
+) -> Response[Union[Any, ValidatedGeotekniskUnders]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,35 +70,34 @@ def _build_response(
 
 def sync_detailed(
     geoteknisk_unders_id: str,
-    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: GeotekniskBorehull,
-) -> Response[ValidatedGeotekniskBorehull]:
-    """Updates a GeotekniskBorehull.
+    body: GeotekniskUnders,
+    epsg_code: EpsgCode,
+) -> Response[Union[Any, ValidatedGeotekniskUnders]]:
+    """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskBorehull.
+     Updates a GeotekniskUnders.
 
     Args:
         geoteknisk_unders_id (str):
-        geoteknisk_borehull_id (str):
-        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
-            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
-            <engelsk>geographical area represented by a location which is the logical unit for
-            interpretation of stratification and properties for the different strata </engelsk>
+        epsg_code (EpsgCode):
+        body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
+            borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
+            planned geotechnical boreholes for a given project</engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ValidatedGeotekniskBorehull]
+        Response[Union[Any, ValidatedGeotekniskUnders]]
     """
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
-        geoteknisk_borehull_id=geoteknisk_borehull_id,
         body=body,
+        epsg_code=epsg_code,
     )
 
     response = client.get_httpx_client().request(
@@ -98,70 +109,68 @@ def sync_detailed(
 
 def sync(
     geoteknisk_unders_id: str,
-    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: GeotekniskBorehull,
-) -> Optional[ValidatedGeotekniskBorehull]:
-    """Updates a GeotekniskBorehull.
+    body: GeotekniskUnders,
+    epsg_code: EpsgCode,
+) -> Optional[Union[Any, ValidatedGeotekniskUnders]]:
+    """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskBorehull.
+     Updates a GeotekniskUnders.
 
     Args:
         geoteknisk_unders_id (str):
-        geoteknisk_borehull_id (str):
-        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
-            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
-            <engelsk>geographical area represented by a location which is the logical unit for
-            interpretation of stratification and properties for the different strata </engelsk>
+        epsg_code (EpsgCode):
+        body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
+            borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
+            planned geotechnical boreholes for a given project</engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ValidatedGeotekniskBorehull
+        Union[Any, ValidatedGeotekniskUnders]
     """
 
     return sync_detailed(
         geoteknisk_unders_id=geoteknisk_unders_id,
-        geoteknisk_borehull_id=geoteknisk_borehull_id,
         client=client,
         body=body,
+        epsg_code=epsg_code,
     ).parsed
 
 
 async def asyncio_detailed(
     geoteknisk_unders_id: str,
-    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: GeotekniskBorehull,
-) -> Response[ValidatedGeotekniskBorehull]:
-    """Updates a GeotekniskBorehull.
+    body: GeotekniskUnders,
+    epsg_code: EpsgCode,
+) -> Response[Union[Any, ValidatedGeotekniskUnders]]:
+    """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskBorehull.
+     Updates a GeotekniskUnders.
 
     Args:
         geoteknisk_unders_id (str):
-        geoteknisk_borehull_id (str):
-        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
-            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
-            <engelsk>geographical area represented by a location which is the logical unit for
-            interpretation of stratification and properties for the different strata </engelsk>
+        epsg_code (EpsgCode):
+        body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
+            borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
+            planned geotechnical boreholes for a given project</engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[ValidatedGeotekniskBorehull]
+        Response[Union[Any, ValidatedGeotekniskUnders]]
     """
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
-        geoteknisk_borehull_id=geoteknisk_borehull_id,
         body=body,
+        epsg_code=epsg_code,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -171,36 +180,35 @@ async def asyncio_detailed(
 
 async def asyncio(
     geoteknisk_unders_id: str,
-    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: GeotekniskBorehull,
-) -> Optional[ValidatedGeotekniskBorehull]:
-    """Updates a GeotekniskBorehull.
+    body: GeotekniskUnders,
+    epsg_code: EpsgCode,
+) -> Optional[Union[Any, ValidatedGeotekniskUnders]]:
+    """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskBorehull.
+     Updates a GeotekniskUnders.
 
     Args:
         geoteknisk_unders_id (str):
-        geoteknisk_borehull_id (str):
-        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
-            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
-            <engelsk>geographical area represented by a location which is the logical unit for
-            interpretation of stratification and properties for the different strata </engelsk>
+        epsg_code (EpsgCode):
+        body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
+            borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
+            planned geotechnical boreholes for a given project</engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        ValidatedGeotekniskBorehull
+        Union[Any, ValidatedGeotekniskUnders]
     """
 
     return (
         await asyncio_detailed(
             geoteknisk_unders_id=geoteknisk_unders_id,
-            geoteknisk_borehull_id=geoteknisk_borehull_id,
             client=client,
             body=body,
+            epsg_code=epsg_code,
         )
     ).parsed

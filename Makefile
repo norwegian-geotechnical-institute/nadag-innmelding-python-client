@@ -3,8 +3,9 @@ help:  ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
 
 # Variable for the OpenAPI specification path
-OPENAPI_SPEC=./openapi_specification/nadag-innmelding.json
-OPENAPI_SPEC_URL=https://ngu.github.io/mono/nadag-innmelding/openapi/nadag-innmelding.json
+OPENAPI_SPEC=./openapi_specification/nadag-innmelding.yaml
+# Please note that his is now a yaml file and not json as before (no file extension)
+OPENAPI_SPEC_URL=https://test.ngu.no/api/nadag/innmelding/openapi/v1
 
 # Install the required library using pipx
 install:  ## Install openapi-python-client using pipx
@@ -31,7 +32,7 @@ clear_log:  ## Delete the log file if it exists
 # Download the OpenAPI specification
 download_openapi:  ## Download the OpenAPI specification
 	@echo "Downloading OpenAPI specification..."
-	@curl -s $(OPENAPI_SPEC_URL) > $(OPENAPI_SPEC)
+	@curl -s $(OPENAPI_SPEC_URL) > $(OPENAPI_SPEC).
 
 format_openapi: download_openapi  ## Format the OpenAPI specification
 	@echo "Formatting OpenAPI specification..."

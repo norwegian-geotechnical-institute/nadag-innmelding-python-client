@@ -1,15 +1,14 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .akvifer_type import AkviferType
+from .attachment_info_dto import AttachmentInfoDto
+from .attachment_infos_dto import AttachmentInfosDto
 from .blokk_proeve import BlokkProeve
 from .borlengde_til_berg import BorlengdeTilBerg
 from .deformasjon_maale_data import DeformasjonMaaleData
 from .deformasjon_maaling import DeformasjonMaaling
 from .deformasjon_observasjon_kode import DeformasjonObservasjonKode
 from .deformasjon_overvaakning_data import DeformasjonOvervaakningData
-from .diagnostic_dto import DiagnosticDto
-from .diagnostic_dto_severity import DiagnosticDtoSeverity
-from .diagnostics_dto import DiagnosticsDto
 from .dilatometer_test import DilatometerTest
 from .dilatometer_test_data import DilatometerTestData
 from .dissipasjon_data import DissipasjonData
@@ -102,8 +101,8 @@ from .synbarhet import Synbarhet
 from .tolkning_metode_kode import TolkningMetodeKode
 from .trykksondering import Trykksondering
 from .trykksondering_data import TrykksonderingData
-from .validated_geoteknisk_borehull import ValidatedGeotekniskBorehull
 from .validated_geoteknisk_unders import ValidatedGeotekniskUnders
+from .validated_geoteknisk_unders_diagnostics import ValidatedGeotekniskUndersDiagnostics
 from .vann_proeve import VannProeve
 from .vann_proeve_kilde import VannProeveKilde
 from .vingeboring import Vingeboring
@@ -111,15 +110,14 @@ from .vingeboring_data import VingeboringData
 
 __all__ = (
     "AkviferType",
+    "AttachmentInfoDto",
+    "AttachmentInfosDto",
     "BlokkProeve",
     "BorlengdeTilBerg",
     "DeformasjonMaaleData",
     "DeformasjonMaaling",
     "DeformasjonObservasjonKode",
     "DeformasjonOvervaakningData",
-    "DiagnosticDto",
-    "DiagnosticDtoSeverity",
-    "DiagnosticsDto",
     "DilatometerTest",
     "DilatometerTestData",
     "DissipasjonData",
@@ -212,8 +210,8 @@ __all__ = (
     "TolkningMetodeKode",
     "Trykksondering",
     "TrykksonderingData",
-    "ValidatedGeotekniskBorehull",
     "ValidatedGeotekniskUnders",
+    "ValidatedGeotekniskUndersDiagnostics",
     "VannProeve",
     "VannProeveKilde",
     "Vingeboring",
