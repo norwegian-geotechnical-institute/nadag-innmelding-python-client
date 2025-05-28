@@ -27,7 +27,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": "/v1/GeotekniskUnders",
+        "url": "/nadag/innmelding/v1/GeotekniskUnders",
         "params": params,
     }
 

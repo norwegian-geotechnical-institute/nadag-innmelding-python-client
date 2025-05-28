@@ -1,0 +1,3547 @@
+---
+openapi: 3.1.0
+components:
+  schemas:
+    AkviferType:
+      type: string
+      enum:
+      - ARTESISK
+      - LUKKET
+      - UTETT
+      - ÅPEN
+      - IKKE_ANGITT
+      description: oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview
+        of possible aquifer types for ground water measurements</engelsk>
+    AttachmentInfoDto:
+      type: object
+      description: Attachment info result
+      properties:
+        attachmentId:
+          type: string
+        uniqId:
+          type: string
+    AttachmentInfosDto:
+      type: object
+      description: Attachment infos result
+      properties:
+        attachmentInfos:
+          type: array
+          items:
+            $ref: "#/components/schemas/AttachmentInfoDto"
+    BlokkProeve:
+      type: object
+      description: "fysisk prøvemateriale manuelt skjært ut fra bunnen av en utgravning\
+        \ eller ved hjelp av spesialutviklet prøvetakingsutstyr\r\n\r\n<engelsk>physical\
+        \ sample manually cut from the bottom of a ditch or with special sample equipment</engelsk>"
+      properties:
+        jsonType:
+          const: BlokkProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    BorlengdeTilBerg:
+      type: object
+      required:
+      - borlengdeKvalitet
+      description: "dybde til fjell som ikke er målt men basert på tolkning\r\n\r\n\
+        <engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>"
+      properties:
+        borlengdeKvalitet:
+          $ref: "#/components/schemas/KvalitetBorlengdeTilBerg"
+        borlengdeTilBerg:
+          type: number
+          format: double
+    Coordinates:
+      type: array
+      items:
+        type: number
+        format: double
+    CoordinatesList:
+      type: array
+      items:
+        $ref: "#/components/schemas/Coordinates"
+    CoordinatesLists:
+      type: array
+      items:
+        $ref: "#/components/schemas/CoordinatesList"
+    DeformasjonMaaleData:
+      type: object
+      description: data fra måling av setning ved angitt måletidspunkt<engelsk>data
+        from measurements of settlements at a given time</engelsk>
+      properties:
+        måleDato:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        måleTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        deformasjonObservasjonKode:
+          $ref: "#/components/schemas/DeformasjonObservasjonKode"
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        setning:
+          type: number
+          format: double
+        deformasjonX:
+          type: number
+          format: double
+        deformasjonY:
+          type: number
+          format: double
+        deformasjonZ:
+          type: number
+          format: double
+        erGyldig:
+          type: boolean
+        boretLengde:
+          type: number
+          format: double
+        observasjonKode:
+          type: string
+    DeformasjonMaaling:
+      type: object
+      description: undersøkelse for måling av setninger og deformasjoner i felt<engelsk>investigation
+        for measurement of settlements and deformations in the field</engelsk>
+      properties:
+        jsonType:
+          const: DeformasjonMaaling
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        observasjonStart:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonSlutt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observatør:
+          type: string
+        opphav:
+          type: string
+        boreBeskrivelse:
+          type: string
+        boretAzimuth:
+          type: number
+          format: double
+        boretHelningsgrad:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        dybdeFraGittPosisjon:
+          type: number
+          format: double
+        dybdeFraVannoverflaten:
+          type: number
+          format: double
+        lenkeTilTileggsinfo:
+          type: string
+        værforholdVedBoring:
+          type: string
+        høyde:
+          type: number
+          format: double
+        høydeReferanse:
+          type: string
+        undersøkelseNr:
+          type: string
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        dybdeGrunnvannstand:
+          type: number
+          format: double
+        forboretDiameter:
+          type: number
+          format: double
+        forboretLengde:
+          type: number
+          format: double
+        forboringMetode:
+          type: string
+        stoppKode:
+          $ref: "#/components/schemas/GeotekniskStoppkode"
+        forboretStartLengde:
+          type: number
+          format: double
+        absoluttverdi:
+          type: boolean
+        installasjonTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        installasjonNivå:
+          type: number
+          format: double
+        målertype:
+          type: string
+        målepunkt:
+          type: number
+          format: double
+        harOvervåkningObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeformasjonOvervaakningData"
+        harSetningObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/DeformasjonMaaleData"
+    DeformasjonObservasjonKode:
+      type: string
+      enum:
+      - IKKESPESIFISERT
+      - HINDRING
+      - SKADET
+      - USIKKERT
+      description: Kodeliste for å angi deformasjonsobservasjon
+    DeformasjonOvervaakningData:
+      type: object
+      description: "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk,\
+        \ rystelser eller andre overvåkningsdata<engelsk>data from supervision of\
+        \ settlements, groundwater table, pore pressure or any other supervision data</engelsk>"
+      properties:
+        nedreAlarmNivå:
+          type: number
+          format: double
+        ØvreAlarmNivå:
+          type: number
+          format: double
+        måleDato:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        måleTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        akvifer:
+          $ref: "#/components/schemas/AkviferType"
+    DilatometerTest:
+      type: object
+      description: "en enkel innretning, formet som et flatt blad designet for å trykkes\
+        \ ned i bakken. Merknad: ble utviklet for å bestemme modulus for en jordart.\r\
+        \n<engelsk>a simple device, shaped in the form of a flat blade designed to\
+        \ be pushed into the ground Note: It was developed to evaluate the soil modulus.</engelsk>"
+      properties:
+        jsonType:
+          const: DilatometerTest
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        materialIndeks:
+          type: number
+          format: double
+        horisontalSpenningIndeks:
+          type: number
+          format: double
+        dilatometerModulus:
+          type: number
+          format: double
+        dilatometerObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/DilatometerTestData"
+    DilatometerTestData:
+      type: object
+      description: "en enkel innretning, formet som et flatt blad designet for å trykkes\
+        \ ned i bakken. Merknad: ble utviklet for å bestemme modulus for en jordart.\r\
+        \n<engelsk>a simple device, shaped in the form of a flat blade designed to\
+        \ be pushed into the ground Note: It was developed to evaluate the soil modulus.</engelsk>"
+      properties:
+        boretDybde:
+          type: number
+          format: double
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        observasjonKode:
+          type: string
+        kontaktTrykkP0:
+          type: number
+          format: double
+        ekspansjonTrykkP1:
+          type: number
+          format: double
+        horisontalKraft:
+          type: number
+          format: double
+        poretrykk:
+          type: number
+          format: double
+    DissipasjonData:
+      type: object
+      description: "data fra måling av dissipasjon (drenasje) i felt, aktuelt ved\
+        \ utførelse av dissipasjonstest i CPTU<engelsk>data fra måling av dissipasjon\
+        \ (drenasje) i felt, aktuelt ved utførelse av dissipasjonstest i CPTU</engelsk>"
+      properties:
+        boretDybde:
+          type: number
+          format: double
+        dissipasjonsPoretrykkU1:
+          type: number
+          format: double
+        dissipasjonsPoretrykkU2:
+          type: number
+          format: double
+        dissipasjonsPoretrykkU3:
+          type: number
+          format: double
+        dissipasjonsTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        friksjon:
+          type: number
+          format: double
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        poretrykk1:
+          type: number
+          format: double
+        poretrykk2:
+          type: number
+          format: double
+        poretrykk3:
+          type: number
+          format: double
+        spissmotstand:
+          type: number
+          format: double
+    DynamiskSondering:
+      type: object
+      description: "sondering som benytter slag på borstrengen ved penetrasjon, benevnes\
+        \ også som ramsondering, flere liknende metoder aktuelle<engelsk>sounding\
+        \ using strokes on the drill string during penetration, several similar methods\
+        \ are applicable</engelsk>"
+      properties:
+        jsonType:
+          const: DynamiskSondering
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        torvTykkelse:
+          type: number
+          format: double
+        antPrøveuttakForstyrretMatr:
+          type: integer
+          format: int32
+        dynamiskSonderingObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/DynamiskSonderingData"
+    DynamiskSonderingData:
+      type: object
+      description: "innsamlede data for utførelse og registrering ved gjennomføring\
+        \ av slagsondering\r\n<engelsk>collected data for performance of and recordings\
+        \ during percussion sounding</engelsk>"
+      properties:
+        boretLengde:
+          type: number
+          format: double
+        dreieMoment:
+          type: number
+          format: double
+        fallHøyde:
+          type: number
+          format: double
+        harRotasjon:
+          type: boolean
+        nedpressingTid:
+          type: integer
+          format: int32
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        prøveuttakNummer:
+          type: string
+        ramMotstand:
+          type: number
+          format: double
+        rotasjonHastighet:
+          type: number
+          format: double
+        slagFrekvens:
+          type: number
+          format: double
+    EksternIdentifikasjon:
+      type: object
+      description: "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandø\
+        r inn til NADAG. "
+      properties:
+        eksternId:
+          type: string
+          maxLength: 100
+        eksternNavnerom:
+          type: string
+          maxLength: 100
+        eksternVersjonId:
+          type: string
+          maxLength: 100
+        eksternLeveringDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+    EpsgCode:
+      type: string
+      enum:
+      - epsg_4326
+      - epsg_5972
+      - epsg_5973
+      - epsg_5974
+      - epsg_5975
+      - epsg_5976
+      - epsg_32632
+      - epsg_32633
+      - epsg_32634
+      - epsg_32635
+      - epsg_32636
+    FeltUndersTypeKode:
+      type: string
+      enum:
+      - FELTUNDERSMETODE
+      - TOLKETBERGHØYDE
+      - TOLKET
+      description: Kodeliste for feltundersøkelsestype
+    GassData:
+      type: object
+      description: resultater fra gassmålinger<engelsk>results from gas measurements</engelsk>
+      properties:
+        CH4:
+          type: number
+          format: double
+        HG:
+          type: number
+          format: double
+    GassMaaling:
+      type: object
+      description: måling av  gass<engelsk>measurement of gas</engelsk>
+      properties:
+        jsonType:
+          const: GassMaaling
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        plassering:
+          type: string
+        byggNummer:
+          type: string
+        gassObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/GassData"
+    GassProeve:
+      type: object
+      description: gassprøve fra poreluft<engelsk>gas sample from pore air</engelsk>
+      properties:
+        jsonType:
+          const: GassProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    Geometry:
+      type: object
+    GeometryCollection:
+      type: object
+      properties:
+        type:
+          const: GeometryCollection
+        geometries:
+          type: array
+          items:
+            $ref: "#/components/schemas/Geometry"
+    GeotekniskBoreObservasjonskode:
+      type: string
+      enum:
+      - ANTATTGRUNNVANN
+      - AVSLUTTET
+      - BLOKKSLUTT
+      - BØYDSONDERINGSSTANG
+      - FJELLMEDSLAG
+      - FJELLNIVÅ
+      - FORRIGEKODEFEIL
+      - FRIKSJONSJORD
+      - FROSSET
+      - FROSTISOLERING
+      - FUNKSJONSKONTROLLIKKEOK
+      - FUNKSJONSKONTROLLOK
+      - FYLLING
+      - GJENNOMBORRETBLOKKELLERSTEIN
+      - HINDRING
+      - IKKEMERKBARESPREKKER
+      - INGENREGISTRERING
+      - INGENVURDERING
+      - JORDMEDGRUS
+      - JORDMEDSAND
+      - JORDMEDSTEIN
+      - KULLASKE
+      - LEIRE
+      - LEIRMORENE
+      - MERINFORMASJON
+      - MORENEJORD
+      - NYMETODE
+      - OPPHOLD
+      - OPPSPRUKKETFJELL
+      - ORGANISKJORD
+      - PUMPING
+      - PUMPINGSLUTT
+      - SANDMEDGRUS
+      - SILT
+      - SKADET
+      - SKARV
+      - SLAG
+      - SLAGSPYL
+      - SLAGSPYLSLUTT
+      - SLUTTSLAG
+      - SLUTTVRIDNING
+      - SONDERINGSTANGAV
+      - SPISSDYP
+      - SPYLING
+      - SPYLINGSLUTT
+      - STARTNIVÅ
+      - STARTSLAG
+      - STARTVRIDNING
+      - SVÆRTOPPSPRUKKETFJELL
+      - SYNKVEKT0
+      - SYNKVEKT0_64
+      - TERRENGOVERFLATE
+      - TIDLIGERESTOPP
+      - TIDSANGIVELSE
+      - TORV
+      - TØRRSKORPE
+      - UBESTEMTJORDART
+      - UORGANISKKOHESJONSJORD
+      - URENMAKADAM
+      - UTENVRIDNING
+      - VRIDNING
+      description: "oversikt over koder for observasjoner som gjøres ved utførelse\
+        \ av en grunnundersøkelse. Benyttes i egenskapen 'observasjonKode' som i mai\
+        \ 2024 ble gjort om til tekststreng fra å være knyttet til denne kodelisten.\
+        \ Tekstrengen kan inneholde mer enn 1 kode. <engelsk>overview of codes for\
+        \ observations conducted during an GeotechnicalBoreholeInvestigation. Used\
+        \ in the \"observasjonKode\" attribute, which in May 2024 was changed to a\
+        \ text string from being linked to this code list. The text string can contain\
+        \ more than 1 code. </engelsk>"
+    GeotekniskBorehull:
+      type: object
+      description: geografisk område representert ved et punkt som er den logiske
+        enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
+        <engelsk>geographical area represented by a location which is the logical
+        unit for interpretation of stratification and properties for the different
+        strata </engelsk>
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        antallBorehullUndersøkelser:
+          type: integer
+          format: int32
+        beskrivelse:
+          type: string
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        gjennomboretMedium:
+          type: array
+          items:
+            $ref: "#/components/schemas/GjennomboretMedium"
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        boreNr:
+          type: string
+        høyde:
+          type: number
+          format: double
+        høydeReferanse:
+          type: string
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        kvikkleirePåvisning:
+          $ref: "#/components/schemas/KvikkleirePaavisningKode"
+        opprinneligGeotekniskUndersID:
+          type: string
+        opphav:
+          type: string
+        maksBoretLengde:
+          type: number
+          format: double
+        harUndersøkelse:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskBorehullUnders"
+        harObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskObservasjon"
+        harTolkning:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskTolketPunkt"
+        harDokument:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskDokument"
+    GeotekniskBorehullUnders:
+      type: object
+      description: "geografisk punkt hvor det er utført feltforsøk, prøvetaking, må\
+        ling av poretrykk osv. med tilhørende observasjoner <engelsk>geographical\
+        \ location where field tests, sampling, pore pressure measurements etc. with\
+        \ corresponding observations have been carried out</engelsk>"
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        boreBeskrivelse:
+          type: string
+        borehullForløp:
+          $ref: "#/components/schemas/LineString"
+        boretAzimuth:
+          type: number
+          format: double
+        boretHelningsgrad:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        dybdeFraGittPosisjon:
+          type: number
+          format: double
+        dybdeFraVannoverflaten:
+          type: number
+          format: double
+        lenkeTilTileggsinfo:
+          type: string
+        opphav:
+          type: string
+        undersøkelseSlutt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        undersøkelseStart:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        værforholdVedBoring:
+          type: string
+        høyde:
+          type: number
+          format: double
+        høydeReferanse:
+          type: string
+        undersøkelseNr:
+          type: string
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        geotekniskMetode:
+          $ref: "#/components/schemas/GeotekniskMetodeKode"
+        dybdeGrunnvannstand:
+          type: number
+          format: double
+        forboretDiameter:
+          type: number
+          format: double
+        forboretLengde:
+          type: number
+          format: double
+        forboringMetode:
+          type: string
+        stoppKode:
+          $ref: "#/components/schemas/GeotekniskStoppkode"
+        forboretStartLengde:
+          type: number
+          format: double
+        metode:
+          type: array
+          items:
+            $ref: "#/components/schemas/Geotekniskmetode"
+        harDokument:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskDokument"
+    GeotekniskDokument:
+      type: object
+      description: dokument(er) tilhørende geotekniske undersøkelsesområder og borehull
+        <engelsk>accompanying documents to geotechnical investigation areas and boreholes</engelsk>
+      properties:
+        dokumentID:
+          type: string
+        dokumentNøkkel:
+          type: string
+        dokumentType:
+          type: string
+        dokumentFilnavn:
+          type: string
+        dokumentURL:
+          type: string
+        innholdType:
+          type: string
+        beskrivelse:
+          type: string
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        dokumentNavn:
+          type: string
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        dokumentNr:
+          type: string
+        dokumentDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+    GeotekniskFeltUnders:
+      type: object
+      description: Geoteknisk feltundersøkelse
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        geotekniskFeltUndersMetode:
+          $ref: "#/components/schemas/GeotekniskFeltUndersMetodeKode"
+        eksternidentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        feltundersType:
+          $ref: "#/components/schemas/FeltUndersTypeKode"
+        tolkningMetode:
+          $ref: "#/components/schemas/TolkningMetodeKode"
+        høydeFjell:
+          type: number
+          format: double
+        høyde:
+          type: number
+          format: double
+        høydeReferanse:
+          type: string
+        feltundersNr:
+          type: string
+        harDokument:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskDokument"
+    GeotekniskFeltUndersMetodeKode:
+      type: string
+      enum:
+      - RAMSONDERING
+      - BELASTNINGTEST
+      - SETNINGMÅLING
+      - SKRUEPLATE
+      - SPT
+      - PERMEABILITETMÅLING
+      - ELEKTRISKSONDERING
+      - HELNINGMÅLING
+      - SKOVLBORING
+      description: Koder for metoder benyttet ved geotekniske feltundersøkelser
+    GeotekniskGrunnvannObservasjonKode:
+      type: string
+      enum:
+      - IKKESPESIFISERT
+      - TØRR
+      - VANNSTRØM
+      - ERSTATTET
+      - FERDIG
+      - STIKK
+      - FUNKSJONSJEKKOK
+      - FUNKSJONSJEKKFEILET
+      - SPYLET
+      - FROSSET
+      description: oversikt over observasjonskoder for grunnvann
+    GeotekniskInsituTest:
+      type: object
+      description: metode som brukes i en geoteknisk borhullundersøkelse for å observere
+        og måle egenskaper til de forskjellige jordlag <engelsk>method used in a geotechnical
+        borehole investigation to observe and measure properties of the different
+        soil layers</engelsk>
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+    GeotekniskMetodeKode:
+      type: string
+      enum:
+      - BERGKONTROLLBORING
+      - GASSPRØVE
+      - BLOKKPRØVE
+      - DILATOMETERTEST
+      - DREIESONDERING_MANUELL
+      - DREIESONDERING_MASKINELL
+      - DREIETRYKKSONDERING
+      - DYNAMISK_SONDERING_USPESIFISERT
+      - ENKEL_SONDERING
+      - GASSMÅLING
+      - GRAVEPRØVE
+      - GRUNNVANNSMÅLING
+      - HEJARSONDERING_A
+      - HEJARSONDERING_B
+      - HK_SONDERING
+      - HYDRAULISK_TEST
+      - IKKE_ANGITT
+      - JORD_BERG_SONDERING_1
+      - JORD_BERG_SONDERING_2
+      - JORD_BERG_SONDERING_3
+      - KANNEPRØVE
+      - KJERNEPRØVE
+      - KOMBINASJONSSONDERING_USPESIFISERT
+      - KOMBISONDERING
+      - NAVERPRØVE
+      - PLATEBELASTNING
+      - PORETRYKKSMÅLING
+      - RAMPRØVE
+      - RAMSONDERING
+      - RAMSONDERING_A
+      - RAMSONDERING_B
+      - SEDIMENTPRØVE
+      - SKOVLPRØVE
+      - SLAGSONDERING
+      - SPT
+      - STATISK_SONDERING_USPESIFISERT
+      - STEMPELPRØVE
+      - STIKKSONDERING
+      - TOTALSONDERING_NORGE
+      - TOTALSONDERING_SVERIGE
+      - TRYKKSONDERING_CPT_CPTU_
+      - VANNPRØVE
+      - VEKTSONDERING_MANUELL
+      - VEKTSONDERING_MASKINELL
+      - VINGEBORING
+      - DREIESONDERING_USPESIFISERT
+      - PRØVE_USPESIFISERT
+      - PRØVESERIE_USPESIFISERT
+      - MILJØUNDERSØKELSE
+      - ELEKTRISK_SONDERING
+      - KJERNEBORING
+      description: Kode for metoder benyttet ved geotekniske borehullundersøkelser
+    GeotekniskObservasjon:
+      type: object
+      oneOf:
+      - $ref: "#/components/schemas/DeformasjonMaaling"
+      description: 'geografisk punkt hvor det er utført målinger <engelsk> geographical
+        location where measurements have been performed </engelsk> '
+      discriminator:
+        propertyName: jsonType
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        observasjonStart:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonSlutt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observatør:
+          type: string
+        opphav:
+          type: string
+        boreBeskrivelse:
+          type: string
+        boretAzimuth:
+          type: number
+          format: double
+        boretHelningsgrad:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        dybdeFraGittPosisjon:
+          type: number
+          format: double
+        dybdeFraVannoverflaten:
+          type: number
+          format: double
+        lenkeTilTileggsinfo:
+          type: string
+        værforholdVedBoring:
+          type: string
+        høyde:
+          type: number
+          format: double
+        høydeReferanse:
+          type: string
+        undersøkelseNr:
+          type: string
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        dybdeGrunnvannstand:
+          type: number
+          format: double
+        forboretDiameter:
+          type: number
+          format: double
+        forboretLengde:
+          type: number
+          format: double
+        forboringMetode:
+          type: string
+        stoppKode:
+          $ref: "#/components/schemas/GeotekniskStoppkode"
+        forboretStartLengde:
+          type: number
+          format: double
+    GeotekniskObservasjon_NADAG:
+      type: object
+      description: geografisk punkt hvor det er utført observasjoner <engelsk>geographical
+        location where observations have been carried out</engelsk>
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        observasjonStart:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonSlutt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observatør:
+          type: string
+        opphav:
+          type: string
+        boreBeskrivelse:
+          type: string
+        boretAzimuth:
+          type: number
+          format: double
+        boretHelningsgrad:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        dybdeFraGittPosisjon:
+          type: number
+          format: double
+        dybdeFraVannoverflaten:
+          type: number
+          format: double
+        lenkeTilTileggsinfo:
+          type: string
+        værforholdVedBoring:
+          type: string
+        høyde:
+          type: number
+          format: double
+        høydeReferanse:
+          type: string
+        undersøkelseNr:
+          type: string
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        dybdeGrunnvannstand:
+          type: number
+          format: double
+        forboretDiameter:
+          type: number
+          format: double
+        forboretLengde:
+          type: number
+          format: double
+        forboringMetode:
+          type: string
+        stoppKode:
+          $ref: "#/components/schemas/GeotekniskStoppkode"
+        forboretStartLengde:
+          type: number
+          format: double
+    GeotekniskProeveserie:
+      type: object
+      description: Undersøkelse gjort i et borehull i form av en prøveserie<engelsk>
+        Soli test </engelsk>
+      properties:
+        jsonType:
+          const: GeotekniskProeveserie
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+        prøvegrop:
+          type: boolean
+        prøvegropKun:
+          type: boolean
+        skovelprøve:
+          type: boolean
+        skovelprøveKun:
+          type: boolean
+        erOmrørt:
+          type: boolean
+        erUforstyrret:
+          type: boolean
+        harPrøverseriedel:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskProeveseriedel"
+    GeotekniskProeveseriedel:
+      type: object
+      description: delprøve av en  prøveserie<engelsk> Soli test part </engelsk>
+      properties:
+        prøveMetode:
+          type: string
+        prøveseriedelNavn:
+          type: string
+        fraLengde:
+          type: number
+          format: double
+        tilLengde:
+          type: number
+          format: double
+        prøveseriedelId:
+          type: string
+        harData:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskProeveseriedelData"
+    GeotekniskProeveseriedelData:
+      type: object
+      description: Data som tilhører en geoteknisk prøveseriedel
+      properties:
+        lagPosisjon:
+          $ref: "#/components/schemas/LagPosisjon"
+        prøveMetode:
+          type: string
+          maxLength: 50
+        aksielDeformasjon:
+          type: number
+          format: double
+        skjærfasthetUdrenert:
+          type: number
+          format: double
+        detaljertLagSammensetning:
+          type: string
+          maxLength: 255
+        skjærfasthetOmrørt:
+          type: number
+          format: double
+        densitetPrøvetaking:
+          type: number
+          format: double
+        erOmrørt:
+          type: boolean
+        labAnalyse:
+          type: boolean
+        flyteGrense:
+          type: number
+          format: double
+        glødeTap:
+          type: number
+          format: double
+        plastitetsGrense:
+          type: number
+          format: double
+        sensitivitet:
+          type: number
+          format: double
+        skjærfasthetUforstyrret:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        vanninnhold:
+          type: number
+          format: double
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+    GeotekniskProevetaking:
+      type: object
+      description: "innsamling av fysisk prøvemateriale som inndeles i prøvedeler\
+        \ hvor det for hver prøvedel kan utføres ett eller flere geotekniske laboratorieforsø\
+        k <engelsk>sampling of physical material separated into sample parts, where\
+        \ one or several laboratory tests can be carried out on each part</engelsk>"
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    GeotekniskSondering:
+      type: object
+      description: metode som brukes i en grunnundersøkelse for å måle penetrasjonsmotstanden
+        i de forskjellige jordlag <engelsk>method used in a ground investigation to
+        measure the penetration resistance of various soil layers</engelsk>
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        torvTykkelse:
+          type: number
+          format: double
+    GeotekniskStoppkode:
+      type: string
+      enum:
+      - ANTATTBERG
+      - ANTATTSTEINBLOKK
+      - BRUDDBORSTANGSPISS
+      - DYBDEIBERGOPPNÅDD
+      - DYBDEIFJELLMERENN3METER
+      - MATERIALELLERMASKINFEIL
+      - SONDERINGAVBRUTT
+      - SONDERINGAVBRUTTFASTGRUNN
+      - SONDERINGAVSLUTTETUTENSTOPP
+      - STEINBLOKKFJELL
+      - USPESIFISERT
+      - KJERNEBORINGMERENN3METER
+      - DYBDEIFJELLMERENN3METERMEDANALYSE
+      description: oversikt over koder for stopp av boring ved utførelse av en grunnundersøkelse
+        <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>
+    GeotekniskTolketLag:
+      type: object
+      description: Lag med geoteknisk tolkning
+      properties:
+        tolketLagID:
+          type: string
+        klassifiseringMetode:
+          $ref: "#/components/schemas/KlassifiseringsMetode"
+        hovedLagKlassifiseringsKode:
+          $ref: "#/components/schemas/HovedLagKlassifisering"
+        lagBeskrivelse:
+          type: string
+        tolketAv:
+          type: string
+        tolketTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        tolkningMerknad:
+          type: string
+        navn:
+          type: string
+        påTerrengOverflate:
+          type: boolean
+        vurdering:
+          type: number
+          format: double
+        underTerrengOverflate:
+          type: boolean
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        høyde:
+          type: number
+          format: double
+        høydeReferanse:
+          type: string
+    GeotekniskTolketPunkt:
+      type: object
+      description: Punkt med geoteknisk tolkning
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        tolketAv:
+          type: string
+        tolketTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        navn:
+          type: string
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        harTolketLag:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskTolketLag"
+    GeotekniskUnders:
+      type: object
+      description: geografisk område hvor det finnes eller er planlagt geotekniske
+        borehull tilhørende et gitt prosjekt <engelsk>geographical area where there
+        are or are planned geotechnical boreholes for a given project</engelsk>
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        beskrivelse:
+          type: string
+        område:
+          $ref: "#/components/schemas/Polygon"
+        oppdragsgiver:
+          type: string
+        oppdragstaker:
+          type: string
+        prosjektNavn:
+          type: string
+        undersøkelsePeriodeFra:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        sammensattområde:
+          $ref: "#/components/schemas/MultiPolygon"
+        undersøkelsePeriodeTil:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        eksternIdentifikasjon:
+          $ref: "#/components/schemas/EksternIdentifikasjon"
+        representasjonKvalitet:
+          $ref: "#/components/schemas/RepresentasjonKvalitet"
+        opprettetDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        prosjektNr:
+          type: string
+        opphav:
+          type: string
+        undersøkelseÅrAntatt:
+          type: integer
+          format: int32
+        undersPkt:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskBorehull"
+        feltUnders:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskFeltUnders"
+        harTolkning:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskTolketPunkt"
+        harDokument:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskDokument"
+    GeotekniskUndersoekelseGrense:
+      type: object
+      description: avgrensning av et område for geotekniske undersøkelser <engelsk>demarcation
+        of an area with soil investigations</engelsk>
+      properties:
+        grense:
+          $ref: "#/components/schemas/LineString"
+    Geotekniskmetode:
+      type: object
+      oneOf:
+      - $ref: "#/components/schemas/BlokkProeve"
+      - $ref: "#/components/schemas/DilatometerTest"
+      - $ref: "#/components/schemas/DynamiskSondering"
+      - $ref: "#/components/schemas/GassMaaling"
+      - $ref: "#/components/schemas/GassProeve"
+      - $ref: "#/components/schemas/GeotekniskProeveserie"
+      - $ref: "#/components/schemas/GraveProeve"
+      - $ref: "#/components/schemas/GrunnvannMaaling"
+      - $ref: "#/components/schemas/HydrauliskTest"
+      - $ref: "#/components/schemas/KanneProeve"
+      - $ref: "#/components/schemas/KjerneBoring"
+      - $ref: "#/components/schemas/KjerneProeve"
+      - $ref: "#/components/schemas/KombinasjonSondering"
+      - $ref: "#/components/schemas/MiljoeUndersoekelse"
+      - $ref: "#/components/schemas/NaverProeve"
+      - $ref: "#/components/schemas/Platebelastning"
+      - $ref: "#/components/schemas/PoretrykkMaaling"
+      - $ref: "#/components/schemas/RamProeve"
+      - $ref: "#/components/schemas/SedimentProeve"
+      - $ref: "#/components/schemas/SkovlProeve"
+      - $ref: "#/components/schemas/StatiskSondering"
+      - $ref: "#/components/schemas/StempelProeve"
+      - $ref: "#/components/schemas/Trykksondering"
+      - $ref: "#/components/schemas/VannProeve"
+      - $ref: "#/components/schemas/Vingeboring"
+      description: 'Abstrakt objekttype for å samle felles-egenskaper for en del geotekniske
+        prøver. '
+      discriminator:
+        propertyName: jsonType
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+    GeovitenskapeligObservasjon:
+      type: object
+      description: "andre typer observasjoner som ikke er samlet inn via fysiske borehull\r\
+        \n\r\n<engelsk>\r\nobservations collected by other features, i.e. not borehole.\r\
+        \n</engelsk>"
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        observasjonStart:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonSlutt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observatør:
+          type: string
+        opphav:
+          type: string
+    GeovitenskapeligUndersoekelse:
+      type: object
+      description: "geovitenskaplig undersøkelse som utføres innen for et gitt områ\
+        de og tidsperiode og som ofte er knyttet til et prosjekt \r\n\r\n<engelsk>\r\
+        \nsoil geoscientific investigation of a given area and time period and usually\
+        \ with a connection to a specific project \r\n</engelsk>"
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        beskrivelse:
+          type: string
+        område:
+          $ref: "#/components/schemas/Polygon"
+        oppdragsgiver:
+          type: string
+        oppdragstaker:
+          type: string
+        prosjektNavn:
+          type: string
+        undersøkelsePeriodeFra:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        sammensattområde:
+          $ref: "#/components/schemas/MultiPolygon"
+        undersøkelsePeriodeTil:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+    GeovitenskapeligUndersoekelseDelomraade:
+      type: object
+      description: "del av et undersøkelsesområde hvor det pågår, skal gjøres eller\
+        \ er gjort geovitenskapelige undersøkelser  \r\n\r\nMerknad: Typisk brukt\
+        \ offshore hvor et undersøkelsesområde er delt i flere mindre lokaliteter.\
+        \  \r\n\r\n<engelsk> area where geoscientific investigations are planned,\
+        \ in progress or performed. Note: This feature is typically used offshore\
+        \ where an investigation is split into smaller parts</engelsk>"
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        beskrivelse:
+          type: string
+        område:
+          $ref: "#/components/schemas/Polygon"
+    GeovitenskapeligUndersoekelseDelomraadeGrense:
+      type: object
+      description: "avgrensning av et delområde innenfor en geovitenskapelig undersø\
+        kelse\r\n\r\n<engelsk>boundary of a subarea within a geoscientific investigation</engelsk>"
+      properties:
+        grense:
+          $ref: "#/components/schemas/LineString"
+    GeovitenskapeligUndersoekelseGrense:
+      type: object
+      description: "avgrensning av et område for en geovitenskapelig undersøkelse\
+        \ \r\n\r\n<engelsk>boundary of geoscientific investigation</engelsk>"
+      properties:
+        grense:
+          $ref: "#/components/schemas/LineString"
+    GeovitenskapligBorehull:
+      type: object
+      description: "område representert ved et punkt hvor det skal foretas en eller\
+        \ flere borehullundersøkelser - også kalt logisk borehull i motsetning til\
+        \ borhullundersøkelse som representerer hvert fysiske borehull\r\n\r\nMerknad:\
+        \ Det logiske borehullet har en posisjon som representerer de fysiske borhullundersø\
+        kelsene foretatt i området \r\n\r\n<engelsk>\r\nborehole consists of one or\
+        \ more physical borehole investigations. The borehole has a position, representing\
+        \ a collection of borehole investigations. The position of the borehole is\
+        \ often given the same position as one of the asscoated borehole investigations.\
+        \ The associated borehole investigations should be in a reasonable short distance\
+        \ (e.g. 0,5 m) from the position of the borehole.\r\n</engelsk>"
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        antallBorehullUndersøkelser:
+          type: integer
+          format: int32
+        beskrivelse:
+          type: string
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        gjennomboretMedium:
+          type: array
+          items:
+            $ref: "#/components/schemas/GjennomboretMedium"
+        posisjon:
+          $ref: "#/components/schemas/Point"
+    GeovitenskapligBorehullUndersoekelse:
+      type: object
+      description: "et enkelt fysisk undersøkelsespunkt som inneholder beskrivelsen\
+        \ av borehullforløpet  \r\n\r\nMerknad: Flere undersøkelser kan tilhøre det\
+        \ samme borehullet, men det er undersøkelsen som representerer de enkelte\
+        \ sonderinger / boringer. \r\n\r\n<engelsk>a pysical borehole which contain\
+        \ a description of the borehole geometry Note: Several investigations can\
+        \ belong to the same borehole, and it is the investigation which contain the\
+        \ geometry along the borehole. </engelsk>"
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        posisjon:
+          $ref: "#/components/schemas/Point"
+        boreBeskrivelse:
+          type: string
+        borehullForløp:
+          $ref: "#/components/schemas/LineString"
+        boretAzimuth:
+          type: number
+          format: double
+        boretHelningsgrad:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        dybdeFraGittPosisjon:
+          type: number
+          format: double
+        dybdeFraVannoverflaten:
+          type: number
+          format: double
+        lenkeTilTileggsinfo:
+          type: string
+        opphav:
+          type: string
+        undersøkelseSlutt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        undersøkelseStart:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        værforholdVedBoring:
+          type: string
+    GjennomboretMedium:
+      type: string
+      enum:
+      - BERG
+      - IS
+      - LUFT
+      - LØSMASSE
+      - USPESIFISERT
+      - VANN
+      description: "angir hvilket medium en boring er foretatt i\r\n\r\n<engelsk>\
+        \ \r\ndefine what kind of medium/material the borehole has penetrated.</engelsk>"
+    GraveProeve:
+      type: object
+      description: omrørt fysisk prøvemateriale manuelt gravd ut fra sjakt eller grøft
+        <engelsk>disturbed physical soil sample manually digged from a ditch or pit</engelsk>
+      properties:
+        jsonType:
+          const: GraveProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    GrunnvannData:
+      type: object
+      description: "data fra måling av grunnvannstand, med observasjonskoder, kommentarer\
+        \ og tidsstempel for angitt måletidspunkt<engelsk>data from measurement of\
+        \ ground water level, with observation codes, comments and time for measurements</engelsk>"
+      properties:
+        måleDato:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        dybdeGrunnvannstand:
+          type: number
+          format: double
+        måleTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        pH:
+          type: number
+          format: double
+        ledningsevne:
+          type: number
+          format: double
+        oksygenInnhold:
+          type: number
+          format: double
+        temperatur:
+          type: number
+          format: double
+        redoks:
+          type: number
+          format: double
+        turbiditet:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        grunnvannObservasjonKode:
+          $ref: "#/components/schemas/GeotekniskGrunnvannObservasjonKode"
+        erGyldig:
+          type: boolean
+    GrunnvannMaaling:
+      type: object
+      description: måling av grunnvannstand i felt<engelsk>measurement of the ground
+        water table in the field</engelsk>
+      properties:
+        jsonType:
+          const: GrunnvannMaaling
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        erLangtidsobservasjon:
+          type: boolean
+        filterDyp:
+          type: number
+          format: double
+        filterLengde:
+          type: number
+          format: double
+        filterType:
+          type: string
+        grunnvannAkvifer:
+          $ref: "#/components/schemas/AkviferType"
+        rørBunn:
+          type: number
+          format: double
+        rørTopp:
+          type: number
+          format: double
+        rørType:
+          type: string
+        grunnvannObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/GrunnvannData"
+        overvåkningObervasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/OvervaakningData"
+    HovedLagKlassifisering:
+      type: string
+      enum:
+      - ANTATTFORURENSNING
+      - BLOKK
+      - DY
+      - MATJORD
+      - BERG
+      - FORVITRETTORV
+      - OPPSPRUKKETBERG
+      - GYTJE
+      - GYTJEOGLEIRE
+      - HUMUS
+      - KULL
+      - LEIRE
+      - ANNETORGANISKMATERIALE
+      - SAND
+      - SILT
+      - SKJELLGRUS
+      - SKJELLSAND
+      - SULFIDHOLDIGJORD
+      - TORV
+      - TØRRSKORPELEIRE
+      - USPESIFISERTMATERIALE
+      - FYLLMASSE
+      - GRUS
+      - KVIKKLEIRE
+      - MORENE
+      - FRIKSJONSJORD
+      - KOHESJONSJORD
+      - PLANTERESTER
+      - BLOKKIGOGSTEINIGMORENE
+      - UKJENTMATERIALE
+      - JORD
+      - STEINIGMORENE
+      - GRUSIGMORENE
+      - SANDIGMORENE
+      - SILTIGMORENE
+      - LEIRIGMORENE
+      - SKJELL
+      - FIBRIGTORV
+      - DELVISFIBRIGTORV
+      - STEIN
+      - BERGELLERBLOKK
+      description: oversikt over lagdeling og jordart for klassifisering og identifisering
+        av grunnforhold<engelsk>overview of stratification and soil type for classification
+        and identification of ground conditions</engelsk>
+    HydrauliskKonduktivitet:
+      type: string
+      enum:
+      - DÅRLIG_VANNGIVER
+      - GANSKE_DÅRLIG_VANNGIVER
+      - GOD_VANNGIVER
+      - MEGET_DÅRLIG_VANNGIVER
+      - MEGET_GOD_VANNGIVER
+      description: "proporsjonalitetskonstant som relaterer vannstrømningsrate gjennom\
+        \ et medium til gradienten\r\n\r\nMerknad: Kalles også hydraulisk ledningsevne\
+        \ og avhenger av både vannets og mediets egenskaper.\r\n\r\n<engelsk>proportionality\
+        \ constant which relates water permeability through a medium with the gradient</engelsk>"
+    HydrauliskTest:
+      type: object
+      description: "måling av vannstrømning, vannhastighetsbestemmelse og hydraulisk\
+        \ splitting i felt <engelsk>measurement of hydraulic tests (i.e. water flow,\
+        \ pulse tests and hydraulic fracturing tests) in the field</engelsk>"
+      properties:
+        jsonType:
+          const: HydrauliskTest
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        rørBunn:
+          type: number
+          format: double
+        rørTopp:
+          type: number
+          format: double
+        rørType:
+          type: string
+        hydrauliskObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/HydrauliskeData"
+    HydrauliskeData:
+      type: object
+      description: "data fra måling av vannstrømning, vannhastighetsbestemmelse og\
+        \ hydraulisk splitting i felt.             <engelsk>data from measurements\
+        \ of water flow, water velocity, pumping tests and hydraulic splitting in\
+        \ the field.                                                         </engelsk>"
+      properties:
+        måleDato:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        måleTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        hydrauliskKonduktivitet:
+          $ref: "#/components/schemas/HydrauliskKonduktivitet"
+        dybdeGrunnvannstand:
+          type: number
+          format: double
+    Identifikasjon:
+      type: object
+      required:
+      - lokalId
+      - navnerom
+      description: "Unik identifikasjon av et objekt, ivaretatt av den ansvarlige\
+        \ produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse\
+        \ til objektet. \r\n\r\nNOTE1 Denne eksterne objektidentifikasjonen må ikke\
+        \ forveksles med en tematisk objektidentifikasjon, slik som f.eks bygningsnummer.\
+        \ \r\n\r\nNOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets\
+        \ levetid. "
+      properties:
+        lokalId:
+          type: string
+          maxLength: 100
+        navnerom:
+          type: string
+          maxLength: 100
+        versjonId:
+          type: string
+          maxLength: 100
+    KanneProeve:
+      type: object
+      description: "omrørt fysisk prøvemateriale tatt i organiske materialer eller\
+        \ bløte leirer med enkelt håndoperert utstyr\r\n\r\n<engelsk>disturbed physical\
+        \ soil sample taken from organic material or soft clays with simple hand operated\
+        \ equipment</engelsk>"
+      properties:
+        jsonType:
+          const: KanneProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    KjerneBoring:
+      type: object
+      description: kjerneprøve tatt i fast berg/fjell ved kjerneboring. Ofte dype
+        boringer og normalt ikke relevant for geoteknikk. Tatt med i denne produktspesifikasjon
+        pga. at data kan finnes sammen med geoteknikkleveranser. Blir eventuelt overført
+        til annen database/produktspek senere. <engelsk>core drilling</engelsk>
+      properties:
+        jsonType:
+          const: KjerneBoring
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        harData:
+          type: array
+          items:
+            $ref: "#/components/schemas/KjerneBoringData"
+    KjerneBoringData:
+      type: object
+      description: Data som tilhører en Kjerneboring
+      properties:
+        boretLengde:
+          type: number
+          format: double
+        forvitringsgrad:
+          type: string
+        geologiskMaterialTekst:
+          type: string
+          maxLength: 255
+        geologiskMaterialType:
+          type: string
+          maxLength: 50
+        kjerneOpptak_Prosent:
+          type: integer
+          format: int32
+        materialStruktur:
+          type: string
+          maxLength: 50
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        opptrekk:
+          type: string
+          maxLength: 50
+        QVerdi_Ja:
+          type: number
+          format: double
+        QVerdi_Jn:
+          type: number
+          format: double
+        QVerdi_Jr:
+          type: number
+          format: double
+        QVerdi_Jw:
+          type: number
+          format: double
+        QVerdi_Q:
+          type: number
+          format: double
+        QVerdi_QErBeregnet:
+          type: boolean
+        QVerdi_RQD:
+          type: number
+          format: double
+        QVerdi_SRF:
+          type: number
+          format: double
+        RockMassRating:
+          type: integer
+          format: int32
+        ruhetsindeks:
+          type: integer
+          format: int32
+        sprekkeFrekvens:
+          type: number
+          format: double
+        sprekkeMaterialTekst:
+          type: string
+          maxLength: 255
+        sprekkeMaterialType:
+          type: string
+          maxLength: 50
+        strøkFall_Fall:
+          type: integer
+          format: int32
+        strøkFall_Strøk:
+          type: integer
+          format: int32
+    KjerneProeve:
+      type: object
+      description: kjerneprøve tatt i faste masser eller løst berg <engelsk>core sample</engelsk>
+      properties:
+        jsonType:
+          const: KjerneProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+    KlassifiseringsMetode:
+      type: string
+      enum:
+      - OBSERVASJON
+      - TOLKETFELTSONDERING
+      - TOLKETBERGBORING
+      - TOLKETBERGBORING3METER
+      - TOLKETLAB
+      - TOLKETTEGNING
+      - USPESIFISERT
+      - BEREGNETFRATERRENGOVERFLATEN
+      - TOLKETPRØVETAK
+      description: oversikt over klassifiseringsmetoder for bestemmelse av grunnforhold<engelsk>overview
+        of classification methods for determination of ground conditions</engelsk>
+    KombinasjonSondering:
+      type: object
+      description: kombinasjon av boremetodene dreietrykksondering og fjellkontrollboring
+        som gjør det mulig å bore både i løsmasse og berg<engelsk>combination of the
+        boring methods rotary pressure sounding and rock control boring which enables
+        drilling in both soils and rock.</engelsk>
+      properties:
+        jsonType:
+          const: KombinasjonSondering
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        torvTykkelse:
+          type: number
+          format: double
+        boretLengdeIBerg:
+          type: number
+          format: double
+        boretLengdeTilBerg:
+          $ref: "#/components/schemas/BorlengdeTilBerg"
+        maksLast:
+          type: number
+          format: double
+        kombinasjonSonderingObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/KombinasjonSonderingData"
+    KombinasjonSonderingData:
+      type: object
+      description: innsamlede data for utførelse og registrering ved gjennomføring
+        av totalsondering<engelsk>collected data for performance of and recordings
+        made during total sounding</engelsk>
+      properties:
+        anvendtLast:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        dreieMoment:
+          type: number
+          format: double
+        nedpressingHastighet:
+          type: number
+          format: double
+        nedpressingKraft:
+          type: number
+          format: double
+        nedpressingTid:
+          type: integer
+          format: int32
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        rotasjonHastighet:
+          type: number
+          format: double
+        slagFrekvens:
+          type: number
+          format: double
+        spyleMengde:
+          type: number
+          format: double
+        spyleTrykk:
+          type: number
+          format: double
+    Kopidata:
+      type: object
+      required:
+      - originalDatavert
+      - kopidato
+      description: "angivelse av at objektet er hentet fra en kopi av originaldata\r\
+        \n\r\nMerknad: \r\nKan benyttes dersom man gjør et uttak av en database som\
+        \ ikke inneholder originaldataene."
+      properties:
+        områdeId:
+          type: integer
+          format: int32
+          maximum: 9999
+          minimum: 0
+        originalDatavert:
+          type: string
+          maxLength: 100
+        kopidato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+    KvalitetBorlengdeTilBerg:
+      type: string
+      enum:
+      - ANTATT
+      - PÅVIST
+      description: "beskriver om borlengde til berg er antatt eller påvist med en\
+        \ sikker metode\r\n\r\n<engelsk> \r\ndefines the quality of the depth information\
+        \ either assumed or confirmed by a secure method\r\n</engelsk>"
+    KvikkleirePaavisningKode:
+      type: string
+      enum:
+      - ANTATT
+      - IKKEVURDERT
+      - SIKKER
+      - USIKKER
+      - ANTATTIKKEKVIKK
+      description: Koder for grad av sikkerhet for påvisning av kvikkleire eller sprøbruddmateriale
+    LagPosisjon:
+      type: string
+      enum:
+      - IKKEANGITT
+      - VENSTRE
+      - MIDTEN
+      - HØYRE
+      description: kodeliste som brukes for å fortelle i hvilken del av prøvedelen
+        som det er gjort undersøkelser
+    LineString:
+      type: array
+      items:
+        $ref: "#/components/schemas/Point"
+    Maalemetode:
+      type: string
+      enum:
+      - TERRENGMÅLT
+      - TOTALSTASJON
+      - TEODOLITT_MED_ELEKTRONISK_AVSTANDSMÅLER
+      - TEODOLITT_MED_MÅLEBÅND
+      - ORTOGONALMETODEN
+      - UTMÅL
+      - TATT_FRA_PLAN
+      - ANNET_DENNE_HAR_INGEN_MENING_BØR_FJERNES_
+      - STEREOINSTRUMENT
+      - AEROTRIANGULERT
+      - ANALYTISK_PLOTTER
+      - AUTOGRAF_VANLIG_REGISTRERING
+      - DIGITALT_STEREOINSTRUMENT
+      - SCANNET_FRA_KART
+      - SCANNET_FRA_BLYANTORIGINAL
+      - SCANNET_FRA_RISSEFOLIE
+      - SCANNET_FRA_TRANSPARENT_FOLIE_GOD_KVALITET
+      - SCANNET_FRA_TRANSPARENT_FOLIE_MINDRE_GOD_KVALITET
+      - SCANNET_FRA_PAPIRKOPI
+      - FLYBÅREN_LASERSCANNER
+      - DIGITALISERT_PÅ_DIG_BORD_FRA_ORTOFOTO_FLYBILDE
+      - DIGITALISERT_FRA_ORTOFOTO_FILM
+      - DIGITALISERT_FRA_ORTOFOTO_FOTOKOPI
+      - DIGITALISERT_FRA_FLYBILDE_MONODIGITALISERT_FRA_FILM
+      - DIGITALISERT_FRA_FLYBILDE_MONODIGITALISERT_FRA_FOTOKOPI
+      - DIGITALISERT_FRA_ORTOFOTO
+      - DIGITALISERT_PÅ_SKJERM_FRA_SATELLITTBILDE
+      - DIGITALISERT_PÅ_DIG_BORD_FRA_STREK_KART
+      - DIGITALISERT_PÅ_DIG_BORD_FRA_BLYANTORIGINAL
+      - DIGITALISERT_PÅ_DIG_BORD_FRA_RISSEFOLIE
+      - DIGITALISERT_PÅ_DIG_BORD_FRA_TRANSPARENT_FILM_GOD_KVALITET
+      - DIGITALISERT_PÅ_DIG_BORD_FRA_TRANSPARENT_FILM_MINDRE_GOD_KVALITET
+      - DIGITALISERT_PÅ_DIG_BORD_FRA_PAPIRKOPI
+      - DIG_PÅ_SKJERM_FRA_SCANNET_SAMKOPI
+      - GENERERTE_DATA_INTERPOLASJON_
+      - GENERERT_I_TERRENGMODELL
+      - VEKTET_MIDDEL
+      - GENERERT_SIRKELGEOMETRI
+      - GENERALISERT
+      - GENERERT_SENTRALPUNKT
+      - SAMMENKNYTNINGSPUNKT_RANDPUNKT
+      - KOORDINATER_HENTET_FRA_GAB
+      - KOORDINATER_HENTET_FRA_JREG
+      - BEREGNET
+      - SPESIELLE_METODER
+      - MÅLT_MED_STIKKSTANG
+      - MÅLT_MED_WATERSTANG
+      - MÅLT_MED_MÅLEHJUL
+      - MÅLT_MED_STIGNINGSMÅLER
+      - FASTSATT_PUNKT
+      - FASTSATT_VED_DOM_ELLER_KONGELIG_RESOLUSJON
+      - ANNET_SPESIFISERES_I_FILHODE_BØR_VEL_FJERNES_BLIR_BORTE_VED_OVERFØRING_MELLOM_SYSTEMER_
+      - FRIHÅNDSTEGNING
+      - DIGITALISERT_FRA_KROKERING_PÅ_KART
+      - DIREKTE_INNLAGT_PÅ_SKJERM
+      - TREGHETSSTEDFESTING
+      - GPS_KODEMÅLING_RELATIVE_MÅLINGER
+      - GPS_KODEMÅLING_ENKELTMÅLINGER
+      - GPS_FASEMÅLING_STATISK_MÅLING
+      - GPS_FASEMÅLING_ANDRE_METODER
+      - KOMBINASJON_AV_GPS_TREGHET
+      - GPS_FASEMÅLING_RTK
+      - GPS_FASEMÅLING_FLOAT_LØSNING
+      - UKJENT_MÅLEMETODE
+      description: "metode som ligger til grunn for registrering av posisjon\r\n\r\
+        \n\r\n-- Definition - - \r\nmethod on which registration of position is based"
+    MaalemetodeHoeyde:
+      type: string
+      enum:
+      - TERRENGMÅLT
+      - TOTALSTASJON
+      - TEODOLITT_MED_ELEKTRONISK_AVSTANDSMÅLER
+      - TEODOLITT_MED_MÅLEBÅND
+      - ORTOGONALMETODEN
+      - NIVELLEMENT
+      - TATT_FRA_PLAN
+      - ANNET
+      - STEREOINSTRUMENT
+      - AEROTRIANGULERT
+      - ANALYTISK_PLOTTER
+      - AUTOGRAF_VANLIG_REGISTRERING
+      - DIGITALT_STEREOINSTRUMENT
+      - FLYBÅREN_LASERSCANNING
+      - GENERERTE_DATA_INTERPOLASJON_
+      - GENERERT_I_TERRENGMODELL
+      - VEKTET_MIDDEL
+      - GENERERT_SIRKELGEOMETRI
+      - GENERALISERT
+      - SAMMENKNYTNINGSPUNKT_RANDPUNKT
+      - KOORDINATER_HENTET_FRA_GAB
+      - KOORDINATER_HENTET_FRA_JREG_
+      - BEREGNET_
+      - SPESIELLE_METODER
+      - MÅLT_MED_STIGNINGSMÅLER
+      - FASTSATT_VED_DOM_ELLER_KONGELIG_RESOLUSJON
+      - ANNET_SPESIFISERES_I_FILHODE_
+      - TREGHETSSTEDFESTING
+      - GPS_KODEMÅLING_RELATIVE_MÅLINGER_
+      - GPS_KODEMÅLING_ENKELTPUNKTBESTEMMELSER
+      - GPS_FASEMÅLING_STATISK_MÅLING_
+      - GPS_FASEMÅLING_ANDRE_METODER
+      - KOMBINASJON_AV_GPS_TREGHET
+      - GPS_FASEMÅLING_RTK
+      - UKJENT_MÅLEMETODE
+      description: metode for å måle objekttypens høydeverdi
+    MiljoeUndersoekelse:
+      type: object
+      description: miljøundersøkelse<engelsk>environmental investigation</engelsk>
+      properties:
+        jsonType:
+          const: MiljoeUndersoekelse
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    MultiLineString:
+      type: array
+      items:
+        $ref: "#/components/schemas/LineString"
+    MultiPoint:
+      type: array
+      items:
+        $ref: "#/components/schemas/Point"
+    MultiPolygon:
+      type: object
+      properties:
+        type:
+          const: MultiPolygon
+        coordinates:
+          type: array
+          items:
+            $ref: "#/components/schemas/CoordinatesLists"
+    NaverProeve:
+      type: object
+      description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
+        sampling where disturbed samples are colleced</engelsk>
+      properties:
+        jsonType:
+          const: NaverProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    NedpressingsKapasitet:
+      type: string
+      enum:
+      - _10_KN
+      - _100_KN
+      - _50_KN
+      description: oversikt over lastkapasiteter for vanlige trykksonder i CPT/CPTU
+        <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>
+    OvervaakningData:
+      type: object
+      description: "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk,\
+        \ rystelser eller andre overvåkningsdata<engelsk>data from supervision of\
+        \ settlements, groundwater table, pore pressure or any other supervision data</engelsk>"
+      properties:
+        akvifer:
+          $ref: "#/components/schemas/AkviferType"
+        måleTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        nedreAlarmNivå:
+          type: number
+          format: double
+        ØvreAlarmNivå:
+          type: number
+          format: double
+        måleDato:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+    Platebelastning:
+      type: object
+      description: undersøkelse for måling av in situ deformasjons- og konsolideringsegenskaper
+        i friksjonsjordarter<engelsk>investigation for measurement of in situ deformation-
+        and consolidation properties in friction soils</engelsk>
+      properties:
+        jsonType:
+          const: Platebelastning
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        lasttrinnAntall:
+          type: integer
+          format: int32
+        arealPlate:
+          type: number
+          format: double
+        platebelastningObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/PlatebelastningData"
+    PlatebelastningData:
+      type: object
+      description: data fra måling av in situ deformasjons- og konsolideringsegenskaper
+        i friksjonsjordarter.<engelsk>data from measurements of in situ deformation-
+        and consolidation properties in friction soils.</engelsk>
+      properties:
+        tidFraStart:
+          type: integer
+          format: int32
+        anvendtLast:
+          type: number
+          format: double
+        nedpressingHastighet:
+          type: number
+          format: double
+        deformasjon:
+          type: number
+          format: double
+    Point:
+      type: object
+      properties:
+        type:
+          const: Point
+        coordinates:
+          $ref: "#/components/schemas/Coordinates"
+    Polygon:
+      type: object
+      properties:
+        type:
+          const: Polygon
+        coordinates:
+          $ref: "#/components/schemas/CoordinatesLists"
+    PoretrykkData:
+      type: object
+      description: data fra måling av poretrykk <engelsk>data from measurements of
+        pore pressure</engelsk>
+      properties:
+        avlesing0Kontroll:
+          type: number
+          format: double
+        avlesingEtter0Kontroll:
+          type: number
+          format: double
+        avlesingFør0Kontroll:
+          type: number
+          format: double
+        avstandManometerFilterspiss:
+          type: number
+          format: double
+        avstandToppSlangeTilVannstand:
+          type: number
+          format: double
+        barometerTrykk:
+          type: number
+          format: double
+        dybdeGrunnvannstand:
+          type: number
+          format: double
+        måleDato:
+          type: string
+          format: date
+          examples:
+          - 2022-03-10
+        måleTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        poretrykk:
+          type: number
+          format: double
+        trykkhøyde:
+          type: number
+          format: double
+    PoretrykkDataInsitu:
+      type: object
+      description: "data fra måling av trykktilstanden i porevannet, angitt som kraft\
+        \ pr. flateenhet og med atmosføretrykket som referanse<engelsk>data from measurements\
+        \ of pore pressure, given as force per area unit, with the atmospheric pressure\
+        \ as reference</engelsk>"
+      properties:
+        boretDybde:
+          type: number
+          format: double
+        enhetsvekt:
+          type: number
+          format: double
+        observasjonKode:
+          $ref: "#/components/schemas/GeotekniskBoreObservasjonskode"
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        poretrykk:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        tyngde:
+          type: number
+          format: double
+    PoretrykkMaaleKategori:
+      type: string
+      enum:
+      - ELEKTRISK
+      - HYDRAULISK
+      description: oversikt over aktuelle typer poretrykksmålere<engelsk>overview
+        of possible types of pore pressure measurement devices</engelsk>
+    PoretrykkMaaling:
+      type: object
+      description: "måling av poretrykkforhold i grunnen foretatt i løpet av en tidsperiode\
+        \ og / eller i flere dybder. poretrykk er trykket i porevannet angitt som\
+        \ kraft pr. flateenhet, og med atmosføretrykket som referanse<engelsk>measurement\
+        \ of pore pressure in the groundwater during a time period and / or in several\
+        \ depths. the pore pressure is the pressure in the pore water given as force\
+        \ per area unit, with the atmospheric pressure as reference</engelsk>"
+      properties:
+        jsonType:
+          const: PoretrykkMaaling
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        installasjonTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        filterLengde:
+          type: number
+          format: double
+        koteSpiss:
+          type: number
+          format: double
+        filterType:
+          type: string
+        rørToppFilter:
+          type: number
+          format: double
+        rørToppSlange:
+          type: number
+          format: double
+        rørTopp:
+          type: number
+          format: double
+        rørBunn:
+          type: number
+          format: double
+        målerspissNummer:
+          type: string
+        målerKategori:
+          $ref: "#/components/schemas/PoretrykkMaaleKategori"
+        målerType:
+          type: string
+        poretrykkObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/PoretrykkData"
+    Posisjonskvalitet:
+      type: object
+      required:
+      - målemetode
+      description: beskrivelse av kvaliteten på stedfestingen
+      properties:
+        målemetode:
+          $ref: "#/components/schemas/Maalemetode"
+        nøyaktighet:
+          type: integer
+          format: int32
+          maximum: 99
+          minimum: 0
+        synbarhet:
+          $ref: "#/components/schemas/Synbarhet"
+        målemetodeHøyde:
+          $ref: "#/components/schemas/MaalemetodeHoeyde"
+        nøyaktighetHøyde:
+          type: integer
+          format: int32
+          maximum: 999999
+          minimum: 0
+        maksimaltAvvik:
+          type: integer
+          format: int32
+          maximum: 999999
+          minimum: 0
+    PosisjonskvalitetNADAG:
+      type: object
+      required:
+      - målemetode
+      description: "Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for\
+        \ Grunnundersøkelser).\r\n(En realisering av den generelle Posisjonskvalitet)"
+      properties:
+        målemetode:
+          $ref: "#/components/schemas/Maalemetode"
+        målemetodeHøyde:
+          $ref: "#/components/schemas/MaalemetodeHoeyde"
+        nøyaktighet:
+          type: integer
+          format: int32
+          maximum: 999999
+          minimum: 0
+        nøyaktighetHøyde:
+          type: integer
+          format: int32
+          maximum: 999999
+          minimum: 0
+    ProevetakingType:
+      type: string
+      enum:
+      - BLOKK
+      - PLASTRØR
+      - POSEPRØVE
+      - REN_FLASKE
+      - STERIL_FLASKE
+      - SYLINDER
+      description: "inndeling av fysisk prøvemateriale i prøvetype, avhengig av prø\
+        vetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation\
+        \ of physical samples in sample type classes, depending on sampling method\
+        \ and/or storage method for the sampled material</engelsk>"
+    RamProeve:
+      type: object
+      description: geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede
+        masser <engelsk>geotechnical sampling where a sylinder is rammed into compact
+        soil</engelsk>
+      properties:
+        jsonType:
+          const: RamProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    RepresentasjonKvalitet:
+      type: string
+      enum:
+      - UKJENT
+      - REPRESENTASJONSPUNKT_FOR_MINDRE_GU_OMRÅDE_OPPTIL_CA_10_MÅL_
+      - REPRESENTASJONSPUNKT_FOR_STØRRE_GU_OMRÅDE_OVER_CA_10_MÅL_ELLER_LENGRE_ENN_CA_0_5_KM
+      - REPRESENTASJONSPUNKT_FOR_KOMMUNALT_REGIONALT_GU_OMRÅDE_
+      - POLYGON_SOM_AVGRENSER_BOREHULL_I_GU_
+      - POLYGON_FOR_GU_MED_KUN_ET_ENKELT_BOREHULL_100X100M_
+      - POLYGON_HENTET_FRA_BOREHULL_I_GU_MIN_OG_MAKS_KOORDINATER_
+      - POLYGON_SOM_REPRESENTERER_PROSJEKTOMRÅDE_
+      description: Angir hva avgrensningen/polygonen for en geoteknisk undersøkelse
+        fysisk representerer.
+    SedimentProeve:
+      type: object
+      description: sedimentprøve<engelsk>sediment sample</engelsk>
+      properties:
+        jsonType:
+          const: SedimentProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    SkovlProeve:
+      type: object
+      description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
+        sampling where disturbed samples are colleced</engelsk>
+      properties:
+        jsonType:
+          const: SkovlProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    SondeKvalitetsKlasse:
+      type: string
+      enum:
+      - KLASSE_1
+      - KLASSE_2
+      - KLASSE_3
+      - KLASSE_4
+      description: oversikt over aktuelle kvalitetsklasser (Anvendelsesklasser) for
+        CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>
+    StatiskSondering:
+      type: object
+      description: "sonderingstype som brukes for å bestemme lagdeling i løsmasser\
+        \ og dybde til fast grunn, og utføres med en konstant nedpressingshastighet\
+        \ og rotasjonshatighet.<engelsk>sounding method used for identification of\
+        \ soil stratification and depth to firm layers, performed with constant penetration\
+        \ and rotation rate</engelsk>"
+      properties:
+        jsonType:
+          const: StatiskSondering
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        torvTykkelse:
+          type: number
+          format: double
+        telenivå:
+          type: number
+          format: double
+        statiskSonderingObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/StatiskSonderingData"
+    StatiskSonderingData:
+      type: object
+      description: innsamlede data for utførelse og registrering ved gjennomføring
+        av statisk sondering <engelsk>collected data for performance and recordings
+        in static sounding</engelsk>
+      properties:
+        anvendtlast:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        halveOmdreininger:
+          type: number
+          format: double
+        medSlag:
+          type: boolean
+        nedpressingTid:
+          type: integer
+          format: int32
+        nedsynkningHastighet:
+          type: number
+          format: double
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        rotasjonHastighet:
+          type: number
+          format: double
+        harRotasjon:
+          type: boolean
+        sideFriksjon:
+          type: number
+          format: double
+        slagFrekvens:
+          type: number
+          format: double
+    StempelProeve:
+      type: object
+      description: "geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede\
+        \ masser, og hvor sylinder holdes stengt inntil ønsket dybde\r\n<engelsk>geotechnical\
+        \ sampling where a sylinder is rammed into compact soil, and where the sylinder\
+        \ is kept closed until the desired depth</engelsk>"
+      properties:
+        jsonType:
+          const: StempelProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+    Supertype_Geotekn_obj_omr:
+      type: object
+      description: "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige\
+        \ og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid\
+        \ vil en velge egenskaper og av grensningslinjer fra denne klassen."
+      properties:
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+    Supertype_Geotekn_obj_pkt:
+      type: object
+      description: "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige\
+        \ og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid\
+        \ vil en velge egenskaper og av grensningslinjer fra denne klassen."
+      properties:
+        datafangstdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+    Synbarhet:
+      type: string
+      enum:
+      - FULLT_UT_SYNLIG_GJENFINNBAR_I_TERRENGET
+      - DÅRLIG_GJENFINNBAR_I_TERRENG
+      - MIDDELS_SYNLIG_I_FLYBILDE_MODELL
+      - DÅRLIG_IKKE_SYNLIG_I_FLYBILDE_MODELL
+      description: hvor godt den kartlagte detalj var synbar ved kartleggingen
+    TolkningMetodeKode:
+      type: string
+      enum:
+      - F
+      - BG
+      - BH
+      - _LE
+      description: Metoder benyttet for tolkning av geotekniske feltundersøkelser
+    Trykksondering:
+      type: object
+      description: "penetrasjon av en trykksonde på enden av en serie med sylindriske\
+        \ trykksonderingsstenger ned i grunnen med konstant hastighet, brukes for\
+        \ å bestemme lagdeling og jordart i løsmasser, samt mekaniske egenskaper for\
+        \ jorden<engelsk>penetration of a probe at the end of a series with cylindrical\
+        \ rods into the ground at the constant rate of penetration, used to determine\
+        \ stratification and soil type, together with mechanical properties of the\
+        \ soil</engelsk>"
+      properties:
+        jsonType:
+          const: Trykksondering
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        alpha:
+          type: number
+          format: double
+        cptKorreksjonsFaktor:
+          type: number
+          format: double
+        filterType:
+          type: string
+        initiellSpissmotstand:
+          type: number
+          format: double
+        metningsMedium:
+          type: string
+        nedpressingsKapasitet:
+          $ref: "#/components/schemas/NedpressingsKapasitet"
+        nedpressningsHastighet:
+          type: number
+          format: double
+        nullpunktsKorreksjon:
+          type: number
+          format: double
+        rørKappeKorreksjonsFaktor:
+          type: number
+          format: double
+        sidefriksjonKorreksjon:
+          type: number
+          format: double
+        sondeIdentifikasjon:
+          type: string
+        sondeKalibreringDato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        sondeKvalitetKlasse:
+          $ref: "#/components/schemas/SondeKvalitetsKlasse"
+        spissKorreksjonFaktor:
+          type: number
+          format: double
+        spissType:
+          type: string
+        atmosferiskTrykkKorreksjon:
+          type: number
+          format: double
+        hylseRadieKorreksjon:
+          type: number
+          format: double
+        inSituPoretrykkObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/PoretrykkDataInsitu"
+        trykksonderingObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/TrykksonderingData"
+        dissipasjonObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/DissipasjonData"
+    TrykksonderingData:
+      type: object
+      description: data fra utførelse av trykksondering (med poretrykksmåling) CPT(U)<engelsk>data
+        fra performance of cone penetration test (with pore pressure measurements)
+        CPT(U)</engelsk>
+      properties:
+        anvendtLast:
+          type: number
+          format: double
+        boretDybde:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        friksjon:
+          type: number
+          format: double
+        helning:
+          type: number
+          format: double
+        initieltPoretrykk:
+          type: number
+          format: double
+        resistivitet:
+          type: number
+          format: double
+        korrigertFriksjon:
+          type: number
+          format: double
+        korrigertNedpressningsKraft:
+          type: number
+          format: double
+        nedpressingHastighet:
+          type: number
+          format: double
+        nedpressingsKraft:
+          type: number
+          format: double
+        nedpressingsTid:
+          type: integer
+          format: int32
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        poretrykk:
+          type: number
+          format: double
+        skjærbølgeHastighet:
+          type: number
+          format: double
+        temperatur:
+          type: number
+          format: double
+        nedpressingTrykk:
+          type: number
+          format: double
+    ValidatedGeotekniskUnders:
+      type: object
+      description: GeotekniskUnders med valideringsresultat
+      properties:
+        geotekniskUnders:
+          $ref: "#/components/schemas/GeotekniskUnders"
+        diagnostics:
+          type: object
+        attachmentInfos:
+          $ref: "#/components/schemas/AttachmentInfosDto"
+    VannProeve:
+      type: object
+      description: vannprøve<engelsk>water sample</engelsk>
+      properties:
+        jsonType:
+          const: VannProeve
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        prøvetype:
+          $ref: "#/components/schemas/ProevetakingType"
+        densitetPrøvetaking:
+          type: number
+          format: double
+        miljøtekniskUndersøkelse:
+          type: string
+        vannPrøveType:
+          $ref: "#/components/schemas/VannProeveKilde"
+    VannProeveKilde:
+      type: string
+      enum:
+      - GRUNNVANN
+      - OVERFLATEVANN
+      - POREVANN
+      - SIGEVANN
+      description: angir kilden til vannprøve<engelsk>define the source of the water
+        sample</engelsk>
+    Vingeboring:
+      type: object
+      description: undersøkelse for måling av in situ udrenert skjærfasthet for uforstyrret
+        og omrørt materiale i kohesjonsjordarter<engelsk>investigation for measurements
+        of in situ undrained shear strength for undisturbed and remoulded material
+        in cohesive soils</engelsk>
+      properties:
+        jsonType:
+          const: Vingeboring
+        identifikasjon:
+          $ref: "#/components/schemas/Identifikasjon"
+        fraBorlengde:
+          type: number
+          format: double
+        tilBorlengde:
+          type: number
+          format: double
+        insituTestStartTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        insituTestSluttTidspunkt:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+        sensitivitet:
+          type: number
+          format: double
+        skjærfasthetOmrørt:
+          type: number
+          format: double
+        skjærfasthetUforstyrret:
+          type: number
+          format: double
+        vannstandIBorehull:
+          type: number
+          format: double
+        vingeDiameter:
+          type: number
+          format: double
+        vingeHøyde:
+          type: number
+          format: double
+        vingeIdentitet:
+          type: string
+        vingeboringObservasjon:
+          type: array
+          items:
+            $ref: "#/components/schemas/VingeboringData"
+    VingeboringData:
+      type: object
+      description: data fra utførelse og tolkning av vingeboring<engelsk>data from
+        performance and interpretation of vane tests</engelsk>
+      properties:
+        boretDybde:
+          type: number
+          format: double
+        effektivDensitet:
+          type: number
+          format: double
+        korrigertSkjærfasthet:
+          type: number
+          format: double
+        observasjonKode:
+          type: string
+        observasjonMerknad:
+          type: string
+          maxLength: 255
+        omrørtSkjærfasthet:
+          type: number
+          format: double
+        omrørtTorsjonMoment:
+          type: number
+          format: double
+        sensitivitet:
+          type: number
+          format: double
+        uomrørtSkjærfasthet:
+          type: number
+          format: double
+        uomrørtTorsjonMoment:
+          type: number
+          format: double
+        boretLengde:
+          type: number
+          format: double
+        plastisitetIndeks:
+          type: number
+          format: double
+  securitySchemes:
+    Authentication:
+      type: http
+      description: JWT token
+      in: header
+      scheme: bearer
+      bearerFormat: JWT
+paths:
+  /nadag/innmelding/v1/GeotekniskUnders:
+    get:
+      summary: Fetches a GeotekniskUnders by external id.
+      description: Fetches a GeotekniskUnders by external id.
+      parameters:
+      - description: The externId of the GeotekniskUnders to fetch.
+        required: true
+        schema:
+          type: string
+        name: eksternId
+        in: query
+      - description: The externNavnerom of the GeotekniskUnders to fetch.
+        required: true
+        schema:
+          type: string
+        name: eksternNavnerom
+        in: query
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
+    post:
+      summary: Creates a new GeotekniskUnders.
+      description: Creates a new GeotekniskUnders. Returns the id of the newly created
+        GeotekniskUnders.
+      parameters:
+      - description: The epsg code of the geometry.
+        required: true
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+        name: epsgCode
+        in: query
+      requestBody:
+        description: The GeotekniskUnders to store.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeotekniskUnders"
+        required: true
+      responses:
+        "401":
+          description: Unauthorized Error
+        "200":
+          description: The GeotekniskUnders is created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+      security:
+      - Authentication: []
+  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/GeotekniskBorehull:
+    post:
+      summary: Creates a GeotekniskBorehull.
+      description: Creates a GeotekniskBorehull. Returns the diagnostics of the newly
+        created GeotekniskBorehull.
+      parameters:
+      - description: The GeotekniskUnders owner of the new GeotekniskBorehull.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      - description: The epsg code of the geometry.
+        required: true
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+        name: epsgCode
+        in: query
+      requestBody:
+        description: The GeotekniskBorehull to store.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeotekniskBorehull"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+      security:
+      - Authentication: []
+  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/GeotekniskBorehull/{geotekniskBorehullId}:
+    put:
+      summary: Updates a GeotekniskBorehull.
+      description: Updates a GeotekniskBorehull.
+      parameters:
+      - description: The GeotekniskBorehull id.
+        required: true
+        schema:
+          type: string
+        name: geotekniskBorehullId
+        in: path
+      - description: The GeotekniskUnders owner of the new GeotekniskBorehull.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      - description: The epsg code of the geometry.
+        required: true
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+        name: epsgCode
+        in: query
+      requestBody:
+        description: The GeotekniskBorehull to store.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeotekniskBorehull"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+      security:
+      - Authentication: []
+    delete:
+      summary: Deletes a GeotekniskBorehull.
+      description: Deletes a GeotekniskBorehull.
+      parameters:
+      - description: The GeotekniskBorehull id.
+        required: true
+        schema:
+          type: string
+        name: geotekniskBorehullId
+        in: path
+      - description: The GeotekniskUnders owner of the GeotekniskBorehull.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      responses:
+        "204":
+          description: No Content
+      security:
+      - Authentication: []
+  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/GeotekniskBorehuller:
+    post:
+      summary: Creates a set of GeotekniskBorehull.
+      description: Creates a set of GeotekniskBorehull.Returns the diagnostics of
+        the newly created GeotekniskBorehull objects.
+      parameters:
+      - description: The GeotekniskUnders owner of the new GeotekniskBorehull objects.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      - description: The epsg code of the geometry.
+        required: true
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+        name: epsgCode
+        in: query
+      requestBody:
+        description: The GeotekniskBorehull objects to store.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/GeotekniskBorehull"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+      security:
+      - Authentication: []
+  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}:
+    put:
+      summary: Updates a GeotekniskUnders.
+      description: Updates a GeotekniskUnders.
+      parameters:
+      - description: The GeotekniskUnders id.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      - description: The epsg code of the geometry.
+        required: true
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+        name: epsgCode
+        in: query
+      requestBody:
+        description: The new version of the GeotekniskUnders.
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeotekniskUnders"
+        required: true
+      responses:
+        "401":
+          description: Unauthorized Error
+        "200":
+          description: The GeotekniskUnders is updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+      security:
+      - Authentication: []
+    get:
+      summary: Fetches a GeotekniskUnders by id.
+      description: Fetches a GeotekniskUnders by id.
+      parameters:
+      - description: The GeotekniskUnders to fetch.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      responses:
+        "401":
+          description: Unauthorized Error
+        "200":
+          description: Returns the GeotekniskUnders you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
+    delete:
+      summary: Deletes a GeotekniskUnders.
+      description: Deletes a GeotekniskUnders.
+      parameters:
+      - description: The GeotekniskUnders id.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      responses:
+        "204":
+          description: No Content
+      security:
+      - Authentication: []
+info:
+  title: Generated API
+  version: "1.0"
+servers:
+- url: http://0.0.0.0:8080/

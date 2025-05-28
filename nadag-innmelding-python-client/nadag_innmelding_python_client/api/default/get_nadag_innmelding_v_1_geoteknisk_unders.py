@@ -1,20 +1,31 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union, cast
+from typing import Any, Optional, Union
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.geoteknisk_unders import GeotekniskUnders
-from ...types import Response
+from ...types import UNSET, Response
 
 
 def _get_kwargs(
-    geoteknisk_unders_id: str,
+    *,
+    ekstern_id: str,
+    ekstern_navnerom: str,
 ) -> dict[str, Any]:
+    params: dict[str, Any] = {}
+
+    params["eksternId"] = ekstern_id
+
+    params["eksternNavnerom"] = ekstern_navnerom
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/v1/GeotekniskUnders/{geoteknisk_unders_id}",
+        "url": "/nadag/innmelding/v1/GeotekniskUnders",
+        "params": params,
     }
 
     return _kwargs
@@ -22,10 +33,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, GeotekniskUnders]]:
-    if response.status_code == 401:
-        response_401 = cast(Any, None)
-        return response_401
+) -> Optional[GeotekniskUnders]:
     if response.status_code == 200:
         response_200 = GeotekniskUnders.from_dict(response.json())
 
@@ -38,7 +46,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, GeotekniskUnders]]:
+) -> Response[GeotekniskUnders]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -48,27 +56,30 @@ def _build_response(
 
 
 def sync_detailed(
-    geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    ekstern_id: str,
+    ekstern_navnerom: str,
+) -> Response[GeotekniskUnders]:
+    """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by id.
+     Fetches a GeotekniskUnders by external id.
 
     Args:
-        geoteknisk_unders_id (str):
+        ekstern_id (str):
+        ekstern_navnerom (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, GeotekniskUnders]]
+        Response[GeotekniskUnders]
     """
 
     kwargs = _get_kwargs(
-        geoteknisk_unders_id=geoteknisk_unders_id,
+        ekstern_id=ekstern_id,
+        ekstern_navnerom=ekstern_navnerom,
     )
 
     response = client.get_httpx_client().request(
@@ -79,53 +90,59 @@ def sync_detailed(
 
 
 def sync(
-    geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    ekstern_id: str,
+    ekstern_navnerom: str,
+) -> Optional[GeotekniskUnders]:
+    """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by id.
+     Fetches a GeotekniskUnders by external id.
 
     Args:
-        geoteknisk_unders_id (str):
+        ekstern_id (str):
+        ekstern_navnerom (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, GeotekniskUnders]
+        GeotekniskUnders
     """
 
     return sync_detailed(
-        geoteknisk_unders_id=geoteknisk_unders_id,
         client=client,
+        ekstern_id=ekstern_id,
+        ekstern_navnerom=ekstern_navnerom,
     ).parsed
 
 
 async def asyncio_detailed(
-    geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    ekstern_id: str,
+    ekstern_navnerom: str,
+) -> Response[GeotekniskUnders]:
+    """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by id.
+     Fetches a GeotekniskUnders by external id.
 
     Args:
-        geoteknisk_unders_id (str):
+        ekstern_id (str):
+        ekstern_navnerom (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, GeotekniskUnders]]
+        Response[GeotekniskUnders]
     """
 
     kwargs = _get_kwargs(
-        geoteknisk_unders_id=geoteknisk_unders_id,
+        ekstern_id=ekstern_id,
+        ekstern_navnerom=ekstern_navnerom,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -134,28 +151,31 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    ekstern_id: str,
+    ekstern_navnerom: str,
+) -> Optional[GeotekniskUnders]:
+    """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by id.
+     Fetches a GeotekniskUnders by external id.
 
     Args:
-        geoteknisk_unders_id (str):
+        ekstern_id (str):
+        ekstern_navnerom (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, GeotekniskUnders]
+        GeotekniskUnders
     """
 
     return (
         await asyncio_detailed(
-            geoteknisk_unders_id=geoteknisk_unders_id,
             client=client,
+            ekstern_id=ekstern_id,
+            ekstern_navnerom=ekstern_navnerom,
         )
     ).parsed
