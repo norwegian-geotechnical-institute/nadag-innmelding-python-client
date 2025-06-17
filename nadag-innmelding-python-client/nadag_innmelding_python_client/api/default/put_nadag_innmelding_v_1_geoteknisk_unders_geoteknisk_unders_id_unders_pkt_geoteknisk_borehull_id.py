@@ -13,8 +13,9 @@ from ...types import UNSET, Response
 
 def _get_kwargs(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
-    body: list["GeotekniskBorehull"],
+    body: GeotekniskBorehull,
     epsg_code: EpsgCode,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
@@ -27,17 +28,13 @@ def _get_kwargs(
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
-        "method": "post",
-        "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}/GeotekniskBorehuller",
+        "method": "put",
+        "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}/undersPkt/{geoteknisk_borehull_id}",
         "params": params,
     }
 
-    _body = []
-    for body_item_data in body:
-        body_item = body_item_data.to_dict()
-        _body.append(body_item)
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
@@ -70,20 +67,24 @@ def _build_response(
 
 def sync_detailed(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: GeotekniskBorehull,
     epsg_code: EpsgCode,
 ) -> Response[ValidatedGeotekniskUnders]:
-    """Creates a set of GeotekniskBorehull.
+    """Updates a GeotekniskBorehull.
 
-     Creates a set of GeotekniskBorehull.Returns the diagnostics of the newly created GeotekniskBorehull
-    objects.
+     Updates a GeotekniskBorehull.
 
     Args:
         geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
+            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
+            <engelsk>geographical area represented by a location which is the logical unit for
+            interpretation of stratification and properties for the different strata </engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -95,6 +96,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
         body=body,
         epsg_code=epsg_code,
     )
@@ -108,20 +110,24 @@ def sync_detailed(
 
 def sync(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: GeotekniskBorehull,
     epsg_code: EpsgCode,
 ) -> Optional[ValidatedGeotekniskUnders]:
-    """Creates a set of GeotekniskBorehull.
+    """Updates a GeotekniskBorehull.
 
-     Creates a set of GeotekniskBorehull.Returns the diagnostics of the newly created GeotekniskBorehull
-    objects.
+     Updates a GeotekniskBorehull.
 
     Args:
         geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
+            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
+            <engelsk>geographical area represented by a location which is the logical unit for
+            interpretation of stratification and properties for the different strata </engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -133,6 +139,7 @@ def sync(
 
     return sync_detailed(
         geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
         client=client,
         body=body,
         epsg_code=epsg_code,
@@ -141,20 +148,24 @@ def sync(
 
 async def asyncio_detailed(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: GeotekniskBorehull,
     epsg_code: EpsgCode,
 ) -> Response[ValidatedGeotekniskUnders]:
-    """Creates a set of GeotekniskBorehull.
+    """Updates a GeotekniskBorehull.
 
-     Creates a set of GeotekniskBorehull.Returns the diagnostics of the newly created GeotekniskBorehull
-    objects.
+     Updates a GeotekniskBorehull.
 
     Args:
         geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
+            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
+            <engelsk>geographical area represented by a location which is the logical unit for
+            interpretation of stratification and properties for the different strata </engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -166,6 +177,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
         body=body,
         epsg_code=epsg_code,
     )
@@ -177,20 +189,24 @@ async def asyncio_detailed(
 
 async def asyncio(
     geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: GeotekniskBorehull,
     epsg_code: EpsgCode,
 ) -> Optional[ValidatedGeotekniskUnders]:
-    """Creates a set of GeotekniskBorehull.
+    """Updates a GeotekniskBorehull.
 
-     Creates a set of GeotekniskBorehull.Returns the diagnostics of the newly created GeotekniskBorehull
-    objects.
+     Updates a GeotekniskBorehull.
 
     Args:
         geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (GeotekniskBorehull): geografisk område representert ved et punkt som er den logiske
+            enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
+            <engelsk>geographical area represented by a location which is the logical unit for
+            interpretation of stratification and properties for the different strata </engelsk>
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -203,6 +219,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             geoteknisk_unders_id=geoteknisk_unders_id,
+            geoteknisk_borehull_id=geoteknisk_borehull_id,
             client=client,
             body=body,
             epsg_code=epsg_code,

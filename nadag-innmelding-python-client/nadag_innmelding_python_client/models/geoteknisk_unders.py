@@ -53,8 +53,8 @@ class GeotekniskUnders:
             prosjekt_nr (Union[Unset, str]):
             opphav (Union[Unset, str]):
             unders_ø_kelse_å_r_antatt (Union[Unset, int]):
-            unders_pkt (Union[Unset, list['GeotekniskBorehull']]):
             felt_unders (Union[Unset, list['GeotekniskFeltUnders']]):
+            unders_pkt (Union[Unset, list['GeotekniskBorehull']]):
             har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):
             har_dokument (Union[Unset, list['GeotekniskDokument']]):
     """
@@ -75,8 +75,8 @@ class GeotekniskUnders:
     prosjekt_nr: Union[Unset, str] = UNSET
     opphav: Union[Unset, str] = UNSET
     unders_ø_kelse_å_r_antatt: Union[Unset, int] = UNSET
-    unders_pkt: Union[Unset, list["GeotekniskBorehull"]] = UNSET
     felt_unders: Union[Unset, list["GeotekniskFeltUnders"]] = UNSET
+    unders_pkt: Union[Unset, list["GeotekniskBorehull"]] = UNSET
     har_tolkning: Union[Unset, list["GeotekniskTolketPunkt"]] = UNSET
     har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -132,19 +132,19 @@ class GeotekniskUnders:
 
         unders_ø_kelse_å_r_antatt = self.unders_ø_kelse_å_r_antatt
 
-        unders_pkt: Union[Unset, list[dict[str, Any]]] = UNSET
-        if not isinstance(self.unders_pkt, Unset):
-            unders_pkt = []
-            for unders_pkt_item_data in self.unders_pkt:
-                unders_pkt_item = unders_pkt_item_data.to_dict()
-                unders_pkt.append(unders_pkt_item)
-
         felt_unders: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.felt_unders, Unset):
             felt_unders = []
             for felt_unders_item_data in self.felt_unders:
                 felt_unders_item = felt_unders_item_data.to_dict()
                 felt_unders.append(felt_unders_item)
+
+        unders_pkt: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.unders_pkt, Unset):
+            unders_pkt = []
+            for unders_pkt_item_data in self.unders_pkt:
+                unders_pkt_item = unders_pkt_item_data.to_dict()
+                unders_pkt.append(unders_pkt_item)
 
         har_tolkning: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_tolkning, Unset):
@@ -195,10 +195,10 @@ class GeotekniskUnders:
             field_dict["opphav"] = opphav
         if unders_ø_kelse_å_r_antatt is not UNSET:
             field_dict["undersøkelseÅrAntatt"] = unders_ø_kelse_å_r_antatt
-        if unders_pkt is not UNSET:
-            field_dict["undersPkt"] = unders_pkt
         if felt_unders is not UNSET:
             field_dict["feltUnders"] = felt_unders
+        if unders_pkt is not UNSET:
+            field_dict["undersPkt"] = unders_pkt
         if har_tolkning is not UNSET:
             field_dict["harTolkning"] = har_tolkning
         if har_dokument is not UNSET:
@@ -295,19 +295,19 @@ class GeotekniskUnders:
 
         unders_ø_kelse_å_r_antatt = d.pop("undersøkelseÅrAntatt", UNSET)
 
-        unders_pkt = []
-        _unders_pkt = d.pop("undersPkt", UNSET)
-        for unders_pkt_item_data in _unders_pkt or []:
-            unders_pkt_item = GeotekniskBorehull.from_dict(unders_pkt_item_data)
-
-            unders_pkt.append(unders_pkt_item)
-
         felt_unders = []
         _felt_unders = d.pop("feltUnders", UNSET)
         for felt_unders_item_data in _felt_unders or []:
             felt_unders_item = GeotekniskFeltUnders.from_dict(felt_unders_item_data)
 
             felt_unders.append(felt_unders_item)
+
+        unders_pkt = []
+        _unders_pkt = d.pop("undersPkt", UNSET)
+        for unders_pkt_item_data in _unders_pkt or []:
+            unders_pkt_item = GeotekniskBorehull.from_dict(unders_pkt_item_data)
+
+            unders_pkt.append(unders_pkt_item)
 
         har_tolkning = []
         _har_tolkning = d.pop("harTolkning", UNSET)
@@ -340,8 +340,8 @@ class GeotekniskUnders:
             prosjekt_nr=prosjekt_nr,
             opphav=opphav,
             unders_ø_kelse_å_r_antatt=unders_ø_kelse_å_r_antatt,
-            unders_pkt=unders_pkt,
             felt_unders=felt_unders,
+            unders_pkt=unders_pkt,
             har_tolkning=har_tolkning,
             har_dokument=har_dokument,
         )

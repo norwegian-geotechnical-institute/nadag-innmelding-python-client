@@ -14,7 +14,7 @@ def _get_kwargs(
 ) -> dict[str, Any]:
     _kwargs: dict[str, Any] = {
         "method": "delete",
-        "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}/GeotekniskBorehull/{geoteknisk_borehull_id}",
+        "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}/undersPkt/{geoteknisk_borehull_id}",
     }
 
     return _kwargs

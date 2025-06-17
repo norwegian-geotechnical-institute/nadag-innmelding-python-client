@@ -686,14 +686,14 @@ components:
         maksBoretLengde:
           type: number
           format: double
-        harUndersøkelse:
-          type: array
-          items:
-            $ref: "#/components/schemas/GeotekniskBorehullUnders"
         harObservasjon:
           type: array
           items:
             $ref: "#/components/schemas/GeotekniskObservasjon"
+        harUndersøkelse:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskBorehullUnders"
         harTolkning:
           type: array
           items:
@@ -1448,14 +1448,14 @@ components:
         undersøkelseÅrAntatt:
           type: integer
           format: int32
-        undersPkt:
-          type: array
-          items:
-            $ref: "#/components/schemas/GeotekniskBorehull"
         feltUnders:
           type: array
           items:
             $ref: "#/components/schemas/GeotekniskFeltUnders"
+        undersPkt:
+          type: array
+          items:
+            $ref: "#/components/schemas/GeotekniskBorehull"
         harTolkning:
           type: array
           items:
@@ -3288,18 +3288,18 @@ components:
       scheme: bearer
       bearerFormat: JWT
 paths:
-  /nadag/innmelding/v1/GeotekniskUnders:
+  /nadag/innmelding/v1/GeotekniskBorehull:
     get:
       summary: Fetches a GeotekniskUnders by external id.
       description: Fetches a GeotekniskUnders by external id.
       parameters:
-      - description: The externId of the GeotekniskUnders to fetch.
+      - description: The externId of the GeotekniskBorehull to fetch.
         required: true
         schema:
           type: string
         name: eksternId
         in: query
-      - description: The externNavnerom of the GeotekniskUnders to fetch.
+      - description: The externNavnerom of the GeotekniskBorehull to fetch.
         required: true
         schema:
           type: string
@@ -3311,71 +3311,8 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/GeotekniskUnders"
-    post:
-      summary: Creates a new GeotekniskUnders.
-      description: Creates a new GeotekniskUnders. Returns the id of the newly created
-        GeotekniskUnders.
-      parameters:
-      - description: The epsg code of the geometry.
-        required: true
-        schema:
-          $ref: "#/components/schemas/EpsgCode"
-        name: epsgCode
-        in: query
-      requestBody:
-        description: The GeotekniskUnders to store.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GeotekniskUnders"
-        required: true
-      responses:
-        "401":
-          description: Unauthorized Error
-        "200":
-          description: The GeotekniskUnders is created
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
-      security:
-      - Authentication: []
-  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/GeotekniskBorehull:
-    post:
-      summary: Creates a GeotekniskBorehull.
-      description: Creates a GeotekniskBorehull. Returns the diagnostics of the newly
-        created GeotekniskBorehull.
-      parameters:
-      - description: The GeotekniskUnders owner of the new GeotekniskBorehull.
-        required: true
-        schema:
-          type: string
-        name: geotekniskUndersId
-        in: path
-      - description: The epsg code of the geometry.
-        required: true
-        schema:
-          $ref: "#/components/schemas/EpsgCode"
-        name: epsgCode
-        in: query
-      requestBody:
-        description: The GeotekniskBorehull to store.
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GeotekniskBorehull"
-        required: true
-      responses:
-        "200":
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
-      security:
-      - Authentication: []
-  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/GeotekniskBorehull/{geotekniskBorehullId}:
+                $ref: "#/components/schemas/GeotekniskBorehull"
+  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/undersPkt/{geotekniskBorehullId}:
     put:
       summary: Updates a GeotekniskBorehull.
       description: Updates a GeotekniskBorehull.
@@ -3435,18 +3372,55 @@ paths:
           description: No Content
       security:
       - Authentication: []
-  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/GeotekniskBorehuller:
-    post:
-      summary: Creates a set of GeotekniskBorehull.
-      description: Creates a set of GeotekniskBorehull.Returns the diagnostics of
-        the newly created GeotekniskBorehull objects.
+  /nadag/innmelding/v1/GeotekniskBorehull/{gbId}:
+    get:
+      summary: Fetches a GeotekniskBorehull by id.
+      description: Fetches a GeotekniskBorehull by id.
       parameters:
-      - description: The GeotekniskUnders owner of the new GeotekniskBorehull objects.
+      - description: The GeotekniskUnders to fetch.
         required: true
         schema:
           type: string
-        name: geotekniskUndersId
+        name: gbId
         in: path
+      responses:
+        "401":
+          description: Unauthorized Error
+        "200":
+          description: Returns the GeotekniskBorehull you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskBorehull"
+  /nadag/innmelding/v1/GeotekniskUnders:
+    get:
+      summary: Fetches a GeotekniskUnders by external id.
+      description: Fetches a GeotekniskUnders by external id.
+      parameters:
+      - description: The externId of the GeotekniskUnders to fetch.
+        required: true
+        schema:
+          type: string
+        name: eksternId
+        in: query
+      - description: The externNavnerom of the GeotekniskUnders to fetch.
+        required: true
+        schema:
+          type: string
+        name: eksternNavnerom
+        in: query
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
+    post:
+      summary: Creates a new GeotekniskUnders.
+      description: Creates a new GeotekniskUnders. Returns the id of the newly created
+        GeotekniskUnders.
+      parameters:
       - description: The epsg code of the geometry.
         required: true
         schema:
@@ -3454,17 +3428,17 @@ paths:
         name: epsgCode
         in: query
       requestBody:
-        description: The GeotekniskBorehull objects to store.
+        description: The GeotekniskUnders to store.
         content:
           application/json:
             schema:
-              type: array
-              items:
-                $ref: "#/components/schemas/GeotekniskBorehull"
+              $ref: "#/components/schemas/GeotekniskUnders"
         required: true
       responses:
+        "401":
+          description: Unauthorized Error
         "200":
-          description: OK
+          description: The GeotekniskUnders is created
           content:
             application/json:
               schema:
@@ -3540,8 +3514,44 @@ paths:
           description: No Content
       security:
       - Authentication: []
+  /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/undersPkt:
+    post:
+      summary: Creates a set of GeotekniskBorehull.
+      description: Creates a set of GeotekniskBorehull.Returns the diagnostics of
+        the newly created GeotekniskBorehull objects.
+      parameters:
+      - description: The GeotekniskUnders owner of the new GeotekniskBorehull objects.
+        required: true
+        schema:
+          type: string
+        name: geotekniskUndersId
+        in: path
+      - description: The epsg code of the geometry.
+        required: true
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+        name: epsgCode
+        in: query
+      requestBody:
+        description: The GeotekniskBorehull objects to store.
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: "#/components/schemas/GeotekniskBorehull"
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+      security:
+      - Authentication: []
 info:
   title: Generated API
   version: "1.0"
 servers:
-- url: http://0.0.0.0:8080/
+- url: https://test.ngu.no/api/

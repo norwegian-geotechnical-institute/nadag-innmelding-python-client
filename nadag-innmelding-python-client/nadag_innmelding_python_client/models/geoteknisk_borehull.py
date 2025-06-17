@@ -65,8 +65,8 @@ class GeotekniskBorehull:
             opprinnelig_geoteknisk_unders_id (Union[Unset, str]):
             opphav (Union[Unset, str]):
             maks_boret_lengde (Union[Unset, float]):
-            har_unders_ø_kelse (Union[Unset, list['GeotekniskBorehullUnders']]):
             har_observasjon (Union[Unset, list['DeformasjonMaaling']]):
+            har_unders_ø_kelse (Union[Unset, list['GeotekniskBorehullUnders']]):
             har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):
             har_dokument (Union[Unset, list['GeotekniskDokument']]):
     """
@@ -90,8 +90,8 @@ class GeotekniskBorehull:
     opprinnelig_geoteknisk_unders_id: Union[Unset, str] = UNSET
     opphav: Union[Unset, str] = UNSET
     maks_boret_lengde: Union[Unset, float] = UNSET
-    har_unders_ø_kelse: Union[Unset, list["GeotekniskBorehullUnders"]] = UNSET
     har_observasjon: Union[Unset, list["DeformasjonMaaling"]] = UNSET
+    har_unders_ø_kelse: Union[Unset, list["GeotekniskBorehullUnders"]] = UNSET
     har_tolkning: Union[Unset, list["GeotekniskTolketPunkt"]] = UNSET
     har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -158,19 +158,19 @@ class GeotekniskBorehull:
 
         maks_boret_lengde = self.maks_boret_lengde
 
-        har_unders_ø_kelse: Union[Unset, list[dict[str, Any]]] = UNSET
-        if not isinstance(self.har_unders_ø_kelse, Unset):
-            har_unders_ø_kelse = []
-            for har_unders_ø_kelse_item_data in self.har_unders_ø_kelse:
-                har_unders_ø_kelse_item = har_unders_ø_kelse_item_data.to_dict()
-                har_unders_ø_kelse.append(har_unders_ø_kelse_item)
-
         har_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_observasjon, Unset):
             har_observasjon = []
             for har_observasjon_item_data in self.har_observasjon:
                 har_observasjon_item = har_observasjon_item_data.to_dict()
                 har_observasjon.append(har_observasjon_item)
+
+        har_unders_ø_kelse: Union[Unset, list[dict[str, Any]]] = UNSET
+        if not isinstance(self.har_unders_ø_kelse, Unset):
+            har_unders_ø_kelse = []
+            for har_unders_ø_kelse_item_data in self.har_unders_ø_kelse:
+                har_unders_ø_kelse_item = har_unders_ø_kelse_item_data.to_dict()
+                har_unders_ø_kelse.append(har_unders_ø_kelse_item)
 
         har_tolkning: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_tolkning, Unset):
@@ -227,10 +227,10 @@ class GeotekniskBorehull:
             field_dict["opphav"] = opphav
         if maks_boret_lengde is not UNSET:
             field_dict["maksBoretLengde"] = maks_boret_lengde
-        if har_unders_ø_kelse is not UNSET:
-            field_dict["harUndersøkelse"] = har_unders_ø_kelse
         if har_observasjon is not UNSET:
             field_dict["harObservasjon"] = har_observasjon
+        if har_unders_ø_kelse is not UNSET:
+            field_dict["harUndersøkelse"] = har_unders_ø_kelse
         if har_tolkning is not UNSET:
             field_dict["harTolkning"] = har_tolkning
         if har_dokument is not UNSET:
@@ -339,19 +339,19 @@ class GeotekniskBorehull:
 
         maks_boret_lengde = d.pop("maksBoretLengde", UNSET)
 
-        har_unders_ø_kelse = []
-        _har_unders_ø_kelse = d.pop("harUndersøkelse", UNSET)
-        for har_unders_ø_kelse_item_data in _har_unders_ø_kelse or []:
-            har_unders_ø_kelse_item = GeotekniskBorehullUnders.from_dict(har_unders_ø_kelse_item_data)
-
-            har_unders_ø_kelse.append(har_unders_ø_kelse_item)
-
         har_observasjon = []
         _har_observasjon = d.pop("harObservasjon", UNSET)
         for har_observasjon_item_data in _har_observasjon or []:
             har_observasjon_item = DeformasjonMaaling.from_dict(har_observasjon_item_data)
 
             har_observasjon.append(har_observasjon_item)
+
+        har_unders_ø_kelse = []
+        _har_unders_ø_kelse = d.pop("harUndersøkelse", UNSET)
+        for har_unders_ø_kelse_item_data in _har_unders_ø_kelse or []:
+            har_unders_ø_kelse_item = GeotekniskBorehullUnders.from_dict(har_unders_ø_kelse_item_data)
+
+            har_unders_ø_kelse.append(har_unders_ø_kelse_item)
 
         har_tolkning = []
         _har_tolkning = d.pop("harTolkning", UNSET)
@@ -387,8 +387,8 @@ class GeotekniskBorehull:
             opprinnelig_geoteknisk_unders_id=opprinnelig_geoteknisk_unders_id,
             opphav=opphav,
             maks_boret_lengde=maks_boret_lengde,
-            har_unders_ø_kelse=har_unders_ø_kelse,
             har_observasjon=har_observasjon,
+            har_unders_ø_kelse=har_unders_ø_kelse,
             har_tolkning=har_tolkning,
             har_dokument=har_dokument,
         )
