@@ -38,6 +38,7 @@ def _parse_response(
         response_200 = GeotekniskBorehull.from_dict(response.json())
 
         return response_200
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -61,9 +62,9 @@ def sync_detailed(
     ekstern_id: str,
     ekstern_navnerom: str,
 ) -> Response[GeotekniskBorehull]:
-    """Fetches a GeotekniskUnders by external id.
+    """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskBorehull by external id.
 
     Args:
         ekstern_id (str):
@@ -95,9 +96,9 @@ def sync(
     ekstern_id: str,
     ekstern_navnerom: str,
 ) -> Optional[GeotekniskBorehull]:
-    """Fetches a GeotekniskUnders by external id.
+    """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskBorehull by external id.
 
     Args:
         ekstern_id (str):
@@ -124,9 +125,9 @@ async def asyncio_detailed(
     ekstern_id: str,
     ekstern_navnerom: str,
 ) -> Response[GeotekniskBorehull]:
-    """Fetches a GeotekniskUnders by external id.
+    """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskBorehull by external id.
 
     Args:
         ekstern_id (str):
@@ -156,9 +157,9 @@ async def asyncio(
     ekstern_id: str,
     ekstern_navnerom: str,
 ) -> Optional[GeotekniskBorehull]:
-    """Fetches a GeotekniskUnders by external id.
+    """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskBorehull by external id.
 
     Args:
         ekstern_id (str):

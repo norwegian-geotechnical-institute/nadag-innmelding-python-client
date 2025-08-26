@@ -472,6 +472,32 @@ components:
       - epsg_32634
       - epsg_32635
       - epsg_32636
+      - epsg_5105
+      - epsg_5106
+      - epsg_5107
+      - epsg_5108
+      - epsg_5109
+      - epsg_5110
+      - epsg_5111
+      - epsg_5112
+      - epsg_5113
+      - epsg_5114
+      - epsg_5115
+      - epsg_5116
+      - epsg_5117
+      - epsg_5118
+      - epsg_5119
+      - epsg_5120
+      - epsg_5121
+      - epsg_5122
+      - epsg_5123
+      - epsg_5124
+      - epsg_5125
+      - epsg_5126
+      - epsg_5127
+      - epsg_5128
+      - epsg_5129
+      - epsg_5130
     FeltUndersTypeKode:
       type: string
       enum:
@@ -3290,8 +3316,8 @@ components:
 paths:
   /nadag/innmelding/v1/GeotekniskBorehull:
     get:
-      summary: Fetches a GeotekniskUnders by external id.
-      description: Fetches a GeotekniskUnders by external id.
+      summary: Fetches a GeotekniskBorehull by external id.
+      description: Fetches a GeotekniskBorehull by external id.
       parameters:
       - description: The externId of the GeotekniskBorehull to fetch.
         required: true
@@ -3372,26 +3398,6 @@ paths:
           description: No Content
       security:
       - Authentication: []
-  /nadag/innmelding/v1/GeotekniskBorehull/{gbId}:
-    get:
-      summary: Fetches a GeotekniskBorehull by id.
-      description: Fetches a GeotekniskBorehull by id.
-      parameters:
-      - description: The GeotekniskUnders to fetch.
-        required: true
-        schema:
-          type: string
-        name: gbId
-        in: path
-      responses:
-        "401":
-          description: Unauthorized Error
-        "200":
-          description: Returns the GeotekniskBorehull you want to fetch
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GeotekniskBorehull"
   /nadag/innmelding/v1/GeotekniskUnders:
     get:
       summary: Fetches a GeotekniskUnders by external id.
@@ -3550,6 +3556,26 @@ paths:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
       security:
       - Authentication: []
+  /nadag/innmelding/v1/GeotekniskBorehull/{geotekniskBorehullId}:
+    get:
+      summary: Fetches a GeotekniskBorehull by id.
+      description: Fetches a GeotekniskBorehull by id.
+      parameters:
+      - description: The id of the GeotekniskBorehull to fetch.
+        required: true
+        schema:
+          type: string
+        name: geotekniskBorehullId
+        in: path
+      responses:
+        "401":
+          description: Unauthorized Error
+        "200":
+          description: Returns the GeotekniskBorehull you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskBorehull"
 info:
   title: Generated API
   version: "1.0"
