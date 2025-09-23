@@ -15,18 +15,37 @@ class StatiskSonderingData:
     performance and recordings in static sounding</engelsk>
 
         Attributes:
-            anvendtlast (Union[Unset, float]):
-            boret_lengde (Union[Unset, float]):
-            halve_omdreininger (Union[Unset, float]):
-            med_slag (Union[Unset, bool]):
-            nedpressing_tid (Union[Unset, int]):
-            nedsynkning_hastighet (Union[Unset, float]):
-            observasjon_kode (Union[Unset, str]):
-            observasjon_merknad (Union[Unset, str]):
-            rotasjon_hastighet (Union[Unset, float]):
-            har_rotasjon (Union[Unset, bool]):
-            side_friksjon (Union[Unset, float]):
-            slag_frekvens (Union[Unset, float]):
+            anvendtlast (Union[Unset, float]): anvendt nedpressingskraft registrert på overflaten under
+                sonderingen<engelsk>applied penetration force recorded on the surface during sounding</engelsk>
+            boret_lengde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt
+                referansenivå<engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>
+            halve_omdreininger (Union[Unset, float]): antall halve omdreininger av stangsystemet, regnet fra forrige
+                dybde<engelsk>number of half turns of the rod system, referring to the previous depth</engelsk>
+            med_slag (Union[Unset, bool]): markering av slag på borstrengen under sonderingen<engelsk>marking of strokes on
+                the drill rods during sounding</engelsk>
+            nedpressing_tid (Union[Unset, int]): tidsangivelse ved nedpressing av stangsystemet, regnet siden forrige
+                dybde<engelsk>time record during penetration of the rod system, referring to the previous depth</engelsk>
+            nedsynkning_hastighet (Union[Unset, float]): antall slag per enhet synk<engelsk>penetration of the rod system
+                per unit time (rate of penetration)</engelsk>
+            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
+                [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+                kodelisten GeotekniskBoreObservasjonskode.
+                <engelsk>observation codes for marking of incidents during sounding. The codes are [0..*] numeric codes given in
+                a text string with spaces between each code if more than 1. The codes are described in the code list
+                GeotekniskBoreObservasjonskode. </engelsk>
+            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations
+                made during sounding</engelsk>
+            rotasjon_hastighet (Union[Unset, float]): antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av
+                borstrengen<engelsk>number of turns of the rod system per time unit, during penetration of the drill
+                string</engelsk>
+            har_rotasjon (Union[Unset, bool]): <engelsk>Gets or sets the has turning, that indicates if rotation is logged
+                while penetration of soil.
+                @value The has turning.</engelsk>
+            side_friksjon (Union[Unset, float]): <engelsk>Gets or sets the sleeve friction, the measured sleeve friction
+                during penetration of the probe
+                (friction sleeve force divided by area of the friction sleeve [kN ???].</engelsk>
+            slag_frekvens (Union[Unset, float]): slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus,
+                angitt ved antall slag per tidsenhet
     """
 
     anvendtlast: Union[Unset, float] = UNSET

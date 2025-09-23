@@ -19,16 +19,20 @@ class HydrauliskeData:
     </engelsk>
 
         Attributes:
-            m_å_le_dato (Union[Unset, datetime.date]):
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]):
-            observasjon_merknad (Union[Unset, str]):
+            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen<engelsk>date for
+                measurements</engelsk>
+            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for utførelse av målingen<engelsk>time for
+                measurements</engelsk>
+            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i hydraulisk test<engelsk>remarks to
+                observations made during hydraulic testing</engelsk>
             hydraulisk_konduktivitet (Union[Unset, HydrauliskKonduktivitet]): proporsjonalitetskonstant som relaterer
                 vannstrømningsrate gjennom et medium til gradienten
 
                 Merknad: Kalles også hydraulisk ledningsevne og avhenger av både vannets og mediets egenskaper.
 
                 <engelsk>proportionality constant which relates water permeability through a medium with the gradient</engelsk>
-            dybde_grunnvannstand (Union[Unset, float]):
+            dybde_grunnvannstand (Union[Unset, float]): angivelse av vannstand i grunnen og/eller i målerør<engelsk>water
+                level in the ground and / or inside a measurement tube</engelsk>
     """
 
     m_å_le_dato: Union[Unset, datetime.date] = UNSET

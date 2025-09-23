@@ -33,22 +33,44 @@ class PoretrykkMaaling:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]):
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]):
-            installasjon_tidspunkt (Union[Unset, datetime.datetime]):
-            filter_lengde (Union[Unset, float]):
-            kote_spiss (Union[Unset, float]):
-            filter_type (Union[Unset, str]):
-            r_ø_r_topp_filter (Union[Unset, float]):
-            r_ø_r_topp_slange (Union[Unset, float]):
-            r_ø_r_topp (Union[Unset, float]):
-            r_ø_r_bunn (Union[Unset, float]):
-            m_å_lerspiss_nummer (Union[Unset, str]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
+                prøvningen<engelsk>start time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
+                prøvningen<engelsk>stop time for in situ testing</engelsk>
+            installasjon_tidspunkt (Union[Unset, datetime.datetime]): tidspunktet poretrykksmåleren ble
+                installert<engelsk>time of installation of the pore pressure device</engelsk>
+            filter_lengde (Union[Unset, float]): lengde på  filter i poretrykksmåler<engelsk>length of filter in the pore
+                pressure device</engelsk>
+            kote_spiss (Union[Unset, float]): kotenivå for spiss av poretrykksmåler<engelsk>elevation for the tip of the
+                pore pressure device</engelsk>
+            filter_type (Union[Unset, str]): type filter i poretrykksmåler<engelsk>type of filter in the pore pressure
+                device</engelsk>
+            r_ø_r_topp_filter (Union[Unset, float]): høyde z-verdi ved filterets topp i forhold til vertikal referanse (m)
+
+                <engelsk>
+                height Z-level at the top of filter in relation to vertical reference  [m] </engelsk>
+            r_ø_r_topp_slange (Union[Unset, float]): høyde z-verdi ved slangens topp i forhold til vertikal referanse (m)
+
+                <engelsk>
+                height Z-level at the top of tube in relation to vertical reference  [m] </engelsk>
+            r_ø_r_topp (Union[Unset, float]): høyde z-verdi ved rørets topp i forhold til vertikal referanse (m)
+
+                <engelsk>
+                height Z-level at the top of pipe in relation to vertical reference  [m] </engelsk>
+            r_ø_r_bunn (Union[Unset, float]): høyde z-verdi ved rørets bunn i forhold til vertikal referanse (m)
+
+                <engelsk>
+                height Z-level at the bottom of pipe in relation to vertical reference  [m] </engelsk>
+            m_å_lerspiss_nummer (Union[Unset, str]): identifikasjon av poretrykksmåler/måleapparat<engelsk>identification of
+                the pore pressure device/measuring unit</engelsk>
             m_å_ler_kategori (Union[Unset, PoretrykkMaaleKategori]): oversikt over aktuelle typer
                 poretrykksmålere<engelsk>overview of possible types of pore pressure measurement devices</engelsk>
-            m_å_ler_type (Union[Unset, str]):
+            m_å_ler_type (Union[Unset, str]): type poretrykksmåler (fabrikat, produsent)<engelsk>type of pore pressure
+                device</engelsk>
             poretrykk_observasjon (Union[Unset, list['PoretrykkData']]):
     """
 

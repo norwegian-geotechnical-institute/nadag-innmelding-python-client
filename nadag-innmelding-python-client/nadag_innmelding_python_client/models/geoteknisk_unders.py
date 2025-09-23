@@ -36,23 +36,57 @@ class GeotekniskUnders:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            oppdateringsdato (Union[Unset, datetime.datetime]):
-            beskrivelse (Union[Unset, str]):
+            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+
+                Merknad:
+                Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
+                eller lengre periode før disse legges inn i datasystemet (databasen).
+
+                -Definition-
+                Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+            beskrivelse (Union[Unset, str]): beskrivelse av de geovitenskaplige undersøkelsene
+
+                <engelsk>
+                description of the geoscientific investigations
+                </engelsk>
             område (Union[Unset, Polygon]):
-            oppdragsgiver (Union[Unset, str]):
-            oppdragstaker (Union[Unset, str]):
-            prosjekt_navn (Union[Unset, str]):
-            unders_ø_kelse_periode_fra (Union[Unset, datetime.datetime]):
+            oppdragsgiver (Union[Unset, str]): identifikasjon av bestiller (kunde) og dennes organisasjon
+
+                <engelsk>
+                identifikation of the the customer organisation
+                </engelsk>
+            oppdragstaker (Union[Unset, str]): identifikasjon av utførende organisasjon
+
+                <engelsk>
+                identification of the the organisation responsible for carrying out the project
+                </engelsk>
+            prosjekt_navn (Union[Unset, str]): prosjekt navn og/eller nummer
+
+                <engelsk>
+                name or number of the project - e.g. projectnumber
+                </engelsk>
+            unders_ø_kelse_periode_fra (Union[Unset, datetime.datetime]): startdato for undersøkelsen
+
+                <engelsk>
+                starting date of the investigation
+                </engelsk>
             sammensattområde (Union[Unset, MultiPolygon]):
-            unders_ø_kelse_periode_til (Union[Unset, datetime.datetime]):
+            unders_ø_kelse_periode_til (Union[Unset, datetime.datetime]): sluttdato for undersøkelsen
+
+                <engelsk>
+                ending date of the investigation
+                </engelsk>
             ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
                 ansvarlige leverandør inn til NADAG.
             representasjon_kvalitet (Union[Unset, RepresentasjonKvalitet]): Angir hva avgrensningen/polygonen for en
                 geoteknisk undersøkelse fysisk representerer.
-            opprettet_dato (Union[Unset, datetime.datetime]):
-            prosjekt_nr (Union[Unset, str]):
-            opphav (Union[Unset, str]):
-            unders_ø_kelse_å_r_antatt (Union[Unset, int]):
+            opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
+            prosjekt_nr (Union[Unset, str]): Nummer på prosjekt benyttet for den geotekniske undersøkelsen
+            opphav (Union[Unset, str]): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+            unders_ø_kelse_å_r_antatt (Union[Unset, int]): Antatt år  for gjennomføring av den geotekniske undersøkelsen.
+                For største delen av de leverte dataene har det vært dårlig infomasjon i egenskapene for undersøkelseperiode og
+                derfor utvides det med denne egenskapen. Årstallet her er hentet fra ulike kilder i leveransene og avhengig av
+                hva for leveranser det er varierer usikkerheten på på det antatte år stallet.
             felt_unders (Union[Unset, list['GeotekniskFeltUnders']]):
             unders_pkt (Union[Unset, list['GeotekniskBorehull']]):
             har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):

@@ -21,11 +21,17 @@ class OvervaakningData:
         Attributes:
             akvifer (Union[Unset, AkviferType]): oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview
                 of possible aquifer types for ground water measurements</engelsk>
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]):
-            nedre_alarm_niv_å (Union[Unset, float]):
-            ø_vre_alarm_niv_å (Union[Unset, float]):
-            m_å_le_dato (Union[Unset, datetime.date]):
-            observasjon_merknad (Union[Unset, str]):
+            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen <engelsk>time for
+                measurements</engelsk>
+            nedre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, nedre grense for måleverdi
+                <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>
+            ø_vre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, øvre grense for måleverdi
+                <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>
+            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen
+                <engelsk>date for measurements</engelsk>
+            observasjon_merknad (Union[Unset, str]): data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk,
+                rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore
+                pressure or any other supervision data</engelsk>
     """
 
     akvifer: Union[Unset, AkviferType] = UNSET

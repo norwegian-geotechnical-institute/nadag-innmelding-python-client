@@ -30,16 +30,20 @@ class KombinasjonSondering:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            torv_tykkelse (Union[Unset, float]):
-            boret_lengde_i_berg (Union[Unset, float]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
+            boret_lengde_i_berg (Union[Unset, float]): boret dybde til bergoverflaten<engelsk>drilled depth to the rock
+                surface</engelsk>
             boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            maks_last (Union[Unset, float]):
+            maks_last (Union[Unset, float]): maksimal nedpressingskraft registrert på overflaten <engelsk>maximum
+                penetration force recorded on the surface</engelsk>
             kombinasjon_sondering_observasjon (Union[Unset, list['KombinasjonSonderingData']]):
     """
 

@@ -16,10 +16,14 @@ class EksternIdentifikasjon:
     """Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør inn til NADAG.
 
     Attributes:
-        ekstern_id (Union[Unset, str]):
-        ekstern_navnerom (Union[Unset, str]):
-        ekstern_versjon_id (Union[Unset, str]):
-        ekstern_levering_dato (Union[Unset, datetime.datetime]):
+        ekstern_id (Union[Unset, str]): lokal identifikator, tildelt av ekstern leverendør.
+            Det er data leverendørens ansvar å sørge for at denne eksterne identifikatoren er unik innenfor navnerommet.
+        ekstern_navnerom (Union[Unset, str]): navnerom som identifiserer datakilden/leverandør til objektet
+        ekstern_versjon_id (Union[Unset, str]): identifikasjon av en spesiell versjon av et geografisk objekt  Dersom
+            spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes
+            denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av
+            versjonen.
+        ekstern_levering_dato (Union[Unset, datetime.datetime]): Når objektet ble levert til database (Nadag)
     """
 
     ekstern_id: Union[Unset, str] = UNSET

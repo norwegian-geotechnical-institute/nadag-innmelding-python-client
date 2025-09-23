@@ -29,10 +29,14 @@ class GeotekniskInsituTest:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]):
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
+                prøvningen<engelsk>start time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
+                prøvningen<engelsk>stop time for in situ testing</engelsk>
     """
 
     identifikasjon: Union[Unset, "Identifikasjon"] = UNSET

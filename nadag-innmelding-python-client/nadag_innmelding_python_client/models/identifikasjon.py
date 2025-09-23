@@ -20,9 +20,24 @@ class Identifikasjon:
     NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
 
         Attributes:
-            lokal_id (str):
-            navnerom (str):
-            versjon_id (Union[Unset, str]):
+            lokal_id (str): lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik
+                innenfor navnerommet, ingen andre objekter har samme identifikator.
+
+                NOTE: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet.
+            navnerom (str): navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO
+                3166. Benytter understreking  ("_") dersom data produsenten ikke er assosiert med bare et land.
+
+                NOTE 1 : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil
+                registreres i "INSPIRE external  Object Identifier Namespaces Register"
+
+                Eksempel: NO for Norge.
+            versjon_id (Union[Unset, str]): identifikasjon av en spesiell versjon av et geografisk objekt (instans),
+                maksimum lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon
+                inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme
+                objekt. versjonId er en unik  identifikasjon av versjonen.
+
+                NOTE Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som
+                "2007-02-12T12:12:12+05:30" som versjonId.
     """
 
     lokal_id: str

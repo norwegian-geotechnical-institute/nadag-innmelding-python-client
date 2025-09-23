@@ -37,29 +37,54 @@ class Trykksondering:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]):
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]):
-            alpha (Union[Unset, float]):
-            cpt_korreksjons_faktor (Union[Unset, float]):
-            filter_type (Union[Unset, str]):
-            initiell_spissmotstand (Union[Unset, float]):
-            metnings_medium (Union[Unset, str]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
+                prøvningen<engelsk>start time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
+                prøvningen<engelsk>stop time for in situ testing</engelsk>
+            alpha (Union[Unset, float]): arealforhold for trykksonde for korreksjon av målt spissmotstand for
+                poretrykkseffekter<engelsk>area ratio for CPT probe for correction of measured cone resistance for pore pressure
+                effects</engelsk>
+            cpt_korreksjons_faktor (Union[Unset, float]): Øvrige faktorer for korreksjon av trykksonderingsdata, for
+                eksempel korreksjon av målt sidefriksjon<engelsk>other factors for correction of CPT data, for example
+                correction of measured sleeve friction</engelsk>
+            filter_type (Union[Unset, str]): type filter for måling av poretrykk (porøst filter, ferdigmettet,
+                spaltefilter)<engelsk>type of filter for measurement of pore pressure (porous filter, pre-saturated filter, slot
+                filter)</engelsk>
+            initiell_spissmotstand (Union[Unset, float]): referanseverdi for spissmotstand ved start av måling (eksempel ved
+                start dissipasjonstest)<engelsk>reference value cone resistance at the start of the test (e.g. at the start of a
+                dissipation test)</engelsk>
+            metnings_medium (Union[Unset, str]): medium som benyttes for metting av målesystem for poretrykk<engelsk>medium
+                used for saturation of measuring system for pore pressure</engelsk>
             nedpressings_kapasitet (Union[Unset, NedpressingsKapasitet]): oversikt over lastkapasiteter for vanlige
                 trykksonder i CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>
-            nedpressnings_hastighet (Union[Unset, float]):
-            nullpunkts_korreksjon (Union[Unset, float]):
-            r_ø_r_kappe_korreksjons_faktor (Union[Unset, float]):
-            sidefriksjon_korreksjon (Union[Unset, float]):
-            sonde_identifikasjon (Union[Unset, str]):
-            sonde_kalibrering_dato (Union[Unset, datetime.datetime]):
+            nedpressnings_hastighet (Union[Unset, float]): nedpressingshastighet ved penetrasjon av trykksonderingsstenger
+                (2 cm per sekund)<engelsk>rate of penetration for rod system (2 cm per second)</engelsk>
+            nullpunkts_korreksjon (Union[Unset, float]): korreksjon for registrert nullpunktsavvik før og etter
+                sondering<engelsk>correction for recorded zero load drift before and after sounding</engelsk>
+            r_ø_r_kappe_korreksjons_faktor (Union[Unset, float]): korreksjonsfaktor for bruk av friksjonsreduksjonsring
+                <engelsk>correction factor for use of friction reducer</engelsk>
+            sidefriksjon_korreksjon (Union[Unset, float]): korreksjon av målt sidefriksjon på grunn av
+                poretrykkseffekter<engelsk>correction of measured sleeve friction due to pore pressure effects</engelsk>
+            sonde_identifikasjon (Union[Unset, str]): identifikasjon av trykksonde ved hjelp av ID-nummer
+                <engelsk>identification of probe by an ID-number</engelsk>
+            sonde_kalibrering_dato (Union[Unset, datetime.datetime]): dato for kalibrering av trykksonde, oppgis på
+                kalibreringssertifikat<engelsk>date for calibration of probe, given on the calibration certificate</engelsk>
             sonde_kvalitet_klasse (Union[Unset, SondeKvalitetsKlasse]): oversikt over aktuelle kvalitetsklasser
                 (Anvendelsesklasser) for CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>
-            spiss_korreksjon_faktor (Union[Unset, float]):
-            spiss_type (Union[Unset, str]):
-            atmosferisk_trykk_korreksjon (Union[Unset, float]):
-            hylse_radie_korreksjon (Union[Unset, float]):
+            spiss_korreksjon_faktor (Union[Unset, float]): korreksjonsfaktor for trykksonde ved korreksjon av målt
+                spissmotstand for poretrykkseffekter<engelsk>correction factor for measured cone resistance for pore pressure
+                effects</engelsk>
+            spiss_type (Union[Unset, str]): type trykksonde, avhengig av størrelse og instrumentering<engelsk>type of probe,
+                depending on size and instrumentation</engelsk>
+            atmosferisk_trykk_korreksjon (Union[Unset, float]): <engelsk>Gets or sets the atmospheric pressure correction
+                [MPa].
+                @value The atmospheric pressure correction.</engelsk>
+            hylse_radie_korreksjon (Union[Unset, float]): <engelsk>Gets or sets the sleeve distance correction [m].
+                @value The sleeve distance correction.</engelsk>
             in_situ_poretrykk_observasjon (Union[Unset, list['PoretrykkDataInsitu']]):
             trykksondering_observasjon (Union[Unset, list['TrykksonderingData']]):
             dissipasjon_observasjon (Union[Unset, list['DissipasjonData']]):

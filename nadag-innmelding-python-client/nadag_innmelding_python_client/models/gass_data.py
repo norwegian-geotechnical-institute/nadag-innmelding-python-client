@@ -14,8 +14,9 @@ class GassData:
     """resultater fra gassmålinger<engelsk>results from gas measurements</engelsk>
 
     Attributes:
-        ch4 (Union[Unset, float]):
-        hg (Union[Unset, float]):
+        ch4 (Union[Unset, float]): innhold av metangass i poreluften<engelsk>content of methane gass in pore
+            air</engelsk>
+        hg (Union[Unset, float]): innhold av kvikksølv i poreluften<engelsk>content of mercury in pore air</engelsk>
     """
 
     ch4: Union[Unset, float] = UNSET

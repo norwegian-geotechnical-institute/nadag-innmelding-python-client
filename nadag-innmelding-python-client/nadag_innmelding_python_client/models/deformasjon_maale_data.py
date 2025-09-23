@@ -18,18 +18,37 @@ class DeformasjonMaaleData:
     time</engelsk>
 
         Attributes:
-            m_å_le_dato (Union[Unset, datetime.date]):
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]):
+            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen<engelsk>date for
+                measurements</engelsk>
+            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen<engelsk>time for
+                measurements</engelsk>
             deformasjon_observasjon_kode (Union[Unset, DeformasjonObservasjonKode]): Kodeliste for å angi
                 deformasjonsobservasjon
-            observasjon_merknad (Union[Unset, str]):
-            setning (Union[Unset, float]):
-            deformasjon_x (Union[Unset, float]):
-            deformasjon_y (Union[Unset, float]):
-            deformasjon_z (Union[Unset, float]):
-            er_gyldig (Union[Unset, bool]):
-            boret_lengde (Union[Unset, float]):
-            observasjon_kode (Union[Unset, str]):
+            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i setningsmålingen<engelsk>remarks to
+                observations made during the measurements</engelsk>
+            setning (Union[Unset, float]): vertikal komponent av målt deformasjon. observert høydenivå (z) for
+                setningsmåling<engelsk>vertical component of measured deformation. observed reference level (z) for the
+                settlements</engelsk>
+            deformasjon_x (Union[Unset, float]): deformasjonskomponent i x-retning. observert høydenivå (z) for
+                setningen<engelsk>deformation component in x-direction. observed reference level (z) for the
+                settlements</engelsk>
+            deformasjon_y (Union[Unset, float]): deformasjonskomponent i y-retning. observert høydenivå (z) for
+                setningen<engelsk>deformation component in y-direction. observed reference level (z) for the
+                settlements</engelsk>
+            deformasjon_z (Union[Unset, float]): deformasjonskomponent i z-retning. observert høydenivå (z) for
+                setningen<engelsk>deformation component in z-direction. observed reference level (z) for the
+                settlements</engelsk>
+            er_gyldig (Union[Unset, bool]): gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity
+                of data, if false only to be used as information</engelsk>
+            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+                <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
+                borehole</engelsk>
+            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser. Kodene er [0..*] tallkoder
+                gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
+                GeotekniskBoreObservasjonskode.
+                <engelsk>observation codes for marking of incidents. The codes are [0..*] numeric codes given in a text string
+                with spaces between each code if more than 1. The codes are described in the code list
+                GeotekniskBoreObservasjonskode.</engelsk>
     """
 
     m_å_le_dato: Union[Unset, datetime.date] = UNSET

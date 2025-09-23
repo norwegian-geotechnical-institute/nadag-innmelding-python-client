@@ -26,9 +26,11 @@ class GeotekniskSondering:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            torv_tykkelse (Union[Unset, float]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
     """
 
     identifikasjon: Union[Unset, "Identifikasjon"] = UNSET

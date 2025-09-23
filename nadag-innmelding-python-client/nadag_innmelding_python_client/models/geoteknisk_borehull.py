@@ -32,8 +32,15 @@ class GeotekniskBorehull:
     interpretation of stratification and properties for the different strata </engelsk>
 
         Attributes:
-            datafangstdato (Union[Unset, datetime.datetime]):
-            digitaliseringsmålestokk (Union[Unset, int]):
+            datafangstdato (Union[Unset, datetime.datetime]): dato når objektet siste gang ble registrert/observert/målt i
+                terrenget
+
+                Merknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en
+                kortere eller lengre periode før disse legges inn i databasen.
+                Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.
+            digitaliseringsmålestokk (Union[Unset, int]): kartmålestokk registreringene/ datene er hentet fra/ registrert på
+
+                Eksempel: 1:50 000 = 50000.
             identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
@@ -44,27 +51,57 @@ class GeotekniskBorehull:
             kvalitet (Union[Unset, PosisjonskvalitetNADAG]): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database
                 for Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
-            oppdateringsdato (Union[Unset, datetime.datetime]):
-            antall_borehull_unders_ø_kelser (Union[Unset, int]):
-            beskrivelse (Union[Unset, str]):
+            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+
+                Merknad:
+                Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
+                eller lengre periode før disse legges inn i datasystemet (databasen).
+
+                -Definition-
+                Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+            antall_borehull_unders_ø_kelser (Union[Unset, int]): antall borehullsundersøkeelser i borehullets område
+
+                Merknad: Borhullet er et logisk borhull hvor det innen et lite område er foretatt flere fysiske
+                borhullsundersøkelser som tilhører det samme borehull.
+
+                <engelsk>
+                Number of boreholeInvestigations (virtual boreholes) performed at the location of the borehole
+
+                Note: A virtual borehole is a fictitious feature for all boreholes/soundings performed within an reasonable
+                small area (e.g. <5 m or so)</engelsk>
+            beskrivelse (Union[Unset, str]): forklaring til objektet og undersøkelser utført på lokaliteten
+
+                <engelsk>
+                a short description of the investigations at the location of the borehole</engelsk>
             boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            gjennomboret_medium (Union[Unset, list[GjennomboretMedium]]):
+            gjennomboret_medium (Union[Unset, list[GjennomboretMedium]]): material som er gjennomboret
+
+                Merknad: spesifisert ved å bruke kodeliste GjennomboretMedium.
+
+                <engelsk>
+                material penetrated by the borehole
+
+                Note: Specified by using codes from codelist: GjennomboretMedium
+                </engelsk>
             posisjon (Union[Unset, Point]):
-            bore_nr (Union[Unset, str]):
-            høyde (Union[Unset, float]):
-            h_ø_yde_referanse (Union[Unset, str]):
-            opprettet_dato (Union[Unset, datetime.datetime]):
+            bore_nr (Union[Unset, str]): Nummer på borehull benyttet i den geotekniske undersøkelsen
+            høyde (Union[Unset, float]): Terrenghøyde ved start borehull
+            h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+            opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
             ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
                 ansvarlige leverandør inn til NADAG.
             kvikkleire_på_visning (Union[Unset, KvikkleirePaavisningKode]): Koder for grad av sikkerhet for påvisning av
                 kvikkleire eller sprøbruddmateriale
-            opprinnelig_geoteknisk_unders_id (Union[Unset, str]):
-            opphav (Union[Unset, str]):
-            maks_boret_lengde (Union[Unset, float]):
+            opprinnelig_geoteknisk_unders_id (Union[Unset, str]): opprinneligGeotekniskUndersID - LokalID fra opprinnelig
+                Geoteknisk undersøkelse.
+                Benyttes for å identifisere orginal undersøkelse med rapporter etc. ved bruk av samme GeotekniskBorehull i flere
+                undersøkelser.
+            opphav (Union[Unset, str]): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+            maks_boret_lengde (Union[Unset, float]): Lengste boret lengde for borehullsundersøkelsene i dette borhullet
             har_observasjon (Union[Unset, list['DeformasjonMaaling']]):
             har_unders_ø_kelse (Union[Unset, list['GeotekniskBorehullUnders']]):
             har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):

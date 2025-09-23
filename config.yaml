@@ -1,5 +1,5 @@
 project_name_override: nadag-innmelding-python-client
 package_name_override: nadag_innmelding_python_client
-package_version_override: 1.0-rc.4
+package_version_override: 1.0-rc.5
 post_hooks:
   # - "bash -c 'cd field-manager-python-client && poetry install'"

@@ -30,7 +30,14 @@ class SupertypeGeoteknObjOmr:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            oppdateringsdato (Union[Unset, datetime.datetime]):
+            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+
+                Merknad:
+                Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
+                eller lengre periode før disse legges inn i datasystemet (databasen).
+
+                -Definition-
+                Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
     """
 
     identifikasjon: Union[Unset, "Identifikasjon"] = UNSET

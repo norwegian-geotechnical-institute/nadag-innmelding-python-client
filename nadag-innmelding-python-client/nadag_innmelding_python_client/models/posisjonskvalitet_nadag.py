@@ -23,8 +23,8 @@ class PosisjonskvalitetNADAG:
                 -- Definition - -
                 method on which registration of position is based
             m_å_lemetode_hø_yde (Union[Unset, MaalemetodeHoeyde]): metode for å måle objekttypens høydeverdi
-            nøyaktighet (Union[Unset, int]):
-            n_ø_yaktighet_hø_yde (Union[Unset, int]):
+            nøyaktighet (Union[Unset, int]): punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
+            n_ø_yaktighet_hø_yde (Union[Unset, int]): nøyaktighet for høyden i cm
     """
 
     målemetode: Maalemetode

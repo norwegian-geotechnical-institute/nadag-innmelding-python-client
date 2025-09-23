@@ -15,17 +15,36 @@ class DynamiskSonderingData:
     <engelsk>collected data for performance of and recordings during percussion sounding</engelsk>
 
         Attributes:
-            boret_lengde (Union[Unset, float]):
-            dreie_moment (Union[Unset, float]):
-            fall_hø_yde (Union[Unset, float]):
-            har_rotasjon (Union[Unset, bool]):
-            nedpressing_tid (Union[Unset, int]):
-            observasjon_kode (Union[Unset, str]):
-            observasjon_merknad (Union[Unset, str]):
-            pr_ø_veuttak_nummer (Union[Unset, str]):
-            ram_motstand (Union[Unset, float]):
-            rotasjon_hastighet (Union[Unset, float]):
-            slag_frekvens (Union[Unset, float]):
+            boret_lengde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt
+                referansenivå<engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>
+            dreie_moment (Union[Unset, float]): anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon av
+                stangsystemet<engelsk>torque applied on the rod system during penetration and rotation of the drill
+                string</engelsk>
+            fall_hø_yde (Union[Unset, float]): høyde for slagenhet over topp av stangsystemet i sonderingen<engelsk>level of
+                the percussive unit above the top of the rod system during sounding</engelsk>
+            har_rotasjon (Union[Unset, bool]): markering av rotasjon ved penetrasjon av borstreng
+                <engelsk>marking of rotation during penetration of the drill string</engelsk>
+            nedpressing_tid (Union[Unset, int]): tidsangivelse ved nedpressing av stangsystemet<engelsk> time record during
+                penetration of the rod system, referring to the previous depth</engelsk>
+            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
+                [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+                kodelisten GeotekniskBoreObservasjonskode.
+                <engelsk>observation codes for marking of incidents during sounding. The codes are [0..*] numeric codes given in
+                a text string with spaces between each code if more than 1. The codes are described in the code list
+                GeotekniskBoreObservasjonskode. </engelsk>
+            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen
+                <engelsk>remarks to observations made during sounding</engelsk>
+            pr_ø_veuttak_nummer (Union[Unset, str]): markering av prøvenummer ved opptak av fysisk prøvemateriale under
+                sonderingen<engelsk>marking of sample number in collection of sampled material during sounding</engelsk>
+            ram_motstand (Union[Unset, float]): penetrasjonsmotstand mot ramming av borstrengen uttrykt i synk per antall
+                påførte slag<engelsk>penetration resistance on the hammered drill string expressed in sink per number of applied
+                strokes</engelsk>
+            rotasjon_hastighet (Union[Unset, float]): antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av
+                borstrengen<engelsk>number of turns of the rod system per time unit during penetration of the drill
+                string</engelsk>
+            slag_frekvens (Union[Unset, float]): slagfrekvens ved anvendelse av slag på borstrengen
+                <engelsk>stroke frequency during application of strokes on the drill string in rock control mode, defined by the
+                number of strokes per time unit</engelsk>
     """
 
     boret_lengde: Union[Unset, float] = UNSET

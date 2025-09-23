@@ -25,7 +25,11 @@ class BorlengdeTilBerg:
                 <engelsk>
                 defines the quality of the depth information either assumed or confirmed by a secure method
                 </engelsk>
-            borlengde_til_berg (Union[Unset, float]):
+            borlengde_til_berg (Union[Unset, float]): dybde til fjell som ikke er målt men basert på tolkning
+
+                <engelsk>
+                depth to bedrock based on interpretation
+                </engelsk>
     """
 
     borlengde_kvalitet: KvalitetBorlengdeTilBerg

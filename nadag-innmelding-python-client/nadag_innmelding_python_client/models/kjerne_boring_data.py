@@ -14,25 +14,36 @@ class KjerneBoringData:
     """Data som tilhører en Kjerneboring
 
     Attributes:
-        boret_lengde (Union[Unset, float]):
+        boret_lengde (Union[Unset, float]): boret lengde i forhold til terrengoverflaten eller annet angitt
+            referansenivå<engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>
         forvitringsgrad (Union[Unset, str]):
         geologisk_material_tekst (Union[Unset, str]):
         geologisk_material_type (Union[Unset, str]):
-        kjerne_opptak_prosent (Union[Unset, int]):
+        kjerne_opptak_prosent (Union[Unset, int]): Prosent av siste kjerne som er opptatt<engelsk> the total core
+            recovery, percent received core of the previous section [%]</engelsk>
         material_struktur (Union[Unset, str]):
-        observasjon_kode (Union[Unset, str]):
-        observasjon_merknad (Union[Unset, str]):
+        observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
+            [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+            kodelisten GeotekniskBoreObservasjonskode.
+            <engelsk>observation codes for marking of incidents during sounding. The codes are [0..*] numeric codes given in
+            a text string with spaces between each code if more than 1. The codes are described in the code list
+            GeotekniskBoreObservasjonskode.</engelsk>
+        observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations
+            made during sounding</engelsk>
         opptrekk (Union[Unset, str]):
         q_verdi_ja (Union[Unset, float]):
         q_verdi_jn (Union[Unset, float]):
         q_verdi_jr (Union[Unset, float]):
         q_verdi_jw (Union[Unset, float]):
-        q_verdi_q (Union[Unset, float]):
-        q_verdi_q_er_beregnet (Union[Unset, bool]):
+        q_verdi_q (Union[Unset, float]): Q=(RQD/Jn)*(Jr/Ja)*(Jw/SRF)
+        q_verdi_q_er_beregnet (Union[Unset, bool]): om Q-verdiet er beregnet basert på de øvrige leverte verdier eller
+            kommer fra annen kilde <engelsk>indicating whether the Q-value is computed from the associated values or is
+            external</engelsk>
         q_verdi_rqd (Union[Unset, float]):
         q_verdi_srf (Union[Unset, float]):
         rock_mass_rating (Union[Unset, int]):
-        ruhetsindeks (Union[Unset, int]):
+        ruhetsindeks (Union[Unset, int]): indeks (1-10) som beskriver ruhet og friksjon<engelsk> the roughness and
+            frictional characteristics [index (1-10)] </engelsk>
         sprekke_frekvens (Union[Unset, float]):
         sprekke_material_tekst (Union[Unset, str]):
         sprekke_material_type (Union[Unset, str]):

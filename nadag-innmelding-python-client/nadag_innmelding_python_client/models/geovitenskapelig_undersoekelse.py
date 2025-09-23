@@ -34,15 +34,46 @@ class GeovitenskapeligUndersoekelse:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            oppdateringsdato (Union[Unset, datetime.datetime]):
-            beskrivelse (Union[Unset, str]):
+            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+
+                Merknad:
+                Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
+                eller lengre periode før disse legges inn i datasystemet (databasen).
+
+                -Definition-
+                Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+            beskrivelse (Union[Unset, str]): beskrivelse av de geovitenskaplige undersøkelsene
+
+                <engelsk>
+                description of the geoscientific investigations
+                </engelsk>
             område (Union[Unset, Polygon]):
-            oppdragsgiver (Union[Unset, str]):
-            oppdragstaker (Union[Unset, str]):
-            prosjekt_navn (Union[Unset, str]):
-            unders_ø_kelse_periode_fra (Union[Unset, datetime.datetime]):
+            oppdragsgiver (Union[Unset, str]): identifikasjon av bestiller (kunde) og dennes organisasjon
+
+                <engelsk>
+                identifikation of the the customer organisation
+                </engelsk>
+            oppdragstaker (Union[Unset, str]): identifikasjon av utførende organisasjon
+
+                <engelsk>
+                identification of the the organisation responsible for carrying out the project
+                </engelsk>
+            prosjekt_navn (Union[Unset, str]): prosjekt navn og/eller nummer
+
+                <engelsk>
+                name or number of the project - e.g. projectnumber
+                </engelsk>
+            unders_ø_kelse_periode_fra (Union[Unset, datetime.datetime]): startdato for undersøkelsen
+
+                <engelsk>
+                starting date of the investigation
+                </engelsk>
             sammensattområde (Union[Unset, MultiPolygon]):
-            unders_ø_kelse_periode_til (Union[Unset, datetime.datetime]):
+            unders_ø_kelse_periode_til (Union[Unset, datetime.datetime]): sluttdato for undersøkelsen
+
+                <engelsk>
+                ending date of the investigation
+                </engelsk>
     """
 
     identifikasjon: Union[Unset, "Identifikasjon"] = UNSET

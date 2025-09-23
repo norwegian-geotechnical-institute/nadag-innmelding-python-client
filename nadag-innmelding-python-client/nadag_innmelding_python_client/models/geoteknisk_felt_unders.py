@@ -38,14 +38,14 @@ class GeotekniskFeltUnders:
             geotekniske feltundersøkelser
         eksternidentifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
             ansvarlige leverandør inn til NADAG.
-        opprettet_dato (Union[Unset, datetime.datetime]):
+        opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
         feltunders_type (Union[Unset, FeltUndersTypeKode]): Kodeliste for feltundersøkelsestype
         tolkning_metode (Union[Unset, TolkningMetodeKode]): Metoder benyttet for tolkning av geotekniske
             feltundersøkelser
-        h_ø_yde_fjell (Union[Unset, float]):
-        høyde (Union[Unset, float]):
-        h_ø_yde_referanse (Union[Unset, str]):
-        feltunders_nr (Union[Unset, str]):
+        h_ø_yde_fjell (Union[Unset, float]): Høyde på observert fjell
+        høyde (Union[Unset, float]): Terrenghøyde ved start feltundersøkelse
+        h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+        feltunders_nr (Union[Unset, str]): Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen
         har_dokument (Union[Unset, list['GeotekniskDokument']]):
     """
 

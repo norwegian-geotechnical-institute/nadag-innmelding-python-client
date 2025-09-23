@@ -19,9 +19,17 @@ class Kopidata:
     Kan benyttes dersom man gjør et uttak av en database som ikke inneholder originaldataene.
 
         Attributes:
-            original_datavert (str):
-            kopidato (datetime.datetime):
-            omr_å_de_id (Union[Unset, int]):
+            original_datavert (str): ansvarlig etat for forvaltning av data
+            kopidato (datetime.datetime): dato når objektet ble kopiert fra originaldatasettet
+
+                Merknad:
+                Er en del av egenskapen Kopidata. Brukes i de tilfeller hvor en kopidatabase brukes til distribusjon.
+                Å kopiere et datasett til en kopidatabase skal ikke føre til at Oppdateringsdato blir endret.
+                Eventuell redigering av data i et kopidatasett medfører ny Oppdateringsdato, Datafangstdato og/eller
+                Verifiseringsdato.
+            omr_å_de_id (Union[Unset, int]): identifikasjon av område som dataene dekker
+
+                Merknad: Kan angis med kommunenummer eller fylkesnummer. Disse bør spesifiseres nærmere.
     """
 
     original_datavert: str

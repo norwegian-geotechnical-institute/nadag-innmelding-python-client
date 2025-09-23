@@ -15,18 +15,40 @@ class KombinasjonSonderingData:
     performance of and recordings made during total sounding</engelsk>
 
         Attributes:
-            anvendt_last (Union[Unset, float]):
-            boret_lengde (Union[Unset, float]):
-            dreie_moment (Union[Unset, float]):
-            nedpressing_hastighet (Union[Unset, float]):
-            nedpressing_kraft (Union[Unset, float]):
-            nedpressing_tid (Union[Unset, int]):
-            observasjon_kode (Union[Unset, str]):
-            observasjon_merknad (Union[Unset, str]):
-            rotasjon_hastighet (Union[Unset, float]):
-            slag_frekvens (Union[Unset, float]):
-            spyle_mengde (Union[Unset, float]):
-            spyle_trykk (Union[Unset, float]):
+            anvendt_last (Union[Unset, float]): anvendt nedpressingskraft registrert på overflaten under
+                sonderingen<engelsk>applied penetration force recorded on the surface</engelsk>
+            boret_lengde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt
+                referansenivå<engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>
+            dreie_moment (Union[Unset, float]): anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon av
+                stangsystemet
+                <engelsk>torque applied on the rod system during penetration and rotation of the drill string</engelsk>
+            nedpressing_hastighet (Union[Unset, float]): penetrasjonshastighet for stangsystemet ved nedpressing
+                <engelsk>penetration of the rod system per unit time (rate of penetration)</engelsk>
+            nedpressing_kraft (Union[Unset, float]): nedpressingskraft påført stangsystemet ved penetrasjon og rotasjon av
+                borstrengen<engelsk>penetration force applied on the rod system during penetration and rotation of the drill
+                string</engelsk>
+            nedpressing_tid (Union[Unset, int]): tidsangivelse ved nedpressing av stangsystemet, regnet siden forrige
+                dybde<engelsk>time record during penetration of the rod system, referring to the previous depth</engelsk>
+            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
+                [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+                kodelisten GeotekniskBoreObservasjonskode.
+                <engelsk>observation codes for marking of incidents during sounding. The codes are [0..*] numeric codes given in
+                a text string with spaces between each code if more than 1. The codes are described in the code list
+                GeotekniskBoreObservasjonskode. </engelsk>
+            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations
+                made during sounding</engelsk>
+            rotasjon_hastighet (Union[Unset, float]): antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av
+                borstrengen<engelsk>number of turns of the rod system per time unit during penetration of the drill
+                string</engelsk>
+            slag_frekvens (Union[Unset, float]): slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus,
+                angitt ved antall slag per tidsenhet
+                <engelsk>stroke frequency during application of strokes on the drill string in rock control mode, defined by the
+                number of strokes per time unit</engelsk>
+            spyle_mengde (Union[Unset, float]): volum spylevæske ved anvendelse av spyling gjennom borkronen i
+                fjellkontrollmodus<engelsk>volume of flushing fluid when flushing through the drill bit in rock control
+                mode</engelsk>
+            spyle_trykk (Union[Unset, float]): trykk på spylevæske ved anvendelse av spyling gjennom borkronen i
+                fjellkontrollmodus<engelsk>pressure in the flushing fluid through the drill bit in rock control mode</engelsk>
     """
 
     anvendt_last: Union[Unset, float] = UNSET

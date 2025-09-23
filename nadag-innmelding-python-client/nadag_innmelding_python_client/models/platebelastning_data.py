@@ -15,10 +15,14 @@ class PlatebelastningData:
     measurements of in situ deformation- and consolidation properties in friction soils.</engelsk>
 
         Attributes:
-            tid_fra_start (Union[Unset, int]):
-            anvendt_last (Union[Unset, float]):
-            nedpressing_hastighet (Union[Unset, float]):
-            deformasjon (Union[Unset, float]):
+            tid_fra_start (Union[Unset, int]): tid fra start av prøvingen [minutter]<engelsk>time from the start of testing
+                [minutes]</engelsk>
+            anvendt_last (Union[Unset, float]): last overført til skruplate gjennom stangsystemet<engelsk>load transferred
+                to the screw plate through the rod system</engelsk>
+            nedpressing_hastighet (Union[Unset, float]): nedpressingshastighet av skruplate ved gjennomføring av
+                prøving<engelsk>settlement rate for the screw plate during testing</engelsk>
+            deformasjon (Union[Unset, float]): endring i form som følge av tilført kraft <engelsk>change in shape because of
+                force </engelsk>
     """
 
     tid_fra_start: Union[Unset, int] = UNSET

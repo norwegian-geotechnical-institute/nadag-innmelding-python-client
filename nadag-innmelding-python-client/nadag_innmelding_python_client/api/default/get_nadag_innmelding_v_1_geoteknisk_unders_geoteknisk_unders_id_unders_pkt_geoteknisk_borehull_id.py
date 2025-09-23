@@ -6,26 +6,16 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.geoteknisk_borehull import GeotekniskBorehull
-from ...types import UNSET, Response
+from ...types import Response
 
 
 def _get_kwargs(
-    *,
-    ekstern_id: str,
-    ekstern_navnerom: str,
+    geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
 ) -> dict[str, Any]:
-    params: dict[str, Any] = {}
-
-    params["eksternId"] = ekstern_id
-
-    params["eksternNavnerom"] = ekstern_navnerom
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/nadag/innmelding/v1/GeotekniskBorehull",
-        "params": params,
+        "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}/undersPkt/{geoteknisk_borehull_id}",
     }
 
     return _kwargs
@@ -65,18 +55,18 @@ def _build_response(
 
 
 def sync_detailed(
+    geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    ekstern_id: str,
-    ekstern_navnerom: str,
+    client: AuthenticatedClient,
 ) -> Response[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+    """Gets a GeotekniskBorehull owned by the latest versjon of a GeotekniskUnders.
 
-     Fetches a GeotekniskBorehull by external id.
+     Gets a GeotekniskBorehull.
 
     Args:
-        ekstern_id (str):
-        ekstern_navnerom (str):
+        geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -87,8 +77,8 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        ekstern_id=ekstern_id,
-        ekstern_navnerom=ekstern_navnerom,
+        geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
     )
 
     response = client.get_httpx_client().request(
@@ -99,18 +89,18 @@ def sync_detailed(
 
 
 def sync(
+    geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    ekstern_id: str,
-    ekstern_navnerom: str,
+    client: AuthenticatedClient,
 ) -> Optional[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+    """Gets a GeotekniskBorehull owned by the latest versjon of a GeotekniskUnders.
 
-     Fetches a GeotekniskBorehull by external id.
+     Gets a GeotekniskBorehull.
 
     Args:
-        ekstern_id (str):
-        ekstern_navnerom (str):
+        geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -121,25 +111,25 @@ def sync(
     """
 
     return sync_detailed(
+        geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
         client=client,
-        ekstern_id=ekstern_id,
-        ekstern_navnerom=ekstern_navnerom,
     ).parsed
 
 
 async def asyncio_detailed(
+    geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    ekstern_id: str,
-    ekstern_navnerom: str,
+    client: AuthenticatedClient,
 ) -> Response[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+    """Gets a GeotekniskBorehull owned by the latest versjon of a GeotekniskUnders.
 
-     Fetches a GeotekniskBorehull by external id.
+     Gets a GeotekniskBorehull.
 
     Args:
-        ekstern_id (str):
-        ekstern_navnerom (str):
+        geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -150,8 +140,8 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        ekstern_id=ekstern_id,
-        ekstern_navnerom=ekstern_navnerom,
+        geoteknisk_unders_id=geoteknisk_unders_id,
+        geoteknisk_borehull_id=geoteknisk_borehull_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -160,18 +150,18 @@ async def asyncio_detailed(
 
 
 async def asyncio(
+    geoteknisk_unders_id: str,
+    geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    ekstern_id: str,
-    ekstern_navnerom: str,
+    client: AuthenticatedClient,
 ) -> Optional[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+    """Gets a GeotekniskBorehull owned by the latest versjon of a GeotekniskUnders.
 
-     Fetches a GeotekniskBorehull by external id.
+     Gets a GeotekniskBorehull.
 
     Args:
-        ekstern_id (str):
-        ekstern_navnerom (str):
+        geoteknisk_unders_id (str):
+        geoteknisk_borehull_id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -183,8 +173,8 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
+            geoteknisk_unders_id=geoteknisk_unders_id,
+            geoteknisk_borehull_id=geoteknisk_borehull_id,
             client=client,
-            ekstern_id=ekstern_id,
-            ekstern_navnerom=ekstern_navnerom,
         )
     ).parsed

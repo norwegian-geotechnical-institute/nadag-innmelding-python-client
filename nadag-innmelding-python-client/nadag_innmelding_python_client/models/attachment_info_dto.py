@@ -14,8 +14,8 @@ class AttachmentInfoDto:
     """Attachment info result
 
     Attributes:
-        attachment_id (Union[Unset, str]):
-        uniq_id (Union[Unset, str]):
+        attachment_id (Union[Unset, str]): Identifier for the attachment
+        uniq_id (Union[Unset, str]): Uniq identifier for the attachment (base64 encoded)
     """
 
     attachment_id: Union[Unset, str] = UNSET

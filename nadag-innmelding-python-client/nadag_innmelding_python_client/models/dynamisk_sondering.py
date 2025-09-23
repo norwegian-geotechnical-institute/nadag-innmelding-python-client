@@ -29,10 +29,13 @@ class DynamiskSondering:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            torv_tykkelse (Union[Unset, float]):
-            ant_pr_ø_veuttak_forstyrret_matr (Union[Unset, int]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
+            ant_pr_ø_veuttak_forstyrret_matr (Union[Unset, int]): antall prøver av fysisk prøvemateriale som er tatt opp
+                under sonderingen<engelsk>number of samples retrieved during sounding</engelsk>
             dynamisk_sondering_observasjon (Union[Unset, list['DynamiskSonderingData']]):
     """
 

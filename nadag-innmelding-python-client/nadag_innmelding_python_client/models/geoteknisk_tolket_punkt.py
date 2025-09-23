@@ -29,9 +29,9 @@ class GeotekniskTolketPunkt:
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        tolket_av (Union[Unset, str]):
-        tolket_tidspunkt (Union[Unset, datetime.datetime]):
-        navn (Union[Unset, str]):
+        tolket_av (Union[Unset, str]): Hvem som har tolket punktet
+        tolket_tidspunkt (Union[Unset, datetime.datetime]): Når tolkning ble utført
+        navn (Union[Unset, str]): Navn på tolket punkt
         posisjon (Union[Unset, Point]):
         har_tolket_lag (Union[Unset, list['GeotekniskTolketLag']]):
     """

@@ -21,19 +21,19 @@ class GeotekniskDokument:
     investigation areas and boreholes</engelsk>
 
         Attributes:
-            dokument_id (Union[Unset, str]):
-            dokument_nø_kkel (Union[Unset, str]):
-            dokument_type (Union[Unset, str]):
-            dokument_filnavn (Union[Unset, str]):
-            dokument_url (Union[Unset, str]):
-            innhold_type (Union[Unset, str]):
-            beskrivelse (Union[Unset, str]):
+            dokument_id (Union[Unset, str]): Unik nøkkel for dokument.
+            dokument_nø_kkel (Union[Unset, str]): Benyttes til å angi nøkkelverdi ved kall til Web-api.
+            dokument_type (Union[Unset, str]): Type dokument. Feks. GeoReport, ProfilePdf
+            dokument_filnavn (Union[Unset, str]): Filnavn på dokumentet.
+            dokument_url (Union[Unset, str]): Komplett URL for dokument med id.
+            innhold_type (Union[Unset, str]): Type dokumentformat, feks. Image/png, pdf
+            beskrivelse (Union[Unset, str]): Kort informasjon om dokumentet
             ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
                 ansvarlige leverandør inn til NADAG.
-            dokument_navn (Union[Unset, str]):
-            opprettet_dato (Union[Unset, datetime.datetime]):
-            dokument_nr (Union[Unset, str]):
-            dokument_dato (Union[Unset, datetime.datetime]):
+            dokument_navn (Union[Unset, str]): Navn på dokument
+            opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
+            dokument_nr (Union[Unset, str]): Feks. rapportNr.
+            dokument_dato (Union[Unset, datetime.datetime]): Dato når dokument ble opprettet
     """
 
     dokument_id: Union[Unset, str] = UNSET

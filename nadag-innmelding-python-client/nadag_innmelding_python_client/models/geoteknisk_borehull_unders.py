@@ -54,8 +54,15 @@ class GeotekniskBorehullUnders:
     observations have been carried out</engelsk>
 
         Attributes:
-            datafangstdato (Union[Unset, datetime.datetime]):
-            digitaliseringsmålestokk (Union[Unset, int]):
+            datafangstdato (Union[Unset, datetime.datetime]): dato når objektet siste gang ble registrert/observert/målt i
+                terrenget
+
+                Merknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en
+                kortere eller lengre periode før disse legges inn i databasen.
+                Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.
+            digitaliseringsmålestokk (Union[Unset, int]): kartmålestokk registreringene/ datene er hentet fra/ registrert på
+
+                Eksempel: 1:50 000 = 50000.
             identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
@@ -66,40 +73,126 @@ class GeotekniskBorehullUnders:
             kvalitet (Union[Unset, PosisjonskvalitetNADAG]): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database
                 for Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
-            oppdateringsdato (Union[Unset, datetime.datetime]):
+            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+
+                Merknad:
+                Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
+                eller lengre periode før disse legges inn i datasystemet (databasen).
+
+                -Definition-
+                Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
             posisjon (Union[Unset, Point]):
-            bore_beskrivelse (Union[Unset, str]):
+            bore_beskrivelse (Union[Unset, str]): forklaring av hva som er utført og/eller observert i denne undersøkelsen
+
+                <engelsk>
+                a general description of actions performed and/or observed in this investigation
+                </engelsk>
             borehull_forl_ø_p (Union[Unset, list['Point']]):
-            boret_azimuth (Union[Unset, float]):
-            boret_helningsgrad (Union[Unset, float]):
-            boret_lengde (Union[Unset, float]):
+            boret_azimuth (Union[Unset, float]): vinkelen mellom en referansevektor i et referanseplan og en annen vektor i
+                det samme planet som peker mot noe av interesse
+
+                <engelsk>
+                The vector from an observer (origin) to a point of interest is projected perpendicularly onto a reference plane,
+                the angle between the projected vector and the reference vector on the reference plane is called the azimuth
+                </engelsk>
+            boret_helningsgrad (Union[Unset, float]): helning hvor  90 grader er vertikalt , 0 grader er horisontalt
+
+                <engelsk>
+                the inclination of the borehole
+
+                Note: 90 degrees represent the vertical inclination and 0 degrees the horizontal
+                </engelsk>
+            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+
+                <engelsk>
+                total length of the investigation in the physical borehole, the same as depth in a vertical borehole
+                </engelsk>
             boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            dybde_fra_gitt_posisjon (Union[Unset, float]):
-            dybde_fra_vannoverflaten (Union[Unset, float]):
-            lenke_til_tileggsinfo (Union[Unset, str]):
-            opphav (Union[Unset, str]):
-            unders_ø_kelse_slutt (Union[Unset, datetime.datetime]):
-            unders_ø_kelse_start (Union[Unset, datetime.datetime]):
-            v_æ_rforhold_ved_boring (Union[Unset, str]):
-            høyde (Union[Unset, float]):
-            h_ø_yde_referanse (Union[Unset, str]):
-            unders_ø_kelse_nr (Union[Unset, str]):
+            dybde_fra_gitt_posisjon (Union[Unset, float]): avstanden fra måleutstyret og ned til det punkt på jordoverflaten
+                hvor boring/måling faktisk starter
+
+                Merknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer
+                vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er
+                utført fra flåte,  skip eller is, er det viktig at dybdeFraGittPosisjon blir angitt. Denne vil da være avstanden
+                fra måleutstyrets senter (0 dybde) og ned til havbunnen, innsjøbunnen eller elvebunnen hvor sonderingen/boringen
+                faktisk starter fra).
+
+                <engelsk>
+                distance from the drill or measure equipment down to the vertical level where the borehole/measurement actually
+                begins
+
+                Note: This is important to specify if the drilling/sounding is performed from e.g. a raft, ship or from ice. The
+                depth will then be the depth from the measuring equipments origin (0 depth) and down to where drilling/sounding
+                actually begins (on the sea surface, bottom of a lake or river, etc.)
+
+                </engelsk>
+            dybde_fra_vannoverflaten (Union[Unset, float]): den lengden hvor sonderingsutstyret befinner seg i vann
+
+                Merknad: Av spesiell interesse hvis boring er utført fra is eller fra flåte/skip.
+
+                <engelsk>
+                free water depth at the location of the sounding [m]
+
+                Note: Of special interest if drilling is performed from raft or ice.
+                </engelsk>
+            lenke_til_tileggsinfo (Union[Unset, str]): lenke til hvor en finner tilleggsinformasjon om
+                borehullsundersøkelsen
+
+                Merknad: URL/URI for aktuelt dokument, bilde, video etc.
+
+                <engelsk>
+                link to extra information about the borehole investigation
+                Note: URL/URI for the particular document, picture, video
+                </engelsk>
+            opphav (Union[Unset, str]): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+
+                Merknad:
+                Kan også beskrive navn på person og årsak til oppdatering
+
+                <engelsk>
+                reference to copyright, source, organization/publication source
+
+                Note: May also include name of person and cause of update
+
+                </engelsk>
+            unders_ø_kelse_slutt (Union[Unset, datetime.datetime]): tidspunkt for stopp av undersøkelsen
+                <engelsk>
+                end time/date for the investigation
+                </engelsk>
+            unders_ø_kelse_start (Union[Unset, datetime.datetime]): tidspunkt for start av undersøkelsen
+                <engelsk>
+                start time/date for the investigation
+                </engelsk>
+            v_æ_rforhold_ved_boring (Union[Unset, str]): beskrivelse av værforhold under utførelsen av borehullundersøkelsen
+                <engelsk>
+                Weather conditions - general description.
+                </engelsk>
+            høyde (Union[Unset, float]): Terrenghøyde ved start borehullsundersøkelse
+            h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+            unders_ø_kelse_nr (Union[Unset, str]): Nummer på borehullundersøkelse benyttet i den geotekniske undersøkelsen
             ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
                 ansvarlige leverandør inn til NADAG.
-            opprettet_dato (Union[Unset, datetime.datetime]):
+            opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
             geoteknisk_metode (Union[Unset, GeotekniskMetodeKode]): Kode for metoder benyttet ved geotekniske
                 borehullundersøkelser
-            dybde_grunnvannstand (Union[Unset, float]):
-            forboret_diameter (Union[Unset, float]):
-            forboret_lengde (Union[Unset, float]):
-            forboring_metode (Union[Unset, str]):
+            dybde_grunnvannstand (Union[Unset, float]): dybde [m] fra terrengoverflaten til det nivå i grunnen der alle
+                porene i jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface
+                to the level in the ground where all voids are saturated with water, and where the pore pressure starts to
+                increase</engelsk>
+            forboret_diameter (Union[Unset, float]): diameter [m] av forboret hull i en borhullundersøkelse
+                <engelsk>diameter [m] of a predrilled hole in a borehole investigation</engelsk>
+            forboret_lengde (Union[Unset, float]): Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of
+                a predrilled borehole in a borehole investigation<engelsk>
+            forboring_metode (Union[Unset, str]): metode brukt til boring uten registrering av data<engelsk>pre boring
+                method</engelsk>
             stopp_kode (Union[Unset, GeotekniskStoppkode]): oversikt over koder for stopp av boring ved utførelse av en
                 grunnundersøkelse <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>
-            forboret_start_lengde (Union[Unset, float]):
+            forboret_start_lengde (Union[Unset, float]): startlengde[m] for hvor forboring startet i en borhullundersøkelse
+                <engelsk>start depth[m] where the predrilling in the  borehole investigation started<engelsk>
             metode (Union[Unset, list[Union['BlokkProeve', 'DilatometerTest', 'DynamiskSondering', 'GassMaaling',
                 'GassProeve', 'GeotekniskProeveserie', 'GraveProeve', 'GrunnvannMaaling', 'HydrauliskTest', 'KanneProeve',
                 'KjerneBoring', 'KjerneProeve', 'KombinasjonSondering', 'MiljoeUndersoekelse', 'NaverProeve', 'Platebelastning',

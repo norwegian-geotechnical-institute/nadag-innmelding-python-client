@@ -23,26 +23,26 @@ class GeotekniskTolketLag:
     """Lag med geoteknisk tolkning
 
     Attributes:
-        tolket_lag_id (Union[Unset, str]):
+        tolket_lag_id (Union[Unset, str]): Unik nøkkel for tolktet lag
         klassifisering_metode (Union[Unset, KlassifiseringsMetode]): oversikt over klassifiseringsmetoder for
             bestemmelse av grunnforhold<engelsk>overview of classification methods for determination of ground
             conditions</engelsk>
         hoved_lag_klassifiserings_kode (Union[Unset, HovedLagKlassifisering]): oversikt over lagdeling og jordart for
             klassifisering og identifisering av grunnforhold<engelsk>overview of stratification and soil type for
             classification and identification of ground conditions</engelsk>
-        lag_beskrivelse (Union[Unset, str]):
-        tolket_av (Union[Unset, str]):
-        tolket_tidspunkt (Union[Unset, datetime.datetime]):
-        tolkning_merknad (Union[Unset, str]):
-        navn (Union[Unset, str]):
-        p_å_terreng_overflate (Union[Unset, bool]):
-        vurdering (Union[Unset, float]):
-        under_terreng_overflate (Union[Unset, bool]):
+        lag_beskrivelse (Union[Unset, str]): Beskrivelse av tolket lag feks. Sand
+        tolket_av (Union[Unset, str]): Hvem som har gjort tolkning
+        tolket_tidspunkt (Union[Unset, datetime.datetime]): Når tolkning ble utført
+        tolkning_merknad (Union[Unset, str]): Kommentar til tolkning
+        navn (Union[Unset, str]): Navn på tolket lag
+        p_å_terreng_overflate (Union[Unset, bool]): Om tolkning er på terrengoverflate
+        vurdering (Union[Unset, float]): Hvor sikker tolkning er, med  0=Udefinert,5=Sikker og glidende skala imellom.
+        under_terreng_overflate (Union[Unset, bool]): Om tolkning er under terrengoverflate
         ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
             ansvarlige leverandør inn til NADAG.
         posisjon (Union[Unset, Point]):
-        høyde (Union[Unset, float]):
-        h_ø_yde_referanse (Union[Unset, str]):
+        høyde (Union[Unset, float]): Terrenghøyde ved start tolkning
+        h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
     """
 
     tolket_lag_id: Union[Unset, str] = UNSET

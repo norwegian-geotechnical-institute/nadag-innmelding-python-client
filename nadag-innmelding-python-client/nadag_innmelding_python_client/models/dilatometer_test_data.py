@@ -17,13 +17,26 @@ class DilatometerTestData:
     developed to evaluate the soil modulus.</engelsk>
 
         Attributes:
-            boret_dybde (Union[Unset, float]):
-            observasjon_merknad (Union[Unset, str]):
-            observasjon_kode (Union[Unset, str]):
-            kontakt_trykk_p0 (Union[Unset, float]):
-            ekspansjon_trykk_p1 (Union[Unset, float]):
-            horisontal_kraft (Union[Unset, float]):
-            poretrykk (Union[Unset, float]):
+            boret_dybde (Union[Unset, float]): dybde fra 0 nivå, hvor z verdien til undersøkelsens posisjon er satt til 0.
+                Angir hvor dypt det er boret.
+                <engelsk>depth from zero level, the z value of investigation start point is 0. drilling depth [m]
+                </engelsk>
+            observasjon_merknad (Union[Unset, str]): tekst som beskriver observasjonen <engelsk>description of the
+                observation</engelsk>
+            observasjon_kode (Union[Unset, str]): kode som angir observasjonen. Kodene er [0..*] tallkoder gitt i en
+                tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
+                GeotekniskBoreObservasjonskode.<engelsk>observation code according to valid codes. The codes are [0..*] numeric
+                codes given in a text string with spaces between each code if more than 1. The codes are described in the code
+                list GeotekniskBoreObservasjonskode. </engelsk>
+            kontakt_trykk_p0 (Union[Unset, float]): gasstrykk når membran ikke lenger har kontakt <engelsk>membrane lift-off
+                pressure</engelsk>
+            ekspansjon_trykk_p1 (Union[Unset, float]): gasstrykk når senter av membran har flyttet seg 1,1 mm <engelsk>gass
+                pressure when membrane has moved 1,1 mm</engelsk>
+            horisontal_kraft (Union[Unset, float]): horisontal last<engelsk>horizontal load</engelsk>
+            poretrykk (Union[Unset, float]): trykket i porevannet angitt som kraft pr. flateenhet, med atmosføretrykket som
+                nullpunkt
+
+                <engelsk>registered pore pressure [kPa]</engelsk>
     """
 
     boret_dybde: Union[Unset, float] = UNSET

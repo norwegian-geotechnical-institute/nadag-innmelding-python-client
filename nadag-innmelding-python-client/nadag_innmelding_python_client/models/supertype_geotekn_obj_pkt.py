@@ -24,8 +24,15 @@ class SupertypeGeoteknObjPkt:
     Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.
 
         Attributes:
-            datafangstdato (Union[Unset, datetime.datetime]):
-            digitaliseringsmålestokk (Union[Unset, int]):
+            datafangstdato (Union[Unset, datetime.datetime]): dato når objektet siste gang ble registrert/observert/målt i
+                terrenget
+
+                Merknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en
+                kortere eller lengre periode før disse legges inn i databasen.
+                Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.
+            digitaliseringsmålestokk (Union[Unset, int]): kartmålestokk registreringene/ datene er hentet fra/ registrert på
+
+                Eksempel: 1:50 000 = 50000.
             identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
@@ -36,7 +43,14 @@ class SupertypeGeoteknObjPkt:
             kvalitet (Union[Unset, PosisjonskvalitetNADAG]): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database
                 for Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
-            oppdateringsdato (Union[Unset, datetime.datetime]):
+            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+
+                Merknad:
+                Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
+                eller lengre periode før disse legges inn i datasystemet (databasen).
+
+                -Definition-
+                Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
     """
 
     datafangstdato: Union[Unset, datetime.datetime] = UNSET

@@ -31,17 +31,27 @@ class Vingeboring:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]):
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]):
-            sensitivitet (Union[Unset, float]):
-            skj_æ_rfasthet_omr_ø_rt (Union[Unset, float]):
-            skj_æ_rfasthet_uforstyrret (Union[Unset, float]):
-            vannstand_i_borehull (Union[Unset, float]):
-            vinge_diameter (Union[Unset, float]):
-            vinge_hø_yde (Union[Unset, float]):
-            vinge_identitet (Union[Unset, str]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
+                prøvningen<engelsk>start time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
+                prøvningen<engelsk>stop time for in situ testing</engelsk>
+            sensitivitet (Union[Unset, float]): forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for
+                kohesjonsjord<engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive
+                soils</engelsk>
+            skj_æ_rfasthet_omr_ø_rt (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med fullstendig omrørt
+                struktur<engelsk>shear strength for cohesive soils with a completely remoulded structure</engelsk>
+            skj_æ_rfasthet_uforstyrret (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med uforstyrret, intakt
+                struktur<engelsk>shear strength for cohesive soils with an intact, undisturbed structure</engelsk>
+            vannstand_i_borehull (Union[Unset, float]): vannstand i borehull etter vingeboring i felt<engelsk>water level in
+                a borehole after vane testing</engelsk>
+            vinge_diameter (Union[Unset, float]): diameter for vingekors<engelsk>diameter of the vane<engelsk>
+            vinge_hø_yde (Union[Unset, float]): høyde for vingekors<engelsk>height of the vane</engelsk>
+            vinge_identitet (Union[Unset, str]): identifikasjon for anvendt vingeborutstyr<engelsk>identification of applied
+                vane test equipment</engelsk>
             vingeboring_observasjon (Union[Unset, list['VingeboringData']]):
     """
 

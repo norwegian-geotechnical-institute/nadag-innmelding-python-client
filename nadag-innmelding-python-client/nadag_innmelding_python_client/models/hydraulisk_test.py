@@ -30,13 +30,20 @@ class HydrauliskTest:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]):
-            til_borlengde (Union[Unset, float]):
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]):
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]):
-            r_ø_r_bunn (Union[Unset, float]):
-            r_ø_r_topp (Union[Unset, float]):
-            r_ø_r_type (Union[Unset, str]):
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+                <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
+                prøvningen<engelsk>start time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
+                prøvningen<engelsk>stop time for in situ testing</engelsk>
+            r_ø_r_bunn (Union[Unset, float]): nivå (høyde) for bunn av målerør<engelsk>level (height) for the base of the
+                measurement tube</engelsk>
+            r_ø_r_topp (Union[Unset, float]): nivå (høyde) for topp av målerør<engelsk>level (height) for the top of the
+                measurement tube</engelsk>
+            r_ø_r_type (Union[Unset, str]): type målerør for utførelse av hydraulisk måling<engelsk>type of measurement tube
+                for hydraulic measurements</engelsk>
             hydraulisk_observasjon (Union[Unset, list['HydrauliskeData']]):
     """
 

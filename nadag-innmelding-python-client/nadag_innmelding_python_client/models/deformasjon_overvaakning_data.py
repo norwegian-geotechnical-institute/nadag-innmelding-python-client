@@ -19,11 +19,16 @@ class DeformasjonOvervaakningData:
     supervision data</engelsk>
 
         Attributes:
-            nedre_alarm_niv_å (Union[Unset, float]):
-            ø_vre_alarm_niv_å (Union[Unset, float]):
-            m_å_le_dato (Union[Unset, datetime.date]):
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]):
-            observasjon_merknad (Union[Unset, str]):
+            nedre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, nedre grense for måleverdi
+                <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>
+            ø_vre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, øvre grense for måleverdi
+                <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>
+            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen
+                <engelsk>date for measurements</engelsk>
+            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen<engelsk>time for
+                measurements</engelsk>
+            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i setningsmålingen<engelsk>remarks to
+                observations made during the measurements</engelsk>
             akvifer (Union[Unset, AkviferType]): oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview
                 of possible aquifer types for ground water measurements</engelsk>
     """

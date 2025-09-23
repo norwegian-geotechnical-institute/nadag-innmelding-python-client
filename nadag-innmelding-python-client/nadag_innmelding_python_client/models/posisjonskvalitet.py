@@ -22,11 +22,14 @@ class Posisjonskvalitet:
 
             -- Definition - -
             method on which registration of position is based
-        nøyaktighet (Union[Unset, int]):
+        nøyaktighet (Union[Unset, int]): punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
+
+            Merknad:
+            Oppgitt i cm
         synbarhet (Union[Unset, Synbarhet]): hvor godt den kartlagte detalj var synbar ved kartleggingen
         m_å_lemetode_hø_yde (Union[Unset, MaalemetodeHoeyde]): metode for å måle objekttypens høydeverdi
-        n_ø_yaktighet_hø_yde (Union[Unset, int]):
-        maksimalt_avvik (Union[Unset, int]):
+        n_ø_yaktighet_hø_yde (Union[Unset, int]): nøyaktighet for høyden i cm
+        maksimalt_avvik (Union[Unset, int]): absolutt toleranse for geometriske avvik
     """
 
     målemetode: Maalemetode

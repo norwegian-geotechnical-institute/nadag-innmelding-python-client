@@ -28,19 +28,29 @@ class GeotekniskProeveserie:
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        fra_borlengde (Union[Unset, float]):
-        til_borlengde (Union[Unset, float]):
+        fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
+        til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
         prøvetype (Union[Unset, ProevetakingType]): inndeling av fysisk prøvemateriale i prøvetype, avhengig av
             prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample
             type classes, depending on sampling method and/or storage method for the sampled material</engelsk>
-        densitet_pr_ø_vetaking (Union[Unset, float]):
-        milj_ø_teknisk_unders_ø_kelse (Union[Unset, str]):
-        prøvegrop (Union[Unset, bool]):
-        pr_ø_vegrop_kun (Union[Unset, bool]):
-        skovelprøve (Union[Unset, bool]):
-        skovelpr_ø_ve_kun (Union[Unset, bool]):
-        er_omr_ø_rt (Union[Unset, bool]):
-        er_uforstyrret (Union[Unset, bool]):
+        densitet_pr_ø_vetaking (Union[Unset, float]): tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
+            (kN/m3)</engelsk>
+        milj_ø_teknisk_unders_ø_kelse (Union[Unset, str]): beskrivelse og resultater fra miljøteknisk undersøkelse
+            <engelsk>description and results from environmental investigation<engelsk>
+        prøvegrop (Union[Unset, bool]): om det er benyttet prøvegrop<engelsk> indicating whether a soil test has a bag
+            sample</engelsk>
+        pr_ø_vegrop_kun (Union[Unset, bool]): om det kun er benyttet prøvegrop<engelsk>indicating whether a soil test
+            has only a bag sample</engelsk>
+        skovelprøve (Union[Unset, bool]): om det er benyttet skovlprøve<engelsk>indicating whether a soil test has grab
+            (Skv) sample</engelsk>
+        skovelpr_ø_ve_kun (Union[Unset, bool]): om det kun er benyttet skovlprøve<engelsk> indicating whether a soil
+            test has only a grab (Skv) sample</engelsk>
+        er_omr_ø_rt (Union[Unset, bool]): om prøvserien er omrørt<engelsk>indicating whether a soil test is
+            disturbed</engelsk>
+        er_uforstyrret (Union[Unset, bool]): om prøvserien er uforstyrret<engelsk>indicating whether a soil test is
+            undisturbed</engelsk>
         har_pr_ø_verseriedel (Union[Unset, list['GeotekniskProeveseriedel']]):
     """
 
