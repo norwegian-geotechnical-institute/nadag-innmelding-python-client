@@ -23,32 +23,36 @@ class KjerneBoringData:
             recovery, percent received core of the previous section [%]</engelsk>
         material_struktur (Union[Unset, str]):
         observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
-            [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+            (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
             kodelisten GeotekniskBoreObservasjonskode.
-            <engelsk>observation codes for marking of incidents during sounding. The codes are [0..*] numeric codes given in
+            <engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in
             a text string with spaces between each code if more than 1. The codes are described in the code list
             GeotekniskBoreObservasjonskode.</engelsk>
         observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations
             made during sounding</engelsk>
         opptrekk (Union[Unset, str]):
-        q_verdi_ja (Union[Unset, float]):
-        q_verdi_jn (Union[Unset, float]):
-        q_verdi_jr (Union[Unset, float]):
-        q_verdi_jw (Union[Unset, float]):
+        q_verdi_ja (Union[Unset, float]): Tall for sprekkefylling
+        q_verdi_jn (Union[Unset, float]): Tall for sprekkesett
+        q_verdi_jr (Union[Unset, float]): Sprekkeruhetstall
+        q_verdi_jw (Union[Unset, float]): Sprekkevannstall
         q_verdi_q (Union[Unset, float]): Q=(RQD/Jn)*(Jr/Ja)*(Jw/SRF)
         q_verdi_q_er_beregnet (Union[Unset, bool]): om Q-verdiet er beregnet basert på de øvrige leverte verdier eller
             kommer fra annen kilde <engelsk>indicating whether the Q-value is computed from the associated values or is
             external</engelsk>
-        q_verdi_rqd (Union[Unset, float]):
-        q_verdi_srf (Union[Unset, float]):
+        q_verdi_rqd (Union[Unset, float]): Oppsprekkingstall (Rock Quality Designation)
+        q_verdi_srf (Union[Unset, float]): Spenningsfaktor (Stress Reduction Factor)
         rock_mass_rating (Union[Unset, int]):
         ruhetsindeks (Union[Unset, int]): indeks (1-10) som beskriver ruhet og friksjon<engelsk> the roughness and
             frictional characteristics [index (1-10)] </engelsk>
         sprekke_frekvens (Union[Unset, float]):
         sprekke_material_tekst (Union[Unset, str]):
         sprekke_material_type (Union[Unset, str]):
-        str_ø_k_fall_fall (Union[Unset, int]):
-        str_ø_k_fall_str_ø_k (Union[Unset, int]):
+        str_ø_k_fall_fall (Union[Unset, int]): Måleverdi for måling utført i bergartens vertikalplan (fallretning)
+            Merknad: Målt i grader (0-90°) på observasjonspunkt. Enhet [°]. Verdien sees i sammenheng med måling av strøk i
+            horisontalplanet.
+        str_ø_k_fall_str_ø_k (Union[Unset, int]): Måleverdi for måling utført i bergartens horisontalplan (retning,
+            strøk) Merknad: Målt i grader (0-360°) på observasjonspunkt, med eventuelt fall mot høyre. Enhet [°]. Verdien
+            sees i sammenheng med måling av fall i vertikalplanet.
     """
 
     boret_lengde: Union[Unset, float] = UNSET

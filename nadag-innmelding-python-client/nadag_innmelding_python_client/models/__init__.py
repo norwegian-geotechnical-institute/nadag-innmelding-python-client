@@ -73,6 +73,8 @@ from .maalemetode import Maalemetode
 from .maalemetode_hoeyde import MaalemetodeHoeyde
 from .miljoe_undersoekelse import MiljoeUndersoekelse
 from .multi_polygon import MultiPolygon
+from .nadag_dokument_type import NADAGDokumentType
+from .nadag_hoeyderef import NADAGHoeyderef
 from .naver_proeve import NaverProeve
 from .nedpressings_kapasitet import NedpressingsKapasitet
 from .overvaakning_data import OvervaakningData
@@ -182,6 +184,8 @@ __all__ = (
     "MaalemetodeHoeyde",
     "MiljoeUndersoekelse",
     "MultiPolygon",
+    "NADAGDokumentType",
+    "NADAGHoeyderef",
     "NaverProeve",
     "NedpressingsKapasitet",
     "OvervaakningData",

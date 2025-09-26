@@ -8,6 +8,7 @@ from dateutil.parser import isoparse
 
 from ..models.geoteknisk_metode_kode import GeotekniskMetodeKode
 from ..models.geoteknisk_stoppkode import GeotekniskStoppkode
+from ..models.nadag_hoeyderef import NADAGHoeyderef
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -89,20 +90,20 @@ class GeotekniskBorehullUnders:
                 </engelsk>
             borehull_forl_ø_p (Union[Unset, list['Point']]):
             boret_azimuth (Union[Unset, float]): vinkelen mellom en referansevektor i et referanseplan og en annen vektor i
-                det samme planet som peker mot noe av interesse
+                det samme planet som peker mot noe av interesse [°]
 
                 <engelsk>
                 The vector from an observer (origin) to a point of interest is projected perpendicularly onto a reference plane,
                 the angle between the projected vector and the reference vector on the reference plane is called the azimuth
                 </engelsk>
-            boret_helningsgrad (Union[Unset, float]): helning hvor  90 grader er vertikalt , 0 grader er horisontalt
+            boret_helningsgrad (Union[Unset, float]): helning hvor 90 grader er vertikalt, 0 grader er horisontalt [°]
 
                 <engelsk>
                 the inclination of the borehole
 
                 Note: 90 degrees represent the vertical inclination and 0 degrees the horizontal
                 </engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
 
                 <engelsk>
                 total length of the investigation in the physical borehole, the same as depth in a vertical borehole
@@ -113,7 +114,7 @@ class GeotekniskBorehullUnders:
                 depth to bedrock based on interpretation
                 </engelsk>
             dybde_fra_gitt_posisjon (Union[Unset, float]): avstanden fra måleutstyret og ned til det punkt på jordoverflaten
-                hvor boring/måling faktisk starter
+                hvor boring/måling faktisk starter [m]
 
                 Merknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer
                 vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er
@@ -130,7 +131,7 @@ class GeotekniskBorehullUnders:
                 actually begins (on the sea surface, bottom of a lake or river, etc.)
 
                 </engelsk>
-            dybde_fra_vannoverflaten (Union[Unset, float]): den lengden hvor sonderingsutstyret befinner seg i vann
+            dybde_fra_vannoverflaten (Union[Unset, float]): den lengden hvor sonderingsutstyret befinner seg i vann [m]
 
                 Merknad: Av spesiell interesse hvis boring er utført fra is eller fra flåte/skip.
 
@@ -171,8 +172,9 @@ class GeotekniskBorehullUnders:
                 <engelsk>
                 Weather conditions - general description.
                 </engelsk>
-            høyde (Union[Unset, float]): Terrenghøyde ved start borehullsundersøkelse
-            h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+            høyde (Union[Unset, float]): Terrenghøyde ved start borehullsundersøkelse [m]
+            h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
+                EPSG-koder benyttes.
             unders_ø_kelse_nr (Union[Unset, str]): Nummer på borehullundersøkelse benyttet i den geotekniske undersøkelsen
             ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
                 ansvarlige leverandør inn til NADAG.
@@ -183,8 +185,8 @@ class GeotekniskBorehullUnders:
                 porene i jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface
                 to the level in the ground where all voids are saturated with water, and where the pore pressure starts to
                 increase</engelsk>
-            forboret_diameter (Union[Unset, float]): diameter [m] av forboret hull i en borhullundersøkelse
-                <engelsk>diameter [m] of a predrilled hole in a borehole investigation</engelsk>
+            forboret_diameter (Union[Unset, float]): diameter [mm] av forboret hull i en borhullundersøkelse
+                <engelsk>diameter (mm) of a predrilled hole in a borehole investigation</engelsk>
             forboret_lengde (Union[Unset, float]): Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of
                 a predrilled borehole in a borehole investigation<engelsk>
             forboring_metode (Union[Unset, str]): metode brukt til boring uten registrering av data<engelsk>pre boring
@@ -221,7 +223,7 @@ class GeotekniskBorehullUnders:
     unders_ø_kelse_start: Union[Unset, datetime.datetime] = UNSET
     v_æ_rforhold_ved_boring: Union[Unset, str] = UNSET
     høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, str] = UNSET
+    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
     unders_ø_kelse_nr: Union[Unset, str] = UNSET
     ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
     opprettet_dato: Union[Unset, datetime.datetime] = UNSET
@@ -354,7 +356,9 @@ class GeotekniskBorehullUnders:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse = self.h_ø_yde_referanse
+        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        if not isinstance(self.h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         unders_ø_kelse_nr = self.unders_ø_kelse_nr
 
@@ -641,7 +645,12 @@ class GeotekniskBorehullUnders:
 
         høyde = d.pop("høyde", UNSET)
 
-        h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        if isinstance(_h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = UNSET
+        else:
+            h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         unders_ø_kelse_nr = d.pop("undersøkelseNr", UNSET)
 

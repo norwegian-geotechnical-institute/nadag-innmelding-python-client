@@ -64,20 +64,20 @@ class GeovitenskapligBorehullUndersoekelse:
                 </engelsk>
             borehull_forl_ø_p (Union[Unset, list['Point']]):
             boret_azimuth (Union[Unset, float]): vinkelen mellom en referansevektor i et referanseplan og en annen vektor i
-                det samme planet som peker mot noe av interesse
+                det samme planet som peker mot noe av interesse [°]
 
                 <engelsk>
                 The vector from an observer (origin) to a point of interest is projected perpendicularly onto a reference plane,
                 the angle between the projected vector and the reference vector on the reference plane is called the azimuth
                 </engelsk>
-            boret_helningsgrad (Union[Unset, float]): helning hvor  90 grader er vertikalt , 0 grader er horisontalt
+            boret_helningsgrad (Union[Unset, float]): helning hvor 90 grader er vertikalt, 0 grader er horisontalt [°]
 
                 <engelsk>
                 the inclination of the borehole
 
                 Note: 90 degrees represent the vertical inclination and 0 degrees the horizontal
                 </engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
 
                 <engelsk>
                 total length of the investigation in the physical borehole, the same as depth in a vertical borehole
@@ -88,7 +88,7 @@ class GeovitenskapligBorehullUndersoekelse:
                 depth to bedrock based on interpretation
                 </engelsk>
             dybde_fra_gitt_posisjon (Union[Unset, float]): avstanden fra måleutstyret og ned til det punkt på jordoverflaten
-                hvor boring/måling faktisk starter
+                hvor boring/måling faktisk starter [m]
 
                 Merknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer
                 vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er
@@ -105,7 +105,7 @@ class GeovitenskapligBorehullUndersoekelse:
                 actually begins (on the sea surface, bottom of a lake or river, etc.)
 
                 </engelsk>
-            dybde_fra_vannoverflaten (Union[Unset, float]): den lengden hvor sonderingsutstyret befinner seg i vann
+            dybde_fra_vannoverflaten (Union[Unset, float]): den lengden hvor sonderingsutstyret befinner seg i vann [m]
 
                 Merknad: Av spesiell interesse hvis boring er utført fra is eller fra flåte/skip.
 

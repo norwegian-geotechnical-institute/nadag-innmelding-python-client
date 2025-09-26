@@ -28,7 +28,7 @@ class PoretrykkData:
             tip</engelsk>
         avstand_topp_slange_til_vannstand (Union[Unset, float]): distanse mellom topp måleslange til vannstand i slangen
             <engelsk>distance between top of measuring hose and the water level in the hose</engelsk>
-        barometer_trykk (Union[Unset, float]): trykkmåler for avlesning av lufttrykk (atmosføretrykk)
+        barometer_trykk (Union[Unset, float]): trykkmåler for avlesning av lufttrykk (atmosfæretrykk)
             <engelsk>pressure gauge for recording of atmospheric pressure</engelsk>
         dybde_grunnvannstand (Union[Unset, float]): dybde til grunnvannsnivå (vannstand i slangen), regnet fra
             terrengnivå eller annet angitt referansenivå
@@ -39,13 +39,13 @@ class PoretrykkData:
         m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen
             <engelsk>time for measurements</engelsk>
         observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene
-            er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+            er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
             kodelisten GeotekniskBoreObservasjonskode. <engelsk>observation codes for marking of incidents during pore
-            pressure measurements. The codes are [0..*] numeric codes given in a text string with spaces between each code
+            pressure measurements. The codes are (0..*)	 numeric codes given in a text string with spaces between each code
             if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>
         observasjon_merknad (Union[Unset, str]): merknad til observasjoner i poretrykksmålingen
             <engelsk>remarks to observations made during pore pressure measurements</engelsk>
-        poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosføretrykket som referanse
+        poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse
             <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>
         trykkhøyde (Union[Unset, float]): stigehøyde (mm vannsøyle) i åpent vannstandsrør som følge av trykknivå i
             porevannet, gitt ved avstand mellom vannstand i slangen og filternivå <engelsk>Elevation head (mm water column)

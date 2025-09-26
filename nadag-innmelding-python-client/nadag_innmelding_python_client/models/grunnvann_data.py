@@ -21,26 +21,25 @@ class GrunnvannData:
         Attributes:
             m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av grunnvannsmålingen<engelsk>date for
                 measurements</engelsk>
-            dybde_grunnvannstand (Union[Unset, float]): angivelse av vannstand i grunnen og/eller i målerør
-                (z-nivå)<engelsk>water level in the ground and / or inside a measurement tube (z-level)</engelsk>
+            dybde_grunnvannstand (Union[Unset, float]): angivelse av vannstand i grunnen og/eller i målerør (z-nivå) [m]
+                <engelsk>water level in the ground and / or inside a measurement tube (z-level)</engelsk>
             m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av
                 grunnvannsmålingen<engelsk>time for measurements</engelsk>
             observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i grunnvannsmålingen. Kodene
-                er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+                er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
                 kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation codes for marking of incidents during ground
-                water measurements. The codes are [0..*] numeric codes given in a text string with spaces between each code if
+                water measurements. The codes are (0..*) numeric codes given in a text string with spaces between each code if
                 more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>
             observasjon_merknad (Union[Unset, str]): merknad til observasjoner i grunnvannsmålingen<engelsk>remarks to
                 observations made during ground water measurements</engelsk>
-            p_h (Union[Unset, float]): surhetsgrad <engelsk>
-                              <measure of acidity>
+            p_h (Union[Unset, float]): surhetsgrad <engelsk><measure of acidity>
             ledningsevne (Union[Unset, float]): hydraulisk ledningsevne [uS/cm] <engelsk>hydraulic conductivity</engelsk>
-            oksygen_innhold (Union[Unset, float]): innhold av oksygen <engelsk>oxygen content</engelsk>
-            temperatur (Union[Unset, float]): temperatur [C] <engelsk>temperature [C]</engelsk>
+            oksygen_innhold (Union[Unset, float]): innhold av oksygen [ml] <engelsk>oxygen content</engelsk>
+            temperatur (Union[Unset, float]): temperatur [°C] <engelsk>temperature [°C]</engelsk>
             redoks (Union[Unset, float]): red-oks-potensiale [mV] <engelsk>redox potential</engelsk>
             turbiditet (Union[Unset, float]): angir gjennomsnittlig partikkelinnhold [NTU] <engelsk>average particle
                 content</engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
             grunnvann_observasjon_kode (Union[Unset, GeotekniskGrunnvannObservasjonKode]): oversikt over observasjonskoder

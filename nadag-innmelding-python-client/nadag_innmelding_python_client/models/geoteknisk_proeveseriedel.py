@@ -15,16 +15,16 @@ T = TypeVar("T", bound="GeotekniskProeveseriedel")
 
 @_attrs_define
 class GeotekniskProeveseriedel:
-    """delprøve av en  prøveserie<engelsk> Soli test part </engelsk>
+    """delprøve av en  prøveserie<engelsk> Soil test part </engelsk>
 
     Attributes:
         pr_ø_ve_metode (Union[Unset, str]): metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
         pr_ø_veseriedel_navn (Union[Unset, str]): navn på prøveseriedelen<engelsk>name</engelsk>
-        fra_lengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver
-            borehullforløpet<engelsk>the start length, the depth at top of the specimen[m]</engelsk>
-        til_lengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver
-            borehullforløpet<engelsk>the length of the stop, the lower depth limitation of the sample [m]</engelsk>
-        pr_ø_veseriedel_id (Union[Unset, str]): Primårnøkkel for relasjon
+        fra_lengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            <engelsk>the start length, the depth at top of the specimen[m]</engelsk>
+        til_lengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            <engelsk>the length of the stop, the lower depth limitation of the sample [m]</engelsk>
+        pr_ø_veseriedel_id (Union[Unset, str]): Primærnøkkel for relasjon
         har_data (Union[Unset, list['GeotekniskProeveseriedelData']]):
     """
 

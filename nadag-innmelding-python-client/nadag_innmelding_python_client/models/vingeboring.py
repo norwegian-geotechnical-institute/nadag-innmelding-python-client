@@ -31,25 +31,18 @@ class Vingeboring:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
             insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
                 prøvningen<engelsk>start time for in situ testing</engelsk>
             insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
                 prøvningen<engelsk>stop time for in situ testing</engelsk>
-            sensitivitet (Union[Unset, float]): forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for
-                kohesjonsjord<engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive
-                soils</engelsk>
-            skj_æ_rfasthet_omr_ø_rt (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med fullstendig omrørt
-                struktur<engelsk>shear strength for cohesive soils with a completely remoulded structure</engelsk>
-            skj_æ_rfasthet_uforstyrret (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med uforstyrret, intakt
-                struktur<engelsk>shear strength for cohesive soils with an intact, undisturbed structure</engelsk>
             vannstand_i_borehull (Union[Unset, float]): vannstand i borehull etter vingeboring i felt<engelsk>water level in
                 a borehole after vane testing</engelsk>
-            vinge_diameter (Union[Unset, float]): diameter for vingekors<engelsk>diameter of the vane<engelsk>
-            vinge_hø_yde (Union[Unset, float]): høyde for vingekors<engelsk>height of the vane</engelsk>
+            vinge_diameter (Union[Unset, float]): diameter for vingekors [mm] <engelsk>diameter of the vane<engelsk>
+            vinge_hø_yde (Union[Unset, float]): høyde for vingekors [mm] <engelsk>height of the vane</engelsk>
             vinge_identitet (Union[Unset, str]): identifikasjon for anvendt vingeborutstyr<engelsk>identification of applied
                 vane test equipment</engelsk>
             vingeboring_observasjon (Union[Unset, list['VingeboringData']]):
@@ -61,9 +54,6 @@ class Vingeboring:
     til_borlengde: Union[Unset, float] = UNSET
     insitu_test_start_tidspunkt: Union[Unset, datetime.datetime] = UNSET
     insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    sensitivitet: Union[Unset, float] = UNSET
-    skj_æ_rfasthet_omr_ø_rt: Union[Unset, float] = UNSET
-    skj_æ_rfasthet_uforstyrret: Union[Unset, float] = UNSET
     vannstand_i_borehull: Union[Unset, float] = UNSET
     vinge_diameter: Union[Unset, float] = UNSET
     vinge_hø_yde: Union[Unset, float] = UNSET
@@ -89,12 +79,6 @@ class Vingeboring:
         insitu_test_slutt_tidspunkt: Union[Unset, str] = UNSET
         if not isinstance(self.insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = self.insitu_test_slutt_tidspunkt.isoformat()
-
-        sensitivitet = self.sensitivitet
-
-        skj_æ_rfasthet_omr_ø_rt = self.skj_æ_rfasthet_omr_ø_rt
-
-        skj_æ_rfasthet_uforstyrret = self.skj_æ_rfasthet_uforstyrret
 
         vannstand_i_borehull = self.vannstand_i_borehull
 
@@ -126,12 +110,6 @@ class Vingeboring:
             field_dict["insituTestStartTidspunkt"] = insitu_test_start_tidspunkt
         if insitu_test_slutt_tidspunkt is not UNSET:
             field_dict["insituTestSluttTidspunkt"] = insitu_test_slutt_tidspunkt
-        if sensitivitet is not UNSET:
-            field_dict["sensitivitet"] = sensitivitet
-        if skj_æ_rfasthet_omr_ø_rt is not UNSET:
-            field_dict["skjærfasthetOmrørt"] = skj_æ_rfasthet_omr_ø_rt
-        if skj_æ_rfasthet_uforstyrret is not UNSET:
-            field_dict["skjærfasthetUforstyrret"] = skj_æ_rfasthet_uforstyrret
         if vannstand_i_borehull is not UNSET:
             field_dict["vannstandIBorehull"] = vannstand_i_borehull
         if vinge_diameter is not UNSET:
@@ -180,12 +158,6 @@ class Vingeboring:
         else:
             insitu_test_slutt_tidspunkt = isoparse(_insitu_test_slutt_tidspunkt)
 
-        sensitivitet = d.pop("sensitivitet", UNSET)
-
-        skj_æ_rfasthet_omr_ø_rt = d.pop("skjærfasthetOmrørt", UNSET)
-
-        skj_æ_rfasthet_uforstyrret = d.pop("skjærfasthetUforstyrret", UNSET)
-
         vannstand_i_borehull = d.pop("vannstandIBorehull", UNSET)
 
         vinge_diameter = d.pop("vingeDiameter", UNSET)
@@ -208,9 +180,6 @@ class Vingeboring:
             til_borlengde=til_borlengde,
             insitu_test_start_tidspunkt=insitu_test_start_tidspunkt,
             insitu_test_slutt_tidspunkt=insitu_test_slutt_tidspunkt,
-            sensitivitet=sensitivitet,
-            skj_æ_rfasthet_omr_ø_rt=skj_æ_rfasthet_omr_ø_rt,
-            skj_æ_rfasthet_uforstyrret=skj_æ_rfasthet_uforstyrret,
             vannstand_i_borehull=vannstand_i_borehull,
             vinge_diameter=vinge_diameter,
             vinge_hø_yde=vinge_hø_yde,

@@ -6,6 +6,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
+from ..models.nadag_hoeyderef import NADAGHoeyderef
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -19,7 +20,7 @@ T = TypeVar("T", bound="GeotekniskTolketPunkt")
 
 @_attrs_define
 class GeotekniskTolketPunkt:
-    """Punkt med geoteknisk tolkning
+    """Punkt med geoteknisk tolkning i GeotekniskTolketLag
 
     Attributes:
         identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
@@ -33,6 +34,9 @@ class GeotekniskTolketPunkt:
         tolket_tidspunkt (Union[Unset, datetime.datetime]): Når tolkning ble utført
         navn (Union[Unset, str]): Navn på tolket punkt
         posisjon (Union[Unset, Point]):
+        høyde (Union[Unset, float]): Terrenghøyde overflate for punkt med tolkning(/er)[m]
+        h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
+            EPSG-koder benyttes.
         har_tolket_lag (Union[Unset, list['GeotekniskTolketLag']]):
     """
 
@@ -41,6 +45,8 @@ class GeotekniskTolketPunkt:
     tolket_tidspunkt: Union[Unset, datetime.datetime] = UNSET
     navn: Union[Unset, str] = UNSET
     posisjon: Union[Unset, "Point"] = UNSET
+    høyde: Union[Unset, float] = UNSET
+    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
     har_tolket_lag: Union[Unset, list["GeotekniskTolketLag"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -60,6 +66,12 @@ class GeotekniskTolketPunkt:
         posisjon: Union[Unset, dict[str, Any]] = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
+
+        høyde = self.høyde
+
+        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        if not isinstance(self.h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         har_tolket_lag: Union[Unset, list[dict[str, Any]]] = UNSET
         if not isinstance(self.har_tolket_lag, Unset):
@@ -81,6 +93,10 @@ class GeotekniskTolketPunkt:
             field_dict["navn"] = navn
         if posisjon is not UNSET:
             field_dict["posisjon"] = posisjon
+        if høyde is not UNSET:
+            field_dict["høyde"] = høyde
+        if h_ø_yde_referanse is not UNSET:
+            field_dict["høydeReferanse"] = h_ø_yde_referanse
         if har_tolket_lag is not UNSET:
             field_dict["harTolketLag"] = har_tolket_lag
 
@@ -118,6 +134,15 @@ class GeotekniskTolketPunkt:
         else:
             posisjon = Point.from_dict(_posisjon)
 
+        høyde = d.pop("høyde", UNSET)
+
+        _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        if isinstance(_h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = UNSET
+        else:
+            h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
+
         har_tolket_lag = []
         _har_tolket_lag = d.pop("harTolketLag", UNSET)
         for har_tolket_lag_item_data in _har_tolket_lag or []:
@@ -131,6 +156,8 @@ class GeotekniskTolketPunkt:
             tolket_tidspunkt=tolket_tidspunkt,
             navn=navn,
             posisjon=posisjon,
+            høyde=høyde,
+            h_ø_yde_referanse=h_ø_yde_referanse,
             har_tolket_lag=har_tolket_lag,
         )
 

@@ -6,6 +6,7 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
+from ..models.nadag_dokument_type import NADAGDokumentType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -23,7 +24,7 @@ class GeotekniskDokument:
         Attributes:
             dokument_id (Union[Unset, str]): Unik nøkkel for dokument.
             dokument_nø_kkel (Union[Unset, str]): Benyttes til å angi nøkkelverdi ved kall til Web-api.
-            dokument_type (Union[Unset, str]): Type dokument. Feks. GeoReport, ProfilePdf
+            dokument_type (Union[Unset, NADAGDokumentType]): Typer av dokument brukt i NADAG forvaltningsløsning.
             dokument_filnavn (Union[Unset, str]): Filnavn på dokumentet.
             dokument_url (Union[Unset, str]): Komplett URL for dokument med id.
             innhold_type (Union[Unset, str]): Type dokumentformat, feks. Image/png, pdf
@@ -38,7 +39,7 @@ class GeotekniskDokument:
 
     dokument_id: Union[Unset, str] = UNSET
     dokument_nø_kkel: Union[Unset, str] = UNSET
-    dokument_type: Union[Unset, str] = UNSET
+    dokument_type: Union[Unset, NADAGDokumentType] = UNSET
     dokument_filnavn: Union[Unset, str] = UNSET
     dokument_url: Union[Unset, str] = UNSET
     innhold_type: Union[Unset, str] = UNSET
@@ -55,7 +56,9 @@ class GeotekniskDokument:
 
         dokument_nø_kkel = self.dokument_nø_kkel
 
-        dokument_type = self.dokument_type
+        dokument_type: Union[Unset, str] = UNSET
+        if not isinstance(self.dokument_type, Unset):
+            dokument_type = self.dokument_type.value
 
         dokument_filnavn = self.dokument_filnavn
 
@@ -120,7 +123,12 @@ class GeotekniskDokument:
 
         dokument_nø_kkel = d.pop("dokumentNøkkel", UNSET)
 
-        dokument_type = d.pop("dokumentType", UNSET)
+        _dokument_type = d.pop("dokumentType", UNSET)
+        dokument_type: Union[Unset, NADAGDokumentType]
+        if isinstance(_dokument_type, Unset):
+            dokument_type = UNSET
+        else:
+            dokument_type = NADAGDokumentType(_dokument_type)
 
         dokument_filnavn = d.pop("dokumentFilnavn", UNSET)
 

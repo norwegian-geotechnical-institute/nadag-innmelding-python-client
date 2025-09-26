@@ -83,10 +83,10 @@ class GeotekniskUnders:
             opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
             prosjekt_nr (Union[Unset, str]): Nummer på prosjekt benyttet for den geotekniske undersøkelsen
             opphav (Union[Unset, str]): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
-            unders_ø_kelse_å_r_antatt (Union[Unset, int]): Antatt år  for gjennomføring av den geotekniske undersøkelsen.
-                For største delen av de leverte dataene har det vært dårlig infomasjon i egenskapene for undersøkelseperiode og
+            unders_ø_kelse_å_r_antatt (Union[Unset, int]): Antatt år for gjennomføring av den geotekniske undersøkelsen. For
+                største delen av de leverte dataene har det vært dårlig infomasjon i egenskapene for undersøkelseperiode og
                 derfor utvides det med denne egenskapen. Årstallet her er hentet fra ulike kilder i leveransene og avhengig av
-                hva for leveranser det er varierer usikkerheten på på det antatte år stallet.
+                hva for leveranser det er varierer usikkerheten på på det antatte årstallet.
             felt_unders (Union[Unset, list['GeotekniskFeltUnders']]):
             unders_pkt (Union[Unset, list['GeotekniskBorehull']]):
             har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):

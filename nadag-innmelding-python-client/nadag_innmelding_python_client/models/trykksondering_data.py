@@ -15,49 +15,51 @@ class TrykksonderingData:
     test (with pore pressure measurements) CPT(U)</engelsk>
 
         Attributes:
-            anvendt_last (Union[Unset, float]): anvendt last på overflaten for nedpressing av trykksonde med stenger
+            anvendt_last (Union[Unset, float]): anvendt last på overflaten for nedpressing av trykksonde med stenger [kN]
                 <engelsk>applied thrust load on the surface for penetration of the test rods and probe</engelsk>
             boret_dybde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå
-                <engelsk>depth below the terrain surface or any other given reference level</engelsk>
-            boret_lengde (Union[Unset, float]): lengde langs borehullets forløp, tilsvarer dyp ved vertikal
-                boring<engelsk>length along the physical borehole, the same as depth in a vertical borehole</engelsk>
+                [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>
+            boret_lengde (Union[Unset, float]): lengde langs borehullets forløp, tilsvarer dyp ved vertikal boring [m]
+                <engelsk>length along the physical borehole, the same as depth in a vertical borehole</engelsk>
             friksjon (Union[Unset, float]): målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med
-                areal av friksjonshylse)<engelsk>measured sleeve friction during penetration of the probe (friction sleeve force
-                divided by area of the friction sleeve)</engelsk>
-            helning (Union[Unset, float]): vinkelavvik mellom nedpressingsretning for trykksonde og vertikalaksen
+                areal av friksjonshylse) [kPa] <engelsk>measured sleeve friction during penetration of the probe (friction
+                sleeve force divided by area of the friction sleeve)</engelsk>
+            helning (Union[Unset, float]): vinkelavvik mellom nedpressingsretning for trykksonde og vertikalaksen [°]
                 <engelsk>deviation between the penetration axis and the vertical axis</engelsk>
-            initielt_poretrykk (Union[Unset, float]): initielt poretrykk ved start av dissipasjonstest i CPTU
+            initielt_poretrykk (Union[Unset, float]): initielt poretrykk ved start av dissipasjonstest i CPTU [kPa]
                 <engelsk>initial pore pressure at the start of the dissipation test in CPTU</engelsk>
             resistivitet (Union[Unset, float]): elektrisk motstand når den går gjennom et materiale, måles ved gjennomføring
-                av RCPTU-forsøk. Måles i ?m (ohm-meter). <engelsk>electrical resistivity, measured in a RCPTU-test (?m)
+                av RCPTU-forsøk. Måles i [Ωm] (ohm-meter). <engelsk>electrical resistivity, measured in a RCPTU-test (?m)
                 </engelsk>
             korrigert_friksjon (Union[Unset, float]): korrigert sidefriksjon ved nedpressing av trykksonde (friksjonskraft
-                dividert med areal av friksjonshylse, korrigert for poretrykkseffekter) <engelsk>corrected sleeve friction
+                dividert med areal av friksjonshylse, korrigert for poretrykkseffekter) [MPa] <engelsk>corrected sleeve friction
                 during penetration of the probe (friction sleeve force divided by area of the friction sleeve, corrected for
                 pore pressure effects)</engelsk>
             korrigert_nedpressnings_kraft (Union[Unset, float]): korrigert last på overflaten for nedpressing av trykksonde
-                med stenger <engelsk>corrected load on the surface for penetration of the test rods and probe</engelsk>
+                med stenger [kPa] <engelsk>corrected load on the surface for penetration of the test rods and probe</engelsk>
             nedpressing_hastighet (Union[Unset, float]): nedpressingsdistanse for trykksonde per tidsenhet (2 cm/sek)
                 <engelsk>penetration rate for probe (2 cm/sec)</engelsk>
             nedpressings_kraft (Union[Unset, float]): anvendt last på overflaten for nedpressing av trykksonde med stenger
                 <engelsk>applied thrust load on the surface for penetration of the test rods and probe</engelsk>
             nedpressings_tid (Union[Unset, int]): tid for nedpressing av sonden til ønsket eller annen angitt dybde, regnet
-                fra forrige dybde
+                fra forrige dybde [sek]
                 <engelsk>time for penetration of the probe to the requested or any other given depth. Referring to the previous
                 depth</engelsk>
             observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i trykksonderingen. Kodene er
-                [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+                (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
                 kodelisten GeotekniskBoreObservasjonskode.  <engelsk>observation codes for marking of incidents during
-                penetration. The codes are [0..*] numeric codes given in a text string with spaces between each code if more
+                penetration. The codes are (0..*) numeric codes given in a text string with spaces between each code if more
                 than 1. The codes are described in the code list GeotekniskBoreObservasjonskode. </engelsk>
             observasjon_merknad (Union[Unset, str]): merknad til observasjoner i trykksonderingen <engelsk>remarks to
                 observations made during penetration</engelsk>
-            poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosføretrykket som referanse
+            poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa]
                 <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>
-            skj_æ_rb_ø_lge_hastighet (Union[Unset, float]): hastighet til s-bølge <engelsk>velocity of s-wave</engelsk>
-            temperatur (Union[Unset, float]): temperatur i jord og/eller luft ved gjennomføring av trykksonderingen
+            skj_æ_rb_ø_lge_hastighet (Union[Unset, float]): hastighet til s-bølge [m/s] <engelsk>velocity of
+                s-wave</engelsk>
+            temperatur (Union[Unset, float]): temperatur i jord og/eller luft ved gjennomføring av trykksonderingen [°C]
                 <engelsk>temperature in soil and/or air during the testing</engelsk>
-            nedpressing_trykk (Union[Unset, float]): <engelsk>measured cone resistance during penetration of the probe
+            nedpressing_trykk (Union[Unset, float]): målt spissmotstand ved nedpressing av trykksonde (spisskraft dividert
+                med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured cone resistance during penetration of the probe
                 (point load divided by cross-sectional area of probe) [MPa].</engelsk>
     """
 
