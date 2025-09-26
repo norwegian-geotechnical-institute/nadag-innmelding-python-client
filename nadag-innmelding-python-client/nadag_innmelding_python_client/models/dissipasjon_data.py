@@ -34,9 +34,9 @@ class DissipasjonData:
                 areal av friksjonshylse)<engelsk>measured sleeve friction during penetration of the probe (friction sleeve force
                 divided by area of the friction sleeve)</engelsk>
             observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i dissipasjonstesten. Kodene
-                er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+                er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
                 kodelisten GeotekniskBoreObservasjonskode.
-                <engelsk>observation codes for marking of incidents during dissipation. The codes are [0..*] numeric codes given
+                <engelsk>observation codes for marking of incidents during dissipation. The codes are (0..*) numeric codes given
                 in a text string with spaces between each code if more than 1. The codes are described in the code list
                 GeotekniskBoreObservasjonskode.</engelsk>
             observasjon_merknad (Union[Unset, str]): merknad til observasjoner i dissipasjonstesten <engelsk>remarks to

@@ -12,52 +12,53 @@ T = TypeVar("T", bound="GeotekniskProeveseriedelData")
 
 @_attrs_define
 class GeotekniskProeveseriedelData:
-    """Data som tilhører en geoteknisk prøveseriedel
+    """Data som tilhører en geoteknisk prøveseriedel <engelsk>Data for a soil test part </engelsk>
 
     Attributes:
         lag_posisjon (Union[Unset, LagPosisjon]): kodeliste som brukes for å fortelle i hvilken del av prøvedelen som
             det er gjort undersøkelser
         pr_ø_ve_metode (Union[Unset, str]): metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
-        aksiel_deformasjon (Union[Unset, float]): angis i % <engelsk> the axial deformation (bruddef) [%]</engelsk>
+        aksiel_deformasjon (Union[Unset, float]): angis i [%] <engelsk> the axial deformation (bruddef) %</engelsk>
         skj_æ_rfasthet_udrenert (Union[Unset, float]): bestemmelse av udrenert skjærfasthet ved enaksial trykkprøving i
-            laboratoriet<engelsk>the axial shear strength, the undrained shear strength by unconfined compression testing
-            (sue) [kPa].</engelsk>
+            laboratoriet [kPa] <engelsk>the axial shear strength, the undrained shear strength by unconfined compression
+            testing (sue) [kPa].</engelsk>
         detaljert_lag_sammensetning (Union[Unset, str]): tekst som beskriver lagsammensetningen <engelsk>the detailed
             layer composition, a text containing a detailed layer composition</engelsk>
         skj_æ_rfasthet_omr_ø_rt (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med fullstendig omrørt
-            struktur<engelsk>the shear strength for a remoulded test material (suo) [kPa]</engelsk>
-        densitet_pr_ø_vetaking (Union[Unset, float]): tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+            struktur [kPa] <engelsk>the shear strength for a remoulded test material (suo) [kPa]</engelsk>
+        densitet_pr_ø_vetaking (Union[Unset, float]): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
+            [kN/m3]</engelsk>
         er_omr_ø_rt (Union[Unset, bool]): om prøvserien er omrørt<engelsk>indicating whether a soil test is
             disturbed</engelsk>
         lab_analyse (Union[Unset, bool]): om prøven har blitt analysert på laboratorium
             <engelsk> indicating whether the soil test has been analyzed at laboratory</engelsk>
         flyte_grense (Union[Unset, float]): bestemmelse av flytegrense ved hjelp av støt- eller konusmetode i
-            laboratoriet Merknad: Flytegrensen angir det vanninnhold der en omrørt leire går over fra å være flytende til å
-            bli plastisk (formbar) <engelsk>determination of liquid limit flytegrense by percussionor fall cone method in
-            the laboratory Note:The liquid limit corresponds to a water content where the remoulded material goes from a
+            laboratoriet [%] Merknad: Flytegrensen angir det vanninnhold der en omrørt leire går over fra å være flytende
+            til å bli plastisk (formbar) <engelsk>determination of liquid limit flytegrense by percussionor fall cone method
+            in the laboratory Note:The liquid limit corresponds to a water content where the remoulded material goes from a
             liquid to a plastic state</engelsk>
-        gl_ø_de_tap (Union[Unset, float]): <engelsk>the loss on ignition, the loss of mass (% left of initial mass) due
-            to heating</engelsk>
-        plastitets_grense (Union[Unset, float]): bestemmelse av plastisitetsgrense ved hjelp av utrullingsmetode
+        gl_ø_de_tap (Union[Unset, float]): angis i [%] <engelsk>the loss on ignition, the loss of mass (% left of
+            initial mass) due to heating</engelsk>
+        plastitets_grense (Union[Unset, float]): bestemmelse av plastisitetsgrense ved hjelp av utrullingsmetode [%]
             Merknad: Også kalt utrullingsgrense som angir det vanninnhold der en omrørt leire går over fra plastisk
-            (formbar) til smuldrende konsistens
-            <engelsk>determination of the plasticity limit by a hand rolling method Note: Expresses the water content where
-            a remoulded clay leaves the plastic state and starts to crumble</engelsk>
+            (formbar) til smuldrende konsistens <engelsk>determination of the plasticity limit by a hand rolling method
+            Note: Expresses the water content where a remoulded clay leaves the plastic state and starts to
+            crumble</engelsk>
         sensitivitet (Union[Unset, float]): forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for
             kohesjonsjord<engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive
             soils</engelsk>
         skj_æ_rfasthet_uforstyrret (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med uforstyrret, intakt
-            struktur<engelsk>shear strength for cohesive soils with an intact, undisturbed structure</engelsk>
+            struktur [kPa] <engelsk>shear strength for cohesive soils with an intact, undisturbed structure</engelsk>
         boret_lengde (Union[Unset, float]): boret lengde i forhold til terrengoverflaten eller annet angitt
-            referansenivå<engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>
+            referansenivå [m] <engelsk>drilled length related to the terrain surface or any other given reference
+            level</engelsk>
         vanninnhold (Union[Unset, float]): undersøkelse for bestemmelse av prøvematerialets vanninnhold ved tørking.
-            Angir forholdet mellom masse vann og masse fast stoff<engelsk>determination of the water content of the sample
-            by oven drying. Corresponds to the ratio between mass of water and the mass of solid particles</engelsk>
+            Angir forholdet mellom masse vann og masse fast stoff [%] <engelsk>determination of the water content of the
+            sample by oven drying. Corresponds to the ratio between mass of water and the mass of solid particles</engelsk>
         observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
-            [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+            (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
             kodelisten GeotekniskBoreObservasjonskode.
-            <engelsk>observation codes for marking of incidents during sounding. The codes are [0..*] numeric codes given in
+            <engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in
             a text string with spaces between each code if more than 1. The codes are described in the code list
             GeotekniskBoreObservasjonskode.</engelsk>
         observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations

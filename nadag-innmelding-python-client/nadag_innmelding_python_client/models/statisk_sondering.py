@@ -29,13 +29,14 @@ class StatiskSondering:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
-            telenivå (Union[Unset, float]): dybde for angivelse av telefront ved sondering i frosset jord<engelsk>depth to
-                frost front for sounding in frozen soils </engelsk>
+            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in
+                meter</engelsk>
+            telenivå (Union[Unset, float]): dybde for angivelse av telefront ved sondering i frosset jord [m] <engelsk>depth
+                to frost front for sounding in frozen soils </engelsk>
             statisk_sondering_observasjon (Union[Unset, list['StatiskSonderingData']]):
     """
 

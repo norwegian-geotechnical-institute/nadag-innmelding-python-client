@@ -8,6 +8,7 @@ from dateutil.parser import isoparse
 
 from ..models.gjennomboret_medium import GjennomboretMedium
 from ..models.kvikkleire_paavisning_kode import KvikkleirePaavisningKode
+from ..models.nadag_hoeyderef import NADAGHoeyderef
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -89,8 +90,9 @@ class GeotekniskBorehull:
                 </engelsk>
             posisjon (Union[Unset, Point]):
             bore_nr (Union[Unset, str]): Nummer på borehull benyttet i den geotekniske undersøkelsen
-            høyde (Union[Unset, float]): Terrenghøyde ved start borehull
-            h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+            høyde (Union[Unset, float]): Terrenghøyde ved start borehull [m]
+            h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
+                EPSG-koder benyttes.
             opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
             ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
                 ansvarlige leverandør inn til NADAG.
@@ -101,7 +103,7 @@ class GeotekniskBorehull:
                 Benyttes for å identifisere orginal undersøkelse med rapporter etc. ved bruk av samme GeotekniskBorehull i flere
                 undersøkelser.
             opphav (Union[Unset, str]): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
-            maks_boret_lengde (Union[Unset, float]): Lengste boret lengde for borehullsundersøkelsene i dette borhullet
+            maks_boret_lengde (Union[Unset, float]): Lengste boret lengde for borehullsundersøkelsene i dette borhullet [m]
             har_observasjon (Union[Unset, list['DeformasjonMaaling']]):
             har_unders_ø_kelse (Union[Unset, list['GeotekniskBorehullUnders']]):
             har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):
@@ -120,7 +122,7 @@ class GeotekniskBorehull:
     posisjon: Union[Unset, "Point"] = UNSET
     bore_nr: Union[Unset, str] = UNSET
     høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, str] = UNSET
+    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
     opprettet_dato: Union[Unset, datetime.datetime] = UNSET
     ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
     kvikkleire_på_visning: Union[Unset, KvikkleirePaavisningKode] = UNSET
@@ -175,7 +177,9 @@ class GeotekniskBorehull:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse = self.h_ø_yde_referanse
+        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        if not isinstance(self.h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         opprettet_dato: Union[Unset, str] = UNSET
         if not isinstance(self.opprettet_dato, Unset):
@@ -347,7 +351,12 @@ class GeotekniskBorehull:
 
         høyde = d.pop("høyde", UNSET)
 
-        h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        if isinstance(_h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = UNSET
+        else:
+            h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         _opprettet_dato = d.pop("opprettetDato", UNSET)
         opprettet_dato: Union[Unset, datetime.datetime]

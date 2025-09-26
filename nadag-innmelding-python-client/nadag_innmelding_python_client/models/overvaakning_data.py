@@ -23,9 +23,9 @@ class OvervaakningData:
                 of possible aquifer types for ground water measurements</engelsk>
             m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen <engelsk>time for
                 measurements</engelsk>
-            nedre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, nedre grense for måleverdi
+            nedre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, nedre grense for måleverdi [m]
                 <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>
-            ø_vre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, øvre grense for måleverdi
+            ø_vre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, øvre grense for måleverdi [m]
                 <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>
             m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen
                 <engelsk>date for measurements</engelsk>
@@ -71,7 +71,7 @@ class OvervaakningData:
         if nedre_alarm_niv_å is not UNSET:
             field_dict["nedreAlarmNivå"] = nedre_alarm_niv_å
         if ø_vre_alarm_niv_å is not UNSET:
-            field_dict["ØvreAlarmNivå"] = ø_vre_alarm_niv_å
+            field_dict["øvreAlarmNivå"] = ø_vre_alarm_niv_å
         if m_å_le_dato is not UNSET:
             field_dict["måleDato"] = m_å_le_dato
         if observasjon_merknad is not UNSET:
@@ -98,7 +98,7 @@ class OvervaakningData:
 
         nedre_alarm_niv_å = d.pop("nedreAlarmNivå", UNSET)
 
-        ø_vre_alarm_niv_å = d.pop("ØvreAlarmNivå", UNSET)
+        ø_vre_alarm_niv_å = d.pop("øvreAlarmNivå", UNSET)
 
         _m_å_le_dato = d.pop("måleDato", UNSET)
         m_å_le_dato: Union[Unset, datetime.date]

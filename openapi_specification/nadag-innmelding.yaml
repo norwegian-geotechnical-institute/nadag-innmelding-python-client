@@ -5,10 +5,10 @@ components:
     AkviferType:
       type: string
       enum:
+      - ÅPEN
       - ARTESISK
       - LUKKET
       - UTETT
-      - ÅPEN
       - IKKE_ANGITT
       description: oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview
         of possible aquifer types for ground water measurements</engelsk>
@@ -45,15 +45,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -63,8 +63,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -85,8 +85,8 @@ components:
         borlengdeTilBerg:
           type: number
           format: double
-          description: "dybde til fjell som ikke er målt men basert på tolkning\r\n\
-            \r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>"
+          description: "dybde til fjell som ikke er målt men basert på tolkning [m]\r\
+            \n\r\n<engelsk>\r\ndepth to bedrock based on interpretation\r\n</engelsk>"
     Coordinates:
       type: array
       items:
@@ -130,27 +130,27 @@ components:
         setning:
           type: number
           format: double
-          description: vertikal komponent av målt deformasjon. observert høydenivå
-            (z) for setningsmåling<engelsk>vertical component of measured deformation.
-            observed reference level (z) for the settlements</engelsk>
+          description: "vertikal komponent av målt deformasjon. observert høydenivå\
+            \ (z) for setningsmåling [m] <engelsk>vertical component of measured deformation.\
+            \ observed reference level (z) for the settlements</engelsk>"
         deformasjonX:
           type: number
           format: double
-          description: deformasjonskomponent i x-retning. observert høydenivå (z)
-            for setningen<engelsk>deformation component in x-direction. observed reference
-            level (z) for the settlements</engelsk>
+          description: "deformasjonskomponent i x-retning. observert høydenivå (z)\
+            \ for setningen [m]<engelsk>deformation component in x-direction. observed\
+            \ reference level (z) for the settlements</engelsk>"
         deformasjonY:
           type: number
           format: double
-          description: deformasjonskomponent i y-retning. observert høydenivå (z)
-            for setningen<engelsk>deformation component in y-direction. observed reference
-            level (z) for the settlements</engelsk>
+          description: "deformasjonskomponent i y-retning. observert høydenivå (z)\
+            \ for setningen [m]<engelsk>deformation component in y-direction. observed\
+            \ reference level (z) for the settlements</engelsk>"
         deformasjonZ:
           type: number
           format: double
-          description: deformasjonskomponent i z-retning. observert høydenivå (z)
-            for setningen<engelsk>deformation component in z-direction. observed reference
-            level (z) for the settlements</engelsk>
+          description: "deformasjonskomponent i z-retning. observert høydenivå (z)\
+            \ for setningen [m]<engelsk>deformation component in z-direction. observed\
+            \ reference level (z) for the settlements</engelsk>"
         erGyldig:
           type: boolean
           description: "gyldighet av data, hvis falsk så er det kun til informasjon\
@@ -159,14 +159,14 @@ components:
           type: number
           format: double
           description: "total lengde av borehullets forløp, tilsvarer dyp ved vertikal\
-            \ boring\r\n<engelsk>total length of the investigation in the physical\
+            \ boring [m] <engelsk>total length of the investigation in the physical\
             \ borehole, the same as depth in a vertical borehole</engelsk>"
         observasjonKode:
           type: string
-          description: "observasjonskoder for markering av hendelser. Kodene er [0..*]\
+          description: "observasjonskoder for markering av hendelser. Kodene er (0..*)\
             \ tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis\
             \ mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\
-            \n<engelsk>observation codes for marking of incidents. The codes are [0..*]\
+            \n<engelsk>observation codes for marking of incidents. The codes are (0..*)\
             \ numeric codes given in a text string with spaces between each code if\
             \ more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
     DeformasjonMaaling:
@@ -297,10 +297,11 @@ components:
         høyde:
           type: number
           format: double
-          description: Terrenghøyde ved start observasjon
+          description: "Høyde for observasjon ved start observasjon [m]"
         høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
-          description: referansesystem for høydeangivelse
+          description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
           description: Nummer på observasjon benyttet i den geotekniske undersøkelsen
@@ -326,8 +327,8 @@ components:
         forboretDiameter:
           type: number
           format: double
-          description: "diameter [m] av forboret hull i en borhullundersøkelse <engelsk>diameter\
-            \ [m] of a predrilled hole in a borehole investigation</engelsk>"
+          description: "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter\
+            \ (mm)\t of a predrilled hole in a borehole investigation</engelsk>"
         forboretLengde:
           type: number
           format: double
@@ -363,9 +364,9 @@ components:
         installasjonNivå:
           type: number
           format: double
-          description: dybdemåleren er installert i og det punkt der setningen måles
-            (z-nivå installasjon)<engelsk>depth of the settlement gauge where settlements
-            are recorded (z-level installation)</engelsk>
+          description: "dybdemåleren er installert i og det punkt der setningen må\
+            les (z-nivå installasjon) [m] <engelsk>depth of the settlement gauge where\
+            \ settlements are recorded (z-level installation)</engelsk>"
         målertype:
           type: string
           description: "type setningsmåler (setningsplate, setningsbolt, slange)<engelsk>type\
@@ -373,9 +374,10 @@ components:
         målepunkt:
           type: number
           format: double
-          description: registrering av referansepunkt for setningsmåling (z-nivå måling).
-            Kan avvike fra installasjonsnivå<engelsk>recording of reference level
-            for settlements (z-level measurements). My deviate from installation level</engelsk>
+          description: "registrering av referansepunkt for setningsmåling (z-nivå\
+            \ måling). Kan avvike fra installasjonsnivå [m] <engelsk>recording of\
+            \ reference level for settlements (z-level measurements). My deviate from\
+            \ installation level</engelsk>"
         harOvervåkningObservasjon:
           type: array
           items:
@@ -403,13 +405,13 @@ components:
         nedreAlarmNivå:
           type: number
           format: double
-          description: "kriterium for alarmtilstand, nedre grense for måleverdi\r\n\
-            <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>"
-        ØvreAlarmNivå:
+          description: "kriterium for alarmtilstand, nedre grense for måleverdi [m]\
+            \ <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>"
+        øvreAlarmNivå:
           type: number
           format: double
-          description: "kriterium for alarmtilstand, øvre grense for måleverdi\r\n\
-            <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>"
+          description: "kriterium for alarmtilstand, øvre grense for måleverdi [m]\
+            \ <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>"
         måleDato:
           type: string
           format: date
@@ -447,15 +449,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -508,12 +510,12 @@ components:
             observation</engelsk>
         observasjonKode:
           type: string
-          description: "kode som angir observasjonen. Kodene er [0..*] tallkoder gitt\
-            \ i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene\
-            \ er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation\
-            \ code according to valid codes. The codes are [0..*] numeric codes given\
-            \ in a text string with spaces between each code if more than 1. The codes\
-            \ are described in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+          description: kode som angir observasjonen. Kodene er (0..*) tallkoder gitt
+            i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene
+            er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation
+            code according to valid codes. The codes are (0..*) numeric codes given
+            in a text string with spaces between each code if more than 1. The codes
+            are described in the code list GeotekniskBoreObservasjonskode. </engelsk>
         kontaktTrykkP0:
           type: number
           format: double
@@ -532,7 +534,7 @@ components:
           type: number
           format: double
           description: "trykket i porevannet angitt som kraft pr. flateenhet, med\
-            \ atmosføretrykket som nullpunkt \r\n\r\n<engelsk>registered pore pressure\
+            \ atmosfæretrykket som nullpunkt \r\n\r\n<engelsk>registered pore pressure\
             \ [kPa]</engelsk>"
     DissipasjonData:
       type: object
@@ -581,10 +583,10 @@ components:
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i dissipasjonstesten.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
+            \ Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom\
             \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
             \ \r\n<engelsk>observation codes for marking of incidents during dissipation.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
+            \ The codes are (0..*) numeric codes given in a text string with spaces\
             \ between each code if more than 1. The codes are described in the code\
             \ list GeotekniskBoreObservasjonskode.</engelsk>"
         observasjonMerknad:
@@ -633,19 +635,20 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         torvTykkelse:
           type: number
           format: double
-          description: tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
+          description: "tykkelse på torvlag i meter [m] <engelsk>thickness of peat\
+            \ in meter</engelsk>"
         antPrøveuttakForstyrretMatr:
           type: integer
           format: int32
@@ -665,15 +668,15 @@ components:
         boretLengde:
           type: number
           format: double
-          description: boret dybde i forhold til terrengoverflaten eller annet angitt
-            referansenivå<engelsk>drilled depth related to the terrain surface or
-            any other given reference level</engelsk>
+          description: "boret dybde i forhold til terrengoverflaten eller annet angitt\
+            \ referansenivå [m] <engelsk>drilled depth related to the terrain surface\
+            \ or any other given reference level</engelsk>"
         dreieMoment:
           type: number
           format: double
-          description: anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon
-            av stangsystemet<engelsk>torque applied on the rod system during penetration
-            and rotation of the drill string</engelsk>
+          description: "anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon\
+            \ av stangsystemet [kNm] <engelsk>torque applied on the rod system during\
+            \ penetration and rotation of the drill string</engelsk>"
         fallHøyde:
           type: number
           format: double
@@ -686,16 +689,16 @@ components:
         nedpressingTid:
           type: integer
           format: int32
-          description: "tidsangivelse ved nedpressing av stangsystemet<engelsk> time\
-            \ record during penetration of the rod system, referring to the previous\
+          description: "tidsangivelse ved nedpressing av stangsystemet [sek/m] <engelsk>\
+            \ time record during penetration of the rod system, referring to the previous\
             \ depth</engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
+            \ Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom\
             \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
             \ \r\n<engelsk>observation codes for marking of incidents during sounding.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
+            \ The codes are (0..*) numeric codes given in a text string with spaces\
             \ between each code if more than 1. The codes are described in the code\
             \ list GeotekniskBoreObservasjonskode. </engelsk>"
         observasjonMerknad:
@@ -717,15 +720,16 @@ components:
         rotasjonHastighet:
           type: number
           format: double
-          description: antall omdreininger av stangsystemet per tidsenhet ved penetrasjon
-            av borstrengen<engelsk>number of turns of the rod system per time unit
-            during penetration of the drill string</engelsk>
+          description: "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon\
+            \ av borstrengen [omdr/min] <engelsk>number of turns of the rod system\
+            \ per time unit during penetration of the drill string</engelsk>"
         slagFrekvens:
           type: number
           format: double
-          description: "slagfrekvens ved anvendelse av slag på borstrengen\r\n<engelsk>stroke\
-            \ frequency during application of strokes on the drill string in rock\
-            \ control mode, defined by the number of strokes per time unit</engelsk>"
+          description: "slagfrekvens ved anvendelse av slag på borstrengen [slag/min]\
+            \ <engelsk>stroke frequency during application of strokes on the drill\
+            \ string in rock control mode, defined by the number of strokes per time\
+            \ unit</engelsk>"
     EksternIdentifikasjon:
       type: object
       description: "Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandø\
@@ -829,15 +833,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -877,15 +881,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -895,8 +899,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -969,15 +973,15 @@ components:
       - TERRENGOVERFLATE
       - TIDLIGERESTOPP
       - TIDSANGIVELSE
-      - TORV
       - TØRRSKORPE
+      - TORV
       - UBESTEMTJORDART
       - UORGANISKKOHESJONSJORD
       - URENMAKADAM
       - UTENVRIDNING
       - VRIDNING
       description: "oversikt over koder for observasjoner som gjøres ved utførelse\
-        \ av en grunnundersøkelse. Benyttes i egenskapen 'observasjonKode' som i mai\
+        \ av en grunnundersøkelse. Benyttes i egenskapen «observasjonKode» som i mai\
         \ 2024 ble gjort om til tekststreng fra å være knyttet til denne kodelisten.\
         \ Tekstrengen kan inneholde mer enn 1 kode. <engelsk>overview of codes for\
         \ observations conducted during an GeotechnicalBoreholeInvestigation. Used\
@@ -1069,10 +1073,11 @@ components:
         høyde:
           type: number
           format: double
-          description: Terrenghøyde ved start borehull
+          description: "Terrenghøyde ved start borehull [m]"
         høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
-          description: referansesystem for høydeangivelse
+          description: "Referansesystem for høydeangivelse, som EPSG-kode."
         opprettetDato:
           type: string
           format: date-time
@@ -1102,7 +1107,8 @@ components:
         maksBoretLengde:
           type: number
           format: double
-          description: Lengste boret lengde for borehullsundersøkelsene i dette borhullet
+          description: "Lengste boret lengde for borehullsundersøkelsene i dette borhullet\
+            \ [m]"
         harObservasjon:
           type: array
           items:
@@ -1191,24 +1197,25 @@ components:
           type: number
           format: double
           description: "vinkelen mellom en referansevektor i et referanseplan og en\
-            \ annen vektor i det samme planet som peker mot noe av interesse \r\n\r\
-            \n<engelsk>\r\nThe vector from an observer (origin) to a point of interest\
-            \ is projected perpendicularly onto a reference plane, the angle between\
-            \ the projected vector and the reference vector on the reference plane\
-            \ is called the azimuth\r\n</engelsk>"
+            \ annen vektor i det samme planet som peker mot noe av interesse [°]\r\
+            \n\r\n<engelsk>\r\nThe vector from an observer (origin) to a point of\
+            \ interest is projected perpendicularly onto a reference plane, the angle\
+            \ between the projected vector and the reference vector on the reference\
+            \ plane is called the azimuth\r\n</engelsk>"
         boretHelningsgrad:
           type: number
           format: double
-          description: "helning hvor  90 grader er vertikalt , 0 grader er horisontalt\r\
-            \n\r\n<engelsk>\r\nthe inclination of the borehole\r\n\r\nNote: 90 degrees\
-            \ represent the vertical inclination and 0 degrees the horizontal\r\n\
-            </engelsk>"
+          description: "helning hvor 90 grader er vertikalt, 0 grader er horisontalt\
+            \ [°]\r\n\r\n<engelsk>\r\nthe inclination of the borehole\r\n\r\nNote:\
+            \ 90 degrees represent the vertical inclination and 0 degrees the horizontal\r\
+            \n</engelsk>"
         boretLengde:
           type: number
           format: double
           description: "total lengde av borehullets forløp, tilsvarer dyp ved vertikal\
-            \ boring\r\n\r\n<engelsk>\r\ntotal length of the investigation in the\
-            \ physical borehole, the same as depth in a vertical borehole\r\n</engelsk>"
+            \ boring [m]\r\n\r\n<engelsk>\r\ntotal length of the investigation in\
+            \ the physical borehole, the same as depth in a vertical borehole\r\n\
+            </engelsk>"
         boretLengdeTilBerg:
           $ref: "#/components/schemas/BorlengdeTilBerg"
           type: object
@@ -1218,24 +1225,24 @@ components:
           type: number
           format: double
           description: "avstanden fra måleutstyret og ned til det punkt på jordoverflaten\
-            \ hvor boring/måling faktisk starter\r\n\r\nMerknad: Borehullundersøkelsens\
-            \ posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer\
-            \ vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon\
-            \ vil da være 0. Hvis boringen derimot er utført fra flåte,  skip eller\
-            \ is, er det viktig at dybdeFraGittPosisjon blir angitt. Denne vil da\
-            \ være avstanden fra måleutstyrets senter (0 dybde) og ned til havbunnen,\
-            \ innsjøbunnen eller elvebunnen hvor sonderingen/boringen faktisk starter\
-            \ fra).\r\n\r\n<engelsk>\r\ndistance from the drill or measure equipment\
-            \ down to the vertical level where the borehole/measurement actually begins\r\
-            \n\r\nNote: This is important to specify if the drilling/sounding is performed\
-            \ from e.g. a raft, ship or from ice. The depth will then be the depth\
-            \ from the measuring equipments origin (0 depth) and down to where drilling/sounding\
-            \ actually begins (on the sea surface, bottom of a lake or river, etc.)\r\
-            \n\r\n</engelsk>"
+            \ hvor boring/måling faktisk starter [m]\r\n\r\nMerknad: Borehullundersø\
+            kelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene\
+            \ representerer vanligvis et punkt på jordoverflaten. Dybden fra denne\
+            \ gitte posisjon vil da være 0. Hvis boringen derimot er utført fra flå\
+            te,  skip eller is, er det viktig at dybdeFraGittPosisjon blir angitt.\
+            \ Denne vil da være avstanden fra måleutstyrets senter (0 dybde) og ned\
+            \ til havbunnen, innsjøbunnen eller elvebunnen hvor sonderingen/boringen\
+            \ faktisk starter fra).\r\n\r\n<engelsk>\r\ndistance from the drill or\
+            \ measure equipment down to the vertical level where the borehole/measurement\
+            \ actually begins\r\n\r\nNote: This is important to specify if the drilling/sounding\
+            \ is performed from e.g. a raft, ship or from ice. The depth will then\
+            \ be the depth from the measuring equipments origin (0 depth) and down\
+            \ to where drilling/sounding actually begins (on the sea surface, bottom\
+            \ of a lake or river, etc.)\r\n\r\n</engelsk>"
         dybdeFraVannoverflaten:
           type: number
           format: double
-          description: "den lengden hvor sonderingsutstyret befinner seg i vann \r\
+          description: "den lengden hvor sonderingsutstyret befinner seg i vann [m]\r\
             \n\r\nMerknad: Av spesiell interesse hvis boring er utført fra is eller\
             \ fra flåte/skip.\r\n\r\n<engelsk>\r\nfree water depth at the location\
             \ of the sounding [m] \r\n\r\nNote: Of special interest if drilling is\
@@ -1274,10 +1281,11 @@ components:
         høyde:
           type: number
           format: double
-          description: Terrenghøyde ved start borehullsundersøkelse
+          description: "Terrenghøyde ved start borehullsundersøkelse [m]"
         høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
-          description: referansesystem for høydeangivelse
+          description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
           description: Nummer på borehullundersøkelse benyttet i den geotekniske undersøkelsen
@@ -1307,8 +1315,8 @@ components:
         forboretDiameter:
           type: number
           format: double
-          description: "diameter [m] av forboret hull i en borhullundersøkelse <engelsk>diameter\
-            \ [m] of a predrilled hole in a borehole investigation</engelsk>"
+          description: "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter\
+            \ (mm) of a predrilled hole in a borehole investigation</engelsk>"
         forboretLengde:
           type: number
           format: double
@@ -1352,8 +1360,9 @@ components:
           type: string
           description: Benyttes til å angi nøkkelverdi ved kall til Web-api.
         dokumentType:
+          $ref: "#/components/schemas/NADAG_DokumentType"
           type: string
-          description: "Type dokument. Feks. GeoReport, ProfilePdf"
+          description: "Type dokument. Feks. Geoteknisk rapport, Profilbilde"
         dokumentFilnavn:
           type: string
           description: Filnavn på dokumentet.
@@ -1427,14 +1436,15 @@ components:
         høydeFjell:
           type: number
           format: double
-          description: Høyde på observert fjell
+          description: "Høyde på observert fjell [m]"
         høyde:
           type: number
           format: double
-          description: Terrenghøyde ved start feltundersøkelse
+          description: "Terrenghøyde ved start feltundersøkelse [m]"
         høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
-          description: referansesystem for høydeangivelse
+          description: "Referansesystem for høydeangivelse, som EPSG-kode."
         feltundersNr:
           type: string
           description: Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen
@@ -1484,15 +1494,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -1692,10 +1702,11 @@ components:
         høyde:
           type: number
           format: double
-          description: Terrenghøyde ved start observasjon
+          description: "Høyde for observasjon ved start observasjon [m]"
         høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
-          description: referansesystem for høydeangivelse
+          description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
           description: Nummer på observasjon benyttet i den geotekniske undersøkelsen
@@ -1721,8 +1732,8 @@ components:
         forboretDiameter:
           type: number
           format: double
-          description: "diameter [m] av forboret hull i en borhullundersøkelse <engelsk>diameter\
-            \ [m] of a predrilled hole in a borehole investigation</engelsk>"
+          description: "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter\
+            \ (mm)\t of a predrilled hole in a borehole investigation</engelsk>"
         forboretLengde:
           type: number
           format: double
@@ -1870,10 +1881,11 @@ components:
         høyde:
           type: number
           format: double
-          description: Terrenghøyde ved start observasjon
+          description: "Høyde for observasjon ved start observasjon [m]"
         høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
-          description: referansesystem for høydeangivelse
+          description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
           description: Nummer på observasjon benyttet i den geotekniske undersøkelsen
@@ -1899,8 +1911,8 @@ components:
         forboretDiameter:
           type: number
           format: double
-          description: "diameter [m] av forboret hull i en borhullundersøkelse <engelsk>diameter\
-            \ [m] of a predrilled hole in a borehole investigation</engelsk>"
+          description: "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter\
+            \ (mm)\t of a predrilled hole in a borehole investigation</engelsk>"
         forboretLengde:
           type: number
           format: double
@@ -1924,8 +1936,8 @@ components:
             \ started<engelsk>"
     GeotekniskProeveserie:
       type: object
-      description: Undersøkelse gjort i et borehull i form av en prøveserie<engelsk>
-        Soli test </engelsk>
+      description: "Undersøkelse gjort i et borehull i form av en prøveserie<engelsk>\
+        \ Soil\t test </engelsk>"
       properties:
         jsonType:
           const: GeotekniskProeveserie
@@ -1936,15 +1948,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -1954,8 +1966,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -1991,7 +2003,7 @@ components:
           description: ""
     GeotekniskProeveseriedel:
       type: object
-      description: delprøve av en  prøveserie<engelsk> Soli test part </engelsk>
+      description: delprøve av en  prøveserie<engelsk> Soil test part </engelsk>
       properties:
         prøveMetode:
           type: string
@@ -2003,16 +2015,16 @@ components:
           type: number
           format: double
           description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
-            pet<engelsk>the start length, the depth at top of the specimen[m]</engelsk>"
+            pet [m] <engelsk>the start length, the depth at top of the specimen[m]</engelsk>"
         tilLengde:
           type: number
           format: double
           description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
-            pet<engelsk>the length of the stop, the lower depth limitation of the\
-            \ sample [m]</engelsk>"
+            pet [m] <engelsk>the length of the stop, the lower depth limitation of\
+            \ the sample [m]</engelsk>"
         prøveseriedelId:
           type: string
-          description: Primårnøkkel for relasjon
+          description: Primærnøkkel for relasjon
         harData:
           type: array
           items:
@@ -2020,7 +2032,8 @@ components:
           description: ""
     GeotekniskProeveseriedelData:
       type: object
-      description: Data som tilhører en geoteknisk prøveseriedel
+      description: Data som tilhører en geoteknisk prøveseriedel <engelsk>Data for
+        a soil test part </engelsk>
       properties:
         lagPosisjon:
           $ref: "#/components/schemas/LagPosisjon"
@@ -2033,13 +2046,13 @@ components:
         aksielDeformasjon:
           type: number
           format: double
-          description: "angis i % <engelsk> the axial deformation (bruddef) [%]</engelsk>"
+          description: "angis i [%] <engelsk> the axial deformation (bruddef) %</engelsk>"
         skjærfasthetUdrenert:
           type: number
           format: double
           description: "bestemmelse av udrenert skjærfasthet ved enaksial trykkprø\
-            ving i laboratoriet<engelsk>the axial shear strength, the undrained shear\
-            \ strength by unconfined compression testing (sue) [kPa].</engelsk>"
+            ving i laboratoriet [kPa] <engelsk>the axial shear strength, the undrained\
+            \ shear strength by unconfined compression testing (sue) [kPa].</engelsk>"
         detaljertLagSammensetning:
           type: string
           maxLength: 255
@@ -2049,13 +2062,13 @@ components:
           type: number
           format: double
           description: "skjærfasthet for en kohesjonsjordart med fullstendig omrø\
-            rt struktur<engelsk>the shear strength for a remoulded test material (suo)\
-            \ [kPa]</engelsk>"
+            rt struktur [kPa] <engelsk>the shear strength for a remoulded test material\
+            \ (suo) [kPa]</engelsk>"
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space [kN/m3]</engelsk>"
         erOmrørt:
           type: boolean
           description: om prøvserien er omrørt<engelsk>indicating whether a soil test
@@ -2068,25 +2081,26 @@ components:
           type: number
           format: double
           description: "bestemmelse av flytegrense ved hjelp av støt- eller konusmetode\
-            \ i laboratoriet Merknad: Flytegrensen angir det vanninnhold der en omrø\
-            rt leire går over fra å være flytende til å bli plastisk (formbar) <engelsk>determination\
-            \ of liquid limit flytegrense by percussionor fall cone method in the\
-            \ laboratory Note:The liquid limit corresponds to a water content where\
-            \ the remoulded material goes from a liquid to a plastic state</engelsk>"
+            \ i laboratoriet [%] Merknad: Flytegrensen angir det vanninnhold der en\
+            \ omrørt leire går over fra å være flytende til å bli plastisk (formbar)\
+            \ <engelsk>determination of liquid limit flytegrense by percussionor fall\
+            \ cone method in the laboratory Note:The liquid limit corresponds to a\
+            \ water content where the remoulded material goes from a liquid to a plastic\
+            \ state</engelsk>"
         glødeTap:
           type: number
           format: double
-          description: "<engelsk>the loss on ignition, the loss of mass (% left of\
-            \ initial mass) due to heating</engelsk>"
+          description: "angis i [%] <engelsk>the loss on ignition, the loss of mass\
+            \ (% left of initial mass) due to heating</engelsk>"
         plastitetsGrense:
           type: number
           format: double
           description: "bestemmelse av plastisitetsgrense ved hjelp av utrullingsmetode\
-            \ Merknad: Også kalt utrullingsgrense som angir det vanninnhold der en\
-            \ omrørt leire går over fra plastisk (formbar) til smuldrende konsistens\
-            \ \r\n<engelsk>determination of the plasticity limit by a hand rolling\
-            \ method Note: Expresses the water content where a remoulded clay leaves\
-            \ the plastic state and starts to crumble</engelsk>"
+            \ [%]  Merknad: Også kalt utrullingsgrense som angir det vanninnhold der\
+            \ en omrørt leire går over fra plastisk (formbar) til smuldrende konsistens\
+            \ <engelsk>determination of the plasticity limit by a hand rolling method\
+            \ Note: Expresses the water content where a remoulded clay leaves the\
+            \ plastic state and starts to crumble</engelsk>"
         sensitivitet:
           type: number
           format: double
@@ -2097,28 +2111,29 @@ components:
           type: number
           format: double
           description: "skjærfasthet for en kohesjonsjordart med uforstyrret, intakt\
-            \ struktur<engelsk>shear strength for cohesive soils with an intact, undisturbed\
-            \ structure</engelsk>"
+            \ struktur [kPa] <engelsk>shear strength for cohesive soils with an intact,\
+            \ undisturbed structure</engelsk>"
         boretLengde:
           type: number
           format: double
-          description: "boret lengde i forhold til terrengoverflaten eller annet angitt\r\
-            \nreferansenivå<engelsk>drilled length related to the terrain surface\
+          description: "boret lengde i forhold til terrengoverflaten eller annet angitt\
+            \ referansenivå [m] <engelsk>drilled length related to the terrain surface\
             \ or any other given reference level</engelsk>"
         vanninnhold:
           type: number
           format: double
-          description: undersøkelse for bestemmelse av prøvematerialets vanninnhold
-            ved tørking. Angir forholdet mellom masse vann og masse fast stoff<engelsk>determination
-            of the water content of the sample by oven drying. Corresponds to the
-            ratio between mass of water and the mass of solid particles</engelsk>
+          description: "undersøkelse for bestemmelse av prøvematerialets vanninnhold\
+            \ ved tørking. Angir forholdet mellom masse vann og masse fast stoff [%]\
+            \ <engelsk>determination of the water content of the sample by oven drying.\
+            \ Corresponds to the ratio between mass of water and the mass of solid\
+            \ particles</engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
+            \ Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom\
             \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\
             \n<engelsk>observation codes for marking of incidents during sounding.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
+            \ The codes are (0..*) numeric codes given in a text string with spaces\
             \ between each code if more than 1. The codes are described in the code\
             \ list GeotekniskBoreObservasjonskode.</engelsk>"
         observasjonMerknad:
@@ -2140,15 +2155,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -2158,8 +2173,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -2177,19 +2192,20 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         torvTykkelse:
           type: number
           format: double
-          description: tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
+          description: "tykkelse på torvlag i meter [m] <engelsk>thickness of peat\
+            \ in meter</engelsk>"
     GeotekniskStoppkode:
       type: string
       enum:
@@ -2265,13 +2281,14 @@ components:
         høyde:
           type: number
           format: double
-          description: Terrenghøyde ved start tolkning
+          description: "Laghøyde for tolkning [m]"
         høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
-          description: referansesystem for høydeangivelse
+          description: "referansesystem for høydeangivelse, som EPSG-kode."
     GeotekniskTolketPunkt:
       type: object
-      description: Punkt med geoteknisk tolkning
+      description: Punkt med geoteknisk tolkning i GeotekniskTolketLag
       properties:
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
@@ -2293,6 +2310,14 @@ components:
           $ref: "#/components/schemas/Point"
           type: object
           description: "objektets utstrekning gitt i x.y,z."
+        høyde:
+          type: number
+          format: double
+          description: "Terrenghøyde overflate for punkt med tolkning(/er)[m]"
+        høydeReferanse:
+          $ref: "#/components/schemas/NADAG_Hoeyderef"
+          type: string
+          description: "Referansesystem for høydeangivelse, som EPSG-kode."
         harTolketLag:
           type: array
           items:
@@ -2388,12 +2413,12 @@ components:
         undersøkelseÅrAntatt:
           type: integer
           format: int32
-          description: 'Antatt år  for gjennomføring av den geotekniske undersøkelsen.
+          description: 'Antatt år for gjennomføring av den geotekniske undersøkelsen.
             For største delen av de leverte dataene har det vært dårlig infomasjon
             i egenskapene for undersøkelseperiode og derfor utvides det med denne
             egenskapen. Årstallet her er hentet fra ulike kilder i leveransene og
             avhengig av hva for leveranser det er varierer usikkerheten på på det
-            antatte år stallet.  '
+            antatte årstallet.  '
         feltUnders:
           type: array
           items:
@@ -2416,8 +2441,10 @@ components:
           description: ""
     GeotekniskUndersoekelseGrense:
       type: object
-      description: avgrensning av et område for geotekniske undersøkelser <engelsk>demarcation
-        of an area with soil investigations</engelsk>
+      description: "avgrensning av et område for geotekniske undersøkelser. Merk:\
+        \ Benyttes kun for de formater som krever egen geometri for avgrensning av\
+        \ flate. <engelsk>demarcation of an area with soil investigations. Only used\
+        \ for delivery formats that requier it.</engelsk>"
       properties:
         grense:
           $ref: "#/components/schemas/LineString"
@@ -2808,24 +2835,25 @@ components:
           type: number
           format: double
           description: "vinkelen mellom en referansevektor i et referanseplan og en\
-            \ annen vektor i det samme planet som peker mot noe av interesse \r\n\r\
-            \n<engelsk>\r\nThe vector from an observer (origin) to a point of interest\
-            \ is projected perpendicularly onto a reference plane, the angle between\
-            \ the projected vector and the reference vector on the reference plane\
-            \ is called the azimuth\r\n</engelsk>"
+            \ annen vektor i det samme planet som peker mot noe av interesse [°]\r\
+            \n\r\n<engelsk>\r\nThe vector from an observer (origin) to a point of\
+            \ interest is projected perpendicularly onto a reference plane, the angle\
+            \ between the projected vector and the reference vector on the reference\
+            \ plane is called the azimuth\r\n</engelsk>"
         boretHelningsgrad:
           type: number
           format: double
-          description: "helning hvor  90 grader er vertikalt , 0 grader er horisontalt\r\
-            \n\r\n<engelsk>\r\nthe inclination of the borehole\r\n\r\nNote: 90 degrees\
-            \ represent the vertical inclination and 0 degrees the horizontal\r\n\
-            </engelsk>"
+          description: "helning hvor 90 grader er vertikalt, 0 grader er horisontalt\
+            \ [°]\r\n\r\n<engelsk>\r\nthe inclination of the borehole\r\n\r\nNote:\
+            \ 90 degrees represent the vertical inclination and 0 degrees the horizontal\r\
+            \n</engelsk>"
         boretLengde:
           type: number
           format: double
           description: "total lengde av borehullets forløp, tilsvarer dyp ved vertikal\
-            \ boring\r\n\r\n<engelsk>\r\ntotal length of the investigation in the\
-            \ physical borehole, the same as depth in a vertical borehole\r\n</engelsk>"
+            \ boring [m]\r\n\r\n<engelsk>\r\ntotal length of the investigation in\
+            \ the physical borehole, the same as depth in a vertical borehole\r\n\
+            </engelsk>"
         boretLengdeTilBerg:
           $ref: "#/components/schemas/BorlengdeTilBerg"
           type: object
@@ -2835,24 +2863,24 @@ components:
           type: number
           format: double
           description: "avstanden fra måleutstyret og ned til det punkt på jordoverflaten\
-            \ hvor boring/måling faktisk starter\r\n\r\nMerknad: Borehullundersøkelsens\
-            \ posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer\
-            \ vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon\
-            \ vil da være 0. Hvis boringen derimot er utført fra flåte,  skip eller\
-            \ is, er det viktig at dybdeFraGittPosisjon blir angitt. Denne vil da\
-            \ være avstanden fra måleutstyrets senter (0 dybde) og ned til havbunnen,\
-            \ innsjøbunnen eller elvebunnen hvor sonderingen/boringen faktisk starter\
-            \ fra).\r\n\r\n<engelsk>\r\ndistance from the drill or measure equipment\
-            \ down to the vertical level where the borehole/measurement actually begins\r\
-            \n\r\nNote: This is important to specify if the drilling/sounding is performed\
-            \ from e.g. a raft, ship or from ice. The depth will then be the depth\
-            \ from the measuring equipments origin (0 depth) and down to where drilling/sounding\
-            \ actually begins (on the sea surface, bottom of a lake or river, etc.)\r\
-            \n\r\n</engelsk>"
+            \ hvor boring/måling faktisk starter [m]\r\n\r\nMerknad: Borehullundersø\
+            kelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene\
+            \ representerer vanligvis et punkt på jordoverflaten. Dybden fra denne\
+            \ gitte posisjon vil da være 0. Hvis boringen derimot er utført fra flå\
+            te,  skip eller is, er det viktig at dybdeFraGittPosisjon blir angitt.\
+            \ Denne vil da være avstanden fra måleutstyrets senter (0 dybde) og ned\
+            \ til havbunnen, innsjøbunnen eller elvebunnen hvor sonderingen/boringen\
+            \ faktisk starter fra).\r\n\r\n<engelsk>\r\ndistance from the drill or\
+            \ measure equipment down to the vertical level where the borehole/measurement\
+            \ actually begins\r\n\r\nNote: This is important to specify if the drilling/sounding\
+            \ is performed from e.g. a raft, ship or from ice. The depth will then\
+            \ be the depth from the measuring equipments origin (0 depth) and down\
+            \ to where drilling/sounding actually begins (on the sea surface, bottom\
+            \ of a lake or river, etc.)\r\n\r\n</engelsk>"
         dybdeFraVannoverflaten:
           type: number
           format: double
-          description: "den lengden hvor sonderingsutstyret befinner seg i vann \r\
+          description: "den lengden hvor sonderingsutstyret befinner seg i vann [m]\r\
             \n\r\nMerknad: Av spesiell interesse hvis boring er utført fra is eller\
             \ fra flåte/skip.\r\n\r\n<engelsk>\r\nfree water depth at the location\
             \ of the sounding [m] \r\n\r\nNote: Of special interest if drilling is\
@@ -2893,8 +2921,8 @@ components:
       enum:
       - BERG
       - IS
-      - LUFT
       - LØSMASSE
+      - LUFT
       - USPESIFISERT
       - VANN
       description: "angir hvilket medium en boring er foretatt i\r\n\r\n<engelsk>\
@@ -2913,15 +2941,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -2931,8 +2959,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -2952,8 +2980,9 @@ components:
         dybdeGrunnvannstand:
           type: number
           format: double
-          description: angivelse av vannstand i grunnen og/eller i målerør (z-nivå)<engelsk>water
-            level in the ground and / or inside a measurement tube (z-level)</engelsk>
+          description: "angivelse av vannstand i grunnen og/eller i målerør (z-nivå\
+            ) [m] <engelsk>water level in the ground and / or inside a measurement\
+            \ tube (z-level)</engelsk>"
         måleTidspunkt:
           type: string
           format: date-time
@@ -2963,12 +2992,12 @@ components:
             for measurements</engelsk>
         observasjonKode:
           type: string
-          description: "observasjonskoder for markering av hendelser i grunnvannsmå\
-            lingen. Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom\
-            \ mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation\
-            \ codes for marking of incidents during ground water measurements. The\
-            \ codes are [0..*] numeric codes given in a text string with spaces between\
-            \ each code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+          description: observasjonskoder for markering av hendelser i grunnvannsmålingen.
+            Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom
+            hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation
+            codes for marking of incidents during ground water measurements. The codes
+            are (0..*) numeric codes given in a text string with spaces between each
+            code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>
         observasjonMerknad:
           type: string
           maxLength: 255
@@ -2977,9 +3006,7 @@ components:
         pH:
           type: number
           format: double
-          description: |-
-            surhetsgrad <engelsk>
-                          <measure of acidity>
+          description: surhetsgrad <engelsk><measure of acidity>
         ledningsevne:
           type: number
           format: double
@@ -2987,11 +3014,11 @@ components:
         oksygenInnhold:
           type: number
           format: double
-          description: innhold av oksygen <engelsk>oxygen content</engelsk>
+          description: "innhold av oksygen [ml] <engelsk>oxygen content</engelsk>"
         temperatur:
           type: number
           format: double
-          description: "temperatur [C] <engelsk>temperature [C]</engelsk>"
+          description: "temperatur [°C] <engelsk>temperature [°C]</engelsk>"
         redoks:
           type: number
           format: double
@@ -3005,7 +3032,7 @@ components:
           type: number
           format: double
           description: "total lengde av borehullets forløp, tilsvarer dyp ved vertikal\
-            \ boring\r\n<engelsk>total length of the investigation in the physical\
+            \ boring [m] <engelsk>total length of the investigation in the physical\
             \ borehole, the same as depth in a vertical borehole</engelsk>"
         grunnvannObservasjonKode:
           $ref: "#/components/schemas/GeotekniskGrunnvannObservasjonKode"
@@ -3029,15 +3056,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -3059,14 +3086,14 @@ components:
         filterDyp:
           type: number
           format: double
-          description: "dybde til midten av filteret i forhold til rørTopp (m)\r\n\
-            <engelsk>\r\ndepth to center of filter in relation to height at top of\
-            \ pipe [m]\r\n</engelsk>"
+          description: "dybde til midten av filteret i forhold til rørTopp [m]\r\n\
+            <engelsk> depth to center of filter in relation to height at top of pipe\
+            \ [m] </engelsk>"
         filterLengde:
           type: number
           format: double
-          description: lengde av filter i målerør<engelsk>length of the filter in
-            measurement tube</engelsk>
+          description: "lengde av filter i målerør [m] <engelsk>length of the filter\
+            \ in measurement tube</engelsk>"
         filterType:
           type: string
           description: type filter i målerør<engelsk>type of filter in measurement
@@ -3079,13 +3106,13 @@ components:
         rørBunn:
           type: number
           format: double
-          description: nivå (høyde) for bunn av målerør<engelsk>level (height) for
-            the base of the measurement tube</engelsk>
+          description: "nivå (høyde) for bunn av målerør [m] <engelsk>level (height)\
+            \ for the base of the measurement tube</engelsk>"
         rørTopp:
           type: number
           format: double
-          description: nivå (høyde) for topp av målerør<engelsk>level (height) for
-            the top of the measurement tube</engelsk>
+          description: "nivå (høyde) for topp av målerør [m] <engelsk>level (height)\
+            \ for the top of the measurement tube</engelsk>"
         rørType:
           type: string
           description: "type målerør for utførelse av hydraulisk måling<engelsk>\r\
@@ -3174,15 +3201,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -3306,15 +3333,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -3324,8 +3351,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3346,15 +3373,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -3364,8 +3391,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3414,10 +3441,10 @@ components:
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
+            \ Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom\
             \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\
             \n<engelsk>observation codes for marking of incidents during sounding.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
+            \ The codes are (0..*) numeric codes given in a text string with spaces\
             \ between each code if more than 1. The codes are described in the code\
             \ list GeotekniskBoreObservasjonskode.</engelsk>"
         observasjonMerknad:
@@ -3432,19 +3459,19 @@ components:
         QVerdi_Ja:
           type: number
           format: double
-          description: ""
+          description: Tall for sprekkefylling
         QVerdi_Jn:
           type: number
           format: double
-          description: ""
+          description: 'Tall for sprekkesett '
         QVerdi_Jr:
           type: number
           format: double
-          description: ""
+          description: 'Sprekkeruhetstall '
         QVerdi_Jw:
           type: number
           format: double
-          description: ""
+          description: 'Sprekkevannstall '
         QVerdi_Q:
           type: number
           format: double
@@ -3457,11 +3484,11 @@ components:
         QVerdi_RQD:
           type: number
           format: double
-          description: ""
+          description: Oppsprekkingstall (Rock Quality Designation)
         QVerdi_SRF:
           type: number
           format: double
-          description: ""
+          description: Spenningsfaktor (Stress Reduction Factor)
         RockMassRating:
           type: integer
           format: int32
@@ -3486,11 +3513,16 @@ components:
         strøkFall_Fall:
           type: integer
           format: int32
-          description: ""
+          description: "Måleverdi for måling utført i bergartens vertikalplan (fallretning)\
+            \ Merknad: Målt i grader (0-90°) på observasjonspunkt. Enhet [°]. Verdien\
+            \ sees i sammenheng med måling av strøk i horisontalplanet."
         strøkFall_Strøk:
           type: integer
           format: int32
-          description: ""
+          description: "Måleverdi for måling utført i bergartens horisontalplan (retning,\
+            \ strøk) Merknad: Målt i grader (0-360°) på observasjonspunkt, med eventuelt\
+            \ fall mot høyre. Enhet [°]. Verdien sees i sammenheng med måling av fall\
+            \ i vertikalplanet."
     KjerneProeve:
       type: object
       description: kjerneprøve tatt i faste masser eller løst berg <engelsk>core sample</engelsk>
@@ -3504,15 +3536,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -3522,8 +3554,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3550,7 +3582,7 @@ components:
         of classification methods for determination of ground conditions</engelsk>
     KombinasjonSondering:
       type: object
-      description: kombinasjon av boremetodene dreietrykksondering og fjellkontrollboring
+      description: kombinasjon av boremetodene totalsondering og fjellkontrollboring
         som gjør det mulig å bore både i løsmasse og berg<engelsk>combination of the
         boring methods rotary pressure sounding and rock control boring which enables
         drilling in both soils and rock.</engelsk>
@@ -3564,35 +3596,36 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         torvTykkelse:
           type: number
           format: double
-          description: tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
+          description: "tykkelse på torvlag i meter [m] <engelsk>thickness of peat\
+            \ in meter</engelsk>"
         boretLengdeIBerg:
           type: number
           format: double
-          description: boret dybde til bergoverflaten<engelsk>drilled depth to the
-            rock surface</engelsk>
+          description: "boret dybde til bergoverflaten [m] <engelsk>drilled depth\
+            \ to the rock surface</engelsk>"
         boretLengdeTilBerg:
           $ref: "#/components/schemas/BorlengdeTilBerg"
           type: object
-          description: "dybde til bergoverflaten som ikke er målt men basert på tolkning<engelsk>depth\
-            \ to the rock surface based on interpretation and not measurements\r\n\
-            </engelsk>"
+          description: "dybde til bergoverflaten som ikke er målt men basert på tolkning\
+            \ [m] <engelsk>depth to the rock surface based on interpretation and not\
+            \ measurements</engelsk>"
         maksLast:
           type: number
           format: double
-          description: maksimal nedpressingskraft registrert på overflaten <engelsk>maximum
-            penetration force recorded on the surface</engelsk>
+          description: "maksimal nedpressingskraft registrert på overflaten [kN] <engelsk>maximum\
+            \ penetration force recorded on the surface</engelsk>"
         kombinasjonSonderingObservasjon:
           type: array
           items:
@@ -3607,44 +3640,44 @@ components:
         anvendtLast:
           type: number
           format: double
-          description: anvendt nedpressingskraft registrert på overflaten under sonderingen<engelsk>applied
-            penetration force recorded on the surface</engelsk>
+          description: "anvendt nedpressingskraft registrert på overflaten under sonderingen\
+            \ [kN] <engelsk>applied penetration force recorded on the surface</engelsk>"
         boretLengde:
           type: number
           format: double
-          description: boret dybde i forhold til terrengoverflaten eller annet angitt
-            referansenivå<engelsk>drilled depth related to the terrain surface or
-            any other given reference level</engelsk>
+          description: "boret dybde i forhold til terrengoverflaten eller annet angitt\
+            \ referansenivå [m] <engelsk>drilled depth related to the terrain surface\
+            \ or any other given reference level</engelsk>"
         dreieMoment:
           type: number
           format: double
           description: "anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon\
-            \ av stangsystemet\r\n<engelsk>torque applied on the rod system during\
+            \ av stangsystemet [kNm] <engelsk>torque applied on the rod system during\
             \ penetration and rotation of the drill string</engelsk>"
         nedpressingHastighet:
           type: number
           format: double
-          description: "penetrasjonshastighet for stangsystemet ved nedpressing\r\n\
-            <engelsk>penetration of the rod system per unit time (rate of penetration)</engelsk>"
+          description: "penetrasjonshastighet for stangsystemet ved nedpressing [m/min]\
+            \ <engelsk>penetration of the rod system per unit time (rate of penetration)</engelsk>"
         nedpressingKraft:
           type: number
           format: double
-          description: nedpressingskraft påført stangsystemet ved penetrasjon og rotasjon
-            av borstrengen<engelsk>penetration force applied on the rod system during
-            penetration and rotation of the drill string</engelsk>
+          description: "nedpressingskraft påført stangsystemet ved penetrasjon og\
+            \ rotasjon av borstrengen [MPa] <engelsk>penetration force applied on\
+            \ the rod system during penetration and rotation of the drill string</engelsk>"
         nedpressingTid:
           type: integer
           format: int32
           description: "tidsangivelse ved nedpressing av stangsystemet, regnet siden\
-            \ forrige dybde<engelsk>time record during penetration of the rod system,\
-            \ referring to the previous depth</engelsk>"
+            \ forrige dybde [sek/min] <engelsk>time record during penetration of the\
+            \ rod system, referring to the previous depth</engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
+            \ Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom\
             \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
             \ \r\n<engelsk>observation codes for marking of incidents during sounding.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
+            \ The codes are (0..*) numeric codes given in a text string with spaces\
             \ between each code if more than 1. The codes are described in the code\
             \ list GeotekniskBoreObservasjonskode. </engelsk>"
         observasjonMerknad:
@@ -3655,28 +3688,28 @@ components:
         rotasjonHastighet:
           type: number
           format: double
-          description: antall omdreininger av stangsystemet per tidsenhet ved penetrasjon
-            av borstrengen<engelsk>number of turns of the rod system per time unit
-            during penetration of the drill string</engelsk>
+          description: "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon\
+            \ av borstrengen [omdr/min] <engelsk>number of turns of the rod system\
+            \ per time unit during penetration of the drill string</engelsk>"
         slagFrekvens:
           type: number
           format: double
           description: "slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus,\
-            \ angitt ved antall slag per tidsenhet\r\n<engelsk>stroke frequency during\
-            \ application of strokes on the drill string in rock control mode, defined\
-            \ by the number of strokes per time unit</engelsk>"
+            \ angitt ved antall slag per tidsenhet [slag/min] <engelsk>stroke frequency\
+            \ during application of strokes on the drill string in rock control mode,\
+            \ defined by the number of strokes per time unit</engelsk>"
         spyleMengde:
           type: number
           format: double
-          description: volum spylevæske ved anvendelse av spyling gjennom borkronen
-            i fjellkontrollmodus<engelsk>volume of flushing fluid when flushing through
-            the drill bit in rock control mode</engelsk>
+          description: "volum spylevæske ved anvendelse av spyling gjennom borkronen\
+            \ i fjellkontrollmodus [l/min] <engelsk>volume of flushing fluid when\
+            \ flushing through the drill bit in rock control mode</engelsk>"
         spyleTrykk:
           type: number
           format: double
-          description: trykk på spylevæske ved anvendelse av spyling gjennom borkronen
-            i fjellkontrollmodus<engelsk>pressure in the flushing fluid through the
-            drill bit in rock control mode</engelsk>
+          description: "trykk på spylevæske ved anvendelse av spyling gjennom borkronen\
+            \ i fjellkontrollmodus [MPa) <engelsk>pressure in the flushing fluid through\
+            \ the drill bit in rock control mode</engelsk>"
     Kopidata:
       type: object
       required:
@@ -3860,15 +3893,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -3878,8 +3911,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3901,6 +3934,33 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/CoordinatesLists"
+    NADAG_DokumentType:
+      type: string
+      enum:
+      - USPESIFISERT_DOKUMENTTYPE
+      - OPPTEGNINGSSYMBOL
+      - BILDE
+      - RÅDATAFIL
+      - LABRAPPORT
+      - GEOTEKNISK_RAPPORT
+      - PLANTEGNING
+      - PROFILTEGNING
+      - TEGNING
+      - MODELL
+      - ANDRE_VEDLEGG_TIL_BOREHULL
+      - DIGITALISERT_DWG_TEGNING
+      - BILDE_KOBLET_TIL_DIGITALISERT_DWG_TEGNING
+      - BILDE_BOREHULLSPROFIL
+      - VURDERINGSRAPPORT
+      description: Typer av dokument brukt i NADAG forvaltningsløsning.
+    NADAG_Hoeyderef:
+      type: string
+      enum:
+      - NN2000
+      - NN54
+      - UKJENT_HØYDEREFERANSE
+      description: "Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder\
+        \ benyttes. \t"
     NaverProeve:
       type: object
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
@@ -3915,15 +3975,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -3933,8 +3993,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3966,13 +4026,13 @@ components:
         nedreAlarmNivå:
           type: number
           format: double
-          description: "kriterium for alarmtilstand, nedre grense for måleverdi\r\n\
-            <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>"
-        ØvreAlarmNivå:
+          description: "kriterium for alarmtilstand, nedre grense for måleverdi [m]\
+            \ <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>"
+        øvreAlarmNivå:
           type: number
           format: double
-          description: "kriterium for alarmtilstand, øvre grense for måleverdi\r\n\
-            <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>"
+          description: "kriterium for alarmtilstand, øvre grense for måleverdi [m]\
+            \ <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>"
         måleDato:
           type: string
           format: date
@@ -4001,15 +4061,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -4032,8 +4092,8 @@ components:
         arealPlate:
           type: number
           format: double
-          description: areal av skruplate for fordeling av tilleggslast<engelsk>area
-            of screw plate for distribution of additional load</engelsk>
+          description: "areal av skruplate for fordeling av tilleggslast [m2]<engelsk>area\
+            \ of screw plate for distribution of additional load</engelsk>"
         platebelastningObservasjon:
           type: array
           items:
@@ -4049,22 +4109,22 @@ components:
           type: integer
           format: int32
           description: "tid fra start av prøvingen [minutter]<engelsk>time from the\
-            \ start of testing [minutes]</engelsk>"
+            \ start of testing (minutes)</engelsk>"
         anvendtLast:
           type: number
           format: double
-          description: last overført til skruplate gjennom stangsystemet<engelsk>load
-            transferred to the screw plate through the rod system</engelsk>
+          description: "last overført til skruplate gjennom stangsystemet [kN]<engelsk>load\
+            \ transferred to the screw plate through the rod system</engelsk>"
         nedpressingHastighet:
           type: number
           format: double
-          description: nedpressingshastighet av skruplate ved gjennomføring av prøving<engelsk>settlement
-            rate for the screw plate during testing</engelsk>
+          description: "nedpressingshastighet av skruplate ved gjennomføring av prø\
+            ving [m/min] <engelsk>settlement rate for the screw plate during testing</engelsk>"
         deformasjon:
           type: number
           format: double
-          description: endring i form som følge av tilført kraft <engelsk>change in
-            shape because of force </engelsk>
+          description: "endring i form som følge av tilført kraft [mm] <engelsk>change\
+            \ in shape because of force </engelsk>"
     Point:
       type: object
       properties:
@@ -4114,7 +4174,7 @@ components:
         barometerTrykk:
           type: number
           format: double
-          description: "trykkmåler for avlesning av lufttrykk (atmosføretrykk)\r\n\
+          description: "trykkmåler for avlesning av lufttrykk (atmosfæretrykk)\r\n\
             <engelsk>pressure gauge for recording of atmospheric pressure</engelsk>"
         dybdeGrunnvannstand:
           type: number
@@ -4139,10 +4199,10 @@ components:
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i poretrykksmå\
-            lingen. Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom\
+            lingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom\
             \ mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
             \ <engelsk>observation codes for marking of incidents during pore pressure\
-            \ measurements. The codes are [0..*] numeric codes given in a text string\
+            \ measurements. The codes are (0..*)\t numeric codes given in a text string\
             \ with spaces between each code if more than 1. The codes are described\
             \ in the code list GeotekniskBoreObservasjonskode.</engelsk>"
         observasjonMerknad:
@@ -4153,7 +4213,7 @@ components:
         poretrykk:
           type: number
           format: double
-          description: "vanntrykket i porevannet i grunnen, med atmosføretrykket som\
+          description: "vanntrykket i porevannet i grunnen, med atmosfæretrykket som\
             \ referanse <engelsk>the pressure in the pore water, with the atmospheric\
             \ pressure as reference</engelsk>"
         trykkhøyde:
@@ -4167,7 +4227,7 @@ components:
     PoretrykkDataInsitu:
       type: object
       description: "data fra måling av trykktilstanden i porevannet, angitt som kraft\
-        \ pr. flateenhet og med atmosføretrykket som referanse<engelsk>data from measurements\
+        \ pr. flateenhet og med atmosfæretrykket som referanse<engelsk>data from measurements\
         \ of pore pressure, given as force per area unit, with the atmospheric pressure\
         \ as reference</engelsk>"
       properties:
@@ -4175,26 +4235,24 @@ components:
           type: number
           format: double
           description: "boret dybde i forhold til terrengoverflaten eller annet angitt\
-            \ referansenivå<engelsk>depth below the terrain surface or any other given\
-            \ reference level</engelsk>\r\n\r\n<engelsk>\r\ndepth from zero level,\
-            \ the z value of investigation start point is 0. drilling depth[m]\r\n\
-            </engelsk>"
+            \ referansenivå [m] <engelsk>depth below the terrain surface or any other\
+            \ given reference level</engelsk>\r\n\r\n<engelsk>\r\ndepth from zero\
+            \ level, the z value of investigation start point is 0. drilling depth[m]\r\
+            \n</engelsk>"
         enhetsvekt:
           type: number
           format: double
-          description: |-
-            <engelsk>
-                          </engelsk>
+          description: <engelsk></engelsk>
         observasjonKode:
           $ref: "#/components/schemas/GeotekniskBoreObservasjonskode"
           type: string
-          description: "observasjonskoder for markering av hendelser i poretrykksmå\
-            lingen. Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom\
-            \ mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
-            \ <engelsk>observation codes for marking of incidents during pore pressure\
-            \ measurements. The codes are [0..*] numeric codes given in a text string\
-            \ with spaces between each code if more than 1. The codes are described\
-            \ in the code list GeotekniskBoreObservasjonskode. </engelsk>"
+          description: observasjonskoder for markering av hendelser i poretrykksmålingen.
+            Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom
+            hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.
+            <engelsk>observation codes for marking of incidents during pore pressure
+            measurements. The codes are (0..*) numeric codes given in a text string
+            with spaces between each code if more than 1. The codes are described
+            in the code list GeotekniskBoreObservasjonskode. </engelsk>
         observasjonMerknad:
           type: string
           maxLength: 255
@@ -4203,19 +4261,19 @@ components:
         poretrykk:
           type: number
           format: double
-          description: "vanntrykket i porevannet i grunnen, med atmosføretrykket som\
-            \ referanse<engelsk>pore water pressure in the ground, with the atmospheric\
-            \ pressure as reference</engelsk>"
+          description: "vanntrykket i porevannet i grunnen, med atmosfæretrykket som\
+            \ referanse [kPa] <engelsk>pore water pressure in the ground, with the\
+            \ atmospheric pressure as reference</engelsk>"
         boretLengde:
           type: number
           format: double
           description: "total lengde av borehullets forløp, tilsvarer dyp ved vertikal\
-            \ boring\r\n<engelsk>total length of the investigation in the physical\
+            \ boring [m] <engelsk>total length of the investigation in the physical\
             \ borehole, the same as depth in a vertical borehole</engelsk>"
         tyngde:
           type: number
           format: double
-          description: Verdi for målt tyngde
+          description: "Verdi for målt tyngde [kN/m3]"
     PoretrykkMaaleKategori:
       type: string
       enum:
@@ -4227,7 +4285,7 @@ components:
       type: object
       description: "måling av poretrykkforhold i grunnen foretatt i løpet av en tidsperiode\
         \ og / eller i flere dybder. poretrykk er trykket i porevannet angitt som\
-        \ kraft pr. flateenhet, og med atmosføretrykket som referanse<engelsk>measurement\
+        \ kraft pr. flateenhet, og med atmosfæretrykket som referanse<engelsk>measurement\
         \ of pore pressure in the groundwater during a time period and / or in several\
         \ depths. the pore pressure is the pressure in the pore water given as force\
         \ per area unit, with the atmospheric pressure as reference</engelsk>"
@@ -4241,15 +4299,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -4422,15 +4480,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -4440,8 +4498,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4472,15 +4530,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -4490,8 +4548,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4510,15 +4568,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -4528,8 +4586,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4560,24 +4618,25 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         torvTykkelse:
           type: number
           format: double
-          description: tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
+          description: "tykkelse på torvlag i meter [m] <engelsk>thickness of peat\
+            \ in meter</engelsk>"
         telenivå:
           type: number
           format: double
-          description: dybde for angivelse av telefront ved sondering i frosset jord<engelsk>depth
-            to frost front for sounding in frozen soils </engelsk>
+          description: "dybde for angivelse av telefront ved sondering i frosset jord\
+            \ [m] <engelsk>depth to frost front for sounding in frozen soils </engelsk>"
         statiskSonderingObservasjon:
           type: array
           items:
@@ -4592,20 +4651,21 @@ components:
         anvendtlast:
           type: number
           format: double
-          description: anvendt nedpressingskraft registrert på overflaten under sonderingen<engelsk>applied
-            penetration force recorded on the surface during sounding</engelsk>
+          description: "anvendt nedpressingskraft registrert på overflaten under sonderingen\
+            \ [kN] <engelsk>applied penetration force recorded on the surface during\
+            \ sounding</engelsk>"
         boretLengde:
           type: number
           format: double
-          description: boret dybde i forhold til terrengoverflaten eller annet angitt
-            referansenivå<engelsk>drilled depth related to the terrain surface or
-            any other given reference level</engelsk>
+          description: "boret dybde i forhold til terrengoverflaten eller annet angitt\
+            \ referansenivå [m] <engelsk>drilled depth related to the terrain surface\
+            \ or any other given reference level</engelsk>"
         halveOmdreininger:
           type: number
           format: double
           description: "antall halve omdreininger av stangsystemet, regnet fra forrige\
-            \ dybde<engelsk>number of half turns of the rod system, referring to the\
-            \ previous depth</engelsk>"
+            \ dybde <engelsk>number of half turns of the rod system, referring to\
+            \ the previous depth</engelsk>"
         medSlag:
           type: boolean
           description: markering av slag på borstrengen under sonderingen<engelsk>marking
@@ -4614,20 +4674,20 @@ components:
           type: integer
           format: int32
           description: "tidsangivelse ved nedpressing av stangsystemet, regnet siden\
-            \ forrige dybde<engelsk>time record during penetration of the rod system,\
-            \ referring to the previous depth</engelsk>"
+            \ forrige dybde [sek/m] <engelsk>time record during penetration of the\
+            \ rod system, referring to the previous depth</engelsk>"
         nedsynkningHastighet:
           type: number
           format: double
-          description: antall slag per enhet synk<engelsk>penetration of the rod system
-            per unit time (rate of penetration)</engelsk>
+          description: "antall slag per enhet synk [m/min] <engelsk>penetration of\
+            \ the rod system per unit time (rate of penetration)</engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
+            \ Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom\
             \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
             \ \r\n<engelsk>observation codes for marking of incidents during sounding.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
+            \ The codes are (0..*) numeric codes given in a text string with spaces\
             \ between each code if more than 1. The codes are described in the code\
             \ list GeotekniskBoreObservasjonskode. </engelsk>"
         observasjonMerknad:
@@ -4639,8 +4699,8 @@ components:
           type: number
           format: double
           description: "antall omdreininger av stangsystemet per tidsenhet ved penetrasjon\
-            \ av borstrengen<engelsk>number of turns of the rod system per time unit,\
-            \ during penetration of the drill string</engelsk>"
+            \ av borstrengen [omdr/min] <engelsk>number of turns of the rod system\
+            \ per time unit, during penetration of the drill string</engelsk>"
         harRotasjon:
           type: boolean
           description: "<engelsk>Gets or sets the has turning, that indicates if rotation\
@@ -4649,13 +4709,13 @@ components:
           type: number
           format: double
           description: "<engelsk>Gets or sets the sleeve friction, the measured sleeve\
-            \ friction during penetration of the probe\r\n(friction sleeve force divided\
-            \ by area of the friction sleeve [kN ???].</engelsk>"
+            \ friction during penetration of the probe (friction sleeve force divided\
+            \ by area of the friction sleeve [kPa].</engelsk>"
         slagFrekvens:
           type: number
           format: double
           description: "slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus,\
-            \ angitt ved antall slag per tidsenhet"
+            \ angitt ved antall slag per tidsenhet [slag/m]"
     StempelProeve:
       type: object
       description: "geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede\
@@ -4672,15 +4732,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -4690,8 +4750,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4797,15 +4857,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -4829,7 +4889,7 @@ components:
         cptKorreksjonsFaktor:
           type: number
           format: double
-          description: "Øvrige faktorer for korreksjon av trykksonderingsdata, for\
+          description: "øvrige faktorer for korreksjon av trykksonderingsdata, for\
             \ eksempel korreksjon av målt sidefriksjon<engelsk>other factors for correction\
             \ of CPT data, for example correction of measured sleeve friction</engelsk>"
         filterType:
@@ -4840,9 +4900,9 @@ components:
         initiellSpissmotstand:
           type: number
           format: double
-          description: referanseverdi for spissmotstand ved start av måling (eksempel
-            ved start dissipasjonstest)<engelsk>reference value cone resistance at
-            the start of the test (e.g. at the start of a dissipation test)</engelsk>
+          description: "referanseverdi for spissmotstand ved start av måling (eksempel\
+            \ ved start dissipasjonstest) [kPa] <engelsk>reference value cone resistance\
+            \ at the start of the test (e.g. at the start of a dissipation test)</engelsk>"
         metningsMedium:
           type: string
           description: medium som benyttes for metting av målesystem for poretrykk<engelsk>medium
@@ -4861,8 +4921,9 @@ components:
         nullpunktsKorreksjon:
           type: number
           format: double
-          description: korreksjon for registrert nullpunktsavvik før og etter sondering<engelsk>correction
-            for recorded zero load drift before and after sounding</engelsk>
+          description: "korreksjon for registrert nullpunktsavvik før og etter sondering\
+            \ [MPa] <engelsk>correction for recorded zero load drift before and after\
+            \ sounding</engelsk>"
         rørKappeKorreksjonsFaktor:
           type: number
           format: double
@@ -4934,58 +4995,60 @@ components:
         anvendtLast:
           type: number
           format: double
-          description: anvendt last på overflaten for nedpressing av trykksonde med
-            stenger <engelsk>applied thrust load on the surface for penetration of
-            the test rods and probe</engelsk>
+          description: "anvendt last på overflaten for nedpressing av trykksonde med\
+            \ stenger [kN] <engelsk>applied thrust load on the surface for penetration\
+            \ of the test rods and probe</engelsk>"
         boretDybde:
           type: number
           format: double
-          description: boret dybde i forhold til terrengoverflaten eller annet angitt
-            referansenivå <engelsk>depth below the terrain surface or any other given
-            reference level</engelsk>
+          description: "boret dybde i forhold til terrengoverflaten eller annet angitt\
+            \ referansenivå [m] <engelsk>depth below the terrain surface or any other\
+            \ given reference level</engelsk>"
         boretLengde:
           type: number
           format: double
           description: "lengde langs borehullets forløp, tilsvarer dyp ved vertikal\
-            \ boring<engelsk>length along the physical borehole, the same as depth\
-            \ in a vertical borehole</engelsk>"
+            \ boring [m] <engelsk>length along the physical borehole, the same as\
+            \ depth in a vertical borehole</engelsk>"
         friksjon:
           type: number
           format: double
-          description: målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft
-            dividert med areal av friksjonshylse)<engelsk>measured sleeve friction
-            during penetration of the probe (friction sleeve force divided by area
-            of the friction sleeve)</engelsk>
+          description: "målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft\
+            \ dividert med areal av friksjonshylse) [kPa] <engelsk>measured sleeve\
+            \ friction during penetration of the probe (friction sleeve force divided\
+            \ by area of the friction sleeve)</engelsk>"
         helning:
           type: number
           format: double
-          description: vinkelavvik mellom nedpressingsretning for trykksonde og vertikalaksen
-            <engelsk>deviation between the penetration axis and the vertical axis</engelsk>
+          description: "vinkelavvik mellom nedpressingsretning for trykksonde og vertikalaksen\
+            \ [°] <engelsk>deviation between the penetration axis and the vertical\
+            \ axis</engelsk>"
         initieltPoretrykk:
           type: number
           format: double
-          description: initielt poretrykk ved start av dissipasjonstest i CPTU <engelsk>initial
-            pore pressure at the start of the dissipation test in CPTU</engelsk>
+          description: "initielt poretrykk ved start av dissipasjonstest i CPTU [kPa]\
+            \ <engelsk>initial pore pressure at the start of the dissipation test\
+            \ in CPTU</engelsk>"
         resistivitet:
           type: number
           format: double
           description: "elektrisk motstand når den går gjennom et materiale, måles\
-            \ ved gjennomføring av RCPTU-forsøk. Måles i ?m (ohm-meter). <engelsk>electrical\
+            \ ved gjennomføring av RCPTU-forsøk. Måles i [Ωm] (ohm-meter). <engelsk>electrical\
             \ resistivity, measured in a RCPTU-test (?m) </engelsk>"
         korrigertFriksjon:
           type: number
           format: double
           description: "korrigert sidefriksjon ved nedpressing av trykksonde (friksjonskraft\
             \ dividert med areal av friksjonshylse, korrigert for poretrykkseffekter)\
-            \ <engelsk>corrected sleeve friction during penetration of the probe (friction\
-            \ sleeve force divided by area of the friction sleeve, corrected for pore\
-            \ pressure effects)</engelsk>"
+            \ [MPa] <engelsk>corrected sleeve friction during penetration of the probe\
+            \ (friction sleeve force divided by area of the friction sleeve, corrected\
+            \ for pore pressure effects)</engelsk>"
         korrigertNedpressningsKraft:
           type: number
           format: double
-          description: korrigert last på overflaten for nedpressing av trykksonde
-            med stenger <engelsk>corrected load on the surface for penetration of
-            the test rods and probe</engelsk>
+          description: "korrigert last på overflaten for nedpressing av trykksonde\
+            \ med stenger [kPa] <engelsk>corrected load on the surface for penetration\
+            \ of the test rods and probe</engelsk>"
         nedpressingHastighet:
           type: number
           format: double
@@ -5001,18 +5064,18 @@ components:
           type: integer
           format: int32
           description: "tid for nedpressing av sonden til ønsket eller annen angitt\
-            \ dybde, regnet fra forrige dybde\r\n<engelsk>time for penetration of\
-            \ the probe to the requested or any other given depth. Referring to the\
-            \ previous depth</engelsk>"
+            \ dybde, regnet fra forrige dybde [sek]\r\n<engelsk>time for penetration\
+            \ of the probe to the requested or any other given depth. Referring to\
+            \ the previous depth</engelsk>"
         observasjonKode:
           type: string
-          description: "observasjonskoder for markering av hendelser i trykksonderingen.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
-            \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
-            \  <engelsk>observation codes for marking of incidents during penetration.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
-            \ between each code if more than 1. The codes are described in the code\
-            \ list GeotekniskBoreObservasjonskode. </engelsk>"
+          description: observasjonskoder for markering av hendelser i trykksonderingen.
+            Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom
+            hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.  <engelsk>observation
+            codes for marking of incidents during penetration. The codes are (0..*)
+            numeric codes given in a text string with spaces between each code if
+            more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.
+            </engelsk>
         observasjonMerknad:
           type: string
           maxLength: 255
@@ -5021,23 +5084,25 @@ components:
         poretrykk:
           type: number
           format: double
-          description: "vanntrykket i porevannet i grunnen, med atmosføretrykket som\
-            \ referanse <engelsk>the pressure in the pore water, with the atmospheric\
+          description: "vanntrykket i porevannet i grunnen, med atmosfæretrykket som\
+            \ referanse [kPa] <engelsk>the pressure in the pore water, with the atmospheric\
             \ pressure as reference</engelsk>"
         skjærbølgeHastighet:
           type: number
           format: double
-          description: hastighet til s-bølge <engelsk>velocity of s-wave</engelsk>
+          description: "hastighet til s-bølge [m/s] <engelsk>velocity of s-wave</engelsk>"
         temperatur:
           type: number
           format: double
-          description: temperatur i jord og/eller luft ved gjennomføring av trykksonderingen
-            <engelsk>temperature in soil and/or air during the testing</engelsk>
+          description: "temperatur i jord og/eller luft ved gjennomføring av trykksonderingen\
+            \ [°C] <engelsk>temperature in soil and/or air during the testing</engelsk>"
         nedpressingTrykk:
           type: number
           format: double
-          description: "<engelsk>measured cone resistance during penetration of the\
-            \ probe (point load divided by cross-sectional area of probe) [MPa].</engelsk>"
+          description: "målt spissmotstand ved nedpressing av trykksonde (spisskraft\
+            \ dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured\
+            \ cone resistance during penetration of the probe (point load divided\
+            \ by cross-sectional area of probe) [MPa].</engelsk>"
     ValidatedGeotekniskUnders:
       type: object
       description: GeotekniskUnders med valideringsresultat
@@ -5061,15 +5126,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         prøvetype:
           $ref: "#/components/schemas/ProevetakingType"
           type: string
@@ -5079,8 +5144,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -5115,15 +5180,15 @@ components:
         fraBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         tilBorlengde:
           type: number
           format: double
-          description: lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
-            <engelsk>distance measured from the top of  the curve describing the borehole
-            geometry</engelsk>
+          description: "lengde målt fra toppen av kurven/linja som beskriver borehullforlø\
+            pet [m] <engelsk>distance measured from the top of  the curve describing\
+            \ the borehole geometry</engelsk>"
         insituTestStartTidspunkt:
           type: string
           format: date-time
@@ -5138,24 +5203,6 @@ components:
           - 2022-03-10T12:15:50-04:00
           description: tidspunkt for stopp av in situ prøvningen<engelsk>stop time
             for in situ testing</engelsk>
-        sensitivitet:
-          type: number
-          format: double
-          description: forholdet mellom uforstyrret og omrørt udrenert skjærfasthet
-            for kohesjonsjord<engelsk>ratio between undisturbed and remoulded undrained
-            shear strength for cohesive soils</engelsk>
-        skjærfasthetOmrørt:
-          type: number
-          format: double
-          description: skjærfasthet for en kohesjonsjordart med fullstendig omrørt
-            struktur<engelsk>shear strength for cohesive soils with a completely remoulded
-            structure</engelsk>
-        skjærfasthetUforstyrret:
-          type: number
-          format: double
-          description: "skjærfasthet for en kohesjonsjordart med uforstyrret, intakt\
-            \ struktur<engelsk>shear strength for cohesive soils with an intact, undisturbed\
-            \ structure</engelsk>"
         vannstandIBorehull:
           type: number
           format: double
@@ -5164,11 +5211,11 @@ components:
         vingeDiameter:
           type: number
           format: double
-          description: 'diameter for vingekors<engelsk>diameter of the vane<engelsk> '
+          description: "diameter for vingekors [mm] <engelsk>diameter of the vane<engelsk> "
         vingeHøyde:
           type: number
           format: double
-          description: 'høyde for vingekors<engelsk>height of the vane</engelsk> '
+          description: "høyde for vingekors [mm] <engelsk>height of the vane</engelsk> "
         vingeIdentitet:
           type: string
           description: identifikasjon for anvendt vingeborutstyr<engelsk>identification
@@ -5187,28 +5234,27 @@ components:
           type: number
           format: double
           description: "boret dybde i forhold til terrengoverflaten eller annet angitt\
-            \ referansenivå <engelsk>depth below the terrain surface or any other\
-            \ given reference level</engelsk>\r\n\r\n<engelsk>\r\ndepth from zero\
-            \ level, the z value of investigation start point is 0. drilling depth[m]\r\
-            \n</engelsk>"
+            \ referansenivå [m] <engelsk>depth below the terrain surface or any other\
+            \ given reference level</engelsk>\r\n<engelsk> depth from zero level,\
+            \ the z value of investigation start point is 0. drilling depth[m]</engelsk>"
         effektivDensitet:
           type: number
           format: double
-          description: "densitet for jordlagene, redusert for oppdriftseffekter <engelsk>density\
-            \ for soil layers, reduced for buoyancy effects</engelsk>"
+          description: "densitet for jordlagene, redusert for oppdriftseffekter [kN/m3]\
+            \ <engelsk>density for soil layers, reduced for buoyancy effects</engelsk>"
         korrigertSkjærfasthet:
           type: number
           format: double
-          description: skjærfasthet korrigert for plastisitet og effektivt overlagringstrykk
-            <engelsk>shear strength corrected for plasticity and effective overburden
-            stress</engelsk>
+          description: "skjærfasthet korrigert for plastisitet og effektivt overlagringstrykk\
+            \ [kPa] <engelsk>shear strength corrected for plasticity and effective\
+            \ overburden stress</engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i vingeboringen.\
-            \ Kodene er [0..*] tallkoder gitt i en tekststreng med mellomrom mellom\
+            \ Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom\
             \ hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\r\
             \n<engelsk>observation codes for marking of incidents during vane testing.\
-            \ The codes are [0..*] numeric codes given in a text string with spaces\
+            \ The codes are (0..*) numeric codes given in a text string with spaces\
             \ between each code if more than 1. The codes are described in the code\
             \ list GeotekniskBoreObservasjonskode.</engelsk>"
         observasjonMerknad:
@@ -5219,45 +5265,46 @@ components:
         omrørtSkjærfasthet:
           type: number
           format: double
-          description: skjærfasthet for en kohesjonsjordart med fullstendig omrørt
-            struktur <engelsk>shear strength for a cohesive soil with completely remoulded
-            structure</engelsk>
+          description: "skjærfasthet for en kohesjonsjordart med fullstendig omrø\
+            rt struktur [kPa] <engelsk>shear strength for a cohesive soil with completely\
+            \ remoulded structure</engelsk>"
         omrørtTorsjonMoment:
           type: number
           format: double
           description: "målt vridningsmoment ved måling av vingeborrotasjon i en kohesjonsjordart\
-            \ med fullstendig omrørt struktur\r\n<engelsk>measured torque during vane\
-            \ rotation in cohesive soil with completely remoulded structure</engelsk>"
+            \ med fullstendig omrørt struktur [kNm] <engelsk>measured torque during\
+            \ vane rotation in cohesive soil with completely remoulded structure</engelsk>"
         sensitivitet:
           type: number
           format: double
           description: forholdet mellom uforstyrret og omrørt udrenert skjærfasthet
-            for kohesjonsjord <engelsk>ratio between undisturbed and remoulded undrained
+            for kohesjonsjord  <engelsk>ratio between undisturbed and remoulded undrained
             shear strength for cohesive soil</engelsk>
         uomrørtSkjærfasthet:
           type: number
           format: double
           description: "skjærfasthet for en kohesjonsjordart med uforstyrret, intakt\
-            \ struktur <engelsk>shear strength for a cohesive soil with intact, undisturbed\
-            \ structure</engelsk>"
+            \ struktur [kPa] <engelsk>shear strength for a cohesive soil with intact,\
+            \ undisturbed structure</engelsk>"
         uomrørtTorsjonMoment:
           type: number
           format: double
           description: "målt vridningsmoment ved måling av vingeborrotasjon i en kohesjonsjordart\
-            \ med uforstyrret, intakt struktur\r\n<engelsk>measured torque during\
+            \ med uforstyrret, intakt struktur [kNm] <engelsk>measured torque during\
             \ vane rotation in cohesive soil with intact, undisturbed structure</engelsk>"
         boretLengde:
           type: number
           format: double
           description: "total lengde av borehullets forløp, tilsvarer dyp ved vertikal\
-            \ boring\r\n<engelsk>total length of the investigation in the physical\
+            \ boring [m] <engelsk>total length of the investigation in the physical\
             \ borehole, the same as depth in a vertical borehole</engelsk>"
         plastisitetIndeks:
           type: number
           format: double
-          description: "<engelsk>Gets or sets the index of the plasticy, the difference\
-            \ between the liquid and plastic limits for a remoulded clay sample, which\
-            \ defines the plastic area of the clay in % water content [%].</engelsk>"
+          description: "angis i [%]<engelsk>Gets or sets the index of the plasticy,\
+            \ the difference between the liquid and plastic limits for a remoulded\
+            \ clay sample, which defines the plastic area of the clay in % water content\
+            \ (%).</engelsk>"
   securitySchemes:
     Authentication:
       type: http
@@ -5564,7 +5611,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/GeotekniskBorehull"
 info:
-  title: Generated API
-  version: "1.0"
+  title: Nadag innmelding API
+  version: 2025.09.25
 servers:
 - url: https://test.ngu.no/api/

@@ -31,9 +31,9 @@ class Platebelastning:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
             insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
                 prøvningen<engelsk>start time for in situ testing</engelsk>
@@ -41,8 +41,8 @@ class Platebelastning:
                 prøvningen<engelsk>stop time for in situ testing</engelsk>
             lasttrinn_antall (Union[Unset, int]): antall belastningstrinn i en målesekvens<engelsk>number of load steps in a
                 test sequence</engelsk>
-            areal_plate (Union[Unset, float]): areal av skruplate for fordeling av tilleggslast<engelsk>area of screw plate
-                for distribution of additional load</engelsk>
+            areal_plate (Union[Unset, float]): areal av skruplate for fordeling av tilleggslast [m2]<engelsk>area of screw
+                plate for distribution of additional load</engelsk>
             platebelastning_observasjon (Union[Unset, list['PlatebelastningData']]):
     """
 

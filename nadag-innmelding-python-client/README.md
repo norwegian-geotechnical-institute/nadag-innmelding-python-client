@@ -1,5 +1,5 @@
 # nadag-innmelding-python-client
-A client library for accessing Generated API
+A client library for accessing Nadag innmelding API
 
 ## Usage
 First, create a client:

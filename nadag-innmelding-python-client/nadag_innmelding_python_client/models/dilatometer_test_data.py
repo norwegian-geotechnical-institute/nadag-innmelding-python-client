@@ -23,9 +23,9 @@ class DilatometerTestData:
                 </engelsk>
             observasjon_merknad (Union[Unset, str]): tekst som beskriver observasjonen <engelsk>description of the
                 observation</engelsk>
-            observasjon_kode (Union[Unset, str]): kode som angir observasjonen. Kodene er [0..*] tallkoder gitt i en
+            observasjon_kode (Union[Unset, str]): kode som angir observasjonen. Kodene er (0..*) tallkoder gitt i en
                 tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
-                GeotekniskBoreObservasjonskode.<engelsk>observation code according to valid codes. The codes are [0..*] numeric
+                GeotekniskBoreObservasjonskode.<engelsk>observation code according to valid codes. The codes are (0..*) numeric
                 codes given in a text string with spaces between each code if more than 1. The codes are described in the code
                 list GeotekniskBoreObservasjonskode. </engelsk>
             kontakt_trykk_p0 (Union[Unset, float]): gasstrykk når membran ikke lenger har kontakt <engelsk>membrane lift-off
@@ -33,7 +33,7 @@ class DilatometerTestData:
             ekspansjon_trykk_p1 (Union[Unset, float]): gasstrykk når senter av membran har flyttet seg 1,1 mm <engelsk>gass
                 pressure when membrane has moved 1,1 mm</engelsk>
             horisontal_kraft (Union[Unset, float]): horisontal last<engelsk>horizontal load</engelsk>
-            poretrykk (Union[Unset, float]): trykket i porevannet angitt som kraft pr. flateenhet, med atmosføretrykket som
+            poretrykk (Union[Unset, float]): trykket i porevannet angitt som kraft pr. flateenhet, med atmosfæretrykket som
                 nullpunkt
 
                 <engelsk>registered pore pressure [kPa]</engelsk>

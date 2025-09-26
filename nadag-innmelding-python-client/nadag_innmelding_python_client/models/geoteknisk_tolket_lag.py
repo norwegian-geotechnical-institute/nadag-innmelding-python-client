@@ -8,6 +8,7 @@ from dateutil.parser import isoparse
 
 from ..models.hoved_lag_klassifisering import HovedLagKlassifisering
 from ..models.klassifiserings_metode import KlassifiseringsMetode
+from ..models.nadag_hoeyderef import NADAGHoeyderef
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -41,8 +42,9 @@ class GeotekniskTolketLag:
         ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
             ansvarlige leverandør inn til NADAG.
         posisjon (Union[Unset, Point]):
-        høyde (Union[Unset, float]): Terrenghøyde ved start tolkning
-        h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+        høyde (Union[Unset, float]): Laghøyde for tolkning [m]
+        h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
+            EPSG-koder benyttes.
     """
 
     tolket_lag_id: Union[Unset, str] = UNSET
@@ -59,7 +61,7 @@ class GeotekniskTolketLag:
     ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
     posisjon: Union[Unset, "Point"] = UNSET
     høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, str] = UNSET
+    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -101,7 +103,9 @@ class GeotekniskTolketLag:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse = self.h_ø_yde_referanse
+        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        if not isinstance(self.h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -198,7 +202,12 @@ class GeotekniskTolketLag:
 
         høyde = d.pop("høyde", UNSET)
 
-        h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        if isinstance(_h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = UNSET
+        else:
+            h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         geoteknisk_tolket_lag = cls(
             tolket_lag_id=tolket_lag_id,
