@@ -1,0 +1,114 @@
+name: Auto Update from OpenAPI Spec
+
+on:
+  schedule:
+    - cron: "0 4 * * *" # 04:00 UTC daily
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: auto-update-openapi
+  cancel-in-progress: false
+
+jobs:
+  check-generate-release:
+    runs-on: ubuntu-latest
+    env:
+      SPEC_URL: https://test.ngu.no/api/nadag/innmelding/openapi/v1
+      SPEC_PATH: openapi_specification/nadag-innmelding.yaml
+      PACKAGE_PYPROJECT: nadag-innmelding-python-client/pyproject.toml
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install generator
+        run: |
+          python -m pip install --upgrade pip
+          pip install openapi-python-client jq
+
+      - name: Download latest spec
+        id: download
+        run: |
+          set -e
+          echo "Downloading spec from $SPEC_URL" >&2
+          curl -sSL "$SPEC_URL" -o new_spec.yaml
+          if [ ! -s new_spec.yaml ]; then
+            echo "Spec download failed or empty" >&2
+            exit 1
+          fi
+          # Extract version (first occurrence of a line that starts (optionally indented) with version: )
+          NEW_VERSION=$(grep -E '^[[:space:]]*version:' new_spec.yaml | head -n1 | sed -E 's/^[[:space:]]*version:[[:space:]]*"?([^" ]+)"?.*/\1/')
+          if [ -z "$NEW_VERSION" ]; then
+            echo "Could not extract version from downloaded spec" >&2
+            exit 1
+          fi
+          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          # Get current spec version (if file exists). If not present, force update.
+          if [ -f "$SPEC_PATH" ]; then
+            CURRENT_VERSION=$(grep -E '^[[:space:]]*version:' "$SPEC_PATH" | head -n1 | sed -E 's/^[[:space:]]*version:[[:space:]]*"?([^" ]+)"?.*/\1/')
+          else
+            CURRENT_VERSION="(none)"
+          fi
+          echo "Current version: $CURRENT_VERSION" >&2
+          echo "Downloaded version: $NEW_VERSION" >&2
+          if [ "$NEW_VERSION" != "$CURRENT_VERSION" ]; then
+            echo "changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Regenerate client & bump version
+        id: regenerate
+        if: steps.download.outputs.changed == 'true'
+        run: |
+          set -e
+          echo "Spec version changed. Regenerating client..." >&2
+          mv new_spec.yaml "$SPEC_PATH"
+          # Run generator (using overwrite & custom templates/config)
+          openapi-python-client generate \
+            --path "$SPEC_PATH" \
+            --overwrite \
+            --custom-template-path templates \
+            --config config.yaml
+          NEW_VERSION='${{ steps.download.outputs.new_version }}'
+          # Bump package version in pyproject to the spec version
+          if [ -f "$PACKAGE_PYPROJECT" ]; then
+            # Replace only the first occurrence of version = "..."
+            sed -i "0,/^version = \".*\"/s//version = \"${NEW_VERSION}\"/" "$PACKAGE_PYPROJECT"
+          fi
+          echo "updated_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create pull request
+        if: steps.download.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v6
+        with:
+          commit-message: chore: update OpenAPI spec to version ${{ steps.regenerate.outputs.updated_version }}
+          branch: chore/openapi-spec-v${{ steps.regenerate.outputs.updated_version }}
+          title: chore: update OpenAPI spec to version ${{ steps.regenerate.outputs.updated_version }}
+          body: |
+            Automated update for OpenAPI spec version `${{ steps.regenerate.outputs.updated_version }}`.
+
+            Changes:
+            - Updated spec file from upstream
+            - Regenerated client code
+            - Bumped package version in pyproject.toml
+
+            After merging this PR, create a GitHub Release (tag `v${{ steps.regenerate.outputs.updated_version }}`) to trigger the publish workflow.
+          labels: automated, openapi, chore
+          signoff: false
+          draft: false
+          delete-branch: false
+
+      - name: No change summary
+        if: steps.download.outputs.changed != 'true'
+        run: echo "No spec version change detected; nothing to do."
