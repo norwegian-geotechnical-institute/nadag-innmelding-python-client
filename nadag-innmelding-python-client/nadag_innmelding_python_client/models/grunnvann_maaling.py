@@ -31,9 +31,9 @@ class GrunnvannMaaling:
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+        fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-        til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+        til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
         insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
             prøvningen<engelsk>start time for in situ testing</engelsk>
@@ -41,19 +41,17 @@ class GrunnvannMaaling:
             prøvningen<engelsk>stop time for in situ testing</engelsk>
         er_langtidsobservasjon (Union[Unset, bool]): indikerer varighet av måleperiode ved langtidsmåling
             <engelsk>indicates duration of the test period in long-term measurements</engelsk>
-        filter_dyp (Union[Unset, float]): dybde til midten av filteret i forhold til rørTopp (m)
-            <engelsk>
-            depth to center of filter in relation to height at top of pipe [m]
-            </engelsk>
-        filter_lengde (Union[Unset, float]): lengde av filter i målerør<engelsk>length of the filter in measurement
+        filter_dyp (Union[Unset, float]): dybde til midten av filteret i forhold til rørTopp [m]
+            <engelsk> depth to center of filter in relation to height at top of pipe [m] </engelsk>
+        filter_lengde (Union[Unset, float]): lengde av filter i målerør [m] <engelsk>length of the filter in measurement
             tube</engelsk>
         filter_type (Union[Unset, str]): type filter i målerør<engelsk>type of filter in measurement tube</engelsk>
         grunnvann_akvifer (Union[Unset, AkviferType]): oversikt over mulige akvifertyper for
             grunnvannsmålinger<engelsk>overview of possible aquifer types for ground water measurements</engelsk>
-        r_ø_r_bunn (Union[Unset, float]): nivå (høyde) for bunn av målerør<engelsk>level (height) for the base of the
-            measurement tube</engelsk>
-        r_ø_r_topp (Union[Unset, float]): nivå (høyde) for topp av målerør<engelsk>level (height) for the top of the
-            measurement tube</engelsk>
+        r_ø_r_bunn (Union[Unset, float]): nivå (høyde) for bunn av målerør [m] <engelsk>level (height) for the base of
+            the measurement tube</engelsk>
+        r_ø_r_topp (Union[Unset, float]): nivå (høyde) for topp av målerør [m] <engelsk>level (height) for the top of
+            the measurement tube</engelsk>
         r_ø_r_type (Union[Unset, str]): type målerør for utførelse av hydraulisk måling<engelsk>
             type of measurement tube for performance of groundwater measurements</engelsk>
         grunnvann_observasjon (Union[Unset, list['GrunnvannData']]):

@@ -12,33 +12,32 @@ T = TypeVar("T", bound="PoretrykkDataInsitu")
 
 @_attrs_define
 class PoretrykkDataInsitu:
-    """data fra måling av trykktilstanden i porevannet, angitt som kraft pr. flateenhet og med atmosføretrykket som
+    """data fra måling av trykktilstanden i porevannet, angitt som kraft pr. flateenhet og med atmosfæretrykket som
     referanse<engelsk>data from measurements of pore pressure, given as force per area unit, with the atmospheric
     pressure as reference</engelsk>
 
         Attributes:
-            boret_dybde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt
-                referansenivå<engelsk>depth below the terrain surface or any other given reference level</engelsk>
+            boret_dybde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå
+                [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>
 
                 <engelsk>
                 depth from zero level, the z value of investigation start point is 0. drilling depth[m]
                 </engelsk>
-            enhetsvekt (Union[Unset, float]): <engelsk>
-                              </engelsk>
+            enhetsvekt (Union[Unset, float]): <engelsk></engelsk>
             observasjon_kode (Union[Unset, GeotekniskBoreObservasjonskode]): oversikt over koder for observasjoner som
-                gjøres ved utførelse av en grunnundersøkelse. Benyttes i egenskapen 'observasjonKode' som i mai 2024 ble gjort
+                gjøres ved utførelse av en grunnundersøkelse. Benyttes i egenskapen «observasjonKode» som i mai 2024 ble gjort
                 om til tekststreng fra å være knyttet til denne kodelisten. Tekstrengen kan inneholde mer enn 1 kode.
                 <engelsk>overview of codes for observations conducted during an GeotechnicalBoreholeInvestigation. Used in the
                 "observasjonKode" attribute, which in May 2024 was changed to a text string from being linked to this code list.
                 The text string can contain more than 1 code. </engelsk>
             observasjon_merknad (Union[Unset, str]): merknad til observasjoner i poretrykksmålingen
                 <engelsk>remarks to observations made during pore pressure measurements</engelsk>
-            poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosføretrykket som
-                referanse<engelsk>pore water pressure in the ground, with the atmospheric pressure as reference</engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+            poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa]
+                <engelsk>pore water pressure in the ground, with the atmospheric pressure as reference</engelsk>
+            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
-            tyngde (Union[Unset, float]): Verdi for målt tyngde
+            tyngde (Union[Unset, float]): Verdi for målt tyngde [kN/m3]
     """
 
     boret_dybde: Union[Unset, float] = UNSET

@@ -7,7 +7,7 @@ Or just follow these steps:
 ## For new API version
 
 1. Copy and rename the openapi.yaml the `openapi_specification/nadag-innmelding.yaml`
-2. Update the version number in the `config.yaml` file 
+2. ~~Update the version number in the `config.yaml` file~~ (not needed anymore, as version number now in the openapi file)  
 3. Run the following command to generate the client code:
    ```bash
     uvx openapi-python-client generate --path openapi_specification/nadag-innmelding.yaml --overwrite --custom-template-path=templates --config config.yaml

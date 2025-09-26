@@ -20,7 +20,7 @@ T = TypeVar("T", bound="PoretrykkMaaling")
 @_attrs_define
 class PoretrykkMaaling:
     """måling av poretrykkforhold i grunnen foretatt i løpet av en tidsperiode og / eller i flere dybder. poretrykk er
-    trykket i porevannet angitt som kraft pr. flateenhet, og med atmosføretrykket som referanse<engelsk>measurement of
+    trykket i porevannet angitt som kraft pr. flateenhet, og med atmosfæretrykket som referanse<engelsk>measurement of
     pore pressure in the groundwater during a time period and / or in several depths. the pore pressure is the pressure
     in the pore water given as force per area unit, with the atmospheric pressure as reference</engelsk>
 
@@ -33,9 +33,9 @@ class PoretrykkMaaling:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
             insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
                 prøvningen<engelsk>start time for in situ testing</engelsk>

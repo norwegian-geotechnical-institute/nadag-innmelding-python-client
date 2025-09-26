@@ -7,6 +7,7 @@ from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
 from ..models.geoteknisk_stoppkode import GeotekniskStoppkode
+from ..models.nadag_hoeyderef import NADAGHoeyderef
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -117,8 +118,9 @@ class DeformasjonMaaling:
                 <engelsk>
                 Weather conditions - general description.
                 </engelsk>
-            høyde (Union[Unset, float]): Terrenghøyde ved start observasjon
-            h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+            høyde (Union[Unset, float]): Høyde for observasjon ved start observasjon [m]
+            h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
+                EPSG-koder benyttes.
             unders_ø_kelse_nr (Union[Unset, str]): Nummer på observasjon benyttet i den geotekniske undersøkelsen
             ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
                 ansvarlige leverandør inn til NADAG.
@@ -127,8 +129,8 @@ class DeformasjonMaaling:
                 porene i jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface
                 to the level in the ground where all voids are saturated with water, and where the pore pressure starts to
                 increase</engelsk>
-            forboret_diameter (Union[Unset, float]): diameter [m] av forboret hull i en borhullundersøkelse
-                <engelsk>diameter [m] of a predrilled hole in a borehole investigation</engelsk>
+            forboret_diameter (Union[Unset, float]): diameter [mm] av forboret hull i en borhullundersøkelse
+                <engelsk>diameter (mm)	 of a predrilled hole in a borehole investigation</engelsk>
             forboret_lengde (Union[Unset, float]): Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of
                 a predrilled borehole in a borehole investigation<engelsk>
             forboring_metode (Union[Unset, str]): metode brukt til boring uten registrering av data<engelsk>pre boring
@@ -142,13 +144,13 @@ class DeformasjonMaaling:
             installasjon_tidspunkt (Union[Unset, datetime.datetime]): tidspunktet måleren ble installert<engelsk>time of
                 installation for the settlement gauge</engelsk>
             installasjon_niv_å (Union[Unset, float]): dybdemåleren er installert i og det punkt der setningen måles (z-nivå
-                installasjon)<engelsk>depth of the settlement gauge where settlements are recorded (z-level
+                installasjon) [m] <engelsk>depth of the settlement gauge where settlements are recorded (z-level
                 installation)</engelsk>
             målertype (Union[Unset, str]): type setningsmåler (setningsplate, setningsbolt, slange)<engelsk>type of
                 settlement gauge (settlement plate, bolt, settlement hose)</engelsk>
             målepunkt (Union[Unset, float]): registrering av referansepunkt for setningsmåling (z-nivå måling). Kan avvike
-                fra installasjonsnivå<engelsk>recording of reference level for settlements (z-level measurements). My deviate
-                from installation level</engelsk>
+                fra installasjonsnivå [m] <engelsk>recording of reference level for settlements (z-level measurements). My
+                deviate from installation level</engelsk>
             har_overv_å_kning_observasjon (Union[Unset, list['DeformasjonOvervaakningData']]):
             har_setning_observasjon (Union[Unset, list['DeformasjonMaaleData']]):
     """
@@ -174,7 +176,7 @@ class DeformasjonMaaling:
     lenke_til_tileggsinfo: Union[Unset, str] = UNSET
     v_æ_rforhold_ved_boring: Union[Unset, str] = UNSET
     høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, str] = UNSET
+    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
     unders_ø_kelse_nr: Union[Unset, str] = UNSET
     ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
     opprettet_dato: Union[Unset, datetime.datetime] = UNSET
@@ -252,7 +254,9 @@ class DeformasjonMaaling:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse = self.h_ø_yde_referanse
+        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        if not isinstance(self.h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         unders_ø_kelse_nr = self.unders_ø_kelse_nr
 
@@ -481,7 +485,12 @@ class DeformasjonMaaling:
 
         høyde = d.pop("høyde", UNSET)
 
-        h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        if isinstance(_h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = UNSET
+        else:
+            h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         unders_ø_kelse_nr = d.pop("undersøkelseNr", UNSET)
 

@@ -8,6 +8,7 @@ from dateutil.parser import isoparse
 
 from ..models.felt_unders_type_kode import FeltUndersTypeKode
 from ..models.geoteknisk_felt_unders_metode_kode import GeotekniskFeltUndersMetodeKode
+from ..models.nadag_hoeyderef import NADAGHoeyderef
 from ..models.tolkning_metode_kode import TolkningMetodeKode
 from ..types import UNSET, Unset
 
@@ -42,9 +43,10 @@ class GeotekniskFeltUnders:
         feltunders_type (Union[Unset, FeltUndersTypeKode]): Kodeliste for feltundersøkelsestype
         tolkning_metode (Union[Unset, TolkningMetodeKode]): Metoder benyttet for tolkning av geotekniske
             feltundersøkelser
-        h_ø_yde_fjell (Union[Unset, float]): Høyde på observert fjell
-        høyde (Union[Unset, float]): Terrenghøyde ved start feltundersøkelse
-        h_ø_yde_referanse (Union[Unset, str]): referansesystem for høydeangivelse
+        h_ø_yde_fjell (Union[Unset, float]): Høyde på observert fjell [m]
+        høyde (Union[Unset, float]): Terrenghøyde ved start feltundersøkelse [m]
+        h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
+            EPSG-koder benyttes.
         feltunders_nr (Union[Unset, str]): Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen
         har_dokument (Union[Unset, list['GeotekniskDokument']]):
     """
@@ -58,7 +60,7 @@ class GeotekniskFeltUnders:
     tolkning_metode: Union[Unset, TolkningMetodeKode] = UNSET
     h_ø_yde_fjell: Union[Unset, float] = UNSET
     høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, str] = UNSET
+    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
     feltunders_nr: Union[Unset, str] = UNSET
     har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -96,7 +98,9 @@ class GeotekniskFeltUnders:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse = self.h_ø_yde_referanse
+        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        if not isinstance(self.h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         feltunders_nr = self.feltunders_nr
 
@@ -198,7 +202,12 @@ class GeotekniskFeltUnders:
 
         høyde = d.pop("høyde", UNSET)
 
-        h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
+        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        if isinstance(_h_ø_yde_referanse, Unset):
+            h_ø_yde_referanse = UNSET
+        else:
+            h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         feltunders_nr = d.pop("feltundersNr", UNSET)
 

@@ -16,42 +16,40 @@ class VingeboringData:
 
         Attributes:
             boret_dybde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå
-                <engelsk>depth below the terrain surface or any other given reference level</engelsk>
-
-                <engelsk>
-                depth from zero level, the z value of investigation start point is 0. drilling depth[m]
-                </engelsk>
-            effektiv_densitet (Union[Unset, float]): densitet for jordlagene, redusert for oppdriftseffekter
+                [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>
+                <engelsk> depth from zero level, the z value of investigation start point is 0. drilling depth[m]</engelsk>
+            effektiv_densitet (Union[Unset, float]): densitet for jordlagene, redusert for oppdriftseffekter [kN/m3]
                 <engelsk>density for soil layers, reduced for buoyancy effects</engelsk>
             korrigert_skj_æ_rfasthet (Union[Unset, float]): skjærfasthet korrigert for plastisitet og effektivt
-                overlagringstrykk <engelsk>shear strength corrected for plasticity and effective overburden stress</engelsk>
+                overlagringstrykk [kPa] <engelsk>shear strength corrected for plasticity and effective overburden
+                stress</engelsk>
             observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i vingeboringen. Kodene er
-                [0..*] tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+                (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
                 kodelisten GeotekniskBoreObservasjonskode.
-                <engelsk>observation codes for marking of incidents during vane testing. The codes are [0..*] numeric codes
+                <engelsk>observation codes for marking of incidents during vane testing. The codes are (0..*) numeric codes
                 given in a text string with spaces between each code if more than 1. The codes are described in the code list
                 GeotekniskBoreObservasjonskode.</engelsk>
             observasjon_merknad (Union[Unset, str]): merknad til observasjoner i vingeboringen
                 <engelsk>remarks to observations made during vane testing</engelsk>
             omr_ø_rt_skj_æ_rfasthet (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med fullstendig omrørt
-                struktur <engelsk>shear strength for a cohesive soil with completely remoulded structure</engelsk>
+                struktur [kPa] <engelsk>shear strength for a cohesive soil with completely remoulded structure</engelsk>
             omr_ø_rt_torsjon_moment (Union[Unset, float]): målt vridningsmoment ved måling av vingeborrotasjon i en
-                kohesjonsjordart med fullstendig omrørt struktur
-                <engelsk>measured torque during vane rotation in cohesive soil with completely remoulded structure</engelsk>
+                kohesjonsjordart med fullstendig omrørt struktur [kNm] <engelsk>measured torque during vane rotation in cohesive
+                soil with completely remoulded structure</engelsk>
             sensitivitet (Union[Unset, float]): forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for
-                kohesjonsjord <engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive
+                kohesjonsjord  <engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive
                 soil</engelsk>
             uomr_ø_rt_skj_æ_rfasthet (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med uforstyrret, intakt
-                struktur <engelsk>shear strength for a cohesive soil with intact, undisturbed structure</engelsk>
+                struktur [kPa] <engelsk>shear strength for a cohesive soil with intact, undisturbed structure</engelsk>
             uomr_ø_rt_torsjon_moment (Union[Unset, float]): målt vridningsmoment ved måling av vingeborrotasjon i en
-                kohesjonsjordart med uforstyrret, intakt struktur
-                <engelsk>measured torque during vane rotation in cohesive soil with intact, undisturbed structure</engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+                kohesjonsjordart med uforstyrret, intakt struktur [kNm] <engelsk>measured torque during vane rotation in
+                cohesive soil with intact, undisturbed structure</engelsk>
+            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
-            plastisitet_indeks (Union[Unset, float]): <engelsk>Gets or sets the index of the plasticy, the difference
-                between the liquid and plastic limits for a remoulded clay sample, which defines the plastic area of the clay in
-                % water content [%].</engelsk>
+            plastisitet_indeks (Union[Unset, float]): angis i [%]<engelsk>Gets or sets the index of the plasticy, the
+                difference between the liquid and plastic limits for a remoulded clay sample, which defines the plastic area of
+                the clay in % water content (%).</engelsk>
     """
 
     boret_dybde: Union[Unset, float] = UNSET

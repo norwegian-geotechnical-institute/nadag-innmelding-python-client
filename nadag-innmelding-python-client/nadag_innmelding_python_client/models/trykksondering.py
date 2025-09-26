@@ -37,9 +37,9 @@ class Trykksondering:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
             insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
                 prøvningen<engelsk>start time for in situ testing</engelsk>
@@ -48,23 +48,23 @@ class Trykksondering:
             alpha (Union[Unset, float]): arealforhold for trykksonde for korreksjon av målt spissmotstand for
                 poretrykkseffekter<engelsk>area ratio for CPT probe for correction of measured cone resistance for pore pressure
                 effects</engelsk>
-            cpt_korreksjons_faktor (Union[Unset, float]): Øvrige faktorer for korreksjon av trykksonderingsdata, for
+            cpt_korreksjons_faktor (Union[Unset, float]): øvrige faktorer for korreksjon av trykksonderingsdata, for
                 eksempel korreksjon av målt sidefriksjon<engelsk>other factors for correction of CPT data, for example
                 correction of measured sleeve friction</engelsk>
             filter_type (Union[Unset, str]): type filter for måling av poretrykk (porøst filter, ferdigmettet,
                 spaltefilter)<engelsk>type of filter for measurement of pore pressure (porous filter, pre-saturated filter, slot
                 filter)</engelsk>
             initiell_spissmotstand (Union[Unset, float]): referanseverdi for spissmotstand ved start av måling (eksempel ved
-                start dissipasjonstest)<engelsk>reference value cone resistance at the start of the test (e.g. at the start of a
-                dissipation test)</engelsk>
+                start dissipasjonstest) [kPa] <engelsk>reference value cone resistance at the start of the test (e.g. at the
+                start of a dissipation test)</engelsk>
             metnings_medium (Union[Unset, str]): medium som benyttes for metting av målesystem for poretrykk<engelsk>medium
                 used for saturation of measuring system for pore pressure</engelsk>
             nedpressings_kapasitet (Union[Unset, NedpressingsKapasitet]): oversikt over lastkapasiteter for vanlige
                 trykksonder i CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>
             nedpressnings_hastighet (Union[Unset, float]): nedpressingshastighet ved penetrasjon av trykksonderingsstenger
                 (2 cm per sekund)<engelsk>rate of penetration for rod system (2 cm per second)</engelsk>
-            nullpunkts_korreksjon (Union[Unset, float]): korreksjon for registrert nullpunktsavvik før og etter
-                sondering<engelsk>correction for recorded zero load drift before and after sounding</engelsk>
+            nullpunkts_korreksjon (Union[Unset, float]): korreksjon for registrert nullpunktsavvik før og etter sondering
+                [MPa] <engelsk>correction for recorded zero load drift before and after sounding</engelsk>
             r_ø_r_kappe_korreksjons_faktor (Union[Unset, float]): korreksjonsfaktor for bruk av friksjonsreduksjonsring
                 <engelsk>correction factor for use of friction reducer</engelsk>
             sidefriksjon_korreksjon (Union[Unset, float]): korreksjon av målt sidefriksjon på grunn av

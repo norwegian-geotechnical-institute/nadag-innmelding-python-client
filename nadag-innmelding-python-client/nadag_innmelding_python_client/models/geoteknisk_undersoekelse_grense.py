@@ -15,8 +15,9 @@ T = TypeVar("T", bound="GeotekniskUndersoekelseGrense")
 
 @_attrs_define
 class GeotekniskUndersoekelseGrense:
-    """avgrensning av et område for geotekniske undersøkelser <engelsk>demarcation of an area with soil
-    investigations</engelsk>
+    """avgrensning av et område for geotekniske undersøkelser. Merk: Benyttes kun for de formater som krever egen geometri
+    for avgrensning av flate. <engelsk>demarcation of an area with soil investigations. Only used for delivery formats
+    that requier it.</engelsk>
 
         Attributes:
             grense (Union[Unset, list['Point']]):

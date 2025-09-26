@@ -30,14 +30,14 @@ class BlokkProeve:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
             prøvetype (Union[Unset, ProevetakingType]): inndeling av fysisk prøvemateriale i prøvetype, avhengig av
                 prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample
                 type classes, depending on sampling method and/or storage method for the sampled material</engelsk>
-            densitet_pr_ø_vetaking (Union[Unset, float]): tyngde pr. volumenhet (kN/m3) <engelsk>gravity by unit of space
+            densitet_pr_ø_vetaking (Union[Unset, float]): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
                 (kN/m3)</engelsk>
             milj_ø_teknisk_unders_ø_kelse (Union[Unset, str]): beskrivelse og resultater fra miljøteknisk undersøkelse
                 <engelsk>description and results from environmental investigation<engelsk>

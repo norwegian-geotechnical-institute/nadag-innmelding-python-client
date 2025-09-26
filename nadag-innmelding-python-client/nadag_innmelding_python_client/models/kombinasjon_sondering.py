@@ -17,7 +17,7 @@ T = TypeVar("T", bound="KombinasjonSondering")
 
 @_attrs_define
 class KombinasjonSondering:
-    """kombinasjon av boremetodene dreietrykksondering og fjellkontrollboring som gjør det mulig å bore både i løsmasse og
+    """kombinasjon av boremetodene totalsondering og fjellkontrollboring som gjør det mulig å bore både i løsmasse og
     berg<engelsk>combination of the boring methods rotary pressure sounding and rock control boring which enables
     drilling in both soils and rock.</engelsk>
 
@@ -30,19 +30,20 @@ class KombinasjonSondering:
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet
+            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter<engelsk>thickness of peat in meter</engelsk>
-            boret_lengde_i_berg (Union[Unset, float]): boret dybde til bergoverflaten<engelsk>drilled depth to the rock
+            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in
+                meter</engelsk>
+            boret_lengde_i_berg (Union[Unset, float]): boret dybde til bergoverflaten [m] <engelsk>drilled depth to the rock
                 surface</engelsk>
             boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            maks_last (Union[Unset, float]): maksimal nedpressingskraft registrert på overflaten <engelsk>maximum
+            maks_last (Union[Unset, float]): maksimal nedpressingskraft registrert på overflaten [kN] <engelsk>maximum
                 penetration force recorded on the surface</engelsk>
             kombinasjon_sondering_observasjon (Union[Unset, list['KombinasjonSonderingData']]):
     """
