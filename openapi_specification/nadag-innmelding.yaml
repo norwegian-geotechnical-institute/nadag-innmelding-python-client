@@ -5612,6 +5612,6 @@ paths:
                 $ref: "#/components/schemas/GeotekniskBorehull"
 info:
   title: Nadag innmelding API
-  version: 2025.09.25
+  version: 2025.09.26
 servers:
 - url: https://test.ngu.no/api/
