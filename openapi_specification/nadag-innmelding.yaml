@@ -5314,9 +5314,32 @@ components:
       bearerFormat: JWT
 paths:
   /nadag/innmelding/v1/GeotekniskBorehull:
+    post:
+      summary: Fetches a GeotekniskBorehull by external id.
+      description: Fetches a GeotekniskBorehull by external id. Returns the most recent
+        one.
+      requestBody:
+        description: The eksternIdentifikasjon of the GeotekniskBorehull to fetch.
+        required: true
+        content:
+          '*/*':
+            schema:
+              $ref: "#/components/schemas/EksternIdentifikasjon"
+      responses:
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: GeotekniskBorehull not found
+        "200":
+          description: Returns the GeotekniskBorehull you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskBorehull"
     get:
       summary: Fetches a GeotekniskBorehull by external id.
-      description: Fetches a GeotekniskBorehull by external id.
+      description: Fetches a GeotekniskBorehull by external id. Returns the most recent
+        one.
       parameters:
       - description: The externId of the GeotekniskBorehull to fetch.
         required: true
@@ -5329,6 +5352,12 @@ paths:
         schema:
           type: string
         name: eksternNavnerom
+        in: query
+      - description: The externVersjonId of the GeotekniskUnders to fetch.
+        required: false
+        schema:
+          type: string
+        name: eksternVersjonId
         in: query
       responses:
         "401":
@@ -5433,7 +5462,8 @@ paths:
   /nadag/innmelding/v1/GeotekniskUnders:
     get:
       summary: Fetches a GeotekniskUnders by external id.
-      description: Fetches a GeotekniskUnders by external id.
+      description: Fetches a GeotekniskUnders by external id. Returns the most recent
+        one.
       parameters:
       - description: The externId of the GeotekniskUnders to fetch.
         required: true
@@ -5446,6 +5476,12 @@ paths:
         schema:
           type: string
         name: eksternNavnerom
+        in: query
+      - description: The externVersjonId of the GeotekniskUnders to fetch.
+        required: false
+        schema:
+          type: string
+        name: eksternVersjonId
         in: query
       responses:
         "200":
@@ -5612,6 +5648,6 @@ paths:
                 $ref: "#/components/schemas/GeotekniskBorehull"
 info:
   title: Nadag innmelding API
-  version: 2025.09.26
+  version: 2025.10.01
 servers:
 - url: https://test.ngu.no/api/

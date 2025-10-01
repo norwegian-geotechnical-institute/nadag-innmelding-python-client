@@ -6,19 +6,22 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.geoteknisk_unders import GeotekniskUnders
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     ekstern_id: str,
     ekstern_navnerom: str,
+    ekstern_versjon_id: Union[Unset, str] = UNSET,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
     params["eksternId"] = ekstern_id
 
     params["eksternNavnerom"] = ekstern_navnerom
+
+    params["eksternVersjonId"] = ekstern_versjon_id
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -61,14 +64,16 @@ def sync_detailed(
     client: Union[AuthenticatedClient, Client],
     ekstern_id: str,
     ekstern_navnerom: str,
+    ekstern_versjon_id: Union[Unset, str] = UNSET,
 ) -> Response[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskUnders by external id. Returns the most recent one.
 
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
+        ekstern_versjon_id (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -81,6 +86,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         ekstern_id=ekstern_id,
         ekstern_navnerom=ekstern_navnerom,
+        ekstern_versjon_id=ekstern_versjon_id,
     )
 
     response = client.get_httpx_client().request(
@@ -95,14 +101,16 @@ def sync(
     client: Union[AuthenticatedClient, Client],
     ekstern_id: str,
     ekstern_navnerom: str,
+    ekstern_versjon_id: Union[Unset, str] = UNSET,
 ) -> Optional[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskUnders by external id. Returns the most recent one.
 
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
+        ekstern_versjon_id (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -116,6 +124,7 @@ def sync(
         client=client,
         ekstern_id=ekstern_id,
         ekstern_navnerom=ekstern_navnerom,
+        ekstern_versjon_id=ekstern_versjon_id,
     ).parsed
 
 
@@ -124,14 +133,16 @@ async def asyncio_detailed(
     client: Union[AuthenticatedClient, Client],
     ekstern_id: str,
     ekstern_navnerom: str,
+    ekstern_versjon_id: Union[Unset, str] = UNSET,
 ) -> Response[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskUnders by external id. Returns the most recent one.
 
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
+        ekstern_versjon_id (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -144,6 +155,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         ekstern_id=ekstern_id,
         ekstern_navnerom=ekstern_navnerom,
+        ekstern_versjon_id=ekstern_versjon_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -156,14 +168,16 @@ async def asyncio(
     client: Union[AuthenticatedClient, Client],
     ekstern_id: str,
     ekstern_navnerom: str,
+    ekstern_versjon_id: Union[Unset, str] = UNSET,
 ) -> Optional[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
-     Fetches a GeotekniskUnders by external id.
+     Fetches a GeotekniskUnders by external id. Returns the most recent one.
 
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
+        ekstern_versjon_id (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -178,5 +192,6 @@ async def asyncio(
             client=client,
             ekstern_id=ekstern_id,
             ekstern_navnerom=ekstern_navnerom,
+            ekstern_versjon_id=ekstern_versjon_id,
         )
     ).parsed
