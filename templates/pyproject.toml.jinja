@@ -10,7 +10,7 @@ description = "{{ package_description }}"
 authors = ["Jiyang Ye <jiyang.ye@ngi.no>"]
 maintainers = ["Jiyang Ye <jiyang.ye@ngi.no>", "Jostein Leira <jostein.leira@ngi.no>"]
 readme = "README.md"
-{% if pdm %}requires-python = ">=3.9,<4.0"{% endif %}
+{% if pdm %}requires-python = ">=3.10,<4.0"{% endif %}
 {% if poetry %}
 packages = [
     {include = "{{ package_name }}"},
@@ -31,7 +31,7 @@ distribution = true
 {% if poetry %}
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.13"
 httpx = ">=0.20.0,<0.29.0"
 attrs = ">=22.2.0"
 python-dateutil = "^2.8.0"

@@ -18,7 +18,32 @@ pip install nadag-innmelding-python-client
 ## Usage
 
 ```python
+from nadag_innmelding_python_client import AuthenticatedClient
+from nadag_innmelding_python_client.api.default import get_nadag_innmelding_v_1_geoteknisk_unders as get_geoteknisk_unders
+from nadag_innmelding_python_client.models import GeotekniskUnders
+from nadag_innmelding_python_client.types import Response
 
+secret_token = nadag_authenticate() # This you need to implement this yourself
+
+client = AuthenticatedClient(
+    base_url="https://test.ngu.no/api/",
+    token=secret_token,
+)
+
+response: Response[GeotekniskUnders] = get_geoteknisk_unders.sync_detailed(
+    client=client,
+    ekstern_id=str(project_id),
+    ekstern_navnerom="Your Namespace",
+)
+
+match response.status_code:
+    case HTTPStatus.OK:
+        geoteknisk_unders: GeotekniskUnders = response.parsed
+    case HTTPStatus.NOT_FOUND:
+        # Create a new project in NADAG
+    case _:
+        # Handle other status codes
+        raise Exception(f"Got unexpected status code {response.status_code} for project ")
 ```
 
 ## Automation: keeping the client in sync with upstream OpenAPI
