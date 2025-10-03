@@ -30,7 +30,6 @@ client = AuthenticatedClient(
     token=secret_token,
 )
 
-
 response: Response[GeotekniskUnders] = get_geoteknisk_unders.sync_detailed(
     client=client,
     ekstern_id=str(project_id),
