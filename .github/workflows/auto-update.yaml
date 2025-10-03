@@ -2,7 +2,7 @@ name: Auto Update from OpenAPI Spec
 
 on:
   schedule:
-    - cron: "0 4 * * *" # 04:00 UTC daily
+    - cron: "0 4,10,12,14 * * MON-FRI" # Every two hours 4-14 UTC Monday to Friday
   workflow_dispatch:
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.13'
 
       - name: Install generator
         run: |
@@ -92,9 +92,9 @@ jobs:
         if: steps.download.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v6
         with:
-          commit-message: "chore: update OpenAPI spec to version ${{ steps.regenerate.outputs.updated_version }}"
+          commit-message: "Update OpenAPI spec to version ${{ steps.regenerate.outputs.updated_version }}"
           branch: chore/openapi-spec-v${{ steps.regenerate.outputs.updated_version }}
-          title: "chore: update OpenAPI spec to version ${{ steps.regenerate.outputs.updated_version }}"
+          title: "Update OpenAPI spec to version ${{ steps.regenerate.outputs.updated_version }}"
           body: |
             Automated update for OpenAPI spec version `${{ steps.regenerate.outputs.updated_version }}`.
 
@@ -104,7 +104,7 @@ jobs:
             - Bumped package version in pyproject.toml
 
             After merging this PR, create a GitHub Release (tag `v${{ steps.regenerate.outputs.updated_version }}`) to trigger the publish workflow.
-          labels: automated, openapi, chore
+          labels: automated, openapi
           signoff: false
           draft: false
           delete-branch: false
