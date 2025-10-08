@@ -763,16 +763,18 @@ components:
       type: string
       enum:
       - epsg_4326
+      - epsg_5971
       - epsg_5972
       - epsg_5973
       - epsg_5974
       - epsg_5975
       - epsg_5976
-      - epsg_32632
-      - epsg_32633
-      - epsg_32634
-      - epsg_32635
-      - epsg_32636
+      - epsg_25831
+      - epsg_25832
+      - epsg_25833
+      - epsg_25834
+      - epsg_25835
+      - epsg_25836
       - epsg_5105
       - epsg_5106
       - epsg_5107
@@ -5454,9 +5456,19 @@ paths:
           type: string
         name: geotekniskUndersId
         in: path
+      - description: The epsg code of the geometry.
+        required: true
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+        name: epsgCode
+        in: query
       responses:
-        "204":
-          description: No Content
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
       security:
       - Authentication: []
   /nadag/innmelding/v1/GeotekniskUnders:
@@ -5546,6 +5558,8 @@ paths:
       responses:
         "401":
           description: Unauthorized Error
+        "404":
+          description: Not Found Error
         "200":
           description: The GeotekniskUnders is updated
           content:
