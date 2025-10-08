@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nadag-innmelding-python-client"
-version = "2025.10.02"
+version = "2025.10.02.2"
 description = "A client library for accessing Nadag innmelding API"
 authors = ["Jiyang Ye <jiyang.ye@ngi.no>"]
 maintainers = ["Jiyang Ye <jiyang.ye@ngi.no>", "Jostein Leira <jostein.leira@ngi.no>"]
