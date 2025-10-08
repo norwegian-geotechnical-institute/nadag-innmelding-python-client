@@ -5324,7 +5324,7 @@ paths:
         description: The eksternIdentifikasjon of the GeotekniskBorehull to fetch.
         required: true
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: "#/components/schemas/EksternIdentifikasjon"
       responses:
@@ -5662,6 +5662,6 @@ paths:
                 $ref: "#/components/schemas/GeotekniskBorehull"
 info:
   title: Nadag innmelding API
-  version: 2025.10.02.2
+  version: 2025.10.02
 servers:
 - url: https://test.ngu.no/api/
