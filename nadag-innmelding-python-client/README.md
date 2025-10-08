@@ -5,62 +5,40 @@ A client library for accessing Nadag innmelding API
 First, create a client:
 
 ```python
-from nadag_innmelding_python_client import Client
-
-client = Client(base_url="https://api.example.com")
-```
-
-If the endpoints you're going to hit require authentication, use `AuthenticatedClient` instead:
-
-```python
 from nadag_innmelding_python_client import AuthenticatedClient
 
-client = AuthenticatedClient(base_url="https://api.example.com", token="SuperSecretToken")
+secret_token = nadag_authenticate() # This you need to implement this yourself
+
+client = AuthenticatedClient(
+    base_url="https://test.ngu.no/api/",
+    token=secret_token,
+)
+
 ```
 
 Now call your endpoint and use your models:
 
 ```python
-from nadag_innmelding_python_client.models import MyDataModel
-from nadag_innmelding_python_client.api.my_tag import get_my_data_model
+from nadag_innmelding_python_client.api.default import get_nadag_innmelding_v_1_geoteknisk_unders as get_geoteknisk_unders
+from nadag_innmelding_python_client.models import GeotekniskUnders
 from nadag_innmelding_python_client.types import Response
 
 with client as client:
-    my_data: MyDataModel = get_my_data_model.sync(client=client)
-    # or if you need more info (e.g. status_code)
-    response: Response[MyDataModel] = get_my_data_model.sync_detailed(client=client)
-```
+    response: Response[GeotekniskUnders] = get_geoteknisk_unders.sync_detailed(
+        client=client,
+        ekstern_id=str(project_id),
+        ekstern_navnerom="Your Namespace",
+    )
 
-Or do the same thing with an async version:
+    match response.status_code:
+        case HTTPStatus.OK:
+            geoteknisk_unders: GeotekniskUnders = response.parsed
+        case HTTPStatus.NOT_FOUND:
+            # Create a new project in NADAG
+        case _:
+            # Handle other status codes
+            raise Exception(f"Got unexpected status code {response.status_code} for project ")
 
-```python
-from nadag_innmelding_python_client.models import MyDataModel
-from nadag_innmelding_python_client.api.my_tag import get_my_data_model
-from nadag_innmelding_python_client.types import Response
-
-async with client as client:
-    my_data: MyDataModel = await get_my_data_model.asyncio(client=client)
-    response: Response[MyDataModel] = await get_my_data_model.asyncio_detailed(client=client)
-```
-
-By default, when you're calling an HTTPS API it will attempt to verify that SSL is working correctly. Using certificate verification is highly recommended most of the time, but sometimes you may need to authenticate to a server (especially an internal server) using a custom certificate bundle.
-
-```python
-client = AuthenticatedClient(
-    base_url="https://internal_api.example.com", 
-    token="SuperSecretToken",
-    verify_ssl="/path/to/certificate_bundle.pem",
-)
-```
-
-You can also disable certificate validation altogether, but beware that **this is a security risk**.
-
-```python
-client = AuthenticatedClient(
-    base_url="https://internal_api.example.com", 
-    token="SuperSecretToken", 
-    verify_ssl=False
-)
 ```
 
 Things to know:
