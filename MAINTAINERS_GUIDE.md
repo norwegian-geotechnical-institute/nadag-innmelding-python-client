@@ -12,7 +12,7 @@ Or just follow these steps:
 1. Copy and rename the source openapi file the `openapi_specification/nadag-innmelding.yaml`
 2. Run the following command to generate the client code:
    ```bash
-    uvx openapi-python-client generate --path openapi_specification/nadag-innmelding.yaml --overwrite --custom-template-path=templates --config config.yaml
+    uvx openapi-python-client generate --path openapi_specification/nadag-innmelding.yaml --overwrite --custom-template-path=templates --config config.yaml --meta=uv
     ```
 3. Check in the changes to the repository (files updated, added, or removed).
 4. In the GitHub project, create a new release and the package should be published to PyPi.
