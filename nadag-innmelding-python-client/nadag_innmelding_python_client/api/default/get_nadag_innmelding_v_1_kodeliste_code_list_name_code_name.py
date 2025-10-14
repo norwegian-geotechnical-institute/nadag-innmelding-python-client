@@ -5,41 +5,29 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.ekstern_identifikasjon import EksternIdentifikasjon
-from ...models.geoteknisk_borehull import GeotekniskBorehull
+from ...models.geoteknisk_unders import GeotekniskUnders
 from ...types import Response
 
 
 def _get_kwargs(
-    *,
-    body: EksternIdentifikasjon,
+    code_list_name: str,
+    code_name: str,
 ) -> dict[str, Any]:
-    headers: dict[str, Any] = {}
-
     _kwargs: dict[str, Any] = {
-        "method": "post",
-        "url": "/nadag/innmelding/v1/GeotekniskBorehull",
+        "method": "get",
+        "url": f"/nadag/innmelding/v1/kodeliste/{code_list_name}/{code_name}",
     }
 
-    _kwargs["json"] = body.to_dict()
-
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, GeotekniskBorehull]]:
+) -> Optional[Union[Any, GeotekniskUnders]]:
     if response.status_code == 200:
-        response_200 = GeotekniskBorehull.from_dict(response.json())
+        response_200 = GeotekniskUnders.from_dict(response.json())
 
         return response_200
-
-    if response.status_code == 401:
-        response_401 = cast(Any, None)
-        return response_401
 
     if response.status_code == 404:
         response_404 = cast(Any, None)
@@ -53,7 +41,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, GeotekniskBorehull]]:
+) -> Response[Union[Any, GeotekniskUnders]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,28 +51,30 @@ def _build_response(
 
 
 def sync_detailed(
+    code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EksternIdentifikasjon,
-) -> Response[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+) -> Response[Union[Any, GeotekniskUnders]]:
+    """Retrieves a code in a code list.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a code in a code list.
 
     Args:
-        body (EksternIdentifikasjon): Identifikasjon av et objekt, ivaretatt av den ansvarlige
-            leverandør inn til NADAG.
+        code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, GeotekniskBorehull]]
+        Response[Union[Any, GeotekniskUnders]]
     """
 
     kwargs = _get_kwargs(
-        body=body,
+        code_list_name=code_list_name,
+        code_name=code_name,
     )
 
     response = client.get_httpx_client().request(
@@ -95,55 +85,59 @@ def sync_detailed(
 
 
 def sync(
+    code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EksternIdentifikasjon,
-) -> Optional[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+) -> Optional[Union[Any, GeotekniskUnders]]:
+    """Retrieves a code in a code list.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a code in a code list.
 
     Args:
-        body (EksternIdentifikasjon): Identifikasjon av et objekt, ivaretatt av den ansvarlige
-            leverandør inn til NADAG.
+        code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, GeotekniskBorehull]
+        Union[Any, GeotekniskUnders]
     """
 
     return sync_detailed(
+        code_list_name=code_list_name,
+        code_name=code_name,
         client=client,
-        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
+    code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EksternIdentifikasjon,
-) -> Response[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+) -> Response[Union[Any, GeotekniskUnders]]:
+    """Retrieves a code in a code list.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a code in a code list.
 
     Args:
-        body (EksternIdentifikasjon): Identifikasjon av et objekt, ivaretatt av den ansvarlige
-            leverandør inn til NADAG.
+        code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, GeotekniskBorehull]]
+        Response[Union[Any, GeotekniskUnders]]
     """
 
     kwargs = _get_kwargs(
-        body=body,
+        code_list_name=code_list_name,
+        code_name=code_name,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -152,29 +146,31 @@ async def asyncio_detailed(
 
 
 async def asyncio(
+    code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EksternIdentifikasjon,
-) -> Optional[Union[Any, GeotekniskBorehull]]:
-    """Fetches a GeotekniskBorehull by external id.
+) -> Optional[Union[Any, GeotekniskUnders]]:
+    """Retrieves a code in a code list.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a code in a code list.
 
     Args:
-        body (EksternIdentifikasjon): Identifikasjon av et objekt, ivaretatt av den ansvarlige
-            leverandør inn til NADAG.
+        code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, GeotekniskBorehull]
+        Union[Any, GeotekniskUnders]
     """
 
     return (
         await asyncio_detailed(
+            code_list_name=code_list_name,
+            code_name=code_name,
             client=client,
-            body=body,
         )
     ).parsed

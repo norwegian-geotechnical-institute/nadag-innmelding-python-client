@@ -5324,7 +5324,7 @@ paths:
         description: The eksternIdentifikasjon of the GeotekniskBorehull to fetch.
         required: true
         content:
-          application/json:
+          '*/*':
             schema:
               $ref: "#/components/schemas/EksternIdentifikasjon"
       responses:
@@ -5531,6 +5531,26 @@ paths:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
       security:
       - Authentication: []
+  /nadag/innmelding/v1/kodeliste/{codeListName}:
+    get:
+      summary: Retrieves a list of codes and their labels.
+      description: Fetches a list of codes and their labels.
+      parameters:
+      - description: The code list to fetch.
+        required: true
+        schema:
+          type: string
+        name: codeListName
+        in: path
+      responses:
+        "200":
+          description: Returns the list of codes and their labels.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
+        "404":
+          description: Not Found Error
   /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}:
     put:
       summary: Updates a GeotekniskUnders.
@@ -5660,8 +5680,34 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeotekniskBorehull"
+  /nadag/innmelding/v1/kodeliste/{codeListName}/{codeName}:
+    get:
+      summary: Retrieves a code in a code list.
+      description: Fetches a code in a code list.
+      parameters:
+      - description: The code list to fetch.
+        required: true
+        schema:
+          type: string
+        name: codeListName
+        in: path
+      - description: The code to fetch.
+        required: true
+        schema:
+          type: string
+        name: codeName
+        in: path
+      responses:
+        "200":
+          description: Returns the code with the provided name.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
+        "404":
+          description: Not Found Error
 info:
   title: Nadag innmelding API
-  version: 2025.10.02.2
+  version: 2025.10.10
 servers:
 - url: https://test.ngu.no/api/
