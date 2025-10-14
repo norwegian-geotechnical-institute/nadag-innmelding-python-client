@@ -5324,7 +5324,7 @@ paths:
         description: The eksternIdentifikasjon of the GeotekniskBorehull to fetch.
         required: true
         content:
-          '*/*':
+          application/json:
             schema:
               $ref: "#/components/schemas/EksternIdentifikasjon"
       responses:
