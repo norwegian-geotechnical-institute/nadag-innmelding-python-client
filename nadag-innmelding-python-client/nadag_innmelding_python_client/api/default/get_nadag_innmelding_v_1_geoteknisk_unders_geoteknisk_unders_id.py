@@ -6,15 +6,27 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.geoteknisk_unders import GeotekniskUnders
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     geoteknisk_unders_id: str,
+    *,
+    include_metode: Union[Unset, bool] = UNSET,
+    versjon_id: Union[Unset, int] = UNSET,
 ) -> dict[str, Any]:
+    params: dict[str, Any] = {}
+
+    params["includeMetode"] = include_metode
+
+    params["versjonId"] = versjon_id
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": f"/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}",
+        "params": params,
     }
 
     return _kwargs
@@ -31,6 +43,10 @@ def _parse_response(
     if response.status_code == 401:
         response_401 = cast(Any, None)
         return response_401
+
+    if response.status_code == 404:
+        response_404 = cast(Any, None)
+        return response_404
 
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
@@ -53,13 +69,17 @@ def sync_detailed(
     geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
+    versjon_id: Union[Unset, int] = UNSET,
 ) -> Response[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
      Fetches a GeotekniskUnders by id.
 
     Args:
         geoteknisk_unders_id (str):
+        include_metode (Union[Unset, bool]):
+        versjon_id (Union[Unset, int]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -71,6 +91,8 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
+        include_metode=include_metode,
+        versjon_id=versjon_id,
     )
 
     response = client.get_httpx_client().request(
@@ -84,13 +106,17 @@ def sync(
     geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
+    versjon_id: Union[Unset, int] = UNSET,
 ) -> Optional[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
      Fetches a GeotekniskUnders by id.
 
     Args:
         geoteknisk_unders_id (str):
+        include_metode (Union[Unset, bool]):
+        versjon_id (Union[Unset, int]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -103,6 +129,8 @@ def sync(
     return sync_detailed(
         geoteknisk_unders_id=geoteknisk_unders_id,
         client=client,
+        include_metode=include_metode,
+        versjon_id=versjon_id,
     ).parsed
 
 
@@ -110,13 +138,17 @@ async def asyncio_detailed(
     geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
+    versjon_id: Union[Unset, int] = UNSET,
 ) -> Response[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
      Fetches a GeotekniskUnders by id.
 
     Args:
         geoteknisk_unders_id (str):
+        include_metode (Union[Unset, bool]):
+        versjon_id (Union[Unset, int]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -128,6 +160,8 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
+        include_metode=include_metode,
+        versjon_id=versjon_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -139,13 +173,17 @@ async def asyncio(
     geoteknisk_unders_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
+    versjon_id: Union[Unset, int] = UNSET,
 ) -> Optional[Union[Any, GeotekniskUnders]]:
-    """Fetches a GeotekniskUnders by id.
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
      Fetches a GeotekniskUnders by id.
 
     Args:
         geoteknisk_unders_id (str):
+        include_metode (Union[Unset, bool]):
+        versjon_id (Union[Unset, int]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -159,5 +197,7 @@ async def asyncio(
         await asyncio_detailed(
             geoteknisk_unders_id=geoteknisk_unders_id,
             client=client,
+            include_metode=include_metode,
+            versjon_id=versjon_id,
         )
     ).parsed

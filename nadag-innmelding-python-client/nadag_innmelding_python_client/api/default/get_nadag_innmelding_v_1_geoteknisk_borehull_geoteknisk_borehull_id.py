@@ -6,15 +6,24 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.geoteknisk_borehull import GeotekniskBorehull
-from ...types import Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     geoteknisk_borehull_id: str,
+    *,
+    include_metode: Union[Unset, bool] = UNSET,
 ) -> dict[str, Any]:
+    params: dict[str, Any] = {}
+
+    params["includeMetode"] = include_metode
+
+    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
+
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": f"/nadag/innmelding/v1/GeotekniskBorehull/{geoteknisk_borehull_id}",
+        "params": params,
     }
 
     return _kwargs
@@ -57,6 +66,7 @@ def sync_detailed(
     geoteknisk_borehull_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
 ) -> Response[Union[Any, GeotekniskBorehull]]:
     """Fetches a GeotekniskBorehull by id.
 
@@ -64,6 +74,7 @@ def sync_detailed(
 
     Args:
         geoteknisk_borehull_id (str):
+        include_metode (Union[Unset, bool]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -75,6 +86,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_borehull_id=geoteknisk_borehull_id,
+        include_metode=include_metode,
     )
 
     response = client.get_httpx_client().request(
@@ -88,6 +100,7 @@ def sync(
     geoteknisk_borehull_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
 ) -> Optional[Union[Any, GeotekniskBorehull]]:
     """Fetches a GeotekniskBorehull by id.
 
@@ -95,6 +108,7 @@ def sync(
 
     Args:
         geoteknisk_borehull_id (str):
+        include_metode (Union[Unset, bool]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -107,6 +121,7 @@ def sync(
     return sync_detailed(
         geoteknisk_borehull_id=geoteknisk_borehull_id,
         client=client,
+        include_metode=include_metode,
     ).parsed
 
 
@@ -114,6 +129,7 @@ async def asyncio_detailed(
     geoteknisk_borehull_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
 ) -> Response[Union[Any, GeotekniskBorehull]]:
     """Fetches a GeotekniskBorehull by id.
 
@@ -121,6 +137,7 @@ async def asyncio_detailed(
 
     Args:
         geoteknisk_borehull_id (str):
+        include_metode (Union[Unset, bool]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -132,6 +149,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_borehull_id=geoteknisk_borehull_id,
+        include_metode=include_metode,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -143,6 +161,7 @@ async def asyncio(
     geoteknisk_borehull_id: str,
     *,
     client: Union[AuthenticatedClient, Client],
+    include_metode: Union[Unset, bool] = UNSET,
 ) -> Optional[Union[Any, GeotekniskBorehull]]:
     """Fetches a GeotekniskBorehull by id.
 
@@ -150,6 +169,7 @@ async def asyncio(
 
     Args:
         geoteknisk_borehull_id (str):
+        include_metode (Union[Unset, bool]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -163,5 +183,6 @@ async def asyncio(
         await asyncio_detailed(
             geoteknisk_borehull_id=geoteknisk_borehull_id,
             client=client,
+            include_metode=include_metode,
         )
     ).parsed
