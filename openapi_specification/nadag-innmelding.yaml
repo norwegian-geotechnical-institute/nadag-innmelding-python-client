@@ -433,6 +433,51 @@ components:
           $ref: "#/components/schemas/AkviferType"
           type: string
           description: grunnvannsmagasin <engelsk>aquifer (ground water reservoir)</engelsk>
+    DiagnosticDto:
+      type: object
+      description: Result from checking a single validation rule.
+      properties:
+        validationId:
+          type: string
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+          description: Identifier for the validation
+        target:
+          type: object
+          description: Reference (identifier) for the target domain model object
+        property:
+          type: string
+          description: The property of the target domain model object that was checked
+        severity:
+          $ref: "#/components/schemas/Severity"
+          type: string
+          description: The severity of the diagnostic
+        description:
+          type: string
+          description: The human-readable description of the diagnostic
+        rootOwner:
+          type: object
+          description: Reference (identifier) for the root owner of the target
+        timestamp:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+          description: The timestamp of the validation
+    DiagnosticsDto:
+      type: object
+      description: "A Dto for Diagnostic instances, with a list of DiagnosticDto instances."
+      properties:
+        maxSeverity:
+          $ref: "#/components/schemas/Severity"
+          type: string
+          description: "The max severity of the diagnostics, determines the overall\
+            \ status of the submission."
+        diagnostics:
+          type: array
+          items:
+            $ref: "#/components/schemas/DiagnosticDto"
+          description: "The list of diagnostics, with details about each diagnostic."
     DilatometerTest:
       type: object
       description: "en enkel innretning, formet som et flatt blad designet for å trykkes\
@@ -4556,6 +4601,13 @@ components:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
             and results from environmental investigation<engelsk>
+    Severity:
+      type: string
+      enum:
+      - OK
+      - WARNING
+      - ERROR
+      - FATAL
     SkovlProeve:
       type: object
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
@@ -5105,6 +5157,10 @@ components:
             \ dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured\
             \ cone resistance during penetration of the probe (point load divided\
             \ by cross-sectional area of probe) [MPa].</engelsk>"
+    UUID:
+      type: string
+      format: uuid
+      pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
     ValidatedGeotekniskUnders:
       type: object
       description: GeotekniskUnders med valideringsresultat
@@ -5112,7 +5168,7 @@ components:
         geotekniskUnders:
           $ref: "#/components/schemas/GeotekniskUnders"
         diagnostics:
-          type: object
+          $ref: "#/components/schemas/DiagnosticsDto"
         attachmentInfos:
           $ref: "#/components/schemas/AttachmentInfosDto"
     VannProeve:
@@ -5372,6 +5428,33 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeotekniskBorehull"
+  /validation/diagnosticsFromTarget/{targetLokalId}/{targetVersjonId}:
+    get:
+      summary: Fetches diagnostics for a target ID.
+      description: Fetches all diagnostics from the Identifikasjon of a target.
+      parameters:
+      - description: The target UUID of the diagnostics to fetch
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        name: targetLokalId
+        in: path
+      - description: The target versjonId of the diagnostics to fetch
+        required: true
+        schema:
+          type: integer
+          format: int64
+        name: targetVersjonId
+        in: path
+      responses:
+        "401":
+          description: Unauthorized Error
+        "200":
+          description: Returns the diagnostics you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsDto"
   /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/undersPkt/{geotekniskBorehullId}:
     put:
       summary: Updates a GeotekniskBorehull.
@@ -5471,6 +5554,32 @@ paths:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
       security:
       - Authentication: []
+  /kodeliste/{codeListName}/{codeName}:
+    get:
+      summary: Retrieves a code in a code list.
+      description: Fetches a code in a code list.
+      parameters:
+      - description: The code list to fetch.
+        required: true
+        schema:
+          type: string
+        name: codeListName
+        in: path
+      - description: The code to fetch.
+        required: true
+        schema:
+          type: string
+        name: codeName
+        in: path
+      responses:
+        "200":
+          description: Returns the code with the provided name.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
+        "404":
+          description: Not Found Error
   /nadag/innmelding/v1/GeotekniskUnders:
     get:
       summary: Fetches a GeotekniskUnders by external id.
@@ -5531,7 +5640,7 @@ paths:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
       security:
       - Authentication: []
-  /nadag/innmelding/v1/kodeliste/{codeListName}:
+  /kodeliste/{codeListName}:
     get:
       summary: Retrieves a list of codes and their labels.
       description: Fetches a list of codes and their labels.
@@ -5551,6 +5660,33 @@ paths:
                 $ref: "#/components/schemas/GeotekniskUnders"
         "404":
           description: Not Found Error
+  /validation/diagnosticsFromRoot/{rootLokalId}/{rootVersjonId}:
+    get:
+      summary: Fetches a DiagnosticsDto from root ID.
+      description: Fetches all diagnostics from the Identifikasjon of a root.
+      parameters:
+      - description: The root UUID of the diagnostics to fetch
+        required: true
+        schema:
+          $ref: "#/components/schemas/UUID"
+        name: rootLokalId
+        in: path
+      - description: The root versjonId of the diagnostics to fetch
+        required: true
+        schema:
+          type: integer
+          format: int64
+        name: rootVersjonId
+        in: path
+      responses:
+        "401":
+          description: Unauthorized Error
+        "200":
+          description: Returns the diagnostics you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsDto"
   /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}:
     put:
       summary: Updates a GeotekniskUnders.
@@ -5701,34 +5837,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeotekniskBorehull"
-  /nadag/innmelding/v1/kodeliste/{codeListName}/{codeName}:
-    get:
-      summary: Retrieves a code in a code list.
-      description: Fetches a code in a code list.
-      parameters:
-      - description: The code list to fetch.
-        required: true
-        schema:
-          type: string
-        name: codeListName
-        in: path
-      - description: The code to fetch.
-        required: true
-        schema:
-          type: string
-        name: codeName
-        in: path
-      responses:
-        "200":
-          description: Returns the code with the provided name.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GeotekniskUnders"
-        "404":
-          description: Not Found Error
 info:
   title: Nadag innmelding API
-  version: 2025.10.14
+  version: 2025.10.23
 servers:
 - url: https://test.ngu.no/api/

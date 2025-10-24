@@ -8,8 +8,8 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.attachment_infos_dto import AttachmentInfosDto
+    from ..models.diagnostics_dto import DiagnosticsDto
     from ..models.geoteknisk_unders import GeotekniskUnders
-    from ..models.validated_geoteknisk_unders_diagnostics import ValidatedGeotekniskUndersDiagnostics
 
 
 T = TypeVar("T", bound="ValidatedGeotekniskUnders")
@@ -23,12 +23,13 @@ class ValidatedGeotekniskUnders:
         geoteknisk_unders (Union[Unset, GeotekniskUnders]): geografisk område hvor det finnes eller er planlagt
             geotekniske borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are planned
             geotechnical boreholes for a given project</engelsk>
-        diagnostics (Union[Unset, ValidatedGeotekniskUndersDiagnostics]):
+        diagnostics (Union[Unset, DiagnosticsDto]): A Dto for Diagnostic instances, with a list of DiagnosticDto
+            instances.
         attachment_infos (Union[Unset, AttachmentInfosDto]): Attachment infos result
     """
 
     geoteknisk_unders: Union[Unset, "GeotekniskUnders"] = UNSET
-    diagnostics: Union[Unset, "ValidatedGeotekniskUndersDiagnostics"] = UNSET
+    diagnostics: Union[Unset, "DiagnosticsDto"] = UNSET
     attachment_infos: Union[Unset, "AttachmentInfosDto"] = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -60,8 +61,8 @@ class ValidatedGeotekniskUnders:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.attachment_infos_dto import AttachmentInfosDto
+        from ..models.diagnostics_dto import DiagnosticsDto
         from ..models.geoteknisk_unders import GeotekniskUnders
-        from ..models.validated_geoteknisk_unders_diagnostics import ValidatedGeotekniskUndersDiagnostics
 
         d = dict(src_dict)
         _geoteknisk_unders = d.pop("geotekniskUnders", UNSET)
@@ -72,11 +73,11 @@ class ValidatedGeotekniskUnders:
             geoteknisk_unders = GeotekniskUnders.from_dict(_geoteknisk_unders)
 
         _diagnostics = d.pop("diagnostics", UNSET)
-        diagnostics: Union[Unset, ValidatedGeotekniskUndersDiagnostics]
+        diagnostics: Union[Unset, DiagnosticsDto]
         if isinstance(_diagnostics, Unset):
             diagnostics = UNSET
         else:
-            diagnostics = ValidatedGeotekniskUndersDiagnostics.from_dict(_diagnostics)
+            diagnostics = DiagnosticsDto.from_dict(_diagnostics)
 
         _attachment_infos = d.pop("attachmentInfos", UNSET)
         attachment_infos: Union[Unset, AttachmentInfosDto]
