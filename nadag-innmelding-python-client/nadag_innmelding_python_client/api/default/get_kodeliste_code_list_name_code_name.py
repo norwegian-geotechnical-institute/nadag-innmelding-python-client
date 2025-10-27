@@ -11,10 +11,11 @@ from ...types import Response
 
 def _get_kwargs(
     code_list_name: str,
+    code_name: str,
 ) -> dict[str, Any]:
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/nadag/innmelding/v1/kodeliste/{code_list_name}",
+        "url": f"/kodeliste/{code_list_name}/{code_name}",
     }
 
     return _kwargs
@@ -51,15 +52,17 @@ def _build_response(
 
 def sync_detailed(
     code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Any, GeotekniskUnders]]:
-    """Retrieves a list of codes and their labels.
+    """Retrieves a code in a code list.
 
-     Fetches a list of codes and their labels.
+     Fetches a code in a code list.
 
     Args:
         code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -71,6 +74,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         code_list_name=code_list_name,
+        code_name=code_name,
     )
 
     response = client.get_httpx_client().request(
@@ -82,15 +86,17 @@ def sync_detailed(
 
 def sync(
     code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Any, GeotekniskUnders]]:
-    """Retrieves a list of codes and their labels.
+    """Retrieves a code in a code list.
 
-     Fetches a list of codes and their labels.
+     Fetches a code in a code list.
 
     Args:
         code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -102,21 +108,24 @@ def sync(
 
     return sync_detailed(
         code_list_name=code_list_name,
+        code_name=code_name,
         client=client,
     ).parsed
 
 
 async def asyncio_detailed(
     code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Any, GeotekniskUnders]]:
-    """Retrieves a list of codes and their labels.
+    """Retrieves a code in a code list.
 
-     Fetches a list of codes and their labels.
+     Fetches a code in a code list.
 
     Args:
         code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -128,6 +137,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         code_list_name=code_list_name,
+        code_name=code_name,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -137,15 +147,17 @@ async def asyncio_detailed(
 
 async def asyncio(
     code_list_name: str,
+    code_name: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Any, GeotekniskUnders]]:
-    """Retrieves a list of codes and their labels.
+    """Retrieves a code in a code list.
 
-     Fetches a list of codes and their labels.
+     Fetches a code in a code list.
 
     Args:
         code_list_name (str):
+        code_name (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -158,6 +170,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             code_list_name=code_list_name,
+            code_name=code_name,
             client=client,
         )
     ).parsed

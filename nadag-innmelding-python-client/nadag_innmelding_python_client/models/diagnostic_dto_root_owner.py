@@ -4,12 +4,12 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="ValidatedGeotekniskUndersDiagnostics")
+T = TypeVar("T", bound="DiagnosticDtoRootOwner")
 
 
 @_attrs_define
-class ValidatedGeotekniskUndersDiagnostics:
-    """ """
+class DiagnosticDtoRootOwner:
+    """Reference (identifier) for the root owner of the target"""
 
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -22,10 +22,10 @@ class ValidatedGeotekniskUndersDiagnostics:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        validated_geoteknisk_unders_diagnostics = cls()
+        diagnostic_dto_root_owner = cls()
 
-        validated_geoteknisk_unders_diagnostics.additional_properties = d
-        return validated_geoteknisk_unders_diagnostics
+        diagnostic_dto_root_owner.additional_properties = d
+        return diagnostic_dto_root_owner
 
     @property
     def additional_keys(self) -> list[str]:
