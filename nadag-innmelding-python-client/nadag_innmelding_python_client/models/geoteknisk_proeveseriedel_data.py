@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,78 +17,76 @@ class GeotekniskProeveseriedelData:
     """Data som tilhører en geoteknisk prøveseriedel <engelsk>Data for a soil test part </engelsk>
 
     Attributes:
-        lag_posisjon (Union[Unset, LagPosisjon]): kodeliste som brukes for å fortelle i hvilken del av prøvedelen som
-            det er gjort undersøkelser
-        pr_ø_ve_metode (Union[Unset, str]): metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
-        aksiel_deformasjon (Union[Unset, float]): angis i [%] <engelsk> the axial deformation (bruddef) %</engelsk>
-        skj_æ_rfasthet_udrenert (Union[Unset, float]): bestemmelse av udrenert skjærfasthet ved enaksial trykkprøving i
+        lag_posisjon (LagPosisjon | Unset): kodeliste som brukes for å fortelle i hvilken del av prøvedelen som det er
+            gjort undersøkelser
+        pr_ø_ve_metode (str | Unset): metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
+        aksiel_deformasjon (float | Unset): angis i [%] <engelsk> the axial deformation (bruddef) %</engelsk>
+        skj_æ_rfasthet_udrenert (float | Unset): bestemmelse av udrenert skjærfasthet ved enaksial trykkprøving i
             laboratoriet [kPa] <engelsk>the axial shear strength, the undrained shear strength by unconfined compression
             testing (sue) [kPa].</engelsk>
-        detaljert_lag_sammensetning (Union[Unset, str]): tekst som beskriver lagsammensetningen <engelsk>the detailed
-            layer composition, a text containing a detailed layer composition</engelsk>
-        skj_æ_rfasthet_omr_ø_rt (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med fullstendig omrørt
-            struktur [kPa] <engelsk>the shear strength for a remoulded test material (suo) [kPa]</engelsk>
-        densitet_pr_ø_vetaking (Union[Unset, float]): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
+        detaljert_lag_sammensetning (str | Unset): tekst som beskriver lagsammensetningen <engelsk>the detailed layer
+            composition, a text containing a detailed layer composition</engelsk>
+        skj_æ_rfasthet_omr_ø_rt (float | Unset): skjærfasthet for en kohesjonsjordart med fullstendig omrørt struktur
+            [kPa] <engelsk>the shear strength for a remoulded test material (suo) [kPa]</engelsk>
+        densitet_pr_ø_vetaking (float | Unset): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
             [kN/m3]</engelsk>
-        er_omr_ø_rt (Union[Unset, bool]): om prøvserien er omrørt<engelsk>indicating whether a soil test is
+        er_omr_ø_rt (bool | Unset): om prøvserien er omrørt<engelsk>indicating whether a soil test is
             disturbed</engelsk>
-        lab_analyse (Union[Unset, bool]): om prøven har blitt analysert på laboratorium
+        lab_analyse (bool | Unset): om prøven har blitt analysert på laboratorium
             <engelsk> indicating whether the soil test has been analyzed at laboratory</engelsk>
-        flyte_grense (Union[Unset, float]): bestemmelse av flytegrense ved hjelp av støt- eller konusmetode i
-            laboratoriet [%] Merknad: Flytegrensen angir det vanninnhold der en omrørt leire går over fra å være flytende
-            til å bli plastisk (formbar) <engelsk>determination of liquid limit flytegrense by percussionor fall cone method
-            in the laboratory Note:The liquid limit corresponds to a water content where the remoulded material goes from a
-            liquid to a plastic state</engelsk>
-        gl_ø_de_tap (Union[Unset, float]): angis i [%] <engelsk>the loss on ignition, the loss of mass (% left of
-            initial mass) due to heating</engelsk>
-        plastitets_grense (Union[Unset, float]): bestemmelse av plastisitetsgrense ved hjelp av utrullingsmetode [%]
-            Merknad: Også kalt utrullingsgrense som angir det vanninnhold der en omrørt leire går over fra plastisk
-            (formbar) til smuldrende konsistens <engelsk>determination of the plasticity limit by a hand rolling method
-            Note: Expresses the water content where a remoulded clay leaves the plastic state and starts to
-            crumble</engelsk>
-        sensitivitet (Union[Unset, float]): forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for
+        flyte_grense (float | Unset): bestemmelse av flytegrense ved hjelp av støt- eller konusmetode i laboratoriet [%]
+            Merknad: Flytegrensen angir det vanninnhold der en omrørt leire går over fra å være flytende til å bli plastisk
+            (formbar) <engelsk>determination of liquid limit flytegrense by percussionor fall cone method in the laboratory
+            Note:The liquid limit corresponds to a water content where the remoulded material goes from a liquid to a
+            plastic state</engelsk>
+        gl_ø_de_tap (float | Unset): angis i [%] <engelsk>the loss on ignition, the loss of mass (% left of initial
+            mass) due to heating</engelsk>
+        plastitets_grense (float | Unset): bestemmelse av plastisitetsgrense ved hjelp av utrullingsmetode [%]  Merknad:
+            Også kalt utrullingsgrense som angir det vanninnhold der en omrørt leire går over fra plastisk (formbar) til
+            smuldrende konsistens <engelsk>determination of the plasticity limit by a hand rolling method Note: Expresses
+            the water content where a remoulded clay leaves the plastic state and starts to crumble</engelsk>
+        sensitivitet (float | Unset): forholdet mellom uforstyrret og omrørt udrenert skjærfasthet for
             kohesjonsjord<engelsk>ratio between undisturbed and remoulded undrained shear strength for cohesive
             soils</engelsk>
-        skj_æ_rfasthet_uforstyrret (Union[Unset, float]): skjærfasthet for en kohesjonsjordart med uforstyrret, intakt
+        skj_æ_rfasthet_uforstyrret (float | Unset): skjærfasthet for en kohesjonsjordart med uforstyrret, intakt
             struktur [kPa] <engelsk>shear strength for cohesive soils with an intact, undisturbed structure</engelsk>
-        boret_lengde (Union[Unset, float]): boret lengde i forhold til terrengoverflaten eller annet angitt
-            referansenivå [m] <engelsk>drilled length related to the terrain surface or any other given reference
-            level</engelsk>
-        vanninnhold (Union[Unset, float]): undersøkelse for bestemmelse av prøvematerialets vanninnhold ved tørking.
-            Angir forholdet mellom masse vann og masse fast stoff [%] <engelsk>determination of the water content of the
-            sample by oven drying. Corresponds to the ratio between mass of water and the mass of solid particles</engelsk>
-        observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
-            (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
-            kodelisten GeotekniskBoreObservasjonskode.
+        boret_lengde (float | Unset): boret lengde i forhold til terrengoverflaten eller annet angitt referansenivå [m]
+            <engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>
+        vanninnhold (float | Unset): undersøkelse for bestemmelse av prøvematerialets vanninnhold ved tørking. Angir
+            forholdet mellom masse vann og masse fast stoff [%] <engelsk>determination of the water content of the sample by
+            oven drying. Corresponds to the ratio between mass of water and the mass of solid particles</engelsk>
+        observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*)
+            tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
+            GeotekniskBoreObservasjonskode.
             <engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in
             a text string with spaces between each code if more than 1. The codes are described in the code list
             GeotekniskBoreObservasjonskode.</engelsk>
-        observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations
-            made during sounding</engelsk>
+        observasjon_merknad (str | Unset): merknad til observasjoner i sonderingen<engelsk>remarks to observations made
+            during sounding</engelsk>
     """
 
-    lag_posisjon: Union[Unset, LagPosisjon] = UNSET
-    pr_ø_ve_metode: Union[Unset, str] = UNSET
-    aksiel_deformasjon: Union[Unset, float] = UNSET
-    skj_æ_rfasthet_udrenert: Union[Unset, float] = UNSET
-    detaljert_lag_sammensetning: Union[Unset, str] = UNSET
-    skj_æ_rfasthet_omr_ø_rt: Union[Unset, float] = UNSET
-    densitet_pr_ø_vetaking: Union[Unset, float] = UNSET
-    er_omr_ø_rt: Union[Unset, bool] = UNSET
-    lab_analyse: Union[Unset, bool] = UNSET
-    flyte_grense: Union[Unset, float] = UNSET
-    gl_ø_de_tap: Union[Unset, float] = UNSET
-    plastitets_grense: Union[Unset, float] = UNSET
-    sensitivitet: Union[Unset, float] = UNSET
-    skj_æ_rfasthet_uforstyrret: Union[Unset, float] = UNSET
-    boret_lengde: Union[Unset, float] = UNSET
-    vanninnhold: Union[Unset, float] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
+    lag_posisjon: LagPosisjon | Unset = UNSET
+    pr_ø_ve_metode: str | Unset = UNSET
+    aksiel_deformasjon: float | Unset = UNSET
+    skj_æ_rfasthet_udrenert: float | Unset = UNSET
+    detaljert_lag_sammensetning: str | Unset = UNSET
+    skj_æ_rfasthet_omr_ø_rt: float | Unset = UNSET
+    densitet_pr_ø_vetaking: float | Unset = UNSET
+    er_omr_ø_rt: bool | Unset = UNSET
+    lab_analyse: bool | Unset = UNSET
+    flyte_grense: float | Unset = UNSET
+    gl_ø_de_tap: float | Unset = UNSET
+    plastitets_grense: float | Unset = UNSET
+    sensitivitet: float | Unset = UNSET
+    skj_æ_rfasthet_uforstyrret: float | Unset = UNSET
+    boret_lengde: float | Unset = UNSET
+    vanninnhold: float | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        lag_posisjon: Union[Unset, str] = UNSET
+        lag_posisjon: str | Unset = UNSET
         if not isinstance(self.lag_posisjon, Unset):
             lag_posisjon = self.lag_posisjon.value
 
@@ -170,7 +170,7 @@ class GeotekniskProeveseriedelData:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _lag_posisjon = d.pop("lagPosisjon", UNSET)
-        lag_posisjon: Union[Unset, LagPosisjon]
+        lag_posisjon: LagPosisjon | Unset
         if isinstance(_lag_posisjon, Unset):
             lag_posisjon = UNSET
         else:

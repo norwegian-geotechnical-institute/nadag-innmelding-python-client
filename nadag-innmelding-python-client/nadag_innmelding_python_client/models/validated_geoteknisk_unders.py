@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -20,29 +22,28 @@ class ValidatedGeotekniskUnders:
     """GeotekniskUnders med valideringsresultat
 
     Attributes:
-        geoteknisk_unders (Union[Unset, GeotekniskUnders]): geografisk område hvor det finnes eller er planlagt
-            geotekniske borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are planned
-            geotechnical boreholes for a given project</engelsk>
-        diagnostics (Union[Unset, DiagnosticsDto]): A Dto for Diagnostic instances, with a list of DiagnosticDto
-            instances.
-        attachment_infos (Union[Unset, AttachmentInfosDto]): Attachment infos result
+        geoteknisk_unders (GeotekniskUnders | Unset): geografisk område hvor det finnes eller er planlagt geotekniske
+            borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are planned geotechnical
+            boreholes for a given project</engelsk>
+        diagnostics (DiagnosticsDto | Unset): A Dto for Diagnostic instances, with a list of DiagnosticDto instances.
+        attachment_infos (AttachmentInfosDto | Unset): Attachment infos result
     """
 
-    geoteknisk_unders: Union[Unset, "GeotekniskUnders"] = UNSET
-    diagnostics: Union[Unset, "DiagnosticsDto"] = UNSET
-    attachment_infos: Union[Unset, "AttachmentInfosDto"] = UNSET
+    geoteknisk_unders: GeotekniskUnders | Unset = UNSET
+    diagnostics: DiagnosticsDto | Unset = UNSET
+    attachment_infos: AttachmentInfosDto | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        geoteknisk_unders: Union[Unset, dict[str, Any]] = UNSET
+        geoteknisk_unders: dict[str, Any] | Unset = UNSET
         if not isinstance(self.geoteknisk_unders, Unset):
             geoteknisk_unders = self.geoteknisk_unders.to_dict()
 
-        diagnostics: Union[Unset, dict[str, Any]] = UNSET
+        diagnostics: dict[str, Any] | Unset = UNSET
         if not isinstance(self.diagnostics, Unset):
             diagnostics = self.diagnostics.to_dict()
 
-        attachment_infos: Union[Unset, dict[str, Any]] = UNSET
+        attachment_infos: dict[str, Any] | Unset = UNSET
         if not isinstance(self.attachment_infos, Unset):
             attachment_infos = self.attachment_infos.to_dict()
 
@@ -66,21 +67,21 @@ class ValidatedGeotekniskUnders:
 
         d = dict(src_dict)
         _geoteknisk_unders = d.pop("geotekniskUnders", UNSET)
-        geoteknisk_unders: Union[Unset, GeotekniskUnders]
+        geoteknisk_unders: GeotekniskUnders | Unset
         if isinstance(_geoteknisk_unders, Unset):
             geoteknisk_unders = UNSET
         else:
             geoteknisk_unders = GeotekniskUnders.from_dict(_geoteknisk_unders)
 
         _diagnostics = d.pop("diagnostics", UNSET)
-        diagnostics: Union[Unset, DiagnosticsDto]
+        diagnostics: DiagnosticsDto | Unset
         if isinstance(_diagnostics, Unset):
             diagnostics = UNSET
         else:
             diagnostics = DiagnosticsDto.from_dict(_diagnostics)
 
         _attachment_infos = d.pop("attachmentInfos", UNSET)
-        attachment_infos: Union[Unset, AttachmentInfosDto]
+        attachment_infos: AttachmentInfosDto | Unset
         if isinstance(_attachment_infos, Unset):
             attachment_infos = UNSET
         else:

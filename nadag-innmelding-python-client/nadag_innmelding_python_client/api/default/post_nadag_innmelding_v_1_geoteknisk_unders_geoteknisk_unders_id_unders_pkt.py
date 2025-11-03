@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -14,7 +14,7 @@ from ...types import UNSET, Response
 def _get_kwargs(
     geoteknisk_unders_id: str,
     *,
-    body: list["GeotekniskBorehull"],
+    body: list[GeotekniskBorehull],
     epsg_code: EpsgCode,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
@@ -44,8 +44,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[ValidatedGeotekniskUnders]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ValidatedGeotekniskUnders | None:
     if response.status_code == 200:
         response_200 = ValidatedGeotekniskUnders.from_dict(response.json())
 
@@ -58,7 +58,7 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
+    *, client: AuthenticatedClient | Client, response: httpx.Response
 ) -> Response[ValidatedGeotekniskUnders]:
     return Response(
         status_code=HTTPStatus(response.status_code),
@@ -72,7 +72,7 @@ def sync_detailed(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: list[GeotekniskBorehull],
     epsg_code: EpsgCode,
 ) -> Response[ValidatedGeotekniskUnders]:
     """Creates a set of GeotekniskBorehull.
@@ -83,7 +83,7 @@ def sync_detailed(
     Args:
         geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (list[GeotekniskBorehull]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -110,9 +110,9 @@ def sync(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: list[GeotekniskBorehull],
     epsg_code: EpsgCode,
-) -> Optional[ValidatedGeotekniskUnders]:
+) -> ValidatedGeotekniskUnders | None:
     """Creates a set of GeotekniskBorehull.
 
      Creates a set of GeotekniskBorehull.Returns the diagnostics of the newly created GeotekniskBorehull
@@ -121,7 +121,7 @@ def sync(
     Args:
         geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (list[GeotekniskBorehull]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -143,7 +143,7 @@ async def asyncio_detailed(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: list[GeotekniskBorehull],
     epsg_code: EpsgCode,
 ) -> Response[ValidatedGeotekniskUnders]:
     """Creates a set of GeotekniskBorehull.
@@ -154,7 +154,7 @@ async def asyncio_detailed(
     Args:
         geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (list[GeotekniskBorehull]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -179,9 +179,9 @@ async def asyncio(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient,
-    body: list["GeotekniskBorehull"],
+    body: list[GeotekniskBorehull],
     epsg_code: EpsgCode,
-) -> Optional[ValidatedGeotekniskUnders]:
+) -> ValidatedGeotekniskUnders | None:
     """Creates a set of GeotekniskBorehull.
 
      Creates a set of GeotekniskBorehull.Returns the diagnostics of the newly created GeotekniskBorehull
@@ -190,7 +190,7 @@ async def asyncio(
     Args:
         geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        body (list['GeotekniskBorehull']):
+        body (list[GeotekniskBorehull]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

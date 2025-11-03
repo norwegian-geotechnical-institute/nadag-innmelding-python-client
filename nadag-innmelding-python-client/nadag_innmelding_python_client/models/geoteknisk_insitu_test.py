@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -22,32 +24,32 @@ class GeotekniskInsituTest:
     soil layers</engelsk>
 
         Attributes:
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
-                prøvningen<engelsk>start time for in situ testing</engelsk>
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
-                prøvningen<engelsk>stop time for in situ testing</engelsk>
+            insitu_test_start_tidspunkt (datetime.datetime | Unset): tidspunkt for start av in situ prøvningen<engelsk>start
+                time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (datetime.datetime | Unset): tidspunkt for stopp av in situ prøvningen<engelsk>stop
+                time for in situ testing</engelsk>
     """
 
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    insitu_test_start_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime] = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
+    insitu_test_slutt_tidspunkt: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -55,11 +57,11 @@ class GeotekniskInsituTest:
 
         til_borlengde = self.til_borlengde
 
-        insitu_test_start_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_start_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = self.insitu_test_start_tidspunkt.isoformat()
 
-        insitu_test_slutt_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_slutt_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = self.insitu_test_slutt_tidspunkt.isoformat()
 
@@ -85,7 +87,7 @@ class GeotekniskInsituTest:
 
         d = dict(src_dict)
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
@@ -96,14 +98,14 @@ class GeotekniskInsituTest:
         til_borlengde = d.pop("tilBorlengde", UNSET)
 
         _insitu_test_start_tidspunkt = d.pop("insituTestStartTidspunkt", UNSET)
-        insitu_test_start_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_start_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = UNSET
         else:
             insitu_test_start_tidspunkt = isoparse(_insitu_test_start_tidspunkt)
 
         _insitu_test_slutt_tidspunkt = d.pop("insituTestSluttTidspunkt", UNSET)
-        insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_slutt_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = UNSET
         else:

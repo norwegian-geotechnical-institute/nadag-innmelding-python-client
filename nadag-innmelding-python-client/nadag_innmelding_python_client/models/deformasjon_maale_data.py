@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,59 +20,56 @@ class DeformasjonMaaleData:
     time</engelsk>
 
         Attributes:
-            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen<engelsk>date for
+            m_å_le_dato (datetime.date | Unset): dato for utførelse av målingen<engelsk>date for measurements</engelsk>
+            m_å_le_tidspunkt (datetime.datetime | Unset): tidspunkt for gjennomføring av målingen<engelsk>time for
                 measurements</engelsk>
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen<engelsk>time for
-                measurements</engelsk>
-            deformasjon_observasjon_kode (Union[Unset, DeformasjonObservasjonKode]): Kodeliste for å angi
-                deformasjonsobservasjon
-            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i setningsmålingen<engelsk>remarks to
-                observations made during the measurements</engelsk>
-            setning (Union[Unset, float]): vertikal komponent av målt deformasjon. observert høydenivå (z) for
-                setningsmåling [m] <engelsk>vertical component of measured deformation. observed reference level (z) for the
-                settlements</engelsk>
-            deformasjon_x (Union[Unset, float]): deformasjonskomponent i x-retning. observert høydenivå (z) for setningen
+            deformasjon_observasjon_kode (DeformasjonObservasjonKode | Unset): Kodeliste for å angi deformasjonsobservasjon
+            observasjon_merknad (str | Unset): merknad til observasjoner i setningsmålingen<engelsk>remarks to observations
+                made during the measurements</engelsk>
+            setning (float | Unset): vertikal komponent av målt deformasjon. observert høydenivå (z) for setningsmåling [m]
+                <engelsk>vertical component of measured deformation. observed reference level (z) for the settlements</engelsk>
+            deformasjon_x (float | Unset): deformasjonskomponent i x-retning. observert høydenivå (z) for setningen
                 [m]<engelsk>deformation component in x-direction. observed reference level (z) for the settlements</engelsk>
-            deformasjon_y (Union[Unset, float]): deformasjonskomponent i y-retning. observert høydenivå (z) for setningen
+            deformasjon_y (float | Unset): deformasjonskomponent i y-retning. observert høydenivå (z) for setningen
                 [m]<engelsk>deformation component in y-direction. observed reference level (z) for the settlements</engelsk>
-            deformasjon_z (Union[Unset, float]): deformasjonskomponent i z-retning. observert høydenivå (z) for setningen
+            deformasjon_z (float | Unset): deformasjonskomponent i z-retning. observert høydenivå (z) for setningen
                 [m]<engelsk>deformation component in z-direction. observed reference level (z) for the settlements</engelsk>
-            er_gyldig (Union[Unset, bool]): gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity
-                of data, if false only to be used as information</engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
+            er_gyldig (bool | Unset): gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity of
+                data, if false only to be used as information</engelsk>
+            boret_lengde (float | Unset): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
-            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser. Kodene er (0..*) tallkoder
-                gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
+            observasjon_kode (str | Unset): observasjonskoder for markering av hendelser. Kodene er (0..*) tallkoder gitt i
+                en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
                 GeotekniskBoreObservasjonskode.
                 <engelsk>observation codes for marking of incidents. The codes are (0..*) numeric codes given in a text string
                 with spaces between each code if more than 1. The codes are described in the code list
                 GeotekniskBoreObservasjonskode.</engelsk>
     """
 
-    m_å_le_dato: Union[Unset, datetime.date] = UNSET
-    m_å_le_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    deformasjon_observasjon_kode: Union[Unset, DeformasjonObservasjonKode] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    setning: Union[Unset, float] = UNSET
-    deformasjon_x: Union[Unset, float] = UNSET
-    deformasjon_y: Union[Unset, float] = UNSET
-    deformasjon_z: Union[Unset, float] = UNSET
-    er_gyldig: Union[Unset, bool] = UNSET
-    boret_lengde: Union[Unset, float] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
+    m_å_le_dato: datetime.date | Unset = UNSET
+    m_å_le_tidspunkt: datetime.datetime | Unset = UNSET
+    deformasjon_observasjon_kode: DeformasjonObservasjonKode | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    setning: float | Unset = UNSET
+    deformasjon_x: float | Unset = UNSET
+    deformasjon_y: float | Unset = UNSET
+    deformasjon_z: float | Unset = UNSET
+    er_gyldig: bool | Unset = UNSET
+    boret_lengde: float | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        m_å_le_dato: Union[Unset, str] = UNSET
+        m_å_le_dato: str | Unset = UNSET
         if not isinstance(self.m_å_le_dato, Unset):
             m_å_le_dato = self.m_å_le_dato.isoformat()
 
-        m_å_le_tidspunkt: Union[Unset, str] = UNSET
+        m_å_le_tidspunkt: str | Unset = UNSET
         if not isinstance(self.m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = self.m_å_le_tidspunkt.isoformat()
 
-        deformasjon_observasjon_kode: Union[Unset, str] = UNSET
+        deformasjon_observasjon_kode: str | Unset = UNSET
         if not isinstance(self.deformasjon_observasjon_kode, Unset):
             deformasjon_observasjon_kode = self.deformasjon_observasjon_kode.value
 
@@ -122,21 +121,21 @@ class DeformasjonMaaleData:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _m_å_le_dato = d.pop("måleDato", UNSET)
-        m_å_le_dato: Union[Unset, datetime.date]
+        m_å_le_dato: datetime.date | Unset
         if isinstance(_m_å_le_dato, Unset):
             m_å_le_dato = UNSET
         else:
             m_å_le_dato = isoparse(_m_å_le_dato).date()
 
         _m_å_le_tidspunkt = d.pop("måleTidspunkt", UNSET)
-        m_å_le_tidspunkt: Union[Unset, datetime.datetime]
+        m_å_le_tidspunkt: datetime.datetime | Unset
         if isinstance(_m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = UNSET
         else:
             m_å_le_tidspunkt = isoparse(_m_å_le_tidspunkt)
 
         _deformasjon_observasjon_kode = d.pop("deformasjonObservasjonKode", UNSET)
-        deformasjon_observasjon_kode: Union[Unset, DeformasjonObservasjonKode]
+        deformasjon_observasjon_kode: DeformasjonObservasjonKode | Unset
         if isinstance(_deformasjon_observasjon_kode, Unset):
             deformasjon_observasjon_kode = UNSET
         else:

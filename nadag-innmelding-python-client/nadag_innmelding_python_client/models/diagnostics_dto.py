@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,20 +21,20 @@ class DiagnosticsDto:
     """A Dto for Diagnostic instances, with a list of DiagnosticDto instances.
 
     Attributes:
-        max_severity (Union[Unset, Severity]):
-        diagnostics (Union[Unset, list['DiagnosticDto']]): The list of diagnostics, with details about each diagnostic.
+        max_severity (Severity | Unset):
+        diagnostics (list[DiagnosticDto] | Unset): The list of diagnostics, with details about each diagnostic.
     """
 
-    max_severity: Union[Unset, Severity] = UNSET
-    diagnostics: Union[Unset, list["DiagnosticDto"]] = UNSET
+    max_severity: Severity | Unset = UNSET
+    diagnostics: list[DiagnosticDto] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        max_severity: Union[Unset, str] = UNSET
+        max_severity: str | Unset = UNSET
         if not isinstance(self.max_severity, Unset):
             max_severity = self.max_severity.value
 
-        diagnostics: Union[Unset, list[dict[str, Any]]] = UNSET
+        diagnostics: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.diagnostics, Unset):
             diagnostics = []
             for diagnostics_item_data in self.diagnostics:
@@ -55,7 +57,7 @@ class DiagnosticsDto:
 
         d = dict(src_dict)
         _max_severity = d.pop("maxSeverity", UNSET)
-        max_severity: Union[Unset, Severity]
+        max_severity: Severity | Unset
         if isinstance(_max_severity, Unset):
             max_severity = UNSET
         else:

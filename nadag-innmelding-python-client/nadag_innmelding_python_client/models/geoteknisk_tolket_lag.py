@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -24,54 +26,53 @@ class GeotekniskTolketLag:
     """Lag med geoteknisk tolkning
 
     Attributes:
-        tolket_lag_id (Union[Unset, str]): Unik nøkkel for tolktet lag
-        klassifisering_metode (Union[Unset, KlassifiseringsMetode]): oversikt over klassifiseringsmetoder for
-            bestemmelse av grunnforhold<engelsk>overview of classification methods for determination of ground
-            conditions</engelsk>
-        hoved_lag_klassifiserings_kode (Union[Unset, HovedLagKlassifisering]): oversikt over lagdeling og jordart for
+        tolket_lag_id (str | Unset): Unik nøkkel for tolktet lag
+        klassifisering_metode (KlassifiseringsMetode | Unset): oversikt over klassifiseringsmetoder for bestemmelse av
+            grunnforhold<engelsk>overview of classification methods for determination of ground conditions</engelsk>
+        hoved_lag_klassifiserings_kode (HovedLagKlassifisering | Unset): oversikt over lagdeling og jordart for
             klassifisering og identifisering av grunnforhold<engelsk>overview of stratification and soil type for
             classification and identification of ground conditions</engelsk>
-        lag_beskrivelse (Union[Unset, str]): Beskrivelse av tolket lag feks. Sand
-        tolket_av (Union[Unset, str]): Hvem som har gjort tolkning
-        tolket_tidspunkt (Union[Unset, datetime.datetime]): Når tolkning ble utført
-        tolkning_merknad (Union[Unset, str]): Kommentar til tolkning
-        navn (Union[Unset, str]): Navn på tolket lag
-        p_å_terreng_overflate (Union[Unset, bool]): Om tolkning er på terrengoverflate
-        vurdering (Union[Unset, float]): Hvor sikker tolkning er, med  0=Udefinert,5=Sikker og glidende skala imellom.
-        under_terreng_overflate (Union[Unset, bool]): Om tolkning er under terrengoverflate
-        ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
-            ansvarlige leverandør inn til NADAG.
-        posisjon (Union[Unset, Point]):
-        høyde (Union[Unset, float]): Laghøyde for tolkning [m]
-        h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
-            EPSG-koder benyttes.
+        lag_beskrivelse (str | Unset): Beskrivelse av tolket lag feks. Sand
+        tolket_av (str | Unset): Hvem som har gjort tolkning
+        tolket_tidspunkt (datetime.datetime | Unset): Når tolkning ble utført
+        tolkning_merknad (str | Unset): Kommentar til tolkning
+        navn (str | Unset): Navn på tolket lag
+        p_å_terreng_overflate (bool | Unset): Om tolkning er på terrengoverflate
+        vurdering (float | Unset): Hvor sikker tolkning er, med  0=Udefinert,5=Sikker og glidende skala imellom.
+        under_terreng_overflate (bool | Unset): Om tolkning er under terrengoverflate
+        ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
+            leverandør inn til NADAG.
+        posisjon (Point | Unset):
+        høyde (float | Unset): Laghøyde for tolkning [m]
+        h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
+            koder benyttes.
     """
 
-    tolket_lag_id: Union[Unset, str] = UNSET
-    klassifisering_metode: Union[Unset, KlassifiseringsMetode] = UNSET
-    hoved_lag_klassifiserings_kode: Union[Unset, HovedLagKlassifisering] = UNSET
-    lag_beskrivelse: Union[Unset, str] = UNSET
-    tolket_av: Union[Unset, str] = UNSET
-    tolket_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    tolkning_merknad: Union[Unset, str] = UNSET
-    navn: Union[Unset, str] = UNSET
-    p_å_terreng_overflate: Union[Unset, bool] = UNSET
-    vurdering: Union[Unset, float] = UNSET
-    under_terreng_overflate: Union[Unset, bool] = UNSET
-    ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
-    posisjon: Union[Unset, "Point"] = UNSET
-    høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
+    tolket_lag_id: str | Unset = UNSET
+    klassifisering_metode: KlassifiseringsMetode | Unset = UNSET
+    hoved_lag_klassifiserings_kode: HovedLagKlassifisering | Unset = UNSET
+    lag_beskrivelse: str | Unset = UNSET
+    tolket_av: str | Unset = UNSET
+    tolket_tidspunkt: datetime.datetime | Unset = UNSET
+    tolkning_merknad: str | Unset = UNSET
+    navn: str | Unset = UNSET
+    p_å_terreng_overflate: bool | Unset = UNSET
+    vurdering: float | Unset = UNSET
+    under_terreng_overflate: bool | Unset = UNSET
+    ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
+    posisjon: Point | Unset = UNSET
+    høyde: float | Unset = UNSET
+    h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         tolket_lag_id = self.tolket_lag_id
 
-        klassifisering_metode: Union[Unset, str] = UNSET
+        klassifisering_metode: str | Unset = UNSET
         if not isinstance(self.klassifisering_metode, Unset):
             klassifisering_metode = self.klassifisering_metode.value
 
-        hoved_lag_klassifiserings_kode: Union[Unset, str] = UNSET
+        hoved_lag_klassifiserings_kode: str | Unset = UNSET
         if not isinstance(self.hoved_lag_klassifiserings_kode, Unset):
             hoved_lag_klassifiserings_kode = self.hoved_lag_klassifiserings_kode.value
 
@@ -79,7 +80,7 @@ class GeotekniskTolketLag:
 
         tolket_av = self.tolket_av
 
-        tolket_tidspunkt: Union[Unset, str] = UNSET
+        tolket_tidspunkt: str | Unset = UNSET
         if not isinstance(self.tolket_tidspunkt, Unset):
             tolket_tidspunkt = self.tolket_tidspunkt.isoformat()
 
@@ -93,17 +94,17 @@ class GeotekniskTolketLag:
 
         under_terreng_overflate = self.under_terreng_overflate
 
-        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        ekstern_identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
-        posisjon: Union[Unset, dict[str, Any]] = UNSET
+        posisjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
         høyde = self.høyde
 
-        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        h_ø_yde_referanse: str | Unset = UNSET
         if not isinstance(self.h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
@@ -152,14 +153,14 @@ class GeotekniskTolketLag:
         tolket_lag_id = d.pop("tolketLagID", UNSET)
 
         _klassifisering_metode = d.pop("klassifiseringMetode", UNSET)
-        klassifisering_metode: Union[Unset, KlassifiseringsMetode]
+        klassifisering_metode: KlassifiseringsMetode | Unset
         if isinstance(_klassifisering_metode, Unset):
             klassifisering_metode = UNSET
         else:
             klassifisering_metode = KlassifiseringsMetode(_klassifisering_metode)
 
         _hoved_lag_klassifiserings_kode = d.pop("hovedLagKlassifiseringsKode", UNSET)
-        hoved_lag_klassifiserings_kode: Union[Unset, HovedLagKlassifisering]
+        hoved_lag_klassifiserings_kode: HovedLagKlassifisering | Unset
         if isinstance(_hoved_lag_klassifiserings_kode, Unset):
             hoved_lag_klassifiserings_kode = UNSET
         else:
@@ -170,7 +171,7 @@ class GeotekniskTolketLag:
         tolket_av = d.pop("tolketAv", UNSET)
 
         _tolket_tidspunkt = d.pop("tolketTidspunkt", UNSET)
-        tolket_tidspunkt: Union[Unset, datetime.datetime]
+        tolket_tidspunkt: datetime.datetime | Unset
         if isinstance(_tolket_tidspunkt, Unset):
             tolket_tidspunkt = UNSET
         else:
@@ -187,14 +188,14 @@ class GeotekniskTolketLag:
         under_terreng_overflate = d.pop("underTerrengOverflate", UNSET)
 
         _ekstern_identifikasjon = d.pop("eksternIdentifikasjon", UNSET)
-        ekstern_identifikasjon: Union[Unset, EksternIdentifikasjon]
+        ekstern_identifikasjon: EksternIdentifikasjon | Unset
         if isinstance(_ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = UNSET
         else:
             ekstern_identifikasjon = EksternIdentifikasjon.from_dict(_ekstern_identifikasjon)
 
         _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Union[Unset, Point]
+        posisjon: Point | Unset
         if isinstance(_posisjon, Unset):
             posisjon = UNSET
         else:
@@ -203,7 +204,7 @@ class GeotekniskTolketLag:
         høyde = d.pop("høyde", UNSET)
 
         _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
-        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        h_ø_yde_referanse: NADAGHoeyderef | Unset
         if isinstance(_h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = UNSET
         else:

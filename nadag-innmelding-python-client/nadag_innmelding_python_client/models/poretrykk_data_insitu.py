@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,36 +19,36 @@ class PoretrykkDataInsitu:
     pressure as reference</engelsk>
 
         Attributes:
-            boret_dybde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå
-                [m] <engelsk>depth below the terrain surface or any other given reference level</engelsk>
+            boret_dybde (float | Unset): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m]
+                <engelsk>depth below the terrain surface or any other given reference level</engelsk>
 
                 <engelsk>
                 depth from zero level, the z value of investigation start point is 0. drilling depth[m]
                 </engelsk>
-            enhetsvekt (Union[Unset, float]): <engelsk></engelsk>
-            observasjon_kode (Union[Unset, GeotekniskBoreObservasjonskode]): oversikt over koder for observasjoner som
-                gjøres ved utførelse av en grunnundersøkelse. Benyttes i egenskapen «observasjonKode» som i mai 2024 ble gjort
-                om til tekststreng fra å være knyttet til denne kodelisten. Tekstrengen kan inneholde mer enn 1 kode.
-                <engelsk>overview of codes for observations conducted during an GeotechnicalBoreholeInvestigation. Used in the
-                "observasjonKode" attribute, which in May 2024 was changed to a text string from being linked to this code list.
-                The text string can contain more than 1 code. </engelsk>
-            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i poretrykksmålingen
+            enhetsvekt (float | Unset): <engelsk></engelsk>
+            observasjon_kode (GeotekniskBoreObservasjonskode | Unset): oversikt over koder for observasjoner som gjøres ved
+                utførelse av en grunnundersøkelse. Benyttes i egenskapen «observasjonKode» som i mai 2024 ble gjort om til
+                tekststreng fra å være knyttet til denne kodelisten. Tekstrengen kan inneholde mer enn 1 kode. <engelsk>overview
+                of codes for observations conducted during an GeotechnicalBoreholeInvestigation. Used in the "observasjonKode"
+                attribute, which in May 2024 was changed to a text string from being linked to this code list. The text string
+                can contain more than 1 code. </engelsk>
+            observasjon_merknad (str | Unset): merknad til observasjoner i poretrykksmålingen
                 <engelsk>remarks to observations made during pore pressure measurements</engelsk>
-            poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa]
+            poretrykk (float | Unset): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa]
                 <engelsk>pore water pressure in the ground, with the atmospheric pressure as reference</engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
+            boret_lengde (float | Unset): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
-            tyngde (Union[Unset, float]): Verdi for målt tyngde [kN/m3]
+            tyngde (float | Unset): Verdi for målt tyngde [kN/m3]
     """
 
-    boret_dybde: Union[Unset, float] = UNSET
-    enhetsvekt: Union[Unset, float] = UNSET
-    observasjon_kode: Union[Unset, GeotekniskBoreObservasjonskode] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    poretrykk: Union[Unset, float] = UNSET
-    boret_lengde: Union[Unset, float] = UNSET
-    tyngde: Union[Unset, float] = UNSET
+    boret_dybde: float | Unset = UNSET
+    enhetsvekt: float | Unset = UNSET
+    observasjon_kode: GeotekniskBoreObservasjonskode | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    poretrykk: float | Unset = UNSET
+    boret_lengde: float | Unset = UNSET
+    tyngde: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -54,7 +56,7 @@ class PoretrykkDataInsitu:
 
         enhetsvekt = self.enhetsvekt
 
-        observasjon_kode: Union[Unset, str] = UNSET
+        observasjon_kode: str | Unset = UNSET
         if not isinstance(self.observasjon_kode, Unset):
             observasjon_kode = self.observasjon_kode.value
 
@@ -94,7 +96,7 @@ class PoretrykkDataInsitu:
         enhetsvekt = d.pop("enhetsvekt", UNSET)
 
         _observasjon_kode = d.pop("observasjonKode", UNSET)
-        observasjon_kode: Union[Unset, GeotekniskBoreObservasjonskode]
+        observasjon_kode: GeotekniskBoreObservasjonskode | Unset
         if isinstance(_observasjon_kode, Unset):
             observasjon_kode = UNSET
         else:

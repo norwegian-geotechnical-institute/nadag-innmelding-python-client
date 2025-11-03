@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -29,99 +31,98 @@ class Trykksondering:
     soil</engelsk>
 
         Attributes:
-            json_type (Union[Literal['Trykksondering'], Unset]):
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['Trykksondering'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
-                prøvningen<engelsk>start time for in situ testing</engelsk>
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
-                prøvningen<engelsk>stop time for in situ testing</engelsk>
-            alpha (Union[Unset, float]): arealforhold for trykksonde for korreksjon av målt spissmotstand for
+            insitu_test_start_tidspunkt (datetime.datetime | Unset): tidspunkt for start av in situ prøvningen<engelsk>start
+                time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (datetime.datetime | Unset): tidspunkt for stopp av in situ prøvningen<engelsk>stop
+                time for in situ testing</engelsk>
+            alpha (float | Unset): arealforhold for trykksonde for korreksjon av målt spissmotstand for
                 poretrykkseffekter<engelsk>area ratio for CPT probe for correction of measured cone resistance for pore pressure
                 effects</engelsk>
-            cpt_korreksjons_faktor (Union[Unset, float]): øvrige faktorer for korreksjon av trykksonderingsdata, for
-                eksempel korreksjon av målt sidefriksjon<engelsk>other factors for correction of CPT data, for example
-                correction of measured sleeve friction</engelsk>
-            filter_type (Union[Unset, str]): type filter for måling av poretrykk (porøst filter, ferdigmettet,
+            cpt_korreksjons_faktor (float | Unset): øvrige faktorer for korreksjon av trykksonderingsdata, for eksempel
+                korreksjon av målt sidefriksjon<engelsk>other factors for correction of CPT data, for example correction of
+                measured sleeve friction</engelsk>
+            filter_type (str | Unset): type filter for måling av poretrykk (porøst filter, ferdigmettet,
                 spaltefilter)<engelsk>type of filter for measurement of pore pressure (porous filter, pre-saturated filter, slot
                 filter)</engelsk>
-            initiell_spissmotstand (Union[Unset, float]): referanseverdi for spissmotstand ved start av måling (eksempel ved
-                start dissipasjonstest) [kPa] <engelsk>reference value cone resistance at the start of the test (e.g. at the
-                start of a dissipation test)</engelsk>
-            metnings_medium (Union[Unset, str]): medium som benyttes for metting av målesystem for poretrykk<engelsk>medium
-                used for saturation of measuring system for pore pressure</engelsk>
-            nedpressings_kapasitet (Union[Unset, NedpressingsKapasitet]): oversikt over lastkapasiteter for vanlige
-                trykksonder i CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>
-            nedpressnings_hastighet (Union[Unset, float]): nedpressingshastighet ved penetrasjon av trykksonderingsstenger
-                (2 cm per sekund)<engelsk>rate of penetration for rod system (2 cm per second)</engelsk>
-            nullpunkts_korreksjon (Union[Unset, float]): korreksjon for registrert nullpunktsavvik før og etter sondering
-                [MPa] <engelsk>correction for recorded zero load drift before and after sounding</engelsk>
-            r_ø_r_kappe_korreksjons_faktor (Union[Unset, float]): korreksjonsfaktor for bruk av friksjonsreduksjonsring
+            initiell_spissmotstand (float | Unset): referanseverdi for spissmotstand ved start av måling (eksempel ved start
+                dissipasjonstest) [kPa] <engelsk>reference value cone resistance at the start of the test (e.g. at the start of
+                a dissipation test)</engelsk>
+            metnings_medium (str | Unset): medium som benyttes for metting av målesystem for poretrykk<engelsk>medium used
+                for saturation of measuring system for pore pressure</engelsk>
+            nedpressings_kapasitet (NedpressingsKapasitet | Unset): oversikt over lastkapasiteter for vanlige trykksonder i
+                CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>
+            nedpressnings_hastighet (float | Unset): nedpressingshastighet ved penetrasjon av trykksonderingsstenger (2 cm
+                per sekund)<engelsk>rate of penetration for rod system (2 cm per second)</engelsk>
+            nullpunkts_korreksjon (float | Unset): korreksjon for registrert nullpunktsavvik før og etter sondering [MPa]
+                <engelsk>correction for recorded zero load drift before and after sounding</engelsk>
+            r_ø_r_kappe_korreksjons_faktor (float | Unset): korreksjonsfaktor for bruk av friksjonsreduksjonsring
                 <engelsk>correction factor for use of friction reducer</engelsk>
-            sidefriksjon_korreksjon (Union[Unset, float]): korreksjon av målt sidefriksjon på grunn av
+            sidefriksjon_korreksjon (float | Unset): korreksjon av målt sidefriksjon på grunn av
                 poretrykkseffekter<engelsk>correction of measured sleeve friction due to pore pressure effects</engelsk>
-            sonde_identifikasjon (Union[Unset, str]): identifikasjon av trykksonde ved hjelp av ID-nummer
-                <engelsk>identification of probe by an ID-number</engelsk>
-            sonde_kalibrering_dato (Union[Unset, datetime.datetime]): dato for kalibrering av trykksonde, oppgis på
+            sonde_identifikasjon (str | Unset): identifikasjon av trykksonde ved hjelp av ID-nummer <engelsk>identification
+                of probe by an ID-number</engelsk>
+            sonde_kalibrering_dato (datetime.datetime | Unset): dato for kalibrering av trykksonde, oppgis på
                 kalibreringssertifikat<engelsk>date for calibration of probe, given on the calibration certificate</engelsk>
-            sonde_kvalitet_klasse (Union[Unset, SondeKvalitetsKlasse]): oversikt over aktuelle kvalitetsklasser
+            sonde_kvalitet_klasse (SondeKvalitetsKlasse | Unset): oversikt over aktuelle kvalitetsklasser
                 (Anvendelsesklasser) for CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>
-            spiss_korreksjon_faktor (Union[Unset, float]): korreksjonsfaktor for trykksonde ved korreksjon av målt
-                spissmotstand for poretrykkseffekter<engelsk>correction factor for measured cone resistance for pore pressure
+            spiss_korreksjon_faktor (float | Unset): korreksjonsfaktor for trykksonde ved korreksjon av målt spissmotstand
+                for poretrykkseffekter<engelsk>correction factor for measured cone resistance for pore pressure
                 effects</engelsk>
-            spiss_type (Union[Unset, str]): type trykksonde, avhengig av størrelse og instrumentering<engelsk>type of probe,
+            spiss_type (str | Unset): type trykksonde, avhengig av størrelse og instrumentering<engelsk>type of probe,
                 depending on size and instrumentation</engelsk>
-            atmosferisk_trykk_korreksjon (Union[Unset, float]): <engelsk>Gets or sets the atmospheric pressure correction
-                [MPa].
+            atmosferisk_trykk_korreksjon (float | Unset): <engelsk>Gets or sets the atmospheric pressure correction [MPa].
                 @value The atmospheric pressure correction.</engelsk>
-            hylse_radie_korreksjon (Union[Unset, float]): <engelsk>Gets or sets the sleeve distance correction [m].
+            hylse_radie_korreksjon (float | Unset): <engelsk>Gets or sets the sleeve distance correction [m].
                 @value The sleeve distance correction.</engelsk>
-            in_situ_poretrykk_observasjon (Union[Unset, list['PoretrykkDataInsitu']]):
-            trykksondering_observasjon (Union[Unset, list['TrykksonderingData']]):
-            dissipasjon_observasjon (Union[Unset, list['DissipasjonData']]):
+            in_situ_poretrykk_observasjon (list[PoretrykkDataInsitu] | Unset):
+            trykksondering_observasjon (list[TrykksonderingData] | Unset):
+            dissipasjon_observasjon (list[DissipasjonData] | Unset):
     """
 
-    json_type: Union[Literal["Trykksondering"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    insitu_test_start_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    alpha: Union[Unset, float] = UNSET
-    cpt_korreksjons_faktor: Union[Unset, float] = UNSET
-    filter_type: Union[Unset, str] = UNSET
-    initiell_spissmotstand: Union[Unset, float] = UNSET
-    metnings_medium: Union[Unset, str] = UNSET
-    nedpressings_kapasitet: Union[Unset, NedpressingsKapasitet] = UNSET
-    nedpressnings_hastighet: Union[Unset, float] = UNSET
-    nullpunkts_korreksjon: Union[Unset, float] = UNSET
-    r_ø_r_kappe_korreksjons_faktor: Union[Unset, float] = UNSET
-    sidefriksjon_korreksjon: Union[Unset, float] = UNSET
-    sonde_identifikasjon: Union[Unset, str] = UNSET
-    sonde_kalibrering_dato: Union[Unset, datetime.datetime] = UNSET
-    sonde_kvalitet_klasse: Union[Unset, SondeKvalitetsKlasse] = UNSET
-    spiss_korreksjon_faktor: Union[Unset, float] = UNSET
-    spiss_type: Union[Unset, str] = UNSET
-    atmosferisk_trykk_korreksjon: Union[Unset, float] = UNSET
-    hylse_radie_korreksjon: Union[Unset, float] = UNSET
-    in_situ_poretrykk_observasjon: Union[Unset, list["PoretrykkDataInsitu"]] = UNSET
-    trykksondering_observasjon: Union[Unset, list["TrykksonderingData"]] = UNSET
-    dissipasjon_observasjon: Union[Unset, list["DissipasjonData"]] = UNSET
+    json_type: Literal["Trykksondering"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
+    insitu_test_slutt_tidspunkt: datetime.datetime | Unset = UNSET
+    alpha: float | Unset = UNSET
+    cpt_korreksjons_faktor: float | Unset = UNSET
+    filter_type: str | Unset = UNSET
+    initiell_spissmotstand: float | Unset = UNSET
+    metnings_medium: str | Unset = UNSET
+    nedpressings_kapasitet: NedpressingsKapasitet | Unset = UNSET
+    nedpressnings_hastighet: float | Unset = UNSET
+    nullpunkts_korreksjon: float | Unset = UNSET
+    r_ø_r_kappe_korreksjons_faktor: float | Unset = UNSET
+    sidefriksjon_korreksjon: float | Unset = UNSET
+    sonde_identifikasjon: str | Unset = UNSET
+    sonde_kalibrering_dato: datetime.datetime | Unset = UNSET
+    sonde_kvalitet_klasse: SondeKvalitetsKlasse | Unset = UNSET
+    spiss_korreksjon_faktor: float | Unset = UNSET
+    spiss_type: str | Unset = UNSET
+    atmosferisk_trykk_korreksjon: float | Unset = UNSET
+    hylse_radie_korreksjon: float | Unset = UNSET
+    in_situ_poretrykk_observasjon: list[PoretrykkDataInsitu] | Unset = UNSET
+    trykksondering_observasjon: list[TrykksonderingData] | Unset = UNSET
+    dissipasjon_observasjon: list[DissipasjonData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -129,11 +130,11 @@ class Trykksondering:
 
         til_borlengde = self.til_borlengde
 
-        insitu_test_start_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_start_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = self.insitu_test_start_tidspunkt.isoformat()
 
-        insitu_test_slutt_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_slutt_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = self.insitu_test_slutt_tidspunkt.isoformat()
 
@@ -147,7 +148,7 @@ class Trykksondering:
 
         metnings_medium = self.metnings_medium
 
-        nedpressings_kapasitet: Union[Unset, str] = UNSET
+        nedpressings_kapasitet: str | Unset = UNSET
         if not isinstance(self.nedpressings_kapasitet, Unset):
             nedpressings_kapasitet = self.nedpressings_kapasitet.value
 
@@ -161,11 +162,11 @@ class Trykksondering:
 
         sonde_identifikasjon = self.sonde_identifikasjon
 
-        sonde_kalibrering_dato: Union[Unset, str] = UNSET
+        sonde_kalibrering_dato: str | Unset = UNSET
         if not isinstance(self.sonde_kalibrering_dato, Unset):
             sonde_kalibrering_dato = self.sonde_kalibrering_dato.isoformat()
 
-        sonde_kvalitet_klasse: Union[Unset, str] = UNSET
+        sonde_kvalitet_klasse: str | Unset = UNSET
         if not isinstance(self.sonde_kvalitet_klasse, Unset):
             sonde_kvalitet_klasse = self.sonde_kvalitet_klasse.value
 
@@ -177,21 +178,21 @@ class Trykksondering:
 
         hylse_radie_korreksjon = self.hylse_radie_korreksjon
 
-        in_situ_poretrykk_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        in_situ_poretrykk_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.in_situ_poretrykk_observasjon, Unset):
             in_situ_poretrykk_observasjon = []
             for in_situ_poretrykk_observasjon_item_data in self.in_situ_poretrykk_observasjon:
                 in_situ_poretrykk_observasjon_item = in_situ_poretrykk_observasjon_item_data.to_dict()
                 in_situ_poretrykk_observasjon.append(in_situ_poretrykk_observasjon_item)
 
-        trykksondering_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        trykksondering_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.trykksondering_observasjon, Unset):
             trykksondering_observasjon = []
             for trykksondering_observasjon_item_data in self.trykksondering_observasjon:
                 trykksondering_observasjon_item = trykksondering_observasjon_item_data.to_dict()
                 trykksondering_observasjon.append(trykksondering_observasjon_item)
 
-        dissipasjon_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        dissipasjon_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.dissipasjon_observasjon, Unset):
             dissipasjon_observasjon = []
             for dissipasjon_observasjon_item_data in self.dissipasjon_observasjon:
@@ -264,12 +265,12 @@ class Trykksondering:
         from ..models.trykksondering_data import TrykksonderingData
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["Trykksondering"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["Trykksondering"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "Trykksondering" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'Trykksondering', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
@@ -280,14 +281,14 @@ class Trykksondering:
         til_borlengde = d.pop("tilBorlengde", UNSET)
 
         _insitu_test_start_tidspunkt = d.pop("insituTestStartTidspunkt", UNSET)
-        insitu_test_start_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_start_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = UNSET
         else:
             insitu_test_start_tidspunkt = isoparse(_insitu_test_start_tidspunkt)
 
         _insitu_test_slutt_tidspunkt = d.pop("insituTestSluttTidspunkt", UNSET)
-        insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_slutt_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = UNSET
         else:
@@ -304,7 +305,7 @@ class Trykksondering:
         metnings_medium = d.pop("metningsMedium", UNSET)
 
         _nedpressings_kapasitet = d.pop("nedpressingsKapasitet", UNSET)
-        nedpressings_kapasitet: Union[Unset, NedpressingsKapasitet]
+        nedpressings_kapasitet: NedpressingsKapasitet | Unset
         if isinstance(_nedpressings_kapasitet, Unset):
             nedpressings_kapasitet = UNSET
         else:
@@ -321,14 +322,14 @@ class Trykksondering:
         sonde_identifikasjon = d.pop("sondeIdentifikasjon", UNSET)
 
         _sonde_kalibrering_dato = d.pop("sondeKalibreringDato", UNSET)
-        sonde_kalibrering_dato: Union[Unset, datetime.datetime]
+        sonde_kalibrering_dato: datetime.datetime | Unset
         if isinstance(_sonde_kalibrering_dato, Unset):
             sonde_kalibrering_dato = UNSET
         else:
             sonde_kalibrering_dato = isoparse(_sonde_kalibrering_dato)
 
         _sonde_kvalitet_klasse = d.pop("sondeKvalitetKlasse", UNSET)
-        sonde_kvalitet_klasse: Union[Unset, SondeKvalitetsKlasse]
+        sonde_kvalitet_klasse: SondeKvalitetsKlasse | Unset
         if isinstance(_sonde_kvalitet_klasse, Unset):
             sonde_kvalitet_klasse = UNSET
         else:

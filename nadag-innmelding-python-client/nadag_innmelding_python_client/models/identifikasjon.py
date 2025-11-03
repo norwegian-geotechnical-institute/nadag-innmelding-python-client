@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -31,10 +33,10 @@ class Identifikasjon:
                 registreres i "INSPIRE external  Object Identifier Namespaces Register"
 
                 Eksempel: NO for Norge.
-            versjon_id (Union[Unset, str]): identifikasjon av en spesiell versjon av et geografisk objekt (instans),
-                maksimum lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon
-                inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme
-                objekt. versjonId er en unik  identifikasjon av versjonen.
+            versjon_id (str | Unset): identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum
+                lengde på 25 karakterers. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer
+                livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt.
+                versjonId er en unik  identifikasjon av versjonen.
 
                 NOTE Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som
                 "2007-02-12T12:12:12+05:30" som versjonId.
@@ -42,7 +44,7 @@ class Identifikasjon:
 
     lokal_id: str
     navnerom: str
-    versjon_id: Union[Unset, str] = UNSET
+    versjon_id: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

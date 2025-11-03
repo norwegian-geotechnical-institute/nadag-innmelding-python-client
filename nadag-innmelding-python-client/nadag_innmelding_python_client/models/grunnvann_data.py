@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,59 +21,59 @@ class GrunnvannData:
     measurements</engelsk>
 
         Attributes:
-            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av grunnvannsmålingen<engelsk>date for
+            m_å_le_dato (datetime.date | Unset): dato for utførelse av grunnvannsmålingen<engelsk>date for
                 measurements</engelsk>
-            dybde_grunnvannstand (Union[Unset, float]): angivelse av vannstand i grunnen og/eller i målerør (z-nivå) [m]
+            dybde_grunnvannstand (float | Unset): angivelse av vannstand i grunnen og/eller i målerør (z-nivå) [m]
                 <engelsk>water level in the ground and / or inside a measurement tube (z-level)</engelsk>
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av
-                grunnvannsmålingen<engelsk>time for measurements</engelsk>
-            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i grunnvannsmålingen. Kodene
-                er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+            m_å_le_tidspunkt (datetime.datetime | Unset): tidspunkt for gjennomføring av grunnvannsmålingen<engelsk>time for
+                measurements</engelsk>
+            observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i grunnvannsmålingen. Kodene er
+                (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
                 kodelisten GeotekniskBoreObservasjonskode.<engelsk>observation codes for marking of incidents during ground
                 water measurements. The codes are (0..*) numeric codes given in a text string with spaces between each code if
                 more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>
-            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i grunnvannsmålingen<engelsk>remarks to
+            observasjon_merknad (str | Unset): merknad til observasjoner i grunnvannsmålingen<engelsk>remarks to
                 observations made during ground water measurements</engelsk>
-            p_h (Union[Unset, float]): surhetsgrad <engelsk><measure of acidity>
-            ledningsevne (Union[Unset, float]): hydraulisk ledningsevne [uS/cm] <engelsk>hydraulic conductivity</engelsk>
-            oksygen_innhold (Union[Unset, float]): innhold av oksygen [ml] <engelsk>oxygen content</engelsk>
-            temperatur (Union[Unset, float]): temperatur [°C] <engelsk>temperature [°C]</engelsk>
-            redoks (Union[Unset, float]): red-oks-potensiale [mV] <engelsk>redox potential</engelsk>
-            turbiditet (Union[Unset, float]): angir gjennomsnittlig partikkelinnhold [NTU] <engelsk>average particle
+            p_h (float | Unset): surhetsgrad <engelsk><measure of acidity>
+            ledningsevne (float | Unset): hydraulisk ledningsevne [uS/cm] <engelsk>hydraulic conductivity</engelsk>
+            oksygen_innhold (float | Unset): innhold av oksygen [ml] <engelsk>oxygen content</engelsk>
+            temperatur (float | Unset): temperatur [°C] <engelsk>temperature [°C]</engelsk>
+            redoks (float | Unset): red-oks-potensiale [mV] <engelsk>redox potential</engelsk>
+            turbiditet (float | Unset): angir gjennomsnittlig partikkelinnhold [NTU] <engelsk>average particle
                 content</engelsk>
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
+            boret_lengde (float | Unset): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
-            grunnvann_observasjon_kode (Union[Unset, GeotekniskGrunnvannObservasjonKode]): oversikt over observasjonskoder
-                for grunnvann
-            er_gyldig (Union[Unset, bool]):  gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity
-                of data, if false only to be used as information</engelsk>
+            grunnvann_observasjon_kode (GeotekniskGrunnvannObservasjonKode | Unset): oversikt over observasjonskoder for
+                grunnvann
+            er_gyldig (bool | Unset):  gyldighet av data, hvis falsk så er det kun til informasjon <engelsk> validity of
+                data, if false only to be used as information</engelsk>
     """
 
-    m_å_le_dato: Union[Unset, datetime.date] = UNSET
-    dybde_grunnvannstand: Union[Unset, float] = UNSET
-    m_å_le_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    p_h: Union[Unset, float] = UNSET
-    ledningsevne: Union[Unset, float] = UNSET
-    oksygen_innhold: Union[Unset, float] = UNSET
-    temperatur: Union[Unset, float] = UNSET
-    redoks: Union[Unset, float] = UNSET
-    turbiditet: Union[Unset, float] = UNSET
-    boret_lengde: Union[Unset, float] = UNSET
-    grunnvann_observasjon_kode: Union[Unset, GeotekniskGrunnvannObservasjonKode] = UNSET
-    er_gyldig: Union[Unset, bool] = UNSET
+    m_å_le_dato: datetime.date | Unset = UNSET
+    dybde_grunnvannstand: float | Unset = UNSET
+    m_å_le_tidspunkt: datetime.datetime | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    p_h: float | Unset = UNSET
+    ledningsevne: float | Unset = UNSET
+    oksygen_innhold: float | Unset = UNSET
+    temperatur: float | Unset = UNSET
+    redoks: float | Unset = UNSET
+    turbiditet: float | Unset = UNSET
+    boret_lengde: float | Unset = UNSET
+    grunnvann_observasjon_kode: GeotekniskGrunnvannObservasjonKode | Unset = UNSET
+    er_gyldig: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        m_å_le_dato: Union[Unset, str] = UNSET
+        m_å_le_dato: str | Unset = UNSET
         if not isinstance(self.m_å_le_dato, Unset):
             m_å_le_dato = self.m_å_le_dato.isoformat()
 
         dybde_grunnvannstand = self.dybde_grunnvannstand
 
-        m_å_le_tidspunkt: Union[Unset, str] = UNSET
+        m_å_le_tidspunkt: str | Unset = UNSET
         if not isinstance(self.m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = self.m_å_le_tidspunkt.isoformat()
 
@@ -93,7 +95,7 @@ class GrunnvannData:
 
         boret_lengde = self.boret_lengde
 
-        grunnvann_observasjon_kode: Union[Unset, str] = UNSET
+        grunnvann_observasjon_kode: str | Unset = UNSET
         if not isinstance(self.grunnvann_observasjon_kode, Unset):
             grunnvann_observasjon_kode = self.grunnvann_observasjon_kode.value
 
@@ -137,7 +139,7 @@ class GrunnvannData:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _m_å_le_dato = d.pop("måleDato", UNSET)
-        m_å_le_dato: Union[Unset, datetime.date]
+        m_å_le_dato: datetime.date | Unset
         if isinstance(_m_å_le_dato, Unset):
             m_å_le_dato = UNSET
         else:
@@ -146,7 +148,7 @@ class GrunnvannData:
         dybde_grunnvannstand = d.pop("dybdeGrunnvannstand", UNSET)
 
         _m_å_le_tidspunkt = d.pop("måleTidspunkt", UNSET)
-        m_å_le_tidspunkt: Union[Unset, datetime.datetime]
+        m_å_le_tidspunkt: datetime.datetime | Unset
         if isinstance(_m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = UNSET
         else:
@@ -171,7 +173,7 @@ class GrunnvannData:
         boret_lengde = d.pop("boretLengde", UNSET)
 
         _grunnvann_observasjon_kode = d.pop("grunnvannObservasjonKode", UNSET)
-        grunnvann_observasjon_kode: Union[Unset, GeotekniskGrunnvannObservasjonKode]
+        grunnvann_observasjon_kode: GeotekniskGrunnvannObservasjonKode | Unset
         if isinstance(_grunnvann_observasjon_kode, Unset):
             grunnvann_observasjon_kode = UNSET
         else:

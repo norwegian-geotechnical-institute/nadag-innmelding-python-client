@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -25,7 +27,7 @@ class BorlengdeTilBerg:
                 <engelsk>
                 defines the quality of the depth information either assumed or confirmed by a secure method
                 </engelsk>
-            borlengde_til_berg (Union[Unset, float]): dybde til fjell som ikke er målt men basert på tolkning [m]
+            borlengde_til_berg (float | Unset): dybde til fjell som ikke er målt men basert på tolkning [m]
 
                 <engelsk>
                 depth to bedrock based on interpretation
@@ -33,7 +35,7 @@ class BorlengdeTilBerg:
     """
 
     borlengde_kvalitet: KvalitetBorlengdeTilBerg
-    borlengde_til_berg: Union[Unset, float] = UNSET
+    borlengde_til_berg: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

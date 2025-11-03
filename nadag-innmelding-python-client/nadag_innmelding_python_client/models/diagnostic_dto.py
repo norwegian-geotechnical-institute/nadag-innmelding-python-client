@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 from uuid import UUID
 
 from attrs import define as _attrs_define
@@ -23,46 +25,46 @@ class DiagnosticDto:
     """Result from checking a single validation rule.
 
     Attributes:
-        validation_id (Union[Unset, UUID]): Identifier for the validation
-        target (Union[Unset, DiagnosticDtoTarget]): Reference (identifier) for the target domain model object
-        property_ (Union[Unset, str]): The property of the target domain model object that was checked
-        severity (Union[Unset, Severity]):
-        description (Union[Unset, str]): The human-readable description of the diagnostic
-        root_owner (Union[Unset, DiagnosticDtoRootOwner]): Reference (identifier) for the root owner of the target
-        timestamp (Union[Unset, datetime.datetime]): The timestamp of the validation
+        validation_id (UUID | Unset): Identifier for the validation
+        target (DiagnosticDtoTarget | Unset): Reference (identifier) for the target domain model object
+        property_ (str | Unset): The property of the target domain model object that was checked
+        severity (Severity | Unset):
+        description (str | Unset): The human-readable description of the diagnostic
+        root_owner (DiagnosticDtoRootOwner | Unset): Reference (identifier) for the root owner of the target
+        timestamp (datetime.datetime | Unset): The timestamp of the validation
     """
 
-    validation_id: Union[Unset, UUID] = UNSET
-    target: Union[Unset, "DiagnosticDtoTarget"] = UNSET
-    property_: Union[Unset, str] = UNSET
-    severity: Union[Unset, Severity] = UNSET
-    description: Union[Unset, str] = UNSET
-    root_owner: Union[Unset, "DiagnosticDtoRootOwner"] = UNSET
-    timestamp: Union[Unset, datetime.datetime] = UNSET
+    validation_id: UUID | Unset = UNSET
+    target: DiagnosticDtoTarget | Unset = UNSET
+    property_: str | Unset = UNSET
+    severity: Severity | Unset = UNSET
+    description: str | Unset = UNSET
+    root_owner: DiagnosticDtoRootOwner | Unset = UNSET
+    timestamp: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        validation_id: Union[Unset, str] = UNSET
+        validation_id: str | Unset = UNSET
         if not isinstance(self.validation_id, Unset):
             validation_id = str(self.validation_id)
 
-        target: Union[Unset, dict[str, Any]] = UNSET
+        target: dict[str, Any] | Unset = UNSET
         if not isinstance(self.target, Unset):
             target = self.target.to_dict()
 
         property_ = self.property_
 
-        severity: Union[Unset, str] = UNSET
+        severity: str | Unset = UNSET
         if not isinstance(self.severity, Unset):
             severity = self.severity.value
 
         description = self.description
 
-        root_owner: Union[Unset, dict[str, Any]] = UNSET
+        root_owner: dict[str, Any] | Unset = UNSET
         if not isinstance(self.root_owner, Unset):
             root_owner = self.root_owner.to_dict()
 
-        timestamp: Union[Unset, str] = UNSET
+        timestamp: str | Unset = UNSET
         if not isinstance(self.timestamp, Unset):
             timestamp = self.timestamp.isoformat()
 
@@ -93,14 +95,14 @@ class DiagnosticDto:
 
         d = dict(src_dict)
         _validation_id = d.pop("validationId", UNSET)
-        validation_id: Union[Unset, UUID]
+        validation_id: UUID | Unset
         if isinstance(_validation_id, Unset):
             validation_id = UNSET
         else:
             validation_id = UUID(_validation_id)
 
         _target = d.pop("target", UNSET)
-        target: Union[Unset, DiagnosticDtoTarget]
+        target: DiagnosticDtoTarget | Unset
         if isinstance(_target, Unset):
             target = UNSET
         else:
@@ -109,7 +111,7 @@ class DiagnosticDto:
         property_ = d.pop("property", UNSET)
 
         _severity = d.pop("severity", UNSET)
-        severity: Union[Unset, Severity]
+        severity: Severity | Unset
         if isinstance(_severity, Unset):
             severity = UNSET
         else:
@@ -118,14 +120,14 @@ class DiagnosticDto:
         description = d.pop("description", UNSET)
 
         _root_owner = d.pop("rootOwner", UNSET)
-        root_owner: Union[Unset, DiagnosticDtoRootOwner]
+        root_owner: DiagnosticDtoRootOwner | Unset
         if isinstance(_root_owner, Unset):
             root_owner = UNSET
         else:
             root_owner = DiagnosticDtoRootOwner.from_dict(_root_owner)
 
         _timestamp = d.pop("timestamp", UNSET)
-        timestamp: Union[Unset, datetime.datetime]
+        timestamp: datetime.datetime | Unset
         if isinstance(_timestamp, Unset):
             timestamp = UNSET
         else:

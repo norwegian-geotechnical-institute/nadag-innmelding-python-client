@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,71 +16,71 @@ class KjerneBoringData:
     """Data som tilhører en Kjerneboring
 
     Attributes:
-        boret_lengde (Union[Unset, float]): boret lengde i forhold til terrengoverflaten eller annet angitt
+        boret_lengde (float | Unset): boret lengde i forhold til terrengoverflaten eller annet angitt
             referansenivå<engelsk>drilled length related to the terrain surface or any other given reference level</engelsk>
-        forvitringsgrad (Union[Unset, str]):
-        geologisk_material_tekst (Union[Unset, str]):
-        geologisk_material_type (Union[Unset, str]):
-        kjerne_opptak_prosent (Union[Unset, int]): Prosent av siste kjerne som er opptatt<engelsk> the total core
-            recovery, percent received core of the previous section [%]</engelsk>
-        material_struktur (Union[Unset, str]):
-        observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
-            (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
-            kodelisten GeotekniskBoreObservasjonskode.
+        forvitringsgrad (str | Unset):
+        geologisk_material_tekst (str | Unset):
+        geologisk_material_type (str | Unset):
+        kjerne_opptak_prosent (int | Unset): Prosent av siste kjerne som er opptatt<engelsk> the total core recovery,
+            percent received core of the previous section [%]</engelsk>
+        material_struktur (str | Unset):
+        observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*)
+            tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
+            GeotekniskBoreObservasjonskode.
             <engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in
             a text string with spaces between each code if more than 1. The codes are described in the code list
             GeotekniskBoreObservasjonskode.</engelsk>
-        observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations
-            made during sounding</engelsk>
-        opptrekk (Union[Unset, str]):
-        q_verdi_ja (Union[Unset, float]): Tall for sprekkefylling
-        q_verdi_jn (Union[Unset, float]): Tall for sprekkesett
-        q_verdi_jr (Union[Unset, float]): Sprekkeruhetstall
-        q_verdi_jw (Union[Unset, float]): Sprekkevannstall
-        q_verdi_q (Union[Unset, float]): Q=(RQD/Jn)*(Jr/Ja)*(Jw/SRF)
-        q_verdi_q_er_beregnet (Union[Unset, bool]): om Q-verdiet er beregnet basert på de øvrige leverte verdier eller
-            kommer fra annen kilde <engelsk>indicating whether the Q-value is computed from the associated values or is
+        observasjon_merknad (str | Unset): merknad til observasjoner i sonderingen<engelsk>remarks to observations made
+            during sounding</engelsk>
+        opptrekk (str | Unset):
+        q_verdi_ja (float | Unset): Tall for sprekkefylling
+        q_verdi_jn (float | Unset): Tall for sprekkesett
+        q_verdi_jr (float | Unset): Sprekkeruhetstall
+        q_verdi_jw (float | Unset): Sprekkevannstall
+        q_verdi_q (float | Unset): Q=(RQD/Jn)*(Jr/Ja)*(Jw/SRF)
+        q_verdi_q_er_beregnet (bool | Unset): om Q-verdiet er beregnet basert på de øvrige leverte verdier eller kommer
+            fra annen kilde <engelsk>indicating whether the Q-value is computed from the associated values or is
             external</engelsk>
-        q_verdi_rqd (Union[Unset, float]): Oppsprekkingstall (Rock Quality Designation)
-        q_verdi_srf (Union[Unset, float]): Spenningsfaktor (Stress Reduction Factor)
-        rock_mass_rating (Union[Unset, int]):
-        ruhetsindeks (Union[Unset, int]): indeks (1-10) som beskriver ruhet og friksjon<engelsk> the roughness and
-            frictional characteristics [index (1-10)] </engelsk>
-        sprekke_frekvens (Union[Unset, float]):
-        sprekke_material_tekst (Union[Unset, str]):
-        sprekke_material_type (Union[Unset, str]):
-        str_ø_k_fall_fall (Union[Unset, int]): Måleverdi for måling utført i bergartens vertikalplan (fallretning)
-            Merknad: Målt i grader (0-90°) på observasjonspunkt. Enhet [°]. Verdien sees i sammenheng med måling av strøk i
+        q_verdi_rqd (float | Unset): Oppsprekkingstall (Rock Quality Designation)
+        q_verdi_srf (float | Unset): Spenningsfaktor (Stress Reduction Factor)
+        rock_mass_rating (int | Unset):
+        ruhetsindeks (int | Unset): indeks (1-10) som beskriver ruhet og friksjon<engelsk> the roughness and frictional
+            characteristics [index (1-10)] </engelsk>
+        sprekke_frekvens (float | Unset):
+        sprekke_material_tekst (str | Unset):
+        sprekke_material_type (str | Unset):
+        str_ø_k_fall_fall (int | Unset): Måleverdi for måling utført i bergartens vertikalplan (fallretning) Merknad:
+            Målt i grader (0-90°) på observasjonspunkt. Enhet [°]. Verdien sees i sammenheng med måling av strøk i
             horisontalplanet.
-        str_ø_k_fall_str_ø_k (Union[Unset, int]): Måleverdi for måling utført i bergartens horisontalplan (retning,
-            strøk) Merknad: Målt i grader (0-360°) på observasjonspunkt, med eventuelt fall mot høyre. Enhet [°]. Verdien
-            sees i sammenheng med måling av fall i vertikalplanet.
+        str_ø_k_fall_str_ø_k (int | Unset): Måleverdi for måling utført i bergartens horisontalplan (retning, strøk)
+            Merknad: Målt i grader (0-360°) på observasjonspunkt, med eventuelt fall mot høyre. Enhet [°]. Verdien sees i
+            sammenheng med måling av fall i vertikalplanet.
     """
 
-    boret_lengde: Union[Unset, float] = UNSET
-    forvitringsgrad: Union[Unset, str] = UNSET
-    geologisk_material_tekst: Union[Unset, str] = UNSET
-    geologisk_material_type: Union[Unset, str] = UNSET
-    kjerne_opptak_prosent: Union[Unset, int] = UNSET
-    material_struktur: Union[Unset, str] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    opptrekk: Union[Unset, str] = UNSET
-    q_verdi_ja: Union[Unset, float] = UNSET
-    q_verdi_jn: Union[Unset, float] = UNSET
-    q_verdi_jr: Union[Unset, float] = UNSET
-    q_verdi_jw: Union[Unset, float] = UNSET
-    q_verdi_q: Union[Unset, float] = UNSET
-    q_verdi_q_er_beregnet: Union[Unset, bool] = UNSET
-    q_verdi_rqd: Union[Unset, float] = UNSET
-    q_verdi_srf: Union[Unset, float] = UNSET
-    rock_mass_rating: Union[Unset, int] = UNSET
-    ruhetsindeks: Union[Unset, int] = UNSET
-    sprekke_frekvens: Union[Unset, float] = UNSET
-    sprekke_material_tekst: Union[Unset, str] = UNSET
-    sprekke_material_type: Union[Unset, str] = UNSET
-    str_ø_k_fall_fall: Union[Unset, int] = UNSET
-    str_ø_k_fall_str_ø_k: Union[Unset, int] = UNSET
+    boret_lengde: float | Unset = UNSET
+    forvitringsgrad: str | Unset = UNSET
+    geologisk_material_tekst: str | Unset = UNSET
+    geologisk_material_type: str | Unset = UNSET
+    kjerne_opptak_prosent: int | Unset = UNSET
+    material_struktur: str | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    opptrekk: str | Unset = UNSET
+    q_verdi_ja: float | Unset = UNSET
+    q_verdi_jn: float | Unset = UNSET
+    q_verdi_jr: float | Unset = UNSET
+    q_verdi_jw: float | Unset = UNSET
+    q_verdi_q: float | Unset = UNSET
+    q_verdi_q_er_beregnet: bool | Unset = UNSET
+    q_verdi_rqd: float | Unset = UNSET
+    q_verdi_srf: float | Unset = UNSET
+    rock_mass_rating: int | Unset = UNSET
+    ruhetsindeks: int | Unset = UNSET
+    sprekke_frekvens: float | Unset = UNSET
+    sprekke_material_tekst: str | Unset = UNSET
+    sprekke_material_type: str | Unset = UNSET
+    str_ø_k_fall_fall: int | Unset = UNSET
+    str_ø_k_fall_str_ø_k: int | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

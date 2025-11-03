@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -27,14 +29,14 @@ class GeovitenskapeligUndersoekelse:
     </engelsk>
 
         Attributes:
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+            oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
 
                 Merknad:
                 Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
@@ -42,64 +44,64 @@ class GeovitenskapeligUndersoekelse:
 
                 -Definition-
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
-            beskrivelse (Union[Unset, str]): beskrivelse av de geovitenskaplige undersøkelsene
+            beskrivelse (str | Unset): beskrivelse av de geovitenskaplige undersøkelsene
 
                 <engelsk>
                 description of the geoscientific investigations
                 </engelsk>
-            område (Union[Unset, Polygon]):
-            oppdragsgiver (Union[Unset, str]): identifikasjon av bestiller (kunde) og dennes organisasjon
+            område (Polygon | Unset):
+            oppdragsgiver (str | Unset): identifikasjon av bestiller (kunde) og dennes organisasjon
 
                 <engelsk>
                 identifikation of the the customer organisation
                 </engelsk>
-            oppdragstaker (Union[Unset, str]): identifikasjon av utførende organisasjon
+            oppdragstaker (str | Unset): identifikasjon av utførende organisasjon
 
                 <engelsk>
                 identification of the the organisation responsible for carrying out the project
                 </engelsk>
-            prosjekt_navn (Union[Unset, str]): prosjekt navn og/eller nummer
+            prosjekt_navn (str | Unset): prosjekt navn og/eller nummer
 
                 <engelsk>
                 name or number of the project - e.g. projectnumber
                 </engelsk>
-            unders_ø_kelse_periode_fra (Union[Unset, datetime.datetime]): startdato for undersøkelsen
+            unders_ø_kelse_periode_fra (datetime.datetime | Unset): startdato for undersøkelsen
 
                 <engelsk>
                 starting date of the investigation
                 </engelsk>
-            sammensattområde (Union[Unset, MultiPolygon]):
-            unders_ø_kelse_periode_til (Union[Unset, datetime.datetime]): sluttdato for undersøkelsen
+            sammensattområde (MultiPolygon | Unset):
+            unders_ø_kelse_periode_til (datetime.datetime | Unset): sluttdato for undersøkelsen
 
                 <engelsk>
                 ending date of the investigation
                 </engelsk>
     """
 
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    oppdateringsdato: Union[Unset, datetime.datetime] = UNSET
-    beskrivelse: Union[Unset, str] = UNSET
-    område: Union[Unset, "Polygon"] = UNSET
-    oppdragsgiver: Union[Unset, str] = UNSET
-    oppdragstaker: Union[Unset, str] = UNSET
-    prosjekt_navn: Union[Unset, str] = UNSET
-    unders_ø_kelse_periode_fra: Union[Unset, datetime.datetime] = UNSET
-    sammensattområde: Union[Unset, "MultiPolygon"] = UNSET
-    unders_ø_kelse_periode_til: Union[Unset, datetime.datetime] = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    oppdateringsdato: datetime.datetime | Unset = UNSET
+    beskrivelse: str | Unset = UNSET
+    område: Polygon | Unset = UNSET
+    oppdragsgiver: str | Unset = UNSET
+    oppdragstaker: str | Unset = UNSET
+    prosjekt_navn: str | Unset = UNSET
+    unders_ø_kelse_periode_fra: datetime.datetime | Unset = UNSET
+    sammensattområde: MultiPolygon | Unset = UNSET
+    unders_ø_kelse_periode_til: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        oppdateringsdato: Union[Unset, str] = UNSET
+        oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
         beskrivelse = self.beskrivelse
 
-        område: Union[Unset, dict[str, Any]] = UNSET
+        område: dict[str, Any] | Unset = UNSET
         if not isinstance(self.område, Unset):
             område = self.område.to_dict()
 
@@ -109,15 +111,15 @@ class GeovitenskapeligUndersoekelse:
 
         prosjekt_navn = self.prosjekt_navn
 
-        unders_ø_kelse_periode_fra: Union[Unset, str] = UNSET
+        unders_ø_kelse_periode_fra: str | Unset = UNSET
         if not isinstance(self.unders_ø_kelse_periode_fra, Unset):
             unders_ø_kelse_periode_fra = self.unders_ø_kelse_periode_fra.isoformat()
 
-        sammensattområde: Union[Unset, dict[str, Any]] = UNSET
+        sammensattområde: dict[str, Any] | Unset = UNSET
         if not isinstance(self.sammensattområde, Unset):
             sammensattområde = self.sammensattområde.to_dict()
 
-        unders_ø_kelse_periode_til: Union[Unset, str] = UNSET
+        unders_ø_kelse_periode_til: str | Unset = UNSET
         if not isinstance(self.unders_ø_kelse_periode_til, Unset):
             unders_ø_kelse_periode_til = self.unders_ø_kelse_periode_til.isoformat()
 
@@ -155,14 +157,14 @@ class GeovitenskapeligUndersoekelse:
 
         d = dict(src_dict)
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
             identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
-        oppdateringsdato: Union[Unset, datetime.datetime]
+        oppdateringsdato: datetime.datetime | Unset
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
@@ -171,7 +173,7 @@ class GeovitenskapeligUndersoekelse:
         beskrivelse = d.pop("beskrivelse", UNSET)
 
         _område = d.pop("område", UNSET)
-        område: Union[Unset, Polygon]
+        område: Polygon | Unset
         if isinstance(_område, Unset):
             område = UNSET
         else:
@@ -184,21 +186,21 @@ class GeovitenskapeligUndersoekelse:
         prosjekt_navn = d.pop("prosjektNavn", UNSET)
 
         _unders_ø_kelse_periode_fra = d.pop("undersøkelsePeriodeFra", UNSET)
-        unders_ø_kelse_periode_fra: Union[Unset, datetime.datetime]
+        unders_ø_kelse_periode_fra: datetime.datetime | Unset
         if isinstance(_unders_ø_kelse_periode_fra, Unset):
             unders_ø_kelse_periode_fra = UNSET
         else:
             unders_ø_kelse_periode_fra = isoparse(_unders_ø_kelse_periode_fra)
 
         _sammensattområde = d.pop("sammensattområde", UNSET)
-        sammensattområde: Union[Unset, MultiPolygon]
+        sammensattområde: MultiPolygon | Unset
         if isinstance(_sammensattområde, Unset):
             sammensattområde = UNSET
         else:
             sammensattområde = MultiPolygon.from_dict(_sammensattområde)
 
         _unders_ø_kelse_periode_til = d.pop("undersøkelsePeriodeTil", UNSET)
-        unders_ø_kelse_periode_til: Union[Unset, datetime.datetime]
+        unders_ø_kelse_periode_til: datetime.datetime | Unset
         if isinstance(_unders_ø_kelse_periode_til, Unset):
             unders_ø_kelse_periode_til = UNSET
         else:

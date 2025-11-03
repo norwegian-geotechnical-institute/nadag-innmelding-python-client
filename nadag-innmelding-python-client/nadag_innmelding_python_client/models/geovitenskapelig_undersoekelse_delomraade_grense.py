@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -20,14 +22,14 @@ class GeovitenskapeligUndersoekelseDelomraadeGrense:
     <engelsk>boundary of a subarea within a geoscientific investigation</engelsk>
 
         Attributes:
-            grense (Union[Unset, list['Point']]):
+            grense (list[Point] | Unset):
     """
 
-    grense: Union[Unset, list["Point"]] = UNSET
+    grense: list[Point] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        grense: Union[Unset, list[dict[str, Any]]] = UNSET
+        grense: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.grense, Unset):
             grense = []
             for componentsschemas_line_string_item_data in self.grense:

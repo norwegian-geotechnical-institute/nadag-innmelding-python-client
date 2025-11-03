@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -22,47 +24,46 @@ class KombinasjonSondering:
     drilling in both soils and rock.</engelsk>
 
         Attributes:
-            json_type (Union[Literal['KombinasjonSondering'], Unset]):
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['KombinasjonSondering'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in
-                meter</engelsk>
-            boret_lengde_i_berg (Union[Unset, float]): boret dybde til bergoverflaten [m] <engelsk>drilled depth to the rock
+            torv_tykkelse (float | Unset): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in meter</engelsk>
+            boret_lengde_i_berg (float | Unset): boret dybde til bergoverflaten [m] <engelsk>drilled depth to the rock
                 surface</engelsk>
-            boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
+            boret_lengde_til_berg (BorlengdeTilBerg | Unset): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            maks_last (Union[Unset, float]): maksimal nedpressingskraft registrert på overflaten [kN] <engelsk>maximum
-                penetration force recorded on the surface</engelsk>
-            kombinasjon_sondering_observasjon (Union[Unset, list['KombinasjonSonderingData']]):
+            maks_last (float | Unset): maksimal nedpressingskraft registrert på overflaten [kN] <engelsk>maximum penetration
+                force recorded on the surface</engelsk>
+            kombinasjon_sondering_observasjon (list[KombinasjonSonderingData] | Unset):
     """
 
-    json_type: Union[Literal["KombinasjonSondering"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    torv_tykkelse: Union[Unset, float] = UNSET
-    boret_lengde_i_berg: Union[Unset, float] = UNSET
-    boret_lengde_til_berg: Union[Unset, "BorlengdeTilBerg"] = UNSET
-    maks_last: Union[Unset, float] = UNSET
-    kombinasjon_sondering_observasjon: Union[Unset, list["KombinasjonSonderingData"]] = UNSET
+    json_type: Literal["KombinasjonSondering"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    torv_tykkelse: float | Unset = UNSET
+    boret_lengde_i_berg: float | Unset = UNSET
+    boret_lengde_til_berg: BorlengdeTilBerg | Unset = UNSET
+    maks_last: float | Unset = UNSET
+    kombinasjon_sondering_observasjon: list[KombinasjonSonderingData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -74,13 +75,13 @@ class KombinasjonSondering:
 
         boret_lengde_i_berg = self.boret_lengde_i_berg
 
-        boret_lengde_til_berg: Union[Unset, dict[str, Any]] = UNSET
+        boret_lengde_til_berg: dict[str, Any] | Unset = UNSET
         if not isinstance(self.boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = self.boret_lengde_til_berg.to_dict()
 
         maks_last = self.maks_last
 
-        kombinasjon_sondering_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        kombinasjon_sondering_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.kombinasjon_sondering_observasjon, Unset):
             kombinasjon_sondering_observasjon = []
             for kombinasjon_sondering_observasjon_item_data in self.kombinasjon_sondering_observasjon:
@@ -118,12 +119,12 @@ class KombinasjonSondering:
         from ..models.kombinasjon_sondering_data import KombinasjonSonderingData
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["KombinasjonSondering"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["KombinasjonSondering"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "KombinasjonSondering" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'KombinasjonSondering', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
@@ -138,7 +139,7 @@ class KombinasjonSondering:
         boret_lengde_i_berg = d.pop("boretLengdeIBerg", UNSET)
 
         _boret_lengde_til_berg = d.pop("boretLengdeTilBerg", UNSET)
-        boret_lengde_til_berg: Union[Unset, BorlengdeTilBerg]
+        boret_lengde_til_berg: BorlengdeTilBerg | Unset
         if isinstance(_boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = UNSET
         else:

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,50 +17,50 @@ class StatiskSonderingData:
     performance and recordings in static sounding</engelsk>
 
         Attributes:
-            anvendtlast (Union[Unset, float]): anvendt nedpressingskraft registrert på overflaten under sonderingen [kN]
+            anvendtlast (float | Unset): anvendt nedpressingskraft registrert på overflaten under sonderingen [kN]
                 <engelsk>applied penetration force recorded on the surface during sounding</engelsk>
-            boret_lengde (Union[Unset, float]): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå
-                [m] <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>
-            halve_omdreininger (Union[Unset, float]): antall halve omdreininger av stangsystemet, regnet fra forrige dybde
+            boret_lengde (float | Unset): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m]
+                <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>
+            halve_omdreininger (float | Unset): antall halve omdreininger av stangsystemet, regnet fra forrige dybde
                 <engelsk>number of half turns of the rod system, referring to the previous depth</engelsk>
-            med_slag (Union[Unset, bool]): markering av slag på borstrengen under sonderingen<engelsk>marking of strokes on
-                the drill rods during sounding</engelsk>
-            nedpressing_tid (Union[Unset, int]): tidsangivelse ved nedpressing av stangsystemet, regnet siden forrige dybde
+            med_slag (bool | Unset): markering av slag på borstrengen under sonderingen<engelsk>marking of strokes on the
+                drill rods during sounding</engelsk>
+            nedpressing_tid (int | Unset): tidsangivelse ved nedpressing av stangsystemet, regnet siden forrige dybde
                 [sek/m] <engelsk>time record during penetration of the rod system, referring to the previous depth</engelsk>
-            nedsynkning_hastighet (Union[Unset, float]): antall slag per enhet synk [m/min] <engelsk>penetration of the rod
-                system per unit time (rate of penetration)</engelsk>
-            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i sonderingen. Kodene er
-                (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
-                kodelisten GeotekniskBoreObservasjonskode.
+            nedsynkning_hastighet (float | Unset): antall slag per enhet synk [m/min] <engelsk>penetration of the rod system
+                per unit time (rate of penetration)</engelsk>
+            observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*)
+                tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
+                GeotekniskBoreObservasjonskode.
                 <engelsk>observation codes for marking of incidents during sounding. The codes are (0..*) numeric codes given in
                 a text string with spaces between each code if more than 1. The codes are described in the code list
                 GeotekniskBoreObservasjonskode. </engelsk>
-            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i sonderingen<engelsk>remarks to observations
-                made during sounding</engelsk>
-            rotasjon_hastighet (Union[Unset, float]): antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av
+            observasjon_merknad (str | Unset): merknad til observasjoner i sonderingen<engelsk>remarks to observations made
+                during sounding</engelsk>
+            rotasjon_hastighet (float | Unset): antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av
                 borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit, during penetration of the drill
                 string</engelsk>
-            har_rotasjon (Union[Unset, bool]): <engelsk>Gets or sets the has turning, that indicates if rotation is logged
-                while penetration of soil.
+            har_rotasjon (bool | Unset): <engelsk>Gets or sets the has turning, that indicates if rotation is logged while
+                penetration of soil.
                 @value The has turning.</engelsk>
-            side_friksjon (Union[Unset, float]): <engelsk>Gets or sets the sleeve friction, the measured sleeve friction
-                during penetration of the probe (friction sleeve force divided by area of the friction sleeve [kPa].</engelsk>
-            slag_frekvens (Union[Unset, float]): slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus,
-                angitt ved antall slag per tidsenhet [slag/m]
+            side_friksjon (float | Unset): <engelsk>Gets or sets the sleeve friction, the measured sleeve friction during
+                penetration of the probe (friction sleeve force divided by area of the friction sleeve [kPa].</engelsk>
+            slag_frekvens (float | Unset): slagfrekvens ved anvendelse av slag på borstrengen i fjellkontrollmodus, angitt
+                ved antall slag per tidsenhet [slag/m]
     """
 
-    anvendtlast: Union[Unset, float] = UNSET
-    boret_lengde: Union[Unset, float] = UNSET
-    halve_omdreininger: Union[Unset, float] = UNSET
-    med_slag: Union[Unset, bool] = UNSET
-    nedpressing_tid: Union[Unset, int] = UNSET
-    nedsynkning_hastighet: Union[Unset, float] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    rotasjon_hastighet: Union[Unset, float] = UNSET
-    har_rotasjon: Union[Unset, bool] = UNSET
-    side_friksjon: Union[Unset, float] = UNSET
-    slag_frekvens: Union[Unset, float] = UNSET
+    anvendtlast: float | Unset = UNSET
+    boret_lengde: float | Unset = UNSET
+    halve_omdreininger: float | Unset = UNSET
+    med_slag: bool | Unset = UNSET
+    nedpressing_tid: int | Unset = UNSET
+    nedsynkning_hastighet: float | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    rotasjon_hastighet: float | Unset = UNSET
+    har_rotasjon: bool | Unset = UNSET
+    side_friksjon: float | Unset = UNSET
+    slag_frekvens: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,35 +21,35 @@ class OvervaakningData:
     supervision data</engelsk>
 
         Attributes:
-            akvifer (Union[Unset, AkviferType]): oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview
-                of possible aquifer types for ground water measurements</engelsk>
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen <engelsk>time for
+            akvifer (AkviferType | Unset): oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview of
+                possible aquifer types for ground water measurements</engelsk>
+            m_å_le_tidspunkt (datetime.datetime | Unset): tidspunkt for gjennomføring av målingen <engelsk>time for
                 measurements</engelsk>
-            nedre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, nedre grense for måleverdi [m]
+            nedre_alarm_niv_å (float | Unset): kriterium for alarmtilstand, nedre grense for måleverdi [m]
                 <engelsk>criterion for alarm conditions, lower limit for measured value</engelsk>
-            ø_vre_alarm_niv_å (Union[Unset, float]): kriterium for alarmtilstand, øvre grense for måleverdi [m]
-                <engelsk>criterion for alarm conditions, upper limit for measured value</engelsk>
-            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen
+            ø_vre_alarm_niv_å (float | Unset): kriterium for alarmtilstand, øvre grense for måleverdi [m] <engelsk>criterion
+                for alarm conditions, upper limit for measured value</engelsk>
+            m_å_le_dato (datetime.date | Unset): dato for utførelse av målingen
                 <engelsk>date for measurements</engelsk>
-            observasjon_merknad (Union[Unset, str]): data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk,
-                rystelser eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore
-                pressure or any other supervision data</engelsk>
+            observasjon_merknad (str | Unset): data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk, rystelser
+                eller andre overvåkningsdata<engelsk>data from supervision of settlements, groundwater table, pore pressure or
+                any other supervision data</engelsk>
     """
 
-    akvifer: Union[Unset, AkviferType] = UNSET
-    m_å_le_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    nedre_alarm_niv_å: Union[Unset, float] = UNSET
-    ø_vre_alarm_niv_å: Union[Unset, float] = UNSET
-    m_å_le_dato: Union[Unset, datetime.date] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
+    akvifer: AkviferType | Unset = UNSET
+    m_å_le_tidspunkt: datetime.datetime | Unset = UNSET
+    nedre_alarm_niv_å: float | Unset = UNSET
+    ø_vre_alarm_niv_å: float | Unset = UNSET
+    m_å_le_dato: datetime.date | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        akvifer: Union[Unset, str] = UNSET
+        akvifer: str | Unset = UNSET
         if not isinstance(self.akvifer, Unset):
             akvifer = self.akvifer.value
 
-        m_å_le_tidspunkt: Union[Unset, str] = UNSET
+        m_å_le_tidspunkt: str | Unset = UNSET
         if not isinstance(self.m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = self.m_å_le_tidspunkt.isoformat()
 
@@ -55,7 +57,7 @@ class OvervaakningData:
 
         ø_vre_alarm_niv_å = self.ø_vre_alarm_niv_å
 
-        m_å_le_dato: Union[Unset, str] = UNSET
+        m_å_le_dato: str | Unset = UNSET
         if not isinstance(self.m_å_le_dato, Unset):
             m_å_le_dato = self.m_å_le_dato.isoformat()
 
@@ -83,14 +85,14 @@ class OvervaakningData:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _akvifer = d.pop("akvifer", UNSET)
-        akvifer: Union[Unset, AkviferType]
+        akvifer: AkviferType | Unset
         if isinstance(_akvifer, Unset):
             akvifer = UNSET
         else:
             akvifer = AkviferType(_akvifer)
 
         _m_å_le_tidspunkt = d.pop("måleTidspunkt", UNSET)
-        m_å_le_tidspunkt: Union[Unset, datetime.datetime]
+        m_å_le_tidspunkt: datetime.datetime | Unset
         if isinstance(_m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = UNSET
         else:
@@ -101,7 +103,7 @@ class OvervaakningData:
         ø_vre_alarm_niv_å = d.pop("øvreAlarmNivå", UNSET)
 
         _m_å_le_dato = d.pop("måleDato", UNSET)
-        m_å_le_dato: Union[Unset, datetime.date]
+        m_å_le_dato: datetime.date | Unset
         if isinstance(_m_å_le_dato, Unset):
             m_å_le_dato = UNSET
         else:

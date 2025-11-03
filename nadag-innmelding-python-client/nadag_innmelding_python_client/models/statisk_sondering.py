@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,38 +23,37 @@ class StatiskSondering:
     and depth to firm layers, performed with constant penetration and rotation rate</engelsk>
 
         Attributes:
-            json_type (Union[Literal['StatiskSondering'], Unset]):
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['StatiskSondering'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in
-                meter</engelsk>
-            telenivå (Union[Unset, float]): dybde for angivelse av telefront ved sondering i frosset jord [m] <engelsk>depth
-                to frost front for sounding in frozen soils </engelsk>
-            statisk_sondering_observasjon (Union[Unset, list['StatiskSonderingData']]):
+            torv_tykkelse (float | Unset): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in meter</engelsk>
+            telenivå (float | Unset): dybde for angivelse av telefront ved sondering i frosset jord [m] <engelsk>depth to
+                frost front for sounding in frozen soils </engelsk>
+            statisk_sondering_observasjon (list[StatiskSonderingData] | Unset):
     """
 
-    json_type: Union[Literal["StatiskSondering"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    torv_tykkelse: Union[Unset, float] = UNSET
-    telenivå: Union[Unset, float] = UNSET
-    statisk_sondering_observasjon: Union[Unset, list["StatiskSonderingData"]] = UNSET
+    json_type: Literal["StatiskSondering"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    torv_tykkelse: float | Unset = UNSET
+    telenivå: float | Unset = UNSET
+    statisk_sondering_observasjon: list[StatiskSonderingData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -64,7 +65,7 @@ class StatiskSondering:
 
         telenivå = self.telenivå
 
-        statisk_sondering_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        statisk_sondering_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.statisk_sondering_observasjon, Unset):
             statisk_sondering_observasjon = []
             for statisk_sondering_observasjon_item_data in self.statisk_sondering_observasjon:
@@ -97,12 +98,12 @@ class StatiskSondering:
         from ..models.statisk_sondering_data import StatiskSonderingData
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["StatiskSondering"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["StatiskSondering"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "StatiskSondering" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'StatiskSondering', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:

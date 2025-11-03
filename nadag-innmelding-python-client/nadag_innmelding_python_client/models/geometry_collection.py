@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,18 +19,18 @@ T = TypeVar("T", bound="GeometryCollection")
 class GeometryCollection:
     """
     Attributes:
-        type_ (Union[Literal['GeometryCollection'], Unset]):
-        geometries (Union[Unset, list['Geometry']]):
+        type_ (Literal['GeometryCollection'] | Unset):
+        geometries (list[Geometry] | Unset):
     """
 
-    type_: Union[Literal["GeometryCollection"], Unset] = UNSET
-    geometries: Union[Unset, list["Geometry"]] = UNSET
+    type_: Literal["GeometryCollection"] | Unset = UNSET
+    geometries: list[Geometry] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
 
-        geometries: Union[Unset, list[dict[str, Any]]] = UNSET
+        geometries: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.geometries, Unset):
             geometries = []
             for geometries_item_data in self.geometries:
@@ -50,7 +52,7 @@ class GeometryCollection:
         from ..models.geometry import Geometry
 
         d = dict(src_dict)
-        type_ = cast(Union[Literal["GeometryCollection"], Unset], d.pop("type", UNSET))
+        type_ = cast(Literal["GeometryCollection"] | Unset, d.pop("type", UNSET))
         if type_ != "GeometryCollection" and not isinstance(type_, Unset):
             raise ValueError(f"type must match const 'GeometryCollection', got '{type_}'")
 

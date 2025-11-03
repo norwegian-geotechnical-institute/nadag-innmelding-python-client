@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,20 +18,20 @@ class EksternIdentifikasjon:
     """Identifikasjon av et objekt, ivaretatt av den ansvarlige leverandør inn til NADAG.
 
     Attributes:
-        ekstern_id (Union[Unset, str]): lokal identifikator, tildelt av ekstern leverendør.
+        ekstern_id (str | Unset): lokal identifikator, tildelt av ekstern leverendør.
             Det er data leverendørens ansvar å sørge for at denne eksterne identifikatoren er unik innenfor navnerommet.
-        ekstern_navnerom (Union[Unset, str]): navnerom som identifiserer datakilden/leverandør til objektet
-        ekstern_versjon_id (Union[Unset, str]): identifikasjon av en spesiell versjon av et geografisk objekt  Dersom
+        ekstern_navnerom (str | Unset): navnerom som identifiserer datakilden/leverandør til objektet
+        ekstern_versjon_id (str | Unset): identifikasjon av en spesiell versjon av et geografisk objekt  Dersom
             spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes
             denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av
             versjonen.
-        ekstern_levering_dato (Union[Unset, datetime.datetime]): Når objektet ble levert til database (Nadag)
+        ekstern_levering_dato (datetime.datetime | Unset): Når objektet ble levert til database (Nadag)
     """
 
-    ekstern_id: Union[Unset, str] = UNSET
-    ekstern_navnerom: Union[Unset, str] = UNSET
-    ekstern_versjon_id: Union[Unset, str] = UNSET
-    ekstern_levering_dato: Union[Unset, datetime.datetime] = UNSET
+    ekstern_id: str | Unset = UNSET
+    ekstern_navnerom: str | Unset = UNSET
+    ekstern_versjon_id: str | Unset = UNSET
+    ekstern_levering_dato: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -39,7 +41,7 @@ class EksternIdentifikasjon:
 
         ekstern_versjon_id = self.ekstern_versjon_id
 
-        ekstern_levering_dato: Union[Unset, str] = UNSET
+        ekstern_levering_dato: str | Unset = UNSET
         if not isinstance(self.ekstern_levering_dato, Unset):
             ekstern_levering_dato = self.ekstern_levering_dato.isoformat()
 
@@ -67,7 +69,7 @@ class EksternIdentifikasjon:
         ekstern_versjon_id = d.pop("eksternVersjonId", UNSET)
 
         _ekstern_levering_dato = d.pop("eksternLeveringDato", UNSET)
-        ekstern_levering_dato: Union[Unset, datetime.datetime]
+        ekstern_levering_dato: datetime.datetime | Unset
         if isinstance(_ekstern_levering_dato, Unset):
             ekstern_levering_dato = UNSET
         else:

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -22,21 +24,21 @@ class PosisjonskvalitetNADAG:
 
                 -- Definition - -
                 method on which registration of position is based
-            m_å_lemetode_hø_yde (Union[Unset, MaalemetodeHoeyde]): metode for å måle objekttypens høydeverdi
-            nøyaktighet (Union[Unset, int]): punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
-            n_ø_yaktighet_hø_yde (Union[Unset, int]): nøyaktighet for høyden i cm
+            m_å_lemetode_hø_yde (MaalemetodeHoeyde | Unset): metode for å måle objekttypens høydeverdi
+            nøyaktighet (int | Unset): punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
+            n_ø_yaktighet_hø_yde (int | Unset): nøyaktighet for høyden i cm
     """
 
     målemetode: Maalemetode
-    m_å_lemetode_hø_yde: Union[Unset, MaalemetodeHoeyde] = UNSET
-    nøyaktighet: Union[Unset, int] = UNSET
-    n_ø_yaktighet_hø_yde: Union[Unset, int] = UNSET
+    m_å_lemetode_hø_yde: MaalemetodeHoeyde | Unset = UNSET
+    nøyaktighet: int | Unset = UNSET
+    n_ø_yaktighet_hø_yde: int | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         målemetode = self.målemetode.value
 
-        m_å_lemetode_hø_yde: Union[Unset, str] = UNSET
+        m_å_lemetode_hø_yde: str | Unset = UNSET
         if not isinstance(self.m_å_lemetode_hø_yde, Unset):
             m_å_lemetode_hø_yde = self.m_å_lemetode_hø_yde.value
 
@@ -66,7 +68,7 @@ class PosisjonskvalitetNADAG:
         målemetode = Maalemetode(d.pop("målemetode"))
 
         _m_å_lemetode_hø_yde = d.pop("målemetodeHøyde", UNSET)
-        m_å_lemetode_hø_yde: Union[Unset, MaalemetodeHoeyde]
+        m_å_lemetode_hø_yde: MaalemetodeHoeyde | Unset
         if isinstance(_m_å_lemetode_hø_yde, Unset):
             m_å_lemetode_hø_yde = UNSET
         else:

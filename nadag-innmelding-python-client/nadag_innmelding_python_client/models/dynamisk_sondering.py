@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,38 +23,37 @@ class DynamiskSondering:
     applicable</engelsk>
 
         Attributes:
-            json_type (Union[Literal['DynamiskSondering'], Unset]):
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['DynamiskSondering'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            torv_tykkelse (Union[Unset, float]): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in
-                meter</engelsk>
-            ant_pr_ø_veuttak_forstyrret_matr (Union[Unset, int]): antall prøver av fysisk prøvemateriale som er tatt opp
-                under sonderingen<engelsk>number of samples retrieved during sounding</engelsk>
-            dynamisk_sondering_observasjon (Union[Unset, list['DynamiskSonderingData']]):
+            torv_tykkelse (float | Unset): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in meter</engelsk>
+            ant_pr_ø_veuttak_forstyrret_matr (int | Unset): antall prøver av fysisk prøvemateriale som er tatt opp under
+                sonderingen<engelsk>number of samples retrieved during sounding</engelsk>
+            dynamisk_sondering_observasjon (list[DynamiskSonderingData] | Unset):
     """
 
-    json_type: Union[Literal["DynamiskSondering"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    torv_tykkelse: Union[Unset, float] = UNSET
-    ant_pr_ø_veuttak_forstyrret_matr: Union[Unset, int] = UNSET
-    dynamisk_sondering_observasjon: Union[Unset, list["DynamiskSonderingData"]] = UNSET
+    json_type: Literal["DynamiskSondering"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    torv_tykkelse: float | Unset = UNSET
+    ant_pr_ø_veuttak_forstyrret_matr: int | Unset = UNSET
+    dynamisk_sondering_observasjon: list[DynamiskSonderingData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -64,7 +65,7 @@ class DynamiskSondering:
 
         ant_pr_ø_veuttak_forstyrret_matr = self.ant_pr_ø_veuttak_forstyrret_matr
 
-        dynamisk_sondering_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        dynamisk_sondering_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.dynamisk_sondering_observasjon, Unset):
             dynamisk_sondering_observasjon = []
             for dynamisk_sondering_observasjon_item_data in self.dynamisk_sondering_observasjon:
@@ -97,12 +98,12 @@ class DynamiskSondering:
         from ..models.identifikasjon import Identifikasjon
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["DynamiskSondering"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["DynamiskSondering"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "DynamiskSondering" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'DynamiskSondering', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:

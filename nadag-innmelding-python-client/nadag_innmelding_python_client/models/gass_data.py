@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,13 +16,12 @@ class GassData:
     """resultater fra gassmålinger<engelsk>results from gas measurements</engelsk>
 
     Attributes:
-        ch4 (Union[Unset, float]): innhold av metangass i poreluften<engelsk>content of methane gass in pore
-            air</engelsk>
-        hg (Union[Unset, float]): innhold av kvikksølv i poreluften<engelsk>content of mercury in pore air</engelsk>
+        ch4 (float | Unset): innhold av metangass i poreluften<engelsk>content of methane gass in pore air</engelsk>
+        hg (float | Unset): innhold av kvikksølv i poreluften<engelsk>content of mercury in pore air</engelsk>
     """
 
-    ch4: Union[Unset, float] = UNSET
-    hg: Union[Unset, float] = UNSET
+    ch4: float | Unset = UNSET
+    hg: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -27,14 +29,14 @@ class Kopidata:
                 Å kopiere et datasett til en kopidatabase skal ikke føre til at Oppdateringsdato blir endret.
                 Eventuell redigering av data i et kopidatasett medfører ny Oppdateringsdato, Datafangstdato og/eller
                 Verifiseringsdato.
-            omr_å_de_id (Union[Unset, int]): identifikasjon av område som dataene dekker
+            omr_å_de_id (int | Unset): identifikasjon av område som dataene dekker
 
                 Merknad: Kan angis med kommunenummer eller fylkesnummer. Disse bør spesifiseres nærmere.
     """
 
     original_datavert: str
     kopidato: datetime.datetime
-    omr_å_de_id: Union[Unset, int] = UNSET
+    omr_å_de_id: int | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

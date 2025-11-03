@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -26,14 +28,14 @@ class GeovitenskapeligUndersoekelseDelomraade:
     typically used offshore where an investigation is split into smaller parts</engelsk>
 
         Attributes:
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+            oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
 
                 Merknad:
                 Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
@@ -41,31 +43,31 @@ class GeovitenskapeligUndersoekelseDelomraade:
 
                 -Definition-
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
-            beskrivelse (Union[Unset, str]): forklaring til objektet
+            beskrivelse (str | Unset): forklaring til objektet
                 <engelsk>
                 description of object
                 </engelsk>
-            område (Union[Unset, Polygon]):
+            område (Polygon | Unset):
     """
 
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    oppdateringsdato: Union[Unset, datetime.datetime] = UNSET
-    beskrivelse: Union[Unset, str] = UNSET
-    område: Union[Unset, "Polygon"] = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    oppdateringsdato: datetime.datetime | Unset = UNSET
+    beskrivelse: str | Unset = UNSET
+    område: Polygon | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        oppdateringsdato: Union[Unset, str] = UNSET
+        oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
         beskrivelse = self.beskrivelse
 
-        område: Union[Unset, dict[str, Any]] = UNSET
+        område: dict[str, Any] | Unset = UNSET
         if not isinstance(self.område, Unset):
             område = self.område.to_dict()
 
@@ -90,14 +92,14 @@ class GeovitenskapeligUndersoekelseDelomraade:
 
         d = dict(src_dict)
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
             identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
-        oppdateringsdato: Union[Unset, datetime.datetime]
+        oppdateringsdato: datetime.datetime | Unset
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
@@ -106,7 +108,7 @@ class GeovitenskapeligUndersoekelseDelomraade:
         beskrivelse = d.pop("beskrivelse", UNSET)
 
         _område = d.pop("område", UNSET)
-        område: Union[Unset, Polygon]
+        område: Polygon | Unset
         if isinstance(_område, Unset):
             område = UNSET
         else:

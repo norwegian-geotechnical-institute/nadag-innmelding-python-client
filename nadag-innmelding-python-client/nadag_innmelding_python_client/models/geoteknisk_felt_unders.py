@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -27,70 +29,69 @@ class GeotekniskFeltUnders:
     """Geoteknisk feltundersøkelse
 
     Attributes:
-        identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+        identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
             produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
             NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        posisjon (Union[Unset, Point]):
-        geoteknisk_felt_unders_metode (Union[Unset, GeotekniskFeltUndersMetodeKode]): Koder for metoder benyttet ved
+        posisjon (Point | Unset):
+        geoteknisk_felt_unders_metode (GeotekniskFeltUndersMetodeKode | Unset): Koder for metoder benyttet ved
             geotekniske feltundersøkelser
-        eksternidentifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
-            ansvarlige leverandør inn til NADAG.
-        opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
-        feltunders_type (Union[Unset, FeltUndersTypeKode]): Kodeliste for feltundersøkelsestype
-        tolkning_metode (Union[Unset, TolkningMetodeKode]): Metoder benyttet for tolkning av geotekniske
-            feltundersøkelser
-        h_ø_yde_fjell (Union[Unset, float]): Høyde på observert fjell [m]
-        høyde (Union[Unset, float]): Terrenghøyde ved start feltundersøkelse [m]
-        h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
-            EPSG-koder benyttes.
-        feltunders_nr (Union[Unset, str]): Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen
-        har_dokument (Union[Unset, list['GeotekniskDokument']]):
+        eksternidentifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
+            leverandør inn til NADAG.
+        opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
+        feltunders_type (FeltUndersTypeKode | Unset): Kodeliste for feltundersøkelsestype
+        tolkning_metode (TolkningMetodeKode | Unset): Metoder benyttet for tolkning av geotekniske feltundersøkelser
+        h_ø_yde_fjell (float | Unset): Høyde på observert fjell [m]
+        høyde (float | Unset): Terrenghøyde ved start feltundersøkelse [m]
+        h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
+            koder benyttes.
+        feltunders_nr (str | Unset): Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen
+        har_dokument (list[GeotekniskDokument] | Unset):
     """
 
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    posisjon: Union[Unset, "Point"] = UNSET
-    geoteknisk_felt_unders_metode: Union[Unset, GeotekniskFeltUndersMetodeKode] = UNSET
-    eksternidentifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
-    opprettet_dato: Union[Unset, datetime.datetime] = UNSET
-    feltunders_type: Union[Unset, FeltUndersTypeKode] = UNSET
-    tolkning_metode: Union[Unset, TolkningMetodeKode] = UNSET
-    h_ø_yde_fjell: Union[Unset, float] = UNSET
-    høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
-    feltunders_nr: Union[Unset, str] = UNSET
-    har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    posisjon: Point | Unset = UNSET
+    geoteknisk_felt_unders_metode: GeotekniskFeltUndersMetodeKode | Unset = UNSET
+    eksternidentifikasjon: EksternIdentifikasjon | Unset = UNSET
+    opprettet_dato: datetime.datetime | Unset = UNSET
+    feltunders_type: FeltUndersTypeKode | Unset = UNSET
+    tolkning_metode: TolkningMetodeKode | Unset = UNSET
+    h_ø_yde_fjell: float | Unset = UNSET
+    høyde: float | Unset = UNSET
+    h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
+    feltunders_nr: str | Unset = UNSET
+    har_dokument: list[GeotekniskDokument] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        posisjon: Union[Unset, dict[str, Any]] = UNSET
+        posisjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
-        geoteknisk_felt_unders_metode: Union[Unset, str] = UNSET
+        geoteknisk_felt_unders_metode: str | Unset = UNSET
         if not isinstance(self.geoteknisk_felt_unders_metode, Unset):
             geoteknisk_felt_unders_metode = self.geoteknisk_felt_unders_metode.value
 
-        eksternidentifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        eksternidentifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.eksternidentifikasjon, Unset):
             eksternidentifikasjon = self.eksternidentifikasjon.to_dict()
 
-        opprettet_dato: Union[Unset, str] = UNSET
+        opprettet_dato: str | Unset = UNSET
         if not isinstance(self.opprettet_dato, Unset):
             opprettet_dato = self.opprettet_dato.isoformat()
 
-        feltunders_type: Union[Unset, str] = UNSET
+        feltunders_type: str | Unset = UNSET
         if not isinstance(self.feltunders_type, Unset):
             feltunders_type = self.feltunders_type.value
 
-        tolkning_metode: Union[Unset, str] = UNSET
+        tolkning_metode: str | Unset = UNSET
         if not isinstance(self.tolkning_metode, Unset):
             tolkning_metode = self.tolkning_metode.value
 
@@ -98,13 +99,13 @@ class GeotekniskFeltUnders:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        h_ø_yde_referanse: str | Unset = UNSET
         if not isinstance(self.h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         feltunders_nr = self.feltunders_nr
 
-        har_dokument: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_dokument: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_dokument, Unset):
             har_dokument = []
             for har_dokument_item_data in self.har_dokument:
@@ -150,49 +151,49 @@ class GeotekniskFeltUnders:
 
         d = dict(src_dict)
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
             identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Union[Unset, Point]
+        posisjon: Point | Unset
         if isinstance(_posisjon, Unset):
             posisjon = UNSET
         else:
             posisjon = Point.from_dict(_posisjon)
 
         _geoteknisk_felt_unders_metode = d.pop("geotekniskFeltUndersMetode", UNSET)
-        geoteknisk_felt_unders_metode: Union[Unset, GeotekniskFeltUndersMetodeKode]
+        geoteknisk_felt_unders_metode: GeotekniskFeltUndersMetodeKode | Unset
         if isinstance(_geoteknisk_felt_unders_metode, Unset):
             geoteknisk_felt_unders_metode = UNSET
         else:
             geoteknisk_felt_unders_metode = GeotekniskFeltUndersMetodeKode(_geoteknisk_felt_unders_metode)
 
         _eksternidentifikasjon = d.pop("eksternidentifikasjon", UNSET)
-        eksternidentifikasjon: Union[Unset, EksternIdentifikasjon]
+        eksternidentifikasjon: EksternIdentifikasjon | Unset
         if isinstance(_eksternidentifikasjon, Unset):
             eksternidentifikasjon = UNSET
         else:
             eksternidentifikasjon = EksternIdentifikasjon.from_dict(_eksternidentifikasjon)
 
         _opprettet_dato = d.pop("opprettetDato", UNSET)
-        opprettet_dato: Union[Unset, datetime.datetime]
+        opprettet_dato: datetime.datetime | Unset
         if isinstance(_opprettet_dato, Unset):
             opprettet_dato = UNSET
         else:
             opprettet_dato = isoparse(_opprettet_dato)
 
         _feltunders_type = d.pop("feltundersType", UNSET)
-        feltunders_type: Union[Unset, FeltUndersTypeKode]
+        feltunders_type: FeltUndersTypeKode | Unset
         if isinstance(_feltunders_type, Unset):
             feltunders_type = UNSET
         else:
             feltunders_type = FeltUndersTypeKode(_feltunders_type)
 
         _tolkning_metode = d.pop("tolkningMetode", UNSET)
-        tolkning_metode: Union[Unset, TolkningMetodeKode]
+        tolkning_metode: TolkningMetodeKode | Unset
         if isinstance(_tolkning_metode, Unset):
             tolkning_metode = UNSET
         else:
@@ -203,7 +204,7 @@ class GeotekniskFeltUnders:
         høyde = d.pop("høyde", UNSET)
 
         _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
-        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        h_ø_yde_referanse: NADAGHoeyderef | Unset
         if isinstance(_h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = UNSET
         else:

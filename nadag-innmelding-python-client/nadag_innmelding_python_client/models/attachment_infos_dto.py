@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,14 +20,14 @@ class AttachmentInfosDto:
     """Attachment infos result
 
     Attributes:
-        attachment_infos (Union[Unset, list['AttachmentInfoDto']]):
+        attachment_infos (list[AttachmentInfoDto] | Unset):
     """
 
-    attachment_infos: Union[Unset, list["AttachmentInfoDto"]] = UNSET
+    attachment_infos: list[AttachmentInfoDto] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        attachment_infos: Union[Unset, list[dict[str, Any]]] = UNSET
+        attachment_infos: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.attachment_infos, Unset):
             attachment_infos = []
             for attachment_infos_item_data in self.attachment_infos:
