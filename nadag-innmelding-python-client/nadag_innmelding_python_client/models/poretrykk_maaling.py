@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -25,79 +27,79 @@ class PoretrykkMaaling:
     in the pore water given as force per area unit, with the atmospheric pressure as reference</engelsk>
 
         Attributes:
-            json_type (Union[Literal['PoretrykkMaaling'], Unset]):
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['PoretrykkMaaling'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
-                prøvningen<engelsk>start time for in situ testing</engelsk>
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
-                prøvningen<engelsk>stop time for in situ testing</engelsk>
-            installasjon_tidspunkt (Union[Unset, datetime.datetime]): tidspunktet poretrykksmåleren ble
-                installert<engelsk>time of installation of the pore pressure device</engelsk>
-            filter_lengde (Union[Unset, float]): lengde på  filter i poretrykksmåler<engelsk>length of filter in the pore
-                pressure device</engelsk>
-            kote_spiss (Union[Unset, float]): kotenivå for spiss av poretrykksmåler<engelsk>elevation for the tip of the
-                pore pressure device</engelsk>
-            filter_type (Union[Unset, str]): type filter i poretrykksmåler<engelsk>type of filter in the pore pressure
+            insitu_test_start_tidspunkt (datetime.datetime | Unset): tidspunkt for start av in situ prøvningen<engelsk>start
+                time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (datetime.datetime | Unset): tidspunkt for stopp av in situ prøvningen<engelsk>stop
+                time for in situ testing</engelsk>
+            installasjon_tidspunkt (datetime.datetime | Unset): tidspunktet poretrykksmåleren ble installert<engelsk>time of
+                installation of the pore pressure device</engelsk>
+            filter_lengde (float | Unset): lengde på  filter i poretrykksmåler<engelsk>length of filter in the pore pressure
                 device</engelsk>
-            r_ø_r_topp_filter (Union[Unset, float]): høyde z-verdi ved filterets topp i forhold til vertikal referanse (m)
+            kote_spiss (float | Unset): kotenivå for spiss av poretrykksmåler<engelsk>elevation for the tip of the pore
+                pressure device</engelsk>
+            filter_type (str | Unset): type filter i poretrykksmåler<engelsk>type of filter in the pore pressure
+                device</engelsk>
+            r_ø_r_topp_filter (float | Unset): høyde z-verdi ved filterets topp i forhold til vertikal referanse (m)
 
                 <engelsk>
                 height Z-level at the top of filter in relation to vertical reference  [m] </engelsk>
-            r_ø_r_topp_slange (Union[Unset, float]): høyde z-verdi ved slangens topp i forhold til vertikal referanse (m)
+            r_ø_r_topp_slange (float | Unset): høyde z-verdi ved slangens topp i forhold til vertikal referanse (m)
 
                 <engelsk>
                 height Z-level at the top of tube in relation to vertical reference  [m] </engelsk>
-            r_ø_r_topp (Union[Unset, float]): høyde z-verdi ved rørets topp i forhold til vertikal referanse (m)
+            r_ø_r_topp (float | Unset): høyde z-verdi ved rørets topp i forhold til vertikal referanse (m)
 
                 <engelsk>
                 height Z-level at the top of pipe in relation to vertical reference  [m] </engelsk>
-            r_ø_r_bunn (Union[Unset, float]): høyde z-verdi ved rørets bunn i forhold til vertikal referanse (m)
+            r_ø_r_bunn (float | Unset): høyde z-verdi ved rørets bunn i forhold til vertikal referanse (m)
 
                 <engelsk>
                 height Z-level at the bottom of pipe in relation to vertical reference  [m] </engelsk>
-            m_å_lerspiss_nummer (Union[Unset, str]): identifikasjon av poretrykksmåler/måleapparat<engelsk>identification of
-                the pore pressure device/measuring unit</engelsk>
-            m_å_ler_kategori (Union[Unset, PoretrykkMaaleKategori]): oversikt over aktuelle typer
+            m_å_lerspiss_nummer (str | Unset): identifikasjon av poretrykksmåler/måleapparat<engelsk>identification of the
+                pore pressure device/measuring unit</engelsk>
+            m_å_ler_kategori (PoretrykkMaaleKategori | Unset): oversikt over aktuelle typer
                 poretrykksmålere<engelsk>overview of possible types of pore pressure measurement devices</engelsk>
-            m_å_ler_type (Union[Unset, str]): type poretrykksmåler (fabrikat, produsent)<engelsk>type of pore pressure
+            m_å_ler_type (str | Unset): type poretrykksmåler (fabrikat, produsent)<engelsk>type of pore pressure
                 device</engelsk>
-            poretrykk_observasjon (Union[Unset, list['PoretrykkData']]):
+            poretrykk_observasjon (list[PoretrykkData] | Unset):
     """
 
-    json_type: Union[Literal["PoretrykkMaaling"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    insitu_test_start_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    installasjon_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    filter_lengde: Union[Unset, float] = UNSET
-    kote_spiss: Union[Unset, float] = UNSET
-    filter_type: Union[Unset, str] = UNSET
-    r_ø_r_topp_filter: Union[Unset, float] = UNSET
-    r_ø_r_topp_slange: Union[Unset, float] = UNSET
-    r_ø_r_topp: Union[Unset, float] = UNSET
-    r_ø_r_bunn: Union[Unset, float] = UNSET
-    m_å_lerspiss_nummer: Union[Unset, str] = UNSET
-    m_å_ler_kategori: Union[Unset, PoretrykkMaaleKategori] = UNSET
-    m_å_ler_type: Union[Unset, str] = UNSET
-    poretrykk_observasjon: Union[Unset, list["PoretrykkData"]] = UNSET
+    json_type: Literal["PoretrykkMaaling"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
+    insitu_test_slutt_tidspunkt: datetime.datetime | Unset = UNSET
+    installasjon_tidspunkt: datetime.datetime | Unset = UNSET
+    filter_lengde: float | Unset = UNSET
+    kote_spiss: float | Unset = UNSET
+    filter_type: str | Unset = UNSET
+    r_ø_r_topp_filter: float | Unset = UNSET
+    r_ø_r_topp_slange: float | Unset = UNSET
+    r_ø_r_topp: float | Unset = UNSET
+    r_ø_r_bunn: float | Unset = UNSET
+    m_å_lerspiss_nummer: str | Unset = UNSET
+    m_å_ler_kategori: PoretrykkMaaleKategori | Unset = UNSET
+    m_å_ler_type: str | Unset = UNSET
+    poretrykk_observasjon: list[PoretrykkData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -105,15 +107,15 @@ class PoretrykkMaaling:
 
         til_borlengde = self.til_borlengde
 
-        insitu_test_start_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_start_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = self.insitu_test_start_tidspunkt.isoformat()
 
-        insitu_test_slutt_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_slutt_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = self.insitu_test_slutt_tidspunkt.isoformat()
 
-        installasjon_tidspunkt: Union[Unset, str] = UNSET
+        installasjon_tidspunkt: str | Unset = UNSET
         if not isinstance(self.installasjon_tidspunkt, Unset):
             installasjon_tidspunkt = self.installasjon_tidspunkt.isoformat()
 
@@ -133,13 +135,13 @@ class PoretrykkMaaling:
 
         m_å_lerspiss_nummer = self.m_å_lerspiss_nummer
 
-        m_å_ler_kategori: Union[Unset, str] = UNSET
+        m_å_ler_kategori: str | Unset = UNSET
         if not isinstance(self.m_å_ler_kategori, Unset):
             m_å_ler_kategori = self.m_å_ler_kategori.value
 
         m_å_ler_type = self.m_å_ler_type
 
-        poretrykk_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        poretrykk_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.poretrykk_observasjon, Unset):
             poretrykk_observasjon = []
             for poretrykk_observasjon_item_data in self.poretrykk_observasjon:
@@ -194,12 +196,12 @@ class PoretrykkMaaling:
         from ..models.poretrykk_data import PoretrykkData
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["PoretrykkMaaling"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["PoretrykkMaaling"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "PoretrykkMaaling" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'PoretrykkMaaling', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
@@ -210,21 +212,21 @@ class PoretrykkMaaling:
         til_borlengde = d.pop("tilBorlengde", UNSET)
 
         _insitu_test_start_tidspunkt = d.pop("insituTestStartTidspunkt", UNSET)
-        insitu_test_start_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_start_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = UNSET
         else:
             insitu_test_start_tidspunkt = isoparse(_insitu_test_start_tidspunkt)
 
         _insitu_test_slutt_tidspunkt = d.pop("insituTestSluttTidspunkt", UNSET)
-        insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_slutt_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = UNSET
         else:
             insitu_test_slutt_tidspunkt = isoparse(_insitu_test_slutt_tidspunkt)
 
         _installasjon_tidspunkt = d.pop("installasjonTidspunkt", UNSET)
-        installasjon_tidspunkt: Union[Unset, datetime.datetime]
+        installasjon_tidspunkt: datetime.datetime | Unset
         if isinstance(_installasjon_tidspunkt, Unset):
             installasjon_tidspunkt = UNSET
         else:
@@ -247,7 +249,7 @@ class PoretrykkMaaling:
         m_å_lerspiss_nummer = d.pop("målerspissNummer", UNSET)
 
         _m_å_ler_kategori = d.pop("målerKategori", UNSET)
-        m_å_ler_kategori: Union[Unset, PoretrykkMaaleKategori]
+        m_å_ler_kategori: PoretrykkMaaleKategori | Unset
         if isinstance(_m_å_ler_kategori, Unset):
             m_å_ler_kategori = UNSET
         else:

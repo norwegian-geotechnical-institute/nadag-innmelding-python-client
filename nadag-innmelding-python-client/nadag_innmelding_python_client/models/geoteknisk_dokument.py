@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -22,33 +24,33 @@ class GeotekniskDokument:
     investigation areas and boreholes</engelsk>
 
         Attributes:
-            dokument_id (Union[Unset, str]): Unik nøkkel for dokument.
-            dokument_nø_kkel (Union[Unset, str]): Benyttes til å angi nøkkelverdi ved kall til Web-api.
-            dokument_type (Union[Unset, NADAGDokumentType]): Typer av dokument brukt i NADAG forvaltningsløsning.
-            dokument_filnavn (Union[Unset, str]): Filnavn på dokumentet.
-            dokument_url (Union[Unset, str]): Komplett URL for dokument med id.
-            innhold_type (Union[Unset, str]): Type dokumentformat, feks. Image/png, pdf
-            beskrivelse (Union[Unset, str]): Kort informasjon om dokumentet
-            ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
-                ansvarlige leverandør inn til NADAG.
-            dokument_navn (Union[Unset, str]): Navn på dokument
-            opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
-            dokument_nr (Union[Unset, str]): Feks. rapportNr.
-            dokument_dato (Union[Unset, datetime.datetime]): Dato når dokument ble opprettet
+            dokument_id (str | Unset): Unik nøkkel for dokument.
+            dokument_nø_kkel (str | Unset): Benyttes til å angi nøkkelverdi ved kall til Web-api.
+            dokument_type (NADAGDokumentType | Unset): Typer av dokument brukt i NADAG forvaltningsløsning.
+            dokument_filnavn (str | Unset): Filnavn på dokumentet.
+            dokument_url (str | Unset): Komplett URL for dokument med id.
+            innhold_type (str | Unset): Type dokumentformat, feks. Image/png, pdf
+            beskrivelse (str | Unset): Kort informasjon om dokumentet
+            ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
+                leverandør inn til NADAG.
+            dokument_navn (str | Unset): Navn på dokument
+            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
+            dokument_nr (str | Unset): Feks. rapportNr.
+            dokument_dato (datetime.datetime | Unset): Dato når dokument ble opprettet
     """
 
-    dokument_id: Union[Unset, str] = UNSET
-    dokument_nø_kkel: Union[Unset, str] = UNSET
-    dokument_type: Union[Unset, NADAGDokumentType] = UNSET
-    dokument_filnavn: Union[Unset, str] = UNSET
-    dokument_url: Union[Unset, str] = UNSET
-    innhold_type: Union[Unset, str] = UNSET
-    beskrivelse: Union[Unset, str] = UNSET
-    ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
-    dokument_navn: Union[Unset, str] = UNSET
-    opprettet_dato: Union[Unset, datetime.datetime] = UNSET
-    dokument_nr: Union[Unset, str] = UNSET
-    dokument_dato: Union[Unset, datetime.datetime] = UNSET
+    dokument_id: str | Unset = UNSET
+    dokument_nø_kkel: str | Unset = UNSET
+    dokument_type: NADAGDokumentType | Unset = UNSET
+    dokument_filnavn: str | Unset = UNSET
+    dokument_url: str | Unset = UNSET
+    innhold_type: str | Unset = UNSET
+    beskrivelse: str | Unset = UNSET
+    ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
+    dokument_navn: str | Unset = UNSET
+    opprettet_dato: datetime.datetime | Unset = UNSET
+    dokument_nr: str | Unset = UNSET
+    dokument_dato: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -56,7 +58,7 @@ class GeotekniskDokument:
 
         dokument_nø_kkel = self.dokument_nø_kkel
 
-        dokument_type: Union[Unset, str] = UNSET
+        dokument_type: str | Unset = UNSET
         if not isinstance(self.dokument_type, Unset):
             dokument_type = self.dokument_type.value
 
@@ -68,19 +70,19 @@ class GeotekniskDokument:
 
         beskrivelse = self.beskrivelse
 
-        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        ekstern_identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
         dokument_navn = self.dokument_navn
 
-        opprettet_dato: Union[Unset, str] = UNSET
+        opprettet_dato: str | Unset = UNSET
         if not isinstance(self.opprettet_dato, Unset):
             opprettet_dato = self.opprettet_dato.isoformat()
 
         dokument_nr = self.dokument_nr
 
-        dokument_dato: Union[Unset, str] = UNSET
+        dokument_dato: str | Unset = UNSET
         if not isinstance(self.dokument_dato, Unset):
             dokument_dato = self.dokument_dato.isoformat()
 
@@ -124,7 +126,7 @@ class GeotekniskDokument:
         dokument_nø_kkel = d.pop("dokumentNøkkel", UNSET)
 
         _dokument_type = d.pop("dokumentType", UNSET)
-        dokument_type: Union[Unset, NADAGDokumentType]
+        dokument_type: NADAGDokumentType | Unset
         if isinstance(_dokument_type, Unset):
             dokument_type = UNSET
         else:
@@ -139,7 +141,7 @@ class GeotekniskDokument:
         beskrivelse = d.pop("beskrivelse", UNSET)
 
         _ekstern_identifikasjon = d.pop("eksternIdentifikasjon", UNSET)
-        ekstern_identifikasjon: Union[Unset, EksternIdentifikasjon]
+        ekstern_identifikasjon: EksternIdentifikasjon | Unset
         if isinstance(_ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = UNSET
         else:
@@ -148,7 +150,7 @@ class GeotekniskDokument:
         dokument_navn = d.pop("dokumentNavn", UNSET)
 
         _opprettet_dato = d.pop("opprettetDato", UNSET)
-        opprettet_dato: Union[Unset, datetime.datetime]
+        opprettet_dato: datetime.datetime | Unset
         if isinstance(_opprettet_dato, Unset):
             opprettet_dato = UNSET
         else:
@@ -157,7 +159,7 @@ class GeotekniskDokument:
         dokument_nr = d.pop("dokumentNr", UNSET)
 
         _dokument_dato = d.pop("dokumentDato", UNSET)
-        dokument_dato: Union[Unset, datetime.datetime]
+        dokument_dato: datetime.datetime | Unset
         if isinstance(_dokument_dato, Unset):
             dokument_dato = UNSET
         else:

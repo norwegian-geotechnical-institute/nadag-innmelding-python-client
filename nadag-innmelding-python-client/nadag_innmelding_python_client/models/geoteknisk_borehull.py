@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -33,26 +35,26 @@ class GeotekniskBorehull:
     interpretation of stratification and properties for the different strata </engelsk>
 
         Attributes:
-            datafangstdato (Union[Unset, datetime.datetime]): dato når objektet siste gang ble registrert/observert/målt i
+            datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
 
                 Merknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en
                 kortere eller lengre periode før disse legges inn i databasen.
                 Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.
-            digitaliseringsmålestokk (Union[Unset, int]): kartmålestokk registreringene/ datene er hentet fra/ registrert på
+            digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            kvalitet (Union[Unset, PosisjonskvalitetNADAG]): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database
-                for Grunnundersøkelser).
+            kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
+                Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
-            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+            oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
 
                 Merknad:
                 Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
@@ -60,7 +62,7 @@ class GeotekniskBorehull:
 
                 -Definition-
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
-            antall_borehull_unders_ø_kelser (Union[Unset, int]): antall borehullsundersøkeelser i borehullets område
+            antall_borehull_unders_ø_kelser (int | Unset): antall borehullsundersøkeelser i borehullets område
 
                 Merknad: Borhullet er et logisk borhull hvor det innen et lite område er foretatt flere fysiske
                 borhullsundersøkelser som tilhører det samme borehull.
@@ -70,16 +72,16 @@ class GeotekniskBorehull:
 
                 Note: A virtual borehole is a fictitious feature for all boreholes/soundings performed within an reasonable
                 small area (e.g. <5 m or so)</engelsk>
-            beskrivelse (Union[Unset, str]): forklaring til objektet og undersøkelser utført på lokaliteten
+            beskrivelse (str | Unset): forklaring til objektet og undersøkelser utført på lokaliteten
 
                 <engelsk>
                 a short description of the investigations at the location of the borehole</engelsk>
-            boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
+            boret_lengde_til_berg (BorlengdeTilBerg | Unset): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            gjennomboret_medium (Union[Unset, list[GjennomboretMedium]]): material som er gjennomboret
+            gjennomboret_medium (list[GjennomboretMedium] | Unset): material som er gjennomboret
 
                 Merknad: spesifisert ved å bruke kodeliste GjennomboretMedium.
 
@@ -88,69 +90,69 @@ class GeotekniskBorehull:
 
                 Note: Specified by using codes from codelist: GjennomboretMedium
                 </engelsk>
-            posisjon (Union[Unset, Point]):
-            bore_nr (Union[Unset, str]): Nummer på borehull benyttet i den geotekniske undersøkelsen
-            høyde (Union[Unset, float]): Terrenghøyde ved start borehull [m]
-            h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
-                EPSG-koder benyttes.
-            opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
-            ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
-                ansvarlige leverandør inn til NADAG.
-            kvikkleire_på_visning (Union[Unset, KvikkleirePaavisningKode]): Koder for grad av sikkerhet for påvisning av
+            posisjon (Point | Unset):
+            bore_nr (str | Unset): Nummer på borehull benyttet i den geotekniske undersøkelsen
+            høyde (float | Unset): Terrenghøyde ved start borehull [m]
+            h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
+                koder benyttes.
+            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
+            ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
+                leverandør inn til NADAG.
+            kvikkleire_på_visning (KvikkleirePaavisningKode | Unset): Koder for grad av sikkerhet for påvisning av
                 kvikkleire eller sprøbruddmateriale
-            opprinnelig_geoteknisk_unders_id (Union[Unset, str]): opprinneligGeotekniskUndersID - LokalID fra opprinnelig
+            opprinnelig_geoteknisk_unders_id (str | Unset): opprinneligGeotekniskUndersID - LokalID fra opprinnelig
                 Geoteknisk undersøkelse.
                 Benyttes for å identifisere orginal undersøkelse med rapporter etc. ved bruk av samme GeotekniskBorehull i flere
                 undersøkelser.
-            opphav (Union[Unset, str]): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
-            maks_boret_lengde (Union[Unset, float]): Lengste boret lengde for borehullsundersøkelsene i dette borhullet [m]
-            har_observasjon (Union[Unset, list['DeformasjonMaaling']]):
-            har_unders_ø_kelse (Union[Unset, list['GeotekniskBorehullUnders']]):
-            har_tolkning (Union[Unset, list['GeotekniskTolketPunkt']]):
-            har_dokument (Union[Unset, list['GeotekniskDokument']]):
+            opphav (str | Unset): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+            maks_boret_lengde (float | Unset): Lengste boret lengde for borehullsundersøkelsene i dette borhullet [m]
+            har_observasjon (list[DeformasjonMaaling] | Unset):
+            har_unders_ø_kelse (list[GeotekniskBorehullUnders] | Unset):
+            har_tolkning (list[GeotekniskTolketPunkt] | Unset):
+            har_dokument (list[GeotekniskDokument] | Unset):
     """
 
-    datafangstdato: Union[Unset, datetime.datetime] = UNSET
-    digitaliseringsmålestokk: Union[Unset, int] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    kvalitet: Union[Unset, "PosisjonskvalitetNADAG"] = UNSET
-    oppdateringsdato: Union[Unset, datetime.datetime] = UNSET
-    antall_borehull_unders_ø_kelser: Union[Unset, int] = UNSET
-    beskrivelse: Union[Unset, str] = UNSET
-    boret_lengde_til_berg: Union[Unset, "BorlengdeTilBerg"] = UNSET
-    gjennomboret_medium: Union[Unset, list[GjennomboretMedium]] = UNSET
-    posisjon: Union[Unset, "Point"] = UNSET
-    bore_nr: Union[Unset, str] = UNSET
-    høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
-    opprettet_dato: Union[Unset, datetime.datetime] = UNSET
-    ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
-    kvikkleire_på_visning: Union[Unset, KvikkleirePaavisningKode] = UNSET
-    opprinnelig_geoteknisk_unders_id: Union[Unset, str] = UNSET
-    opphav: Union[Unset, str] = UNSET
-    maks_boret_lengde: Union[Unset, float] = UNSET
-    har_observasjon: Union[Unset, list["DeformasjonMaaling"]] = UNSET
-    har_unders_ø_kelse: Union[Unset, list["GeotekniskBorehullUnders"]] = UNSET
-    har_tolkning: Union[Unset, list["GeotekniskTolketPunkt"]] = UNSET
-    har_dokument: Union[Unset, list["GeotekniskDokument"]] = UNSET
+    datafangstdato: datetime.datetime | Unset = UNSET
+    digitaliseringsmålestokk: int | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
+    oppdateringsdato: datetime.datetime | Unset = UNSET
+    antall_borehull_unders_ø_kelser: int | Unset = UNSET
+    beskrivelse: str | Unset = UNSET
+    boret_lengde_til_berg: BorlengdeTilBerg | Unset = UNSET
+    gjennomboret_medium: list[GjennomboretMedium] | Unset = UNSET
+    posisjon: Point | Unset = UNSET
+    bore_nr: str | Unset = UNSET
+    høyde: float | Unset = UNSET
+    h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
+    opprettet_dato: datetime.datetime | Unset = UNSET
+    ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
+    kvikkleire_på_visning: KvikkleirePaavisningKode | Unset = UNSET
+    opprinnelig_geoteknisk_unders_id: str | Unset = UNSET
+    opphav: str | Unset = UNSET
+    maks_boret_lengde: float | Unset = UNSET
+    har_observasjon: list[DeformasjonMaaling] | Unset = UNSET
+    har_unders_ø_kelse: list[GeotekniskBorehullUnders] | Unset = UNSET
+    har_tolkning: list[GeotekniskTolketPunkt] | Unset = UNSET
+    har_dokument: list[GeotekniskDokument] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        datafangstdato: Union[Unset, str] = UNSET
+        datafangstdato: str | Unset = UNSET
         if not isinstance(self.datafangstdato, Unset):
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        kvalitet: Union[Unset, dict[str, Any]] = UNSET
+        kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
             kvalitet = self.kvalitet.to_dict()
 
-        oppdateringsdato: Union[Unset, str] = UNSET
+        oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
@@ -158,18 +160,18 @@ class GeotekniskBorehull:
 
         beskrivelse = self.beskrivelse
 
-        boret_lengde_til_berg: Union[Unset, dict[str, Any]] = UNSET
+        boret_lengde_til_berg: dict[str, Any] | Unset = UNSET
         if not isinstance(self.boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = self.boret_lengde_til_berg.to_dict()
 
-        gjennomboret_medium: Union[Unset, list[str]] = UNSET
+        gjennomboret_medium: list[str] | Unset = UNSET
         if not isinstance(self.gjennomboret_medium, Unset):
             gjennomboret_medium = []
             for gjennomboret_medium_item_data in self.gjennomboret_medium:
                 gjennomboret_medium_item = gjennomboret_medium_item_data.value
                 gjennomboret_medium.append(gjennomboret_medium_item)
 
-        posisjon: Union[Unset, dict[str, Any]] = UNSET
+        posisjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
@@ -177,19 +179,19 @@ class GeotekniskBorehull:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        h_ø_yde_referanse: str | Unset = UNSET
         if not isinstance(self.h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
-        opprettet_dato: Union[Unset, str] = UNSET
+        opprettet_dato: str | Unset = UNSET
         if not isinstance(self.opprettet_dato, Unset):
             opprettet_dato = self.opprettet_dato.isoformat()
 
-        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        ekstern_identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
-        kvikkleire_på_visning: Union[Unset, str] = UNSET
+        kvikkleire_på_visning: str | Unset = UNSET
         if not isinstance(self.kvikkleire_på_visning, Unset):
             kvikkleire_på_visning = self.kvikkleire_på_visning.value
 
@@ -199,28 +201,28 @@ class GeotekniskBorehull:
 
         maks_boret_lengde = self.maks_boret_lengde
 
-        har_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_observasjon, Unset):
             har_observasjon = []
             for har_observasjon_item_data in self.har_observasjon:
                 har_observasjon_item = har_observasjon_item_data.to_dict()
                 har_observasjon.append(har_observasjon_item)
 
-        har_unders_ø_kelse: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_unders_ø_kelse: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_unders_ø_kelse, Unset):
             har_unders_ø_kelse = []
             for har_unders_ø_kelse_item_data in self.har_unders_ø_kelse:
                 har_unders_ø_kelse_item = har_unders_ø_kelse_item_data.to_dict()
                 har_unders_ø_kelse.append(har_unders_ø_kelse_item)
 
-        har_tolkning: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_tolkning: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_tolkning, Unset):
             har_tolkning = []
             for har_tolkning_item_data in self.har_tolkning:
                 har_tolkning_item = har_tolkning_item_data.to_dict()
                 har_tolkning.append(har_tolkning_item)
 
-        har_dokument: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_dokument: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_dokument, Unset):
             har_dokument = []
             for har_dokument_item_data in self.har_dokument:
@@ -293,7 +295,7 @@ class GeotekniskBorehull:
 
         d = dict(src_dict)
         _datafangstdato = d.pop("datafangstdato", UNSET)
-        datafangstdato: Union[Unset, datetime.datetime]
+        datafangstdato: datetime.datetime | Unset
         if isinstance(_datafangstdato, Unset):
             datafangstdato = UNSET
         else:
@@ -302,21 +304,21 @@ class GeotekniskBorehull:
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
             identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
-        kvalitet: Union[Unset, PosisjonskvalitetNADAG]
+        kvalitet: PosisjonskvalitetNADAG | Unset
         if isinstance(_kvalitet, Unset):
             kvalitet = UNSET
         else:
             kvalitet = PosisjonskvalitetNADAG.from_dict(_kvalitet)
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
-        oppdateringsdato: Union[Unset, datetime.datetime]
+        oppdateringsdato: datetime.datetime | Unset
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
@@ -327,7 +329,7 @@ class GeotekniskBorehull:
         beskrivelse = d.pop("beskrivelse", UNSET)
 
         _boret_lengde_til_berg = d.pop("boretLengdeTilBerg", UNSET)
-        boret_lengde_til_berg: Union[Unset, BorlengdeTilBerg]
+        boret_lengde_til_berg: BorlengdeTilBerg | Unset
         if isinstance(_boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = UNSET
         else:
@@ -341,7 +343,7 @@ class GeotekniskBorehull:
             gjennomboret_medium.append(gjennomboret_medium_item)
 
         _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Union[Unset, Point]
+        posisjon: Point | Unset
         if isinstance(_posisjon, Unset):
             posisjon = UNSET
         else:
@@ -352,28 +354,28 @@ class GeotekniskBorehull:
         høyde = d.pop("høyde", UNSET)
 
         _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
-        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        h_ø_yde_referanse: NADAGHoeyderef | Unset
         if isinstance(_h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = UNSET
         else:
             h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         _opprettet_dato = d.pop("opprettetDato", UNSET)
-        opprettet_dato: Union[Unset, datetime.datetime]
+        opprettet_dato: datetime.datetime | Unset
         if isinstance(_opprettet_dato, Unset):
             opprettet_dato = UNSET
         else:
             opprettet_dato = isoparse(_opprettet_dato)
 
         _ekstern_identifikasjon = d.pop("eksternIdentifikasjon", UNSET)
-        ekstern_identifikasjon: Union[Unset, EksternIdentifikasjon]
+        ekstern_identifikasjon: EksternIdentifikasjon | Unset
         if isinstance(_ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = UNSET
         else:
             ekstern_identifikasjon = EksternIdentifikasjon.from_dict(_ekstern_identifikasjon)
 
         _kvikkleire_på_visning = d.pop("kvikkleirePåvisning", UNSET)
-        kvikkleire_på_visning: Union[Unset, KvikkleirePaavisningKode]
+        kvikkleire_på_visning: KvikkleirePaavisningKode | Unset
         if isinstance(_kvikkleire_på_visning, Unset):
             kvikkleire_på_visning = UNSET
         else:

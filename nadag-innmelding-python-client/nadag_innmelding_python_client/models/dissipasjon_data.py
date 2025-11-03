@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,55 +19,54 @@ class DissipasjonData:
     måling av dissipasjon (drenasje) i felt, aktuelt ved utførelse av dissipasjonstest i CPTU</engelsk>
 
         Attributes:
-            boret_dybde (Union[Unset, float]): nivå for utførelse av dissipasjonstest<engelsk>depth below the terrain
-                surface or any other given reference level</engelsk>
-            dissipasjons_poretrykk_u1 (Union[Unset, float]): reduksjon av poretrykk i filterposisjon 1 (spiss) som funksjon
-                av tid i dissipasjonstest<engelsk>reduction of pore pressure at filter location 1 (tip) as a function of time in
-                a dissipation test</engelsk>
-            dissipasjons_poretrykk_u2 (Union[Unset, float]): reduksjon av poretrykk i filterposisjon 2 (bak spiss) som
-                funksjon av tid i dissipasjonstest<engelsk>reduction of pore pressure at filter location 2 (behind the tip) as a
-                function of time in a dissipation test</engelsk>
-            dissipasjons_poretrykk_u3 (Union[Unset, float]): reduksjon av poretrykk i filterposisjon 3 (bak friksjonshylse)
-                som funksjon av tid i dissipasjonstest<engelsk>reduction of pore pressure at filter location 3 (behind the
-                friction sleeve) as a function of time in a dissipation test</engelsk>
-            dissipasjons_tidspunkt (Union[Unset, datetime.datetime]): angitt tidspunkt i dissipasjonstest<engelsk>given time
-                in a dissipation test</engelsk>
-            friksjon (Union[Unset, float]): målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med
-                areal av friksjonshylse)<engelsk>measured sleeve friction during penetration of the probe (friction sleeve force
-                divided by area of the friction sleeve)</engelsk>
-            observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i dissipasjonstesten. Kodene
-                er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+            boret_dybde (float | Unset): nivå for utførelse av dissipasjonstest<engelsk>depth below the terrain surface or
+                any other given reference level</engelsk>
+            dissipasjons_poretrykk_u1 (float | Unset): reduksjon av poretrykk i filterposisjon 1 (spiss) som funksjon av tid
+                i dissipasjonstest<engelsk>reduction of pore pressure at filter location 1 (tip) as a function of time in a
+                dissipation test</engelsk>
+            dissipasjons_poretrykk_u2 (float | Unset): reduksjon av poretrykk i filterposisjon 2 (bak spiss) som funksjon av
+                tid i dissipasjonstest<engelsk>reduction of pore pressure at filter location 2 (behind the tip) as a function of
+                time in a dissipation test</engelsk>
+            dissipasjons_poretrykk_u3 (float | Unset): reduksjon av poretrykk i filterposisjon 3 (bak friksjonshylse) som
+                funksjon av tid i dissipasjonstest<engelsk>reduction of pore pressure at filter location 3 (behind the friction
+                sleeve) as a function of time in a dissipation test</engelsk>
+            dissipasjons_tidspunkt (datetime.datetime | Unset): angitt tidspunkt i dissipasjonstest<engelsk>given time in a
+                dissipation test</engelsk>
+            friksjon (float | Unset): målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft dividert med areal av
+                friksjonshylse)<engelsk>measured sleeve friction during penetration of the probe (friction sleeve force divided
+                by area of the friction sleeve)</engelsk>
+            observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i dissipasjonstesten. Kodene er
+                (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
                 kodelisten GeotekniskBoreObservasjonskode.
                 <engelsk>observation codes for marking of incidents during dissipation. The codes are (0..*) numeric codes given
                 in a text string with spaces between each code if more than 1. The codes are described in the code list
                 GeotekniskBoreObservasjonskode.</engelsk>
-            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i dissipasjonstesten <engelsk>remarks to
+            observasjon_merknad (str | Unset): merknad til observasjoner i dissipasjonstesten <engelsk>remarks to
                 observations made during dissipation</engelsk>
-            poretrykk1 (Union[Unset, float]): poretrykk som utvikles i filterposisjon 1 (spiss) ved nedpressing av
-                trykksonde <engelsk>pore pressure generated at filter position 1 (tip) during penetration of the probe</engelsk>
-            poretrykk2 (Union[Unset, float]): poretrykk som utvikles i filterposisjon 2 (bak spiss) ved nedpressing av
-                trykksonde <engelsk>pore pressure generated at filter position 2 (behind the tip) during penetration of the
+            poretrykk1 (float | Unset): poretrykk som utvikles i filterposisjon 1 (spiss) ved nedpressing av trykksonde
+                <engelsk>pore pressure generated at filter position 1 (tip) during penetration of the probe</engelsk>
+            poretrykk2 (float | Unset): poretrykk som utvikles i filterposisjon 2 (bak spiss) ved nedpressing av trykksonde
+                <engelsk>pore pressure generated at filter position 2 (behind the tip) during penetration of the probe</engelsk>
+            poretrykk3 (float | Unset): poretrykk som utvikles i filterposisjon 3 (bak friksjonshylse) ved nedpressing av
+                trykksonde <engelsk>pore pressure generated at filter position 3 (behind the sleeve) during penetration of the
                 probe</engelsk>
-            poretrykk3 (Union[Unset, float]): poretrykk som utvikles i filterposisjon 3 (bak friksjonshylse) ved nedpressing
-                av trykksonde <engelsk>pore pressure generated at filter position 3 (behind the sleeve) during penetration of
-                the probe</engelsk>
-            spissmotstand (Union[Unset, float]): målt spissmotstand ved nedpressing av trykksonde (spisskraft dividert med
+            spissmotstand (float | Unset): målt spissmotstand ved nedpressing av trykksonde (spisskraft dividert med
                 tverrsnittsareal av trykksonde)<engelsk>measured cone resistance during penetration of the probe (point load
                 divided by cross-sectional area of probe)</engelsk>
     """
 
-    boret_dybde: Union[Unset, float] = UNSET
-    dissipasjons_poretrykk_u1: Union[Unset, float] = UNSET
-    dissipasjons_poretrykk_u2: Union[Unset, float] = UNSET
-    dissipasjons_poretrykk_u3: Union[Unset, float] = UNSET
-    dissipasjons_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    friksjon: Union[Unset, float] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    poretrykk1: Union[Unset, float] = UNSET
-    poretrykk2: Union[Unset, float] = UNSET
-    poretrykk3: Union[Unset, float] = UNSET
-    spissmotstand: Union[Unset, float] = UNSET
+    boret_dybde: float | Unset = UNSET
+    dissipasjons_poretrykk_u1: float | Unset = UNSET
+    dissipasjons_poretrykk_u2: float | Unset = UNSET
+    dissipasjons_poretrykk_u3: float | Unset = UNSET
+    dissipasjons_tidspunkt: datetime.datetime | Unset = UNSET
+    friksjon: float | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    poretrykk1: float | Unset = UNSET
+    poretrykk2: float | Unset = UNSET
+    poretrykk3: float | Unset = UNSET
+    spissmotstand: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -77,7 +78,7 @@ class DissipasjonData:
 
         dissipasjons_poretrykk_u3 = self.dissipasjons_poretrykk_u3
 
-        dissipasjons_tidspunkt: Union[Unset, str] = UNSET
+        dissipasjons_tidspunkt: str | Unset = UNSET
         if not isinstance(self.dissipasjons_tidspunkt, Unset):
             dissipasjons_tidspunkt = self.dissipasjons_tidspunkt.isoformat()
 
@@ -137,7 +138,7 @@ class DissipasjonData:
         dissipasjons_poretrykk_u3 = d.pop("dissipasjonsPoretrykkU3", UNSET)
 
         _dissipasjons_tidspunkt = d.pop("dissipasjonsTidspunkt", UNSET)
-        dissipasjons_tidspunkt: Union[Unset, datetime.datetime]
+        dissipasjons_tidspunkt: datetime.datetime | Unset
         if isinstance(_dissipasjons_tidspunkt, Unset):
             dissipasjons_tidspunkt = UNSET
         else:

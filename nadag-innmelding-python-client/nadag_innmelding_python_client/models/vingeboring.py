@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -23,48 +25,48 @@ class Vingeboring:
     remoulded material in cohesive soils</engelsk>
 
         Attributes:
-            json_type (Union[Literal['Vingeboring'], Unset]):
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['Vingeboring'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
-                prøvningen<engelsk>start time for in situ testing</engelsk>
-            insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
-                prøvningen<engelsk>stop time for in situ testing</engelsk>
-            vannstand_i_borehull (Union[Unset, float]): vannstand i borehull etter vingeboring i felt<engelsk>water level in
-                a borehole after vane testing</engelsk>
-            vinge_diameter (Union[Unset, float]): diameter for vingekors [mm] <engelsk>diameter of the vane<engelsk>
-            vinge_hø_yde (Union[Unset, float]): høyde for vingekors [mm] <engelsk>height of the vane</engelsk>
-            vinge_identitet (Union[Unset, str]): identifikasjon for anvendt vingeborutstyr<engelsk>identification of applied
-                vane test equipment</engelsk>
-            vingeboring_observasjon (Union[Unset, list['VingeboringData']]):
+            insitu_test_start_tidspunkt (datetime.datetime | Unset): tidspunkt for start av in situ prøvningen<engelsk>start
+                time for in situ testing</engelsk>
+            insitu_test_slutt_tidspunkt (datetime.datetime | Unset): tidspunkt for stopp av in situ prøvningen<engelsk>stop
+                time for in situ testing</engelsk>
+            vannstand_i_borehull (float | Unset): vannstand i borehull etter vingeboring i felt<engelsk>water level in a
+                borehole after vane testing</engelsk>
+            vinge_diameter (float | Unset): diameter for vingekors [mm] <engelsk>diameter of the vane<engelsk>
+            vinge_hø_yde (float | Unset): høyde for vingekors [mm] <engelsk>height of the vane</engelsk>
+            vinge_identitet (str | Unset): identifikasjon for anvendt vingeborutstyr<engelsk>identification of applied vane
+                test equipment</engelsk>
+            vingeboring_observasjon (list[VingeboringData] | Unset):
     """
 
-    json_type: Union[Literal["Vingeboring"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    insitu_test_start_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    vannstand_i_borehull: Union[Unset, float] = UNSET
-    vinge_diameter: Union[Unset, float] = UNSET
-    vinge_hø_yde: Union[Unset, float] = UNSET
-    vinge_identitet: Union[Unset, str] = UNSET
-    vingeboring_observasjon: Union[Unset, list["VingeboringData"]] = UNSET
+    json_type: Literal["Vingeboring"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
+    insitu_test_slutt_tidspunkt: datetime.datetime | Unset = UNSET
+    vannstand_i_borehull: float | Unset = UNSET
+    vinge_diameter: float | Unset = UNSET
+    vinge_hø_yde: float | Unset = UNSET
+    vinge_identitet: str | Unset = UNSET
+    vingeboring_observasjon: list[VingeboringData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -72,11 +74,11 @@ class Vingeboring:
 
         til_borlengde = self.til_borlengde
 
-        insitu_test_start_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_start_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = self.insitu_test_start_tidspunkt.isoformat()
 
-        insitu_test_slutt_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_slutt_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = self.insitu_test_slutt_tidspunkt.isoformat()
 
@@ -88,7 +90,7 @@ class Vingeboring:
 
         vinge_identitet = self.vinge_identitet
 
-        vingeboring_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        vingeboring_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.vingeboring_observasjon, Unset):
             vingeboring_observasjon = []
             for vingeboring_observasjon_item_data in self.vingeboring_observasjon:
@@ -129,12 +131,12 @@ class Vingeboring:
         from ..models.vingeboring_data import VingeboringData
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["Vingeboring"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["Vingeboring"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "Vingeboring" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'Vingeboring', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
@@ -145,14 +147,14 @@ class Vingeboring:
         til_borlengde = d.pop("tilBorlengde", UNSET)
 
         _insitu_test_start_tidspunkt = d.pop("insituTestStartTidspunkt", UNSET)
-        insitu_test_start_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_start_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = UNSET
         else:
             insitu_test_start_tidspunkt = isoparse(_insitu_test_start_tidspunkt)
 
         _insitu_test_slutt_tidspunkt = d.pop("insituTestSluttTidspunkt", UNSET)
-        insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_slutt_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = UNSET
         else:

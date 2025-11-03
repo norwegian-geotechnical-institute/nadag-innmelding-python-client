@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,20 +17,20 @@ class PlatebelastningData:
     measurements of in situ deformation- and consolidation properties in friction soils.</engelsk>
 
         Attributes:
-            tid_fra_start (Union[Unset, int]): tid fra start av prøvingen [minutter]<engelsk>time from the start of testing
+            tid_fra_start (int | Unset): tid fra start av prøvingen [minutter]<engelsk>time from the start of testing
                 (minutes)</engelsk>
-            anvendt_last (Union[Unset, float]): last overført til skruplate gjennom stangsystemet [kN]<engelsk>load
-                transferred to the screw plate through the rod system</engelsk>
-            nedpressing_hastighet (Union[Unset, float]): nedpressingshastighet av skruplate ved gjennomføring av prøving
-                [m/min] <engelsk>settlement rate for the screw plate during testing</engelsk>
-            deformasjon (Union[Unset, float]): endring i form som følge av tilført kraft [mm] <engelsk>change in shape
-                because of force </engelsk>
+            anvendt_last (float | Unset): last overført til skruplate gjennom stangsystemet [kN]<engelsk>load transferred to
+                the screw plate through the rod system</engelsk>
+            nedpressing_hastighet (float | Unset): nedpressingshastighet av skruplate ved gjennomføring av prøving [m/min]
+                <engelsk>settlement rate for the screw plate during testing</engelsk>
+            deformasjon (float | Unset): endring i form som følge av tilført kraft [mm] <engelsk>change in shape because of
+                force </engelsk>
     """
 
-    tid_fra_start: Union[Unset, int] = UNSET
-    anvendt_last: Union[Unset, float] = UNSET
-    nedpressing_hastighet: Union[Unset, float] = UNSET
-    deformasjon: Union[Unset, float] = UNSET
+    tid_fra_start: int | Unset = UNSET
+    anvendt_last: float | Unset = UNSET
+    nedpressing_hastighet: float | Unset = UNSET
+    deformasjon: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

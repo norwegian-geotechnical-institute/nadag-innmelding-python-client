@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -13,7 +13,7 @@ def _get_kwargs(
     *,
     ekstern_id: str,
     ekstern_navnerom: str,
-    ekstern_versjon_id: Union[Unset, str] = UNSET,
+    ekstern_versjon_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
@@ -34,9 +34,7 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[GeotekniskUnders]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> GeotekniskUnders | None:
     if response.status_code == 200:
         response_200 = GeotekniskUnders.from_dict(response.json())
 
@@ -48,9 +46,7 @@ def _parse_response(
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[GeotekniskUnders]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[GeotekniskUnders]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,10 +57,10 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     ekstern_id: str,
     ekstern_navnerom: str,
-    ekstern_versjon_id: Union[Unset, str] = UNSET,
+    ekstern_versjon_id: str | Unset = UNSET,
 ) -> Response[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
@@ -73,7 +69,7 @@ def sync_detailed(
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
-        ekstern_versjon_id (Union[Unset, str]):
+        ekstern_versjon_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -98,11 +94,11 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     ekstern_id: str,
     ekstern_navnerom: str,
-    ekstern_versjon_id: Union[Unset, str] = UNSET,
-) -> Optional[GeotekniskUnders]:
+    ekstern_versjon_id: str | Unset = UNSET,
+) -> GeotekniskUnders | None:
     """Fetches a GeotekniskUnders by external id.
 
      Fetches a GeotekniskUnders by external id. Returns the most recent one.
@@ -110,7 +106,7 @@ def sync(
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
-        ekstern_versjon_id (Union[Unset, str]):
+        ekstern_versjon_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -130,10 +126,10 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     ekstern_id: str,
     ekstern_navnerom: str,
-    ekstern_versjon_id: Union[Unset, str] = UNSET,
+    ekstern_versjon_id: str | Unset = UNSET,
 ) -> Response[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
@@ -142,7 +138,7 @@ async def asyncio_detailed(
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
-        ekstern_versjon_id (Union[Unset, str]):
+        ekstern_versjon_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -165,11 +161,11 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     ekstern_id: str,
     ekstern_navnerom: str,
-    ekstern_versjon_id: Union[Unset, str] = UNSET,
-) -> Optional[GeotekniskUnders]:
+    ekstern_versjon_id: str | Unset = UNSET,
+) -> GeotekniskUnders | None:
     """Fetches a GeotekniskUnders by external id.
 
      Fetches a GeotekniskUnders by external id. Returns the most recent one.
@@ -177,7 +173,7 @@ async def asyncio(
     Args:
         ekstern_id (str):
         ekstern_navnerom (str):
-        ekstern_versjon_id (Union[Unset, str]):
+        ekstern_versjon_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

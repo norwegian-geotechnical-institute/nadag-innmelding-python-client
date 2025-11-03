@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -23,48 +25,48 @@ class KjerneBoring:
     overført til annen database/produktspek senere. <engelsk>core drilling</engelsk>
 
         Attributes:
-            json_type (Union[Literal['KjerneBoring'], Unset]):
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['KjerneBoring'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+            til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-            prøvetype (Union[Unset, ProevetakingType]): inndeling av fysisk prøvemateriale i prøvetype, avhengig av
+            prøvetype (ProevetakingType | Unset): inndeling av fysisk prøvemateriale i prøvetype, avhengig av
                 prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample
                 type classes, depending on sampling method and/or storage method for the sampled material</engelsk>
-            densitet_pr_ø_vetaking (Union[Unset, float]): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
+            densitet_pr_ø_vetaking (float | Unset): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
                 (kN/m3)</engelsk>
-            milj_ø_teknisk_unders_ø_kelse (Union[Unset, str]): beskrivelse og resultater fra miljøteknisk undersøkelse
+            milj_ø_teknisk_unders_ø_kelse (str | Unset): beskrivelse og resultater fra miljøteknisk undersøkelse
                 <engelsk>description and results from environmental investigation<engelsk>
-            boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
+            boret_lengde_til_berg (BorlengdeTilBerg | Unset): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            har_data (Union[Unset, list['KjerneBoringData']]):
+            har_data (list[KjerneBoringData] | Unset):
     """
 
-    json_type: Union[Literal["KjerneBoring"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    prøvetype: Union[Unset, ProevetakingType] = UNSET
-    densitet_pr_ø_vetaking: Union[Unset, float] = UNSET
-    milj_ø_teknisk_unders_ø_kelse: Union[Unset, str] = UNSET
-    boret_lengde_til_berg: Union[Unset, "BorlengdeTilBerg"] = UNSET
-    har_data: Union[Unset, list["KjerneBoringData"]] = UNSET
+    json_type: Literal["KjerneBoring"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    prøvetype: ProevetakingType | Unset = UNSET
+    densitet_pr_ø_vetaking: float | Unset = UNSET
+    milj_ø_teknisk_unders_ø_kelse: str | Unset = UNSET
+    boret_lengde_til_berg: BorlengdeTilBerg | Unset = UNSET
+    har_data: list[KjerneBoringData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -72,7 +74,7 @@ class KjerneBoring:
 
         til_borlengde = self.til_borlengde
 
-        prøvetype: Union[Unset, str] = UNSET
+        prøvetype: str | Unset = UNSET
         if not isinstance(self.prøvetype, Unset):
             prøvetype = self.prøvetype.value
 
@@ -80,11 +82,11 @@ class KjerneBoring:
 
         milj_ø_teknisk_unders_ø_kelse = self.milj_ø_teknisk_unders_ø_kelse
 
-        boret_lengde_til_berg: Union[Unset, dict[str, Any]] = UNSET
+        boret_lengde_til_berg: dict[str, Any] | Unset = UNSET
         if not isinstance(self.boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = self.boret_lengde_til_berg.to_dict()
 
-        har_data: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_data: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_data, Unset):
             har_data = []
             for har_data_item_data in self.har_data:
@@ -122,12 +124,12 @@ class KjerneBoring:
         from ..models.kjerne_boring_data import KjerneBoringData
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["KjerneBoring"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["KjerneBoring"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "KjerneBoring" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'KjerneBoring', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
@@ -138,7 +140,7 @@ class KjerneBoring:
         til_borlengde = d.pop("tilBorlengde", UNSET)
 
         _prøvetype = d.pop("prøvetype", UNSET)
-        prøvetype: Union[Unset, ProevetakingType]
+        prøvetype: ProevetakingType | Unset
         if isinstance(_prøvetype, Unset):
             prøvetype = UNSET
         else:
@@ -149,7 +151,7 @@ class KjerneBoring:
         milj_ø_teknisk_unders_ø_kelse = d.pop("miljøtekniskUndersøkelse", UNSET)
 
         _boret_lengde_til_berg = d.pop("boretLengdeTilBerg", UNSET)
-        boret_lengde_til_berg: Union[Unset, BorlengdeTilBerg]
+        boret_lengde_til_berg: BorlengdeTilBerg | Unset
         if isinstance(_boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = UNSET
         else:

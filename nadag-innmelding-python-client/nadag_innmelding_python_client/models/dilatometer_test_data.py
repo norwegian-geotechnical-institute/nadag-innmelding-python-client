@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,35 +19,35 @@ class DilatometerTestData:
     developed to evaluate the soil modulus.</engelsk>
 
         Attributes:
-            boret_dybde (Union[Unset, float]): dybde fra 0 nivå, hvor z verdien til undersøkelsens posisjon er satt til 0.
-                Angir hvor dypt det er boret.
+            boret_dybde (float | Unset): dybde fra 0 nivå, hvor z verdien til undersøkelsens posisjon er satt til 0. Angir
+                hvor dypt det er boret.
                 <engelsk>depth from zero level, the z value of investigation start point is 0. drilling depth [m]
                 </engelsk>
-            observasjon_merknad (Union[Unset, str]): tekst som beskriver observasjonen <engelsk>description of the
+            observasjon_merknad (str | Unset): tekst som beskriver observasjonen <engelsk>description of the
                 observation</engelsk>
-            observasjon_kode (Union[Unset, str]): kode som angir observasjonen. Kodene er (0..*) tallkoder gitt i en
-                tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
+            observasjon_kode (str | Unset): kode som angir observasjonen. Kodene er (0..*) tallkoder gitt i en tekststreng
+                med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
                 GeotekniskBoreObservasjonskode.<engelsk>observation code according to valid codes. The codes are (0..*) numeric
                 codes given in a text string with spaces between each code if more than 1. The codes are described in the code
                 list GeotekniskBoreObservasjonskode. </engelsk>
-            kontakt_trykk_p0 (Union[Unset, float]): gasstrykk når membran ikke lenger har kontakt <engelsk>membrane lift-off
+            kontakt_trykk_p0 (float | Unset): gasstrykk når membran ikke lenger har kontakt <engelsk>membrane lift-off
                 pressure</engelsk>
-            ekspansjon_trykk_p1 (Union[Unset, float]): gasstrykk når senter av membran har flyttet seg 1,1 mm <engelsk>gass
+            ekspansjon_trykk_p1 (float | Unset): gasstrykk når senter av membran har flyttet seg 1,1 mm <engelsk>gass
                 pressure when membrane has moved 1,1 mm</engelsk>
-            horisontal_kraft (Union[Unset, float]): horisontal last<engelsk>horizontal load</engelsk>
-            poretrykk (Union[Unset, float]): trykket i porevannet angitt som kraft pr. flateenhet, med atmosfæretrykket som
+            horisontal_kraft (float | Unset): horisontal last<engelsk>horizontal load</engelsk>
+            poretrykk (float | Unset): trykket i porevannet angitt som kraft pr. flateenhet, med atmosfæretrykket som
                 nullpunkt
 
                 <engelsk>registered pore pressure [kPa]</engelsk>
     """
 
-    boret_dybde: Union[Unset, float] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
-    kontakt_trykk_p0: Union[Unset, float] = UNSET
-    ekspansjon_trykk_p1: Union[Unset, float] = UNSET
-    horisontal_kraft: Union[Unset, float] = UNSET
-    poretrykk: Union[Unset, float] = UNSET
+    boret_dybde: float | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
+    kontakt_trykk_p0: float | Unset = UNSET
+    ekspansjon_trykk_p1: float | Unset = UNSET
+    horisontal_kraft: float | Unset = UNSET
+    poretrykk: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

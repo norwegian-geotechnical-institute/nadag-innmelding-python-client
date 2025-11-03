@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,41 +21,40 @@ class HydrauliskeData:
     </engelsk>
 
         Attributes:
-            m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen<engelsk>date for
+            m_å_le_dato (datetime.date | Unset): dato for utførelse av målingen<engelsk>date for measurements</engelsk>
+            m_å_le_tidspunkt (datetime.datetime | Unset): tidspunkt for utførelse av målingen<engelsk>time for
                 measurements</engelsk>
-            m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for utførelse av målingen<engelsk>time for
-                measurements</engelsk>
-            observasjon_merknad (Union[Unset, str]): merknad til observasjoner i hydraulisk test<engelsk>remarks to
-                observations made during hydraulic testing</engelsk>
-            hydraulisk_konduktivitet (Union[Unset, HydrauliskKonduktivitet]): proporsjonalitetskonstant som relaterer
+            observasjon_merknad (str | Unset): merknad til observasjoner i hydraulisk test<engelsk>remarks to observations
+                made during hydraulic testing</engelsk>
+            hydraulisk_konduktivitet (HydrauliskKonduktivitet | Unset): proporsjonalitetskonstant som relaterer
                 vannstrømningsrate gjennom et medium til gradienten
 
                 Merknad: Kalles også hydraulisk ledningsevne og avhenger av både vannets og mediets egenskaper.
 
                 <engelsk>proportionality constant which relates water permeability through a medium with the gradient</engelsk>
-            dybde_grunnvannstand (Union[Unset, float]): angivelse av vannstand i grunnen og/eller i målerør<engelsk>water
-                level in the ground and / or inside a measurement tube</engelsk>
+            dybde_grunnvannstand (float | Unset): angivelse av vannstand i grunnen og/eller i målerør<engelsk>water level in
+                the ground and / or inside a measurement tube</engelsk>
     """
 
-    m_å_le_dato: Union[Unset, datetime.date] = UNSET
-    m_å_le_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    hydraulisk_konduktivitet: Union[Unset, HydrauliskKonduktivitet] = UNSET
-    dybde_grunnvannstand: Union[Unset, float] = UNSET
+    m_å_le_dato: datetime.date | Unset = UNSET
+    m_å_le_tidspunkt: datetime.datetime | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    hydraulisk_konduktivitet: HydrauliskKonduktivitet | Unset = UNSET
+    dybde_grunnvannstand: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        m_å_le_dato: Union[Unset, str] = UNSET
+        m_å_le_dato: str | Unset = UNSET
         if not isinstance(self.m_å_le_dato, Unset):
             m_å_le_dato = self.m_å_le_dato.isoformat()
 
-        m_å_le_tidspunkt: Union[Unset, str] = UNSET
+        m_å_le_tidspunkt: str | Unset = UNSET
         if not isinstance(self.m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = self.m_å_le_tidspunkt.isoformat()
 
         observasjon_merknad = self.observasjon_merknad
 
-        hydraulisk_konduktivitet: Union[Unset, str] = UNSET
+        hydraulisk_konduktivitet: str | Unset = UNSET
         if not isinstance(self.hydraulisk_konduktivitet, Unset):
             hydraulisk_konduktivitet = self.hydraulisk_konduktivitet.value
 
@@ -79,14 +80,14 @@ class HydrauliskeData:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
         _m_å_le_dato = d.pop("måleDato", UNSET)
-        m_å_le_dato: Union[Unset, datetime.date]
+        m_å_le_dato: datetime.date | Unset
         if isinstance(_m_å_le_dato, Unset):
             m_å_le_dato = UNSET
         else:
             m_å_le_dato = isoparse(_m_å_le_dato).date()
 
         _m_å_le_tidspunkt = d.pop("måleTidspunkt", UNSET)
-        m_å_le_tidspunkt: Union[Unset, datetime.datetime]
+        m_å_le_tidspunkt: datetime.datetime | Unset
         if isinstance(_m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = UNSET
         else:
@@ -95,7 +96,7 @@ class HydrauliskeData:
         observasjon_merknad = d.pop("observasjonMerknad", UNSET)
 
         _hydraulisk_konduktivitet = d.pop("hydrauliskKonduktivitet", UNSET)
-        hydraulisk_konduktivitet: Union[Unset, HydrauliskKonduktivitet]
+        hydraulisk_konduktivitet: HydrauliskKonduktivitet | Unset
         if isinstance(_hydraulisk_konduktivitet, Unset):
             hydraulisk_konduktivitet = UNSET
         else:

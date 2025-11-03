@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, Literal, TypeVar, Union, cast
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,18 +15,18 @@ T = TypeVar("T", bound="Polygon")
 class Polygon:
     """
     Attributes:
-        type_ (Union[Literal['Polygon'], Unset]):
-        coordinates (Union[Unset, list[list[list[float]]]]):
+        type_ (Literal['Polygon'] | Unset):
+        coordinates (list[list[list[float]]] | Unset):
     """
 
-    type_: Union[Literal["Polygon"], Unset] = UNSET
-    coordinates: Union[Unset, list[list[list[float]]]] = UNSET
+    type_: Literal["Polygon"] | Unset = UNSET
+    coordinates: list[list[list[float]]] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
 
-        coordinates: Union[Unset, list[list[list[float]]]] = UNSET
+        coordinates: list[list[list[float]]] | Unset = UNSET
         if not isinstance(self.coordinates, Unset):
             coordinates = []
             for componentsschemas_coordinates_lists_item_data in self.coordinates:
@@ -49,7 +51,7 @@ class Polygon:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Union[Literal["Polygon"], Unset], d.pop("type", UNSET))
+        type_ = cast(Literal["Polygon"] | Unset, d.pop("type", UNSET))
         if type_ != "Polygon" and not isinstance(type_, Unset):
             raise ValueError(f"type must match const 'Polygon', got '{type_}'")
 

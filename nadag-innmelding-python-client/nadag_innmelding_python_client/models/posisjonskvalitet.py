@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -22,22 +24,22 @@ class Posisjonskvalitet:
 
             -- Definition - -
             method on which registration of position is based
-        nøyaktighet (Union[Unset, int]): punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
+        nøyaktighet (int | Unset): punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
 
             Merknad:
             Oppgitt i cm
-        synbarhet (Union[Unset, Synbarhet]): hvor godt den kartlagte detalj var synbar ved kartleggingen
-        m_å_lemetode_hø_yde (Union[Unset, MaalemetodeHoeyde]): metode for å måle objekttypens høydeverdi
-        n_ø_yaktighet_hø_yde (Union[Unset, int]): nøyaktighet for høyden i cm
-        maksimalt_avvik (Union[Unset, int]): absolutt toleranse for geometriske avvik
+        synbarhet (Synbarhet | Unset): hvor godt den kartlagte detalj var synbar ved kartleggingen
+        m_å_lemetode_hø_yde (MaalemetodeHoeyde | Unset): metode for å måle objekttypens høydeverdi
+        n_ø_yaktighet_hø_yde (int | Unset): nøyaktighet for høyden i cm
+        maksimalt_avvik (int | Unset): absolutt toleranse for geometriske avvik
     """
 
     målemetode: Maalemetode
-    nøyaktighet: Union[Unset, int] = UNSET
-    synbarhet: Union[Unset, Synbarhet] = UNSET
-    m_å_lemetode_hø_yde: Union[Unset, MaalemetodeHoeyde] = UNSET
-    n_ø_yaktighet_hø_yde: Union[Unset, int] = UNSET
-    maksimalt_avvik: Union[Unset, int] = UNSET
+    nøyaktighet: int | Unset = UNSET
+    synbarhet: Synbarhet | Unset = UNSET
+    m_å_lemetode_hø_yde: MaalemetodeHoeyde | Unset = UNSET
+    n_ø_yaktighet_hø_yde: int | Unset = UNSET
+    maksimalt_avvik: int | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -45,11 +47,11 @@ class Posisjonskvalitet:
 
         nøyaktighet = self.nøyaktighet
 
-        synbarhet: Union[Unset, str] = UNSET
+        synbarhet: str | Unset = UNSET
         if not isinstance(self.synbarhet, Unset):
             synbarhet = self.synbarhet.value
 
-        m_å_lemetode_hø_yde: Union[Unset, str] = UNSET
+        m_å_lemetode_hø_yde: str | Unset = UNSET
         if not isinstance(self.m_å_lemetode_hø_yde, Unset):
             m_å_lemetode_hø_yde = self.m_å_lemetode_hø_yde.value
 
@@ -85,14 +87,14 @@ class Posisjonskvalitet:
         nøyaktighet = d.pop("nøyaktighet", UNSET)
 
         _synbarhet = d.pop("synbarhet", UNSET)
-        synbarhet: Union[Unset, Synbarhet]
+        synbarhet: Synbarhet | Unset
         if isinstance(_synbarhet, Unset):
             synbarhet = UNSET
         else:
             synbarhet = Synbarhet(_synbarhet)
 
         _m_å_lemetode_hø_yde = d.pop("målemetodeHøyde", UNSET)
-        m_å_lemetode_hø_yde: Union[Unset, MaalemetodeHoeyde]
+        m_å_lemetode_hø_yde: MaalemetodeHoeyde | Unset
         if isinstance(_m_å_lemetode_hø_yde, Unset):
             m_å_lemetode_hø_yde = UNSET
         else:

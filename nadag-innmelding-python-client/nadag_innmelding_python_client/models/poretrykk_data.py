@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,56 +18,56 @@ class PoretrykkData:
     """data fra måling av poretrykk <engelsk>data from measurements of pore pressure</engelsk>
 
     Attributes:
-        avlesing_0_kontroll (Union[Unset, float]): nullavlesning for poretrykksmåler <engelsk>zero reading for pore
-            pressure transducer</engelsk>
-        avlesing_etter_0_kontroll (Union[Unset, float]): kontrollverdi for nullavlesning etter utført måling
-            <engelsk>control value for zero reading after completed test
+        avlesing_0_kontroll (float | Unset): nullavlesning for poretrykksmåler <engelsk>zero reading for pore pressure
+            transducer</engelsk>
+        avlesing_etter_0_kontroll (float | Unset): kontrollverdi for nullavlesning etter utført måling <engelsk>control
+            value for zero reading after completed test
             </engelsk>
-        avlesing_fø_r_0_kontroll (Union[Unset, float]): kontrollverdi for nullavlesning før utført måling
-            <engelsk>control value of zero reading before testing</engelsk>
-        avstand_manometer_filterspiss (Union[Unset, float]): distanse mellom manometer (trykkmåler) på toppen av røret
-            og filterspiss <engelsk>distance between manometer (pressure gauge) on top of the measuring hose and the filter
+        avlesing_fø_r_0_kontroll (float | Unset): kontrollverdi for nullavlesning før utført måling <engelsk>control
+            value of zero reading before testing</engelsk>
+        avstand_manometer_filterspiss (float | Unset): distanse mellom manometer (trykkmåler) på toppen av røret og
+            filterspiss <engelsk>distance between manometer (pressure gauge) on top of the measuring hose and the filter
             tip</engelsk>
-        avstand_topp_slange_til_vannstand (Union[Unset, float]): distanse mellom topp måleslange til vannstand i slangen
+        avstand_topp_slange_til_vannstand (float | Unset): distanse mellom topp måleslange til vannstand i slangen
             <engelsk>distance between top of measuring hose and the water level in the hose</engelsk>
-        barometer_trykk (Union[Unset, float]): trykkmåler for avlesning av lufttrykk (atmosfæretrykk)
+        barometer_trykk (float | Unset): trykkmåler for avlesning av lufttrykk (atmosfæretrykk)
             <engelsk>pressure gauge for recording of atmospheric pressure</engelsk>
-        dybde_grunnvannstand (Union[Unset, float]): dybde til grunnvannsnivå (vannstand i slangen), regnet fra
-            terrengnivå eller annet angitt referansenivå
+        dybde_grunnvannstand (float | Unset): dybde til grunnvannsnivå (vannstand i slangen), regnet fra terrengnivå
+            eller annet angitt referansenivå
             <engelsk>depth to the ground water table (water level in the hose), referring to the terrain level or any other
             given reference level</engelsk>
-        m_å_le_dato (Union[Unset, datetime.date]): dato for utførelse av målingen
+        m_å_le_dato (datetime.date | Unset): dato for utførelse av målingen
             <engelsk>date for measurements</engelsk>
-        m_å_le_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for gjennomføring av målingen
+        m_å_le_tidspunkt (datetime.datetime | Unset): tidspunkt for gjennomføring av målingen
             <engelsk>time for measurements</engelsk>
-        observasjon_kode (Union[Unset, str]): observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene
-            er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
+        observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene er
+            (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
             kodelisten GeotekniskBoreObservasjonskode. <engelsk>observation codes for marking of incidents during pore
             pressure measurements. The codes are (0..*)	 numeric codes given in a text string with spaces between each code
             if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>
-        observasjon_merknad (Union[Unset, str]): merknad til observasjoner i poretrykksmålingen
+        observasjon_merknad (str | Unset): merknad til observasjoner i poretrykksmålingen
             <engelsk>remarks to observations made during pore pressure measurements</engelsk>
-        poretrykk (Union[Unset, float]): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse
-            <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>
-        trykkhøyde (Union[Unset, float]): stigehøyde (mm vannsøyle) i åpent vannstandsrør som følge av trykknivå i
-            porevannet, gitt ved avstand mellom vannstand i slangen og filternivå <engelsk>Elevation head (mm water column)
-            in an open water pipe due to the pressure level in the pore water, defined by the distance between the water
-            level in the hose and the filter level</engelsk>
+        poretrykk (float | Unset): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse <engelsk>the
+            pressure in the pore water, with the atmospheric pressure as reference</engelsk>
+        trykkhøyde (float | Unset): stigehøyde (mm vannsøyle) i åpent vannstandsrør som følge av trykknivå i porevannet,
+            gitt ved avstand mellom vannstand i slangen og filternivå <engelsk>Elevation head (mm water column) in an open
+            water pipe due to the pressure level in the pore water, defined by the distance between the water level in the
+            hose and the filter level</engelsk>
     """
 
-    avlesing_0_kontroll: Union[Unset, float] = UNSET
-    avlesing_etter_0_kontroll: Union[Unset, float] = UNSET
-    avlesing_fø_r_0_kontroll: Union[Unset, float] = UNSET
-    avstand_manometer_filterspiss: Union[Unset, float] = UNSET
-    avstand_topp_slange_til_vannstand: Union[Unset, float] = UNSET
-    barometer_trykk: Union[Unset, float] = UNSET
-    dybde_grunnvannstand: Union[Unset, float] = UNSET
-    m_å_le_dato: Union[Unset, datetime.date] = UNSET
-    m_å_le_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    observasjon_kode: Union[Unset, str] = UNSET
-    observasjon_merknad: Union[Unset, str] = UNSET
-    poretrykk: Union[Unset, float] = UNSET
-    trykkhøyde: Union[Unset, float] = UNSET
+    avlesing_0_kontroll: float | Unset = UNSET
+    avlesing_etter_0_kontroll: float | Unset = UNSET
+    avlesing_fø_r_0_kontroll: float | Unset = UNSET
+    avstand_manometer_filterspiss: float | Unset = UNSET
+    avstand_topp_slange_til_vannstand: float | Unset = UNSET
+    barometer_trykk: float | Unset = UNSET
+    dybde_grunnvannstand: float | Unset = UNSET
+    m_å_le_dato: datetime.date | Unset = UNSET
+    m_å_le_tidspunkt: datetime.datetime | Unset = UNSET
+    observasjon_kode: str | Unset = UNSET
+    observasjon_merknad: str | Unset = UNSET
+    poretrykk: float | Unset = UNSET
+    trykkhøyde: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -83,11 +85,11 @@ class PoretrykkData:
 
         dybde_grunnvannstand = self.dybde_grunnvannstand
 
-        m_å_le_dato: Union[Unset, str] = UNSET
+        m_å_le_dato: str | Unset = UNSET
         if not isinstance(self.m_å_le_dato, Unset):
             m_å_le_dato = self.m_å_le_dato.isoformat()
 
-        m_å_le_tidspunkt: Union[Unset, str] = UNSET
+        m_å_le_tidspunkt: str | Unset = UNSET
         if not isinstance(self.m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = self.m_å_le_tidspunkt.isoformat()
 
@@ -149,14 +151,14 @@ class PoretrykkData:
         dybde_grunnvannstand = d.pop("dybdeGrunnvannstand", UNSET)
 
         _m_å_le_dato = d.pop("måleDato", UNSET)
-        m_å_le_dato: Union[Unset, datetime.date]
+        m_å_le_dato: datetime.date | Unset
         if isinstance(_m_å_le_dato, Unset):
             m_å_le_dato = UNSET
         else:
             m_å_le_dato = isoparse(_m_å_le_dato).date()
 
         _m_å_le_tidspunkt = d.pop("måleTidspunkt", UNSET)
-        m_å_le_tidspunkt: Union[Unset, datetime.datetime]
+        m_å_le_tidspunkt: datetime.datetime | Unset
         if isinstance(_m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = UNSET
         else:

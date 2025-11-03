@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -23,63 +25,63 @@ class GrunnvannMaaling:
     """måling av grunnvannstand i felt<engelsk>measurement of the ground water table in the field</engelsk>
 
     Attributes:
-        json_type (Union[Literal['GrunnvannMaaling'], Unset]):
-        identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+        json_type (Literal['GrunnvannMaaling'] | Unset):
+        identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
             produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
             NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        fra_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+        fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-        til_borlengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+        til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
-        insitu_test_start_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for start av in situ
-            prøvningen<engelsk>start time for in situ testing</engelsk>
-        insitu_test_slutt_tidspunkt (Union[Unset, datetime.datetime]): tidspunkt for stopp av in situ
-            prøvningen<engelsk>stop time for in situ testing</engelsk>
-        er_langtidsobservasjon (Union[Unset, bool]): indikerer varighet av måleperiode ved langtidsmåling
+        insitu_test_start_tidspunkt (datetime.datetime | Unset): tidspunkt for start av in situ prøvningen<engelsk>start
+            time for in situ testing</engelsk>
+        insitu_test_slutt_tidspunkt (datetime.datetime | Unset): tidspunkt for stopp av in situ prøvningen<engelsk>stop
+            time for in situ testing</engelsk>
+        er_langtidsobservasjon (bool | Unset): indikerer varighet av måleperiode ved langtidsmåling
             <engelsk>indicates duration of the test period in long-term measurements</engelsk>
-        filter_dyp (Union[Unset, float]): dybde til midten av filteret i forhold til rørTopp [m]
+        filter_dyp (float | Unset): dybde til midten av filteret i forhold til rørTopp [m]
             <engelsk> depth to center of filter in relation to height at top of pipe [m] </engelsk>
-        filter_lengde (Union[Unset, float]): lengde av filter i målerør [m] <engelsk>length of the filter in measurement
+        filter_lengde (float | Unset): lengde av filter i målerør [m] <engelsk>length of the filter in measurement
             tube</engelsk>
-        filter_type (Union[Unset, str]): type filter i målerør<engelsk>type of filter in measurement tube</engelsk>
-        grunnvann_akvifer (Union[Unset, AkviferType]): oversikt over mulige akvifertyper for
+        filter_type (str | Unset): type filter i målerør<engelsk>type of filter in measurement tube</engelsk>
+        grunnvann_akvifer (AkviferType | Unset): oversikt over mulige akvifertyper for
             grunnvannsmålinger<engelsk>overview of possible aquifer types for ground water measurements</engelsk>
-        r_ø_r_bunn (Union[Unset, float]): nivå (høyde) for bunn av målerør [m] <engelsk>level (height) for the base of
-            the measurement tube</engelsk>
-        r_ø_r_topp (Union[Unset, float]): nivå (høyde) for topp av målerør [m] <engelsk>level (height) for the top of
-            the measurement tube</engelsk>
-        r_ø_r_type (Union[Unset, str]): type målerør for utførelse av hydraulisk måling<engelsk>
+        r_ø_r_bunn (float | Unset): nivå (høyde) for bunn av målerør [m] <engelsk>level (height) for the base of the
+            measurement tube</engelsk>
+        r_ø_r_topp (float | Unset): nivå (høyde) for topp av målerør [m] <engelsk>level (height) for the top of the
+            measurement tube</engelsk>
+        r_ø_r_type (str | Unset): type målerør for utførelse av hydraulisk måling<engelsk>
             type of measurement tube for performance of groundwater measurements</engelsk>
-        grunnvann_observasjon (Union[Unset, list['GrunnvannData']]):
-        overv_å_kning_obervasjon (Union[Unset, list['OvervaakningData']]):
+        grunnvann_observasjon (list[GrunnvannData] | Unset):
+        overv_å_kning_obervasjon (list[OvervaakningData] | Unset):
     """
 
-    json_type: Union[Literal["GrunnvannMaaling"], Unset] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    fra_borlengde: Union[Unset, float] = UNSET
-    til_borlengde: Union[Unset, float] = UNSET
-    insitu_test_start_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    er_langtidsobservasjon: Union[Unset, bool] = UNSET
-    filter_dyp: Union[Unset, float] = UNSET
-    filter_lengde: Union[Unset, float] = UNSET
-    filter_type: Union[Unset, str] = UNSET
-    grunnvann_akvifer: Union[Unset, AkviferType] = UNSET
-    r_ø_r_bunn: Union[Unset, float] = UNSET
-    r_ø_r_topp: Union[Unset, float] = UNSET
-    r_ø_r_type: Union[Unset, str] = UNSET
-    grunnvann_observasjon: Union[Unset, list["GrunnvannData"]] = UNSET
-    overv_å_kning_obervasjon: Union[Unset, list["OvervaakningData"]] = UNSET
+    json_type: Literal["GrunnvannMaaling"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    fra_borlengde: float | Unset = UNSET
+    til_borlengde: float | Unset = UNSET
+    insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
+    insitu_test_slutt_tidspunkt: datetime.datetime | Unset = UNSET
+    er_langtidsobservasjon: bool | Unset = UNSET
+    filter_dyp: float | Unset = UNSET
+    filter_lengde: float | Unset = UNSET
+    filter_type: str | Unset = UNSET
+    grunnvann_akvifer: AkviferType | Unset = UNSET
+    r_ø_r_bunn: float | Unset = UNSET
+    r_ø_r_topp: float | Unset = UNSET
+    r_ø_r_type: str | Unset = UNSET
+    grunnvann_observasjon: list[GrunnvannData] | Unset = UNSET
+    overv_å_kning_obervasjon: list[OvervaakningData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
@@ -87,11 +89,11 @@ class GrunnvannMaaling:
 
         til_borlengde = self.til_borlengde
 
-        insitu_test_start_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_start_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = self.insitu_test_start_tidspunkt.isoformat()
 
-        insitu_test_slutt_tidspunkt: Union[Unset, str] = UNSET
+        insitu_test_slutt_tidspunkt: str | Unset = UNSET
         if not isinstance(self.insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = self.insitu_test_slutt_tidspunkt.isoformat()
 
@@ -103,7 +105,7 @@ class GrunnvannMaaling:
 
         filter_type = self.filter_type
 
-        grunnvann_akvifer: Union[Unset, str] = UNSET
+        grunnvann_akvifer: str | Unset = UNSET
         if not isinstance(self.grunnvann_akvifer, Unset):
             grunnvann_akvifer = self.grunnvann_akvifer.value
 
@@ -113,14 +115,14 @@ class GrunnvannMaaling:
 
         r_ø_r_type = self.r_ø_r_type
 
-        grunnvann_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        grunnvann_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.grunnvann_observasjon, Unset):
             grunnvann_observasjon = []
             for grunnvann_observasjon_item_data in self.grunnvann_observasjon:
                 grunnvann_observasjon_item = grunnvann_observasjon_item_data.to_dict()
                 grunnvann_observasjon.append(grunnvann_observasjon_item)
 
-        overv_å_kning_obervasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        overv_å_kning_obervasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.overv_å_kning_obervasjon, Unset):
             overv_å_kning_obervasjon = []
             for overv_å_kning_obervasjon_item_data in self.overv_å_kning_obervasjon:
@@ -172,12 +174,12 @@ class GrunnvannMaaling:
         from ..models.overvaakning_data import OvervaakningData
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["GrunnvannMaaling"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["GrunnvannMaaling"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "GrunnvannMaaling" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'GrunnvannMaaling', got '{json_type}'")
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
@@ -188,14 +190,14 @@ class GrunnvannMaaling:
         til_borlengde = d.pop("tilBorlengde", UNSET)
 
         _insitu_test_start_tidspunkt = d.pop("insituTestStartTidspunkt", UNSET)
-        insitu_test_start_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_start_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = UNSET
         else:
             insitu_test_start_tidspunkt = isoparse(_insitu_test_start_tidspunkt)
 
         _insitu_test_slutt_tidspunkt = d.pop("insituTestSluttTidspunkt", UNSET)
-        insitu_test_slutt_tidspunkt: Union[Unset, datetime.datetime]
+        insitu_test_slutt_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = UNSET
         else:
@@ -210,7 +212,7 @@ class GrunnvannMaaling:
         filter_type = d.pop("filterType", UNSET)
 
         _grunnvann_akvifer = d.pop("grunnvannAkvifer", UNSET)
-        grunnvann_akvifer: Union[Unset, AkviferType]
+        grunnvann_akvifer: AkviferType | Unset
         if isinstance(_grunnvann_akvifer, Unset):
             grunnvann_akvifer = UNSET
         else:

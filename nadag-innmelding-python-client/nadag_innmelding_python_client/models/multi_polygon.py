@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, Literal, TypeVar, Union, cast
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,18 +15,18 @@ T = TypeVar("T", bound="MultiPolygon")
 class MultiPolygon:
     """
     Attributes:
-        type_ (Union[Literal['MultiPolygon'], Unset]):
-        coordinates (Union[Unset, list[list[list[list[float]]]]]):
+        type_ (Literal['MultiPolygon'] | Unset):
+        coordinates (list[list[list[list[float]]]] | Unset):
     """
 
-    type_: Union[Literal["MultiPolygon"], Unset] = UNSET
-    coordinates: Union[Unset, list[list[list[list[float]]]]] = UNSET
+    type_: Literal["MultiPolygon"] | Unset = UNSET
+    coordinates: list[list[list[list[float]]]] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
 
-        coordinates: Union[Unset, list[list[list[list[float]]]]] = UNSET
+        coordinates: list[list[list[list[float]]]] | Unset = UNSET
         if not isinstance(self.coordinates, Unset):
             coordinates = []
             for coordinates_item_data in self.coordinates:
@@ -53,7 +55,7 @@ class MultiPolygon:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Union[Literal["MultiPolygon"], Unset], d.pop("type", UNSET))
+        type_ = cast(Literal["MultiPolygon"] | Unset, d.pop("type", UNSET))
         if type_ != "MultiPolygon" and not isinstance(type_, Unset):
             raise ValueError(f"type must match const 'MultiPolygon', got '{type_}'")
 

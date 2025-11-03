@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, Literal, TypeVar, Union, cast
+from typing import Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,18 +15,18 @@ T = TypeVar("T", bound="Point")
 class Point:
     """
     Attributes:
-        type_ (Union[Literal['Point'], Unset]):
-        coordinates (Union[Unset, list[float]]):
+        type_ (Literal['Point'] | Unset):
+        coordinates (list[float] | Unset):
     """
 
-    type_: Union[Literal["Point"], Unset] = UNSET
-    coordinates: Union[Unset, list[float]] = UNSET
+    type_: Literal["Point"] | Unset = UNSET
+    coordinates: list[float] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         type_ = self.type_
 
-        coordinates: Union[Unset, list[float]] = UNSET
+        coordinates: list[float] | Unset = UNSET
         if not isinstance(self.coordinates, Unset):
             coordinates = self.coordinates
 
@@ -41,7 +43,7 @@ class Point:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        type_ = cast(Union[Literal["Point"], Unset], d.pop("type", UNSET))
+        type_ = cast(Literal["Point"] | Unset, d.pop("type", UNSET))
         if type_ != "Point" and not isinstance(type_, Unset):
             raise ValueError(f"type must match const 'Point', got '{type_}'")
 

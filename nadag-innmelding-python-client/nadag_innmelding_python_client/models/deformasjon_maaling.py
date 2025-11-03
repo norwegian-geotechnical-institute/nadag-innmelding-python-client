@@ -1,6 +1,8 @@
+from __future__ import annotations
+
 import datetime
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, Literal, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -29,27 +31,27 @@ class DeformasjonMaaling:
     and deformations in the field</engelsk>
 
         Attributes:
-            json_type (Union[Literal['DeformasjonMaaling'], Unset]):
-            datafangstdato (Union[Unset, datetime.datetime]): dato når objektet siste gang ble registrert/observert/målt i
+            json_type (Literal['DeformasjonMaaling'] | Unset):
+            datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
 
                 Merknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en
                 kortere eller lengre periode før disse legges inn i databasen.
                 Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.
-            digitaliseringsmålestokk (Union[Unset, int]): kartmålestokk registreringene/ datene er hentet fra/ registrert på
+            digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
-            identifikasjon (Union[Unset, Identifikasjon]): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            kvalitet (Union[Unset, PosisjonskvalitetNADAG]): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database
-                for Grunnundersøkelser).
+            kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
+                Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
-            oppdateringsdato (Union[Unset, datetime.datetime]): dato for siste endring på objektetdataene
+            oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
 
                 Merknad:
                 Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
@@ -57,23 +59,23 @@ class DeformasjonMaaling:
 
                 -Definition-
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
-            posisjon (Union[Unset, Point]):
-            observasjon_start (Union[Unset, datetime.datetime]): startdato for observasjon
+            posisjon (Point | Unset):
+            observasjon_start (datetime.datetime | Unset): startdato for observasjon
 
                 <engelsk>
                 starting date of the observation
                 </engelsk>
-            observasjon_slutt (Union[Unset, datetime.datetime]): sluttdato for observasjon
+            observasjon_slutt (datetime.datetime | Unset): sluttdato for observasjon
 
                 <engelsk>
                 ending date of the observation
                 </engelsk>
-            observatør (Union[Unset, str]): identifikasjon av operatøren som utfører observasjonen
+            observatør (str | Unset): identifikasjon av operatøren som utfører observasjonen
 
                 <engelsk>
                 Identification of the operator performing the observation
                 </engelsk>
-            opphav (Union[Unset, str]): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+            opphav (str | Unset): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
 
                 Merknad:
                 Kan også beskrive navn på person og årsak til oppdatering
@@ -84,18 +86,18 @@ class DeformasjonMaaling:
                 Note: May also include name of person and cause of update
 
                 </engelsk>
-            bore_beskrivelse (Union[Unset, str]):
-            boret_azimuth (Union[Unset, float]): vinkelen mellom en referansevektor i et referanseplan og en annen vektor i
-                det samme planet som peker mot noe av interesse
-            boret_helningsgrad (Union[Unset, float]): helning hvor  90 grader er vertikalt , 0 grader er horisontalt
-            boret_lengde (Union[Unset, float]): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
-            boret_lengde_til_berg (Union[Unset, BorlengdeTilBerg]): dybde til fjell som ikke er målt men basert på tolkning
+            bore_beskrivelse (str | Unset):
+            boret_azimuth (float | Unset): vinkelen mellom en referansevektor i et referanseplan og en annen vektor i det
+                samme planet som peker mot noe av interesse
+            boret_helningsgrad (float | Unset): helning hvor  90 grader er vertikalt , 0 grader er horisontalt
+            boret_lengde (float | Unset): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring
+            boret_lengde_til_berg (BorlengdeTilBerg | Unset): dybde til fjell som ikke er målt men basert på tolkning
 
                 <engelsk>
                 depth to bedrock based on interpretation
                 </engelsk>
-            dybde_fra_gitt_posisjon (Union[Unset, float]): avstanden fra måleutstyret og ned til det punkt på jordoverflaten
-                hvor boring/måling faktisk starter
+            dybde_fra_gitt_posisjon (float | Unset): avstanden fra måleutstyret og ned til det punkt på jordoverflaten hvor
+                boring/måling faktisk starter
 
                 Merknad: Borehullundersøkelsens posisjon er vanligvis angitt med x,y,z-koordinat. Disse verdiene representerer
                 vanligvis et punkt på jordoverflaten. Dybden fra denne gitte posisjon vil da være 0. Hvis boringen derimot er
@@ -112,119 +114,119 @@ class DeformasjonMaaling:
                 actually begins (on the sea surface, bottom of a lake or river, etc.)
 
                 </engelsk>
-            dybde_fra_vannoverflaten (Union[Unset, float]): den lengden hvor sonderingsutstyret befinner seg i vann
-            lenke_til_tileggsinfo (Union[Unset, str]): Lenke til mer informasjon (URL)
-            v_æ_rforhold_ved_boring (Union[Unset, str]): beskrivelse av værforhold under utførelsen av borehullundersøkelsen
+            dybde_fra_vannoverflaten (float | Unset): den lengden hvor sonderingsutstyret befinner seg i vann
+            lenke_til_tileggsinfo (str | Unset): Lenke til mer informasjon (URL)
+            v_æ_rforhold_ved_boring (str | Unset): beskrivelse av værforhold under utførelsen av borehullundersøkelsen
                 <engelsk>
                 Weather conditions - general description.
                 </engelsk>
-            høyde (Union[Unset, float]): Høyde for observasjon ved start observasjon [m]
-            h_ø_yde_referanse (Union[Unset, NADAGHoeyderef]): Brukte høydereferansesystemer i NADAG for egenskapen Høyde.
-                EPSG-koder benyttes.
-            unders_ø_kelse_nr (Union[Unset, str]): Nummer på observasjon benyttet i den geotekniske undersøkelsen
-            ekstern_identifikasjon (Union[Unset, EksternIdentifikasjon]): Identifikasjon av et objekt, ivaretatt av den
-                ansvarlige leverandør inn til NADAG.
-            opprettet_dato (Union[Unset, datetime.datetime]): Når objektet ble opprettet i database (Nadag)
-            dybde_grunnvannstand (Union[Unset, float]): dybde [m] fra terrengoverflaten til det nivå i grunnen der alle
-                porene i jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface
-                to the level in the ground where all voids are saturated with water, and where the pore pressure starts to
+            høyde (float | Unset): Høyde for observasjon ved start observasjon [m]
+            h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
+                koder benyttes.
+            unders_ø_kelse_nr (str | Unset): Nummer på observasjon benyttet i den geotekniske undersøkelsen
+            ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
+                leverandør inn til NADAG.
+            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
+            dybde_grunnvannstand (float | Unset): dybde [m] fra terrengoverflaten til det nivå i grunnen der alle porene i
+                jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface to the
+                level in the ground where all voids are saturated with water, and where the pore pressure starts to
                 increase</engelsk>
-            forboret_diameter (Union[Unset, float]): diameter [mm] av forboret hull i en borhullundersøkelse
-                <engelsk>diameter (mm)	 of a predrilled hole in a borehole investigation</engelsk>
-            forboret_lengde (Union[Unset, float]): Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of
-                a predrilled borehole in a borehole investigation<engelsk>
-            forboring_metode (Union[Unset, str]): metode brukt til boring uten registrering av data<engelsk>pre boring
+            forboret_diameter (float | Unset): diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter
+                (mm)	 of a predrilled hole in a borehole investigation</engelsk>
+            forboret_lengde (float | Unset): Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of a
+                predrilled borehole in a borehole investigation<engelsk>
+            forboring_metode (str | Unset): metode brukt til boring uten registrering av data<engelsk>pre boring
                 method</engelsk>
-            stopp_kode (Union[Unset, GeotekniskStoppkode]): oversikt over koder for stopp av boring ved utførelse av en
+            stopp_kode (GeotekniskStoppkode | Unset): oversikt over koder for stopp av boring ved utførelse av en
                 grunnundersøkelse <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>
-            forboret_start_lengde (Union[Unset, float]): startlengde[m] for hvor forboring startet i en borhullundersøkelse
+            forboret_start_lengde (float | Unset): startlengde[m] for hvor forboring startet i en borhullundersøkelse
                 <engelsk>start depth[m] where the predrilling in the  borehole investigation started<engelsk>
-            absoluttverdi (Union[Unset, bool]): verdi for målt bevegelse, uten angitt forteg<engelsk>value for measured
+            absoluttverdi (bool | Unset): verdi for målt bevegelse, uten angitt forteg<engelsk>value for measured
                 deformation, without sign</engelsk>
-            installasjon_tidspunkt (Union[Unset, datetime.datetime]): tidspunktet måleren ble installert<engelsk>time of
+            installasjon_tidspunkt (datetime.datetime | Unset): tidspunktet måleren ble installert<engelsk>time of
                 installation for the settlement gauge</engelsk>
-            installasjon_niv_å (Union[Unset, float]): dybdemåleren er installert i og det punkt der setningen måles (z-nivå
+            installasjon_niv_å (float | Unset): dybdemåleren er installert i og det punkt der setningen måles (z-nivå
                 installasjon) [m] <engelsk>depth of the settlement gauge where settlements are recorded (z-level
                 installation)</engelsk>
-            målertype (Union[Unset, str]): type setningsmåler (setningsplate, setningsbolt, slange)<engelsk>type of
-                settlement gauge (settlement plate, bolt, settlement hose)</engelsk>
-            målepunkt (Union[Unset, float]): registrering av referansepunkt for setningsmåling (z-nivå måling). Kan avvike
-                fra installasjonsnivå [m] <engelsk>recording of reference level for settlements (z-level measurements). My
-                deviate from installation level</engelsk>
-            har_overv_å_kning_observasjon (Union[Unset, list['DeformasjonOvervaakningData']]):
-            har_setning_observasjon (Union[Unset, list['DeformasjonMaaleData']]):
+            målertype (str | Unset): type setningsmåler (setningsplate, setningsbolt, slange)<engelsk>type of settlement
+                gauge (settlement plate, bolt, settlement hose)</engelsk>
+            målepunkt (float | Unset): registrering av referansepunkt for setningsmåling (z-nivå måling). Kan avvike fra
+                installasjonsnivå [m] <engelsk>recording of reference level for settlements (z-level measurements). My deviate
+                from installation level</engelsk>
+            har_overv_å_kning_observasjon (list[DeformasjonOvervaakningData] | Unset):
+            har_setning_observasjon (list[DeformasjonMaaleData] | Unset):
     """
 
-    json_type: Union[Literal["DeformasjonMaaling"], Unset] = UNSET
-    datafangstdato: Union[Unset, datetime.datetime] = UNSET
-    digitaliseringsmålestokk: Union[Unset, int] = UNSET
-    identifikasjon: Union[Unset, "Identifikasjon"] = UNSET
-    kvalitet: Union[Unset, "PosisjonskvalitetNADAG"] = UNSET
-    oppdateringsdato: Union[Unset, datetime.datetime] = UNSET
-    posisjon: Union[Unset, "Point"] = UNSET
-    observasjon_start: Union[Unset, datetime.datetime] = UNSET
-    observasjon_slutt: Union[Unset, datetime.datetime] = UNSET
-    observatør: Union[Unset, str] = UNSET
-    opphav: Union[Unset, str] = UNSET
-    bore_beskrivelse: Union[Unset, str] = UNSET
-    boret_azimuth: Union[Unset, float] = UNSET
-    boret_helningsgrad: Union[Unset, float] = UNSET
-    boret_lengde: Union[Unset, float] = UNSET
-    boret_lengde_til_berg: Union[Unset, "BorlengdeTilBerg"] = UNSET
-    dybde_fra_gitt_posisjon: Union[Unset, float] = UNSET
-    dybde_fra_vannoverflaten: Union[Unset, float] = UNSET
-    lenke_til_tileggsinfo: Union[Unset, str] = UNSET
-    v_æ_rforhold_ved_boring: Union[Unset, str] = UNSET
-    høyde: Union[Unset, float] = UNSET
-    h_ø_yde_referanse: Union[Unset, NADAGHoeyderef] = UNSET
-    unders_ø_kelse_nr: Union[Unset, str] = UNSET
-    ekstern_identifikasjon: Union[Unset, "EksternIdentifikasjon"] = UNSET
-    opprettet_dato: Union[Unset, datetime.datetime] = UNSET
-    dybde_grunnvannstand: Union[Unset, float] = UNSET
-    forboret_diameter: Union[Unset, float] = UNSET
-    forboret_lengde: Union[Unset, float] = UNSET
-    forboring_metode: Union[Unset, str] = UNSET
-    stopp_kode: Union[Unset, GeotekniskStoppkode] = UNSET
-    forboret_start_lengde: Union[Unset, float] = UNSET
-    absoluttverdi: Union[Unset, bool] = UNSET
-    installasjon_tidspunkt: Union[Unset, datetime.datetime] = UNSET
-    installasjon_niv_å: Union[Unset, float] = UNSET
-    målertype: Union[Unset, str] = UNSET
-    målepunkt: Union[Unset, float] = UNSET
-    har_overv_å_kning_observasjon: Union[Unset, list["DeformasjonOvervaakningData"]] = UNSET
-    har_setning_observasjon: Union[Unset, list["DeformasjonMaaleData"]] = UNSET
+    json_type: Literal["DeformasjonMaaling"] | Unset = UNSET
+    datafangstdato: datetime.datetime | Unset = UNSET
+    digitaliseringsmålestokk: int | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
+    kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
+    oppdateringsdato: datetime.datetime | Unset = UNSET
+    posisjon: Point | Unset = UNSET
+    observasjon_start: datetime.datetime | Unset = UNSET
+    observasjon_slutt: datetime.datetime | Unset = UNSET
+    observatør: str | Unset = UNSET
+    opphav: str | Unset = UNSET
+    bore_beskrivelse: str | Unset = UNSET
+    boret_azimuth: float | Unset = UNSET
+    boret_helningsgrad: float | Unset = UNSET
+    boret_lengde: float | Unset = UNSET
+    boret_lengde_til_berg: BorlengdeTilBerg | Unset = UNSET
+    dybde_fra_gitt_posisjon: float | Unset = UNSET
+    dybde_fra_vannoverflaten: float | Unset = UNSET
+    lenke_til_tileggsinfo: str | Unset = UNSET
+    v_æ_rforhold_ved_boring: str | Unset = UNSET
+    høyde: float | Unset = UNSET
+    h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
+    unders_ø_kelse_nr: str | Unset = UNSET
+    ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
+    opprettet_dato: datetime.datetime | Unset = UNSET
+    dybde_grunnvannstand: float | Unset = UNSET
+    forboret_diameter: float | Unset = UNSET
+    forboret_lengde: float | Unset = UNSET
+    forboring_metode: str | Unset = UNSET
+    stopp_kode: GeotekniskStoppkode | Unset = UNSET
+    forboret_start_lengde: float | Unset = UNSET
+    absoluttverdi: bool | Unset = UNSET
+    installasjon_tidspunkt: datetime.datetime | Unset = UNSET
+    installasjon_niv_å: float | Unset = UNSET
+    målertype: str | Unset = UNSET
+    målepunkt: float | Unset = UNSET
+    har_overv_å_kning_observasjon: list[DeformasjonOvervaakningData] | Unset = UNSET
+    har_setning_observasjon: list[DeformasjonMaaleData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         json_type = self.json_type
 
-        datafangstdato: Union[Unset, str] = UNSET
+        datafangstdato: str | Unset = UNSET
         if not isinstance(self.datafangstdato, Unset):
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
-        identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.identifikasjon, Unset):
             identifikasjon = self.identifikasjon.to_dict()
 
-        kvalitet: Union[Unset, dict[str, Any]] = UNSET
+        kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
             kvalitet = self.kvalitet.to_dict()
 
-        oppdateringsdato: Union[Unset, str] = UNSET
+        oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
 
-        posisjon: Union[Unset, dict[str, Any]] = UNSET
+        posisjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.posisjon, Unset):
             posisjon = self.posisjon.to_dict()
 
-        observasjon_start: Union[Unset, str] = UNSET
+        observasjon_start: str | Unset = UNSET
         if not isinstance(self.observasjon_start, Unset):
             observasjon_start = self.observasjon_start.isoformat()
 
-        observasjon_slutt: Union[Unset, str] = UNSET
+        observasjon_slutt: str | Unset = UNSET
         if not isinstance(self.observasjon_slutt, Unset):
             observasjon_slutt = self.observasjon_slutt.isoformat()
 
@@ -240,7 +242,7 @@ class DeformasjonMaaling:
 
         boret_lengde = self.boret_lengde
 
-        boret_lengde_til_berg: Union[Unset, dict[str, Any]] = UNSET
+        boret_lengde_til_berg: dict[str, Any] | Unset = UNSET
         if not isinstance(self.boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = self.boret_lengde_til_berg.to_dict()
 
@@ -254,17 +256,17 @@ class DeformasjonMaaling:
 
         høyde = self.høyde
 
-        h_ø_yde_referanse: Union[Unset, str] = UNSET
+        h_ø_yde_referanse: str | Unset = UNSET
         if not isinstance(self.h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         unders_ø_kelse_nr = self.unders_ø_kelse_nr
 
-        ekstern_identifikasjon: Union[Unset, dict[str, Any]] = UNSET
+        ekstern_identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
-        opprettet_dato: Union[Unset, str] = UNSET
+        opprettet_dato: str | Unset = UNSET
         if not isinstance(self.opprettet_dato, Unset):
             opprettet_dato = self.opprettet_dato.isoformat()
 
@@ -276,7 +278,7 @@ class DeformasjonMaaling:
 
         forboring_metode = self.forboring_metode
 
-        stopp_kode: Union[Unset, str] = UNSET
+        stopp_kode: str | Unset = UNSET
         if not isinstance(self.stopp_kode, Unset):
             stopp_kode = self.stopp_kode.value
 
@@ -284,7 +286,7 @@ class DeformasjonMaaling:
 
         absoluttverdi = self.absoluttverdi
 
-        installasjon_tidspunkt: Union[Unset, str] = UNSET
+        installasjon_tidspunkt: str | Unset = UNSET
         if not isinstance(self.installasjon_tidspunkt, Unset):
             installasjon_tidspunkt = self.installasjon_tidspunkt.isoformat()
 
@@ -294,14 +296,14 @@ class DeformasjonMaaling:
 
         målepunkt = self.målepunkt
 
-        har_overv_å_kning_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_overv_å_kning_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_overv_å_kning_observasjon, Unset):
             har_overv_å_kning_observasjon = []
             for har_overv_å_kning_observasjon_item_data in self.har_overv_å_kning_observasjon:
                 har_overv_å_kning_observasjon_item = har_overv_å_kning_observasjon_item_data.to_dict()
                 har_overv_å_kning_observasjon.append(har_overv_å_kning_observasjon_item)
 
-        har_setning_observasjon: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_setning_observasjon: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_setning_observasjon, Unset):
             har_setning_observasjon = []
             for har_setning_observasjon_item_data in self.har_setning_observasjon:
@@ -401,12 +403,12 @@ class DeformasjonMaaling:
         from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
 
         d = dict(src_dict)
-        json_type = cast(Union[Literal["DeformasjonMaaling"], Unset], d.pop("jsonType", UNSET))
+        json_type = cast(Literal["DeformasjonMaaling"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "DeformasjonMaaling" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'DeformasjonMaaling', got '{json_type}'")
 
         _datafangstdato = d.pop("datafangstdato", UNSET)
-        datafangstdato: Union[Unset, datetime.datetime]
+        datafangstdato: datetime.datetime | Unset
         if isinstance(_datafangstdato, Unset):
             datafangstdato = UNSET
         else:
@@ -415,42 +417,42 @@ class DeformasjonMaaling:
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
 
         _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Union[Unset, Identifikasjon]
+        identifikasjon: Identifikasjon | Unset
         if isinstance(_identifikasjon, Unset):
             identifikasjon = UNSET
         else:
             identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
-        kvalitet: Union[Unset, PosisjonskvalitetNADAG]
+        kvalitet: PosisjonskvalitetNADAG | Unset
         if isinstance(_kvalitet, Unset):
             kvalitet = UNSET
         else:
             kvalitet = PosisjonskvalitetNADAG.from_dict(_kvalitet)
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
-        oppdateringsdato: Union[Unset, datetime.datetime]
+        oppdateringsdato: datetime.datetime | Unset
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
             oppdateringsdato = isoparse(_oppdateringsdato)
 
         _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Union[Unset, Point]
+        posisjon: Point | Unset
         if isinstance(_posisjon, Unset):
             posisjon = UNSET
         else:
             posisjon = Point.from_dict(_posisjon)
 
         _observasjon_start = d.pop("observasjonStart", UNSET)
-        observasjon_start: Union[Unset, datetime.datetime]
+        observasjon_start: datetime.datetime | Unset
         if isinstance(_observasjon_start, Unset):
             observasjon_start = UNSET
         else:
             observasjon_start = isoparse(_observasjon_start)
 
         _observasjon_slutt = d.pop("observasjonSlutt", UNSET)
-        observasjon_slutt: Union[Unset, datetime.datetime]
+        observasjon_slutt: datetime.datetime | Unset
         if isinstance(_observasjon_slutt, Unset):
             observasjon_slutt = UNSET
         else:
@@ -469,7 +471,7 @@ class DeformasjonMaaling:
         boret_lengde = d.pop("boretLengde", UNSET)
 
         _boret_lengde_til_berg = d.pop("boretLengdeTilBerg", UNSET)
-        boret_lengde_til_berg: Union[Unset, BorlengdeTilBerg]
+        boret_lengde_til_berg: BorlengdeTilBerg | Unset
         if isinstance(_boret_lengde_til_berg, Unset):
             boret_lengde_til_berg = UNSET
         else:
@@ -486,7 +488,7 @@ class DeformasjonMaaling:
         høyde = d.pop("høyde", UNSET)
 
         _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
-        h_ø_yde_referanse: Union[Unset, NADAGHoeyderef]
+        h_ø_yde_referanse: NADAGHoeyderef | Unset
         if isinstance(_h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = UNSET
         else:
@@ -495,14 +497,14 @@ class DeformasjonMaaling:
         unders_ø_kelse_nr = d.pop("undersøkelseNr", UNSET)
 
         _ekstern_identifikasjon = d.pop("eksternIdentifikasjon", UNSET)
-        ekstern_identifikasjon: Union[Unset, EksternIdentifikasjon]
+        ekstern_identifikasjon: EksternIdentifikasjon | Unset
         if isinstance(_ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = UNSET
         else:
             ekstern_identifikasjon = EksternIdentifikasjon.from_dict(_ekstern_identifikasjon)
 
         _opprettet_dato = d.pop("opprettetDato", UNSET)
-        opprettet_dato: Union[Unset, datetime.datetime]
+        opprettet_dato: datetime.datetime | Unset
         if isinstance(_opprettet_dato, Unset):
             opprettet_dato = UNSET
         else:
@@ -517,7 +519,7 @@ class DeformasjonMaaling:
         forboring_metode = d.pop("forboringMetode", UNSET)
 
         _stopp_kode = d.pop("stoppKode", UNSET)
-        stopp_kode: Union[Unset, GeotekniskStoppkode]
+        stopp_kode: GeotekniskStoppkode | Unset
         if isinstance(_stopp_kode, Unset):
             stopp_kode = UNSET
         else:
@@ -528,7 +530,7 @@ class DeformasjonMaaling:
         absoluttverdi = d.pop("absoluttverdi", UNSET)
 
         _installasjon_tidspunkt = d.pop("installasjonTidspunkt", UNSET)
-        installasjon_tidspunkt: Union[Unset, datetime.datetime]
+        installasjon_tidspunkt: datetime.datetime | Unset
         if isinstance(_installasjon_tidspunkt, Unset):
             installasjon_tidspunkt = UNSET
         else:

@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,22 +20,22 @@ class GeotekniskProeveseriedel:
     """delprøve av en  prøveserie<engelsk> Soil test part </engelsk>
 
     Attributes:
-        pr_ø_ve_metode (Union[Unset, str]): metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
-        pr_ø_veseriedel_navn (Union[Unset, str]): navn på prøveseriedelen<engelsk>name</engelsk>
-        fra_lengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+        pr_ø_ve_metode (str | Unset): metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
+        pr_ø_veseriedel_navn (str | Unset): navn på prøveseriedelen<engelsk>name</engelsk>
+        fra_lengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>the start length, the depth at top of the specimen[m]</engelsk>
-        til_lengde (Union[Unset, float]): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
+        til_lengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>the length of the stop, the lower depth limitation of the sample [m]</engelsk>
-        pr_ø_veseriedel_id (Union[Unset, str]): Primærnøkkel for relasjon
-        har_data (Union[Unset, list['GeotekniskProeveseriedelData']]):
+        pr_ø_veseriedel_id (str | Unset): Primærnøkkel for relasjon
+        har_data (list[GeotekniskProeveseriedelData] | Unset):
     """
 
-    pr_ø_ve_metode: Union[Unset, str] = UNSET
-    pr_ø_veseriedel_navn: Union[Unset, str] = UNSET
-    fra_lengde: Union[Unset, float] = UNSET
-    til_lengde: Union[Unset, float] = UNSET
-    pr_ø_veseriedel_id: Union[Unset, str] = UNSET
-    har_data: Union[Unset, list["GeotekniskProeveseriedelData"]] = UNSET
+    pr_ø_ve_metode: str | Unset = UNSET
+    pr_ø_veseriedel_navn: str | Unset = UNSET
+    fra_lengde: float | Unset = UNSET
+    til_lengde: float | Unset = UNSET
+    pr_ø_veseriedel_id: str | Unset = UNSET
+    har_data: list[GeotekniskProeveseriedelData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -47,7 +49,7 @@ class GeotekniskProeveseriedel:
 
         pr_ø_veseriedel_id = self.pr_ø_veseriedel_id
 
-        har_data: Union[Unset, list[dict[str, Any]]] = UNSET
+        har_data: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_data, Unset):
             har_data = []
             for har_data_item_data in self.har_data:

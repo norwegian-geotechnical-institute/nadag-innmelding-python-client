@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Optional, Union, cast
+from typing import Any, cast
 
 import httpx
 
@@ -12,7 +12,7 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     geoteknisk_borehull_id: str,
     *,
-    include_metode: Union[Unset, bool] = UNSET,
+    include_metode: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     params: dict[str, Any] = {}
 
@@ -30,8 +30,8 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Any, GeotekniskBorehull]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Any | GeotekniskBorehull | None:
     if response.status_code == 200:
         response_200 = GeotekniskBorehull.from_dict(response.json())
 
@@ -52,8 +52,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Any, GeotekniskBorehull]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Any | GeotekniskBorehull]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,23 +65,23 @@ def _build_response(
 def sync_detailed(
     geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    include_metode: Union[Unset, bool] = UNSET,
-) -> Response[Union[Any, GeotekniskBorehull]]:
+    client: AuthenticatedClient | Client,
+    include_metode: bool | Unset = UNSET,
+) -> Response[Any | GeotekniskBorehull]:
     """Fetches a GeotekniskBorehull by id.
 
      Fetches a GeotekniskBorehull by id.
 
     Args:
         geoteknisk_borehull_id (str):
-        include_metode (Union[Unset, bool]):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, GeotekniskBorehull]]
+        Response[Any | GeotekniskBorehull]
     """
 
     kwargs = _get_kwargs(
@@ -99,23 +99,23 @@ def sync_detailed(
 def sync(
     geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    include_metode: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Any, GeotekniskBorehull]]:
+    client: AuthenticatedClient | Client,
+    include_metode: bool | Unset = UNSET,
+) -> Any | GeotekniskBorehull | None:
     """Fetches a GeotekniskBorehull by id.
 
      Fetches a GeotekniskBorehull by id.
 
     Args:
         geoteknisk_borehull_id (str):
-        include_metode (Union[Unset, bool]):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, GeotekniskBorehull]
+        Any | GeotekniskBorehull
     """
 
     return sync_detailed(
@@ -128,23 +128,23 @@ def sync(
 async def asyncio_detailed(
     geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    include_metode: Union[Unset, bool] = UNSET,
-) -> Response[Union[Any, GeotekniskBorehull]]:
+    client: AuthenticatedClient | Client,
+    include_metode: bool | Unset = UNSET,
+) -> Response[Any | GeotekniskBorehull]:
     """Fetches a GeotekniskBorehull by id.
 
      Fetches a GeotekniskBorehull by id.
 
     Args:
         geoteknisk_borehull_id (str):
-        include_metode (Union[Unset, bool]):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Any, GeotekniskBorehull]]
+        Response[Any | GeotekniskBorehull]
     """
 
     kwargs = _get_kwargs(
@@ -160,23 +160,23 @@ async def asyncio_detailed(
 async def asyncio(
     geoteknisk_borehull_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    include_metode: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Any, GeotekniskBorehull]]:
+    client: AuthenticatedClient | Client,
+    include_metode: bool | Unset = UNSET,
+) -> Any | GeotekniskBorehull | None:
     """Fetches a GeotekniskBorehull by id.
 
      Fetches a GeotekniskBorehull by id.
 
     Args:
         geoteknisk_borehull_id (str):
-        include_metode (Union[Unset, bool]):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Any, GeotekniskBorehull]
+        Any | GeotekniskBorehull
     """
 
     return (

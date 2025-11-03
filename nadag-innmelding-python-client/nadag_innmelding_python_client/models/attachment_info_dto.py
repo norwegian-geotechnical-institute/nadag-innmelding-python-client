@@ -1,5 +1,7 @@
+from __future__ import annotations
+
 from collections.abc import Mapping
-from typing import Any, TypeVar, Union
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,12 +16,12 @@ class AttachmentInfoDto:
     """Attachment info result
 
     Attributes:
-        attachment_id (Union[Unset, str]): Identifier for the attachment
-        uniq_id (Union[Unset, str]): Uniq identifier for the attachment (base64 encoded)
+        attachment_id (str | Unset): Identifier for the attachment
+        uniq_id (str | Unset): Uniq identifier for the attachment (base64 encoded)
     """
 
-    attachment_id: Union[Unset, str] = UNSET
-    uniq_id: Union[Unset, str] = UNSET
+    attachment_id: str | Unset = UNSET
+    uniq_id: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
