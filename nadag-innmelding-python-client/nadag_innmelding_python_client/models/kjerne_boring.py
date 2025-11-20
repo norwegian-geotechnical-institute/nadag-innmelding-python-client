@@ -157,12 +157,14 @@ class KjerneBoring:
         else:
             boret_lengde_til_berg = BorlengdeTilBerg.from_dict(_boret_lengde_til_berg)
 
-        har_data = []
         _har_data = d.pop("harData", UNSET)
-        for har_data_item_data in _har_data or []:
-            har_data_item = KjerneBoringData.from_dict(har_data_item_data)
+        har_data: list[KjerneBoringData] | Unset = UNSET
+        if _har_data is not UNSET:
+            har_data = []
+            for har_data_item_data in _har_data:
+                har_data_item = KjerneBoringData.from_dict(har_data_item_data)
 
-            har_data.append(har_data_item)
+                har_data.append(har_data_item)
 
         kjerne_boring = cls(
             json_type=json_type,

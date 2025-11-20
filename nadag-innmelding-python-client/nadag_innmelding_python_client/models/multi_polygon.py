@@ -59,24 +59,26 @@ class MultiPolygon:
         if type_ != "MultiPolygon" and not isinstance(type_, Unset):
             raise ValueError(f"type must match const 'MultiPolygon', got '{type_}'")
 
-        coordinates = []
         _coordinates = d.pop("coordinates", UNSET)
-        for coordinates_item_data in _coordinates or []:
-            coordinates_item = []
-            _coordinates_item = coordinates_item_data
-            for componentsschemas_coordinates_lists_item_data in _coordinates_item:
-                componentsschemas_coordinates_lists_item = []
-                _componentsschemas_coordinates_lists_item = componentsschemas_coordinates_lists_item_data
-                for componentsschemas_coordinates_list_item_data in _componentsschemas_coordinates_lists_item:
-                    componentsschemas_coordinates_list_item = cast(
-                        list[float], componentsschemas_coordinates_list_item_data
-                    )
+        coordinates: list[list[list[list[float]]]] | Unset = UNSET
+        if _coordinates is not UNSET:
+            coordinates = []
+            for coordinates_item_data in _coordinates:
+                coordinates_item = []
+                _coordinates_item = coordinates_item_data
+                for componentsschemas_coordinates_lists_item_data in _coordinates_item:
+                    componentsschemas_coordinates_lists_item = []
+                    _componentsschemas_coordinates_lists_item = componentsschemas_coordinates_lists_item_data
+                    for componentsschemas_coordinates_list_item_data in _componentsschemas_coordinates_lists_item:
+                        componentsschemas_coordinates_list_item = cast(
+                            list[float], componentsschemas_coordinates_list_item_data
+                        )
 
-                    componentsschemas_coordinates_lists_item.append(componentsschemas_coordinates_list_item)
+                        componentsschemas_coordinates_lists_item.append(componentsschemas_coordinates_list_item)
 
-                coordinates_item.append(componentsschemas_coordinates_lists_item)
+                    coordinates_item.append(componentsschemas_coordinates_lists_item)
 
-            coordinates.append(coordinates_item)
+                coordinates.append(coordinates_item)
 
         multi_polygon = cls(
             type_=type_,

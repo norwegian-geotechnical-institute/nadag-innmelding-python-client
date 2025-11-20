@@ -47,12 +47,14 @@ class AttachmentInfosDto:
         from ..models.attachment_info_dto import AttachmentInfoDto
 
         d = dict(src_dict)
-        attachment_infos = []
         _attachment_infos = d.pop("attachmentInfos", UNSET)
-        for attachment_infos_item_data in _attachment_infos or []:
-            attachment_infos_item = AttachmentInfoDto.from_dict(attachment_infos_item_data)
+        attachment_infos: list[AttachmentInfoDto] | Unset = UNSET
+        if _attachment_infos is not UNSET:
+            attachment_infos = []
+            for attachment_infos_item_data in _attachment_infos:
+                attachment_infos_item = AttachmentInfoDto.from_dict(attachment_infos_item_data)
 
-            attachment_infos.append(attachment_infos_item)
+                attachment_infos.append(attachment_infos_item)
 
         attachment_infos_dto = cls(
             attachment_infos=attachment_infos,

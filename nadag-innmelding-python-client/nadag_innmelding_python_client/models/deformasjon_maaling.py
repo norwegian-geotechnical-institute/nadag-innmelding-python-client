@@ -542,21 +542,25 @@ class DeformasjonMaaling:
 
         målepunkt = d.pop("målepunkt", UNSET)
 
-        har_overv_å_kning_observasjon = []
         _har_overv_å_kning_observasjon = d.pop("harOvervåkningObservasjon", UNSET)
-        for har_overv_å_kning_observasjon_item_data in _har_overv_å_kning_observasjon or []:
-            har_overv_å_kning_observasjon_item = DeformasjonOvervaakningData.from_dict(
-                har_overv_å_kning_observasjon_item_data
-            )
+        har_overv_å_kning_observasjon: list[DeformasjonOvervaakningData] | Unset = UNSET
+        if _har_overv_å_kning_observasjon is not UNSET:
+            har_overv_å_kning_observasjon = []
+            for har_overv_å_kning_observasjon_item_data in _har_overv_å_kning_observasjon:
+                har_overv_å_kning_observasjon_item = DeformasjonOvervaakningData.from_dict(
+                    har_overv_å_kning_observasjon_item_data
+                )
 
-            har_overv_å_kning_observasjon.append(har_overv_å_kning_observasjon_item)
+                har_overv_å_kning_observasjon.append(har_overv_å_kning_observasjon_item)
 
-        har_setning_observasjon = []
         _har_setning_observasjon = d.pop("harSetningObservasjon", UNSET)
-        for har_setning_observasjon_item_data in _har_setning_observasjon or []:
-            har_setning_observasjon_item = DeformasjonMaaleData.from_dict(har_setning_observasjon_item_data)
+        har_setning_observasjon: list[DeformasjonMaaleData] | Unset = UNSET
+        if _har_setning_observasjon is not UNSET:
+            har_setning_observasjon = []
+            for har_setning_observasjon_item_data in _har_setning_observasjon:
+                har_setning_observasjon_item = DeformasjonMaaleData.from_dict(har_setning_observasjon_item_data)
 
-            har_setning_observasjon.append(har_setning_observasjon_item)
+                har_setning_observasjon.append(har_setning_observasjon_item)
 
         deformasjon_maaling = cls(
             json_type=json_type,

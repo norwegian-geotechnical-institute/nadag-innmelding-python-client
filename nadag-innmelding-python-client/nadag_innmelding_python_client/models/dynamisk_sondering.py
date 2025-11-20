@@ -117,14 +117,16 @@ class DynamiskSondering:
 
         ant_pr_ø_veuttak_forstyrret_matr = d.pop("antPrøveuttakForstyrretMatr", UNSET)
 
-        dynamisk_sondering_observasjon = []
         _dynamisk_sondering_observasjon = d.pop("dynamiskSonderingObservasjon", UNSET)
-        for dynamisk_sondering_observasjon_item_data in _dynamisk_sondering_observasjon or []:
-            dynamisk_sondering_observasjon_item = DynamiskSonderingData.from_dict(
-                dynamisk_sondering_observasjon_item_data
-            )
+        dynamisk_sondering_observasjon: list[DynamiskSonderingData] | Unset = UNSET
+        if _dynamisk_sondering_observasjon is not UNSET:
+            dynamisk_sondering_observasjon = []
+            for dynamisk_sondering_observasjon_item_data in _dynamisk_sondering_observasjon:
+                dynamisk_sondering_observasjon_item = DynamiskSonderingData.from_dict(
+                    dynamisk_sondering_observasjon_item_data
+                )
 
-            dynamisk_sondering_observasjon.append(dynamisk_sondering_observasjon_item)
+                dynamisk_sondering_observasjon.append(dynamisk_sondering_observasjon_item)
 
         dynamisk_sondering = cls(
             json_type=json_type,

@@ -224,19 +224,23 @@ class GrunnvannMaaling:
 
         r_ø_r_type = d.pop("rørType", UNSET)
 
-        grunnvann_observasjon = []
         _grunnvann_observasjon = d.pop("grunnvannObservasjon", UNSET)
-        for grunnvann_observasjon_item_data in _grunnvann_observasjon or []:
-            grunnvann_observasjon_item = GrunnvannData.from_dict(grunnvann_observasjon_item_data)
+        grunnvann_observasjon: list[GrunnvannData] | Unset = UNSET
+        if _grunnvann_observasjon is not UNSET:
+            grunnvann_observasjon = []
+            for grunnvann_observasjon_item_data in _grunnvann_observasjon:
+                grunnvann_observasjon_item = GrunnvannData.from_dict(grunnvann_observasjon_item_data)
 
-            grunnvann_observasjon.append(grunnvann_observasjon_item)
+                grunnvann_observasjon.append(grunnvann_observasjon_item)
 
-        overv_å_kning_obervasjon = []
         _overv_å_kning_obervasjon = d.pop("overvåkningObervasjon", UNSET)
-        for overv_å_kning_obervasjon_item_data in _overv_å_kning_obervasjon or []:
-            overv_å_kning_obervasjon_item = OvervaakningData.from_dict(overv_å_kning_obervasjon_item_data)
+        overv_å_kning_obervasjon: list[OvervaakningData] | Unset = UNSET
+        if _overv_å_kning_obervasjon is not UNSET:
+            overv_å_kning_obervasjon = []
+            for overv_å_kning_obervasjon_item_data in _overv_å_kning_obervasjon:
+                overv_å_kning_obervasjon_item = OvervaakningData.from_dict(overv_å_kning_obervasjon_item_data)
 
-            overv_å_kning_obervasjon.append(overv_å_kning_obervasjon_item)
+                overv_å_kning_obervasjon.append(overv_å_kning_obervasjon_item)
 
         grunnvann_maaling = cls(
             json_type=json_type,

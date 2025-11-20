@@ -56,12 +56,14 @@ class GeometryCollection:
         if type_ != "GeometryCollection" and not isinstance(type_, Unset):
             raise ValueError(f"type must match const 'GeometryCollection', got '{type_}'")
 
-        geometries = []
         _geometries = d.pop("geometries", UNSET)
-        for geometries_item_data in _geometries or []:
-            geometries_item = Geometry.from_dict(geometries_item_data)
+        geometries: list[Geometry] | Unset = UNSET
+        if _geometries is not UNSET:
+            geometries = []
+            for geometries_item_data in _geometries:
+                geometries_item = Geometry.from_dict(geometries_item_data)
 
-            geometries.append(geometries_item)
+                geometries.append(geometries_item)
 
         geometry_collection = cls(
             type_=type_,

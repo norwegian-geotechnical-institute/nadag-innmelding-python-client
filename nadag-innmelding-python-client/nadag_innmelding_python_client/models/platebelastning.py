@@ -152,12 +152,14 @@ class Platebelastning:
 
         areal_plate = d.pop("arealPlate", UNSET)
 
-        platebelastning_observasjon = []
         _platebelastning_observasjon = d.pop("platebelastningObservasjon", UNSET)
-        for platebelastning_observasjon_item_data in _platebelastning_observasjon or []:
-            platebelastning_observasjon_item = PlatebelastningData.from_dict(platebelastning_observasjon_item_data)
+        platebelastning_observasjon: list[PlatebelastningData] | Unset = UNSET
+        if _platebelastning_observasjon is not UNSET:
+            platebelastning_observasjon = []
+            for platebelastning_observasjon_item_data in _platebelastning_observasjon:
+                platebelastning_observasjon_item = PlatebelastningData.from_dict(platebelastning_observasjon_item_data)
 
-            platebelastning_observasjon.append(platebelastning_observasjon_item)
+                platebelastning_observasjon.append(platebelastning_observasjon_item)
 
         platebelastning = cls(
             json_type=json_type,

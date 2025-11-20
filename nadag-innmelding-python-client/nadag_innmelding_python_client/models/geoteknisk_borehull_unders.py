@@ -598,12 +598,14 @@ class GeotekniskBorehullUnders:
 
         bore_beskrivelse = d.pop("boreBeskrivelse", UNSET)
 
-        borehull_forl_ø_p = []
         _borehull_forl_ø_p = d.pop("borehullForløp", UNSET)
-        for componentsschemas_line_string_item_data in _borehull_forl_ø_p or []:
-            componentsschemas_line_string_item = Point.from_dict(componentsschemas_line_string_item_data)
+        borehull_forl_ø_p: list[Point] | Unset = UNSET
+        if _borehull_forl_ø_p is not UNSET:
+            borehull_forl_ø_p = []
+            for componentsschemas_line_string_item_data in _borehull_forl_ø_p:
+                componentsschemas_line_string_item = Point.from_dict(componentsschemas_line_string_item_data)
 
-            borehull_forl_ø_p.append(componentsschemas_line_string_item)
+                borehull_forl_ø_p.append(componentsschemas_line_string_item)
 
         boret_azimuth = d.pop("boretAzimuth", UNSET)
 
@@ -691,13 +693,9 @@ class GeotekniskBorehullUnders:
 
         forboret_start_lengde = d.pop("forboretStartLengde", UNSET)
 
-        metode = []
         _metode = d.pop("metode", UNSET)
-        for metode_item_data in _metode or []:
-
-            def _parse_metode_item(
-                data: object,
-            ) -> (
+        metode: (
+            list[
                 BlokkProeve
                 | DilatometerTest
                 | DynamiskSondering
@@ -723,215 +721,252 @@ class GeotekniskBorehullUnders:
                 | Trykksondering
                 | VannProeve
                 | Vingeboring
-            ):
-                try:
+            ]
+            | Unset
+        ) = UNSET
+        if _metode is not UNSET:
+            metode = []
+            for metode_item_data in _metode:
+
+                def _parse_metode_item(
+                    data: object,
+                ) -> (
+                    BlokkProeve
+                    | DilatometerTest
+                    | DynamiskSondering
+                    | GassMaaling
+                    | GassProeve
+                    | GeotekniskProeveserie
+                    | GraveProeve
+                    | GrunnvannMaaling
+                    | HydrauliskTest
+                    | KanneProeve
+                    | KjerneBoring
+                    | KjerneProeve
+                    | KombinasjonSondering
+                    | MiljoeUndersoekelse
+                    | NaverProeve
+                    | Platebelastning
+                    | PoretrykkMaaling
+                    | RamProeve
+                    | SedimentProeve
+                    | SkovlProeve
+                    | StatiskSondering
+                    | StempelProeve
+                    | Trykksondering
+                    | VannProeve
+                    | Vingeboring
+                ):
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_0 = BlokkProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_0
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_1 = DilatometerTest.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_1
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_2 = DynamiskSondering.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_2
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_3 = GassMaaling.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_3
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_4 = GassProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_4
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_5 = GeotekniskProeveserie.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_5
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_6 = GraveProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_6
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_7 = GrunnvannMaaling.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_7
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_8 = HydrauliskTest.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_8
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_9 = KanneProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_9
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_10 = KjerneBoring.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_10
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_11 = KjerneProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_11
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_12 = KombinasjonSondering.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_12
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_13 = MiljoeUndersoekelse.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_13
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_14 = NaverProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_14
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_15 = Platebelastning.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_15
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_16 = PoretrykkMaaling.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_16
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_17 = RamProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_17
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_18 = SedimentProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_18
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_19 = SkovlProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_19
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_20 = StatiskSondering.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_20
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_21 = StempelProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_21
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_22 = Trykksondering.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_22
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
+                    try:
+                        if not isinstance(data, dict):
+                            raise TypeError()
+                        componentsschemas_geotekniskmetode_type_23 = VannProeve.from_dict(data)
+
+                        return componentsschemas_geotekniskmetode_type_23
+                    except (TypeError, ValueError, AttributeError, KeyError):
+                        pass
                     if not isinstance(data, dict):
                         raise TypeError()
-                    componentsschemas_geotekniskmetode_type_0 = BlokkProeve.from_dict(data)
+                    componentsschemas_geotekniskmetode_type_24 = Vingeboring.from_dict(data)
 
-                    return componentsschemas_geotekniskmetode_type_0
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_1 = DilatometerTest.from_dict(data)
+                    return componentsschemas_geotekniskmetode_type_24
 
-                    return componentsschemas_geotekniskmetode_type_1
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_2 = DynamiskSondering.from_dict(data)
+                metode_item = _parse_metode_item(metode_item_data)
 
-                    return componentsschemas_geotekniskmetode_type_2
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_3 = GassMaaling.from_dict(data)
+                metode.append(metode_item)
 
-                    return componentsschemas_geotekniskmetode_type_3
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_4 = GassProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_4
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_5 = GeotekniskProeveserie.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_5
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_6 = GraveProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_6
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_7 = GrunnvannMaaling.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_7
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_8 = HydrauliskTest.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_8
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_9 = KanneProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_9
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_10 = KjerneBoring.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_10
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_11 = KjerneProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_11
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_12 = KombinasjonSondering.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_12
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_13 = MiljoeUndersoekelse.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_13
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_14 = NaverProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_14
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_15 = Platebelastning.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_15
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_16 = PoretrykkMaaling.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_16
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_17 = RamProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_17
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_18 = SedimentProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_18
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_19 = SkovlProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_19
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_20 = StatiskSondering.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_20
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_21 = StempelProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_21
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_22 = Trykksondering.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_22
-                except:  # noqa: E722
-                    pass
-                try:
-                    if not isinstance(data, dict):
-                        raise TypeError()
-                    componentsschemas_geotekniskmetode_type_23 = VannProeve.from_dict(data)
-
-                    return componentsschemas_geotekniskmetode_type_23
-                except:  # noqa: E722
-                    pass
-                if not isinstance(data, dict):
-                    raise TypeError()
-                componentsschemas_geotekniskmetode_type_24 = Vingeboring.from_dict(data)
-
-                return componentsschemas_geotekniskmetode_type_24
-
-            metode_item = _parse_metode_item(metode_item_data)
-
-            metode.append(metode_item)
-
-        har_dokument = []
         _har_dokument = d.pop("harDokument", UNSET)
-        for har_dokument_item_data in _har_dokument or []:
-            har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
+        har_dokument: list[GeotekniskDokument] | Unset = UNSET
+        if _har_dokument is not UNSET:
+            har_dokument = []
+            for har_dokument_item_data in _har_dokument:
+                har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
 
-            har_dokument.append(har_dokument_item)
+                har_dokument.append(har_dokument_item)
 
         geoteknisk_borehull_unders = cls(
             datafangstdato=datafangstdato,

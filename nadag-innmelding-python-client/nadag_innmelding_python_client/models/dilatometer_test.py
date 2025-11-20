@@ -159,12 +159,14 @@ class DilatometerTest:
 
         dilatometer_modulus = d.pop("dilatometerModulus", UNSET)
 
-        dilatometer_observasjon = []
         _dilatometer_observasjon = d.pop("dilatometerObservasjon", UNSET)
-        for dilatometer_observasjon_item_data in _dilatometer_observasjon or []:
-            dilatometer_observasjon_item = DilatometerTestData.from_dict(dilatometer_observasjon_item_data)
+        dilatometer_observasjon: list[DilatometerTestData] | Unset = UNSET
+        if _dilatometer_observasjon is not UNSET:
+            dilatometer_observasjon = []
+            for dilatometer_observasjon_item_data in _dilatometer_observasjon:
+                dilatometer_observasjon_item = DilatometerTestData.from_dict(dilatometer_observasjon_item_data)
 
-            dilatometer_observasjon.append(dilatometer_observasjon_item)
+                dilatometer_observasjon.append(dilatometer_observasjon_item)
 
         dilatometer_test = cls(
             json_type=json_type,

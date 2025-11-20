@@ -343,26 +343,34 @@ class Trykksondering:
 
         hylse_radie_korreksjon = d.pop("hylseRadieKorreksjon", UNSET)
 
-        in_situ_poretrykk_observasjon = []
         _in_situ_poretrykk_observasjon = d.pop("inSituPoretrykkObservasjon", UNSET)
-        for in_situ_poretrykk_observasjon_item_data in _in_situ_poretrykk_observasjon or []:
-            in_situ_poretrykk_observasjon_item = PoretrykkDataInsitu.from_dict(in_situ_poretrykk_observasjon_item_data)
+        in_situ_poretrykk_observasjon: list[PoretrykkDataInsitu] | Unset = UNSET
+        if _in_situ_poretrykk_observasjon is not UNSET:
+            in_situ_poretrykk_observasjon = []
+            for in_situ_poretrykk_observasjon_item_data in _in_situ_poretrykk_observasjon:
+                in_situ_poretrykk_observasjon_item = PoretrykkDataInsitu.from_dict(
+                    in_situ_poretrykk_observasjon_item_data
+                )
 
-            in_situ_poretrykk_observasjon.append(in_situ_poretrykk_observasjon_item)
+                in_situ_poretrykk_observasjon.append(in_situ_poretrykk_observasjon_item)
 
-        trykksondering_observasjon = []
         _trykksondering_observasjon = d.pop("trykksonderingObservasjon", UNSET)
-        for trykksondering_observasjon_item_data in _trykksondering_observasjon or []:
-            trykksondering_observasjon_item = TrykksonderingData.from_dict(trykksondering_observasjon_item_data)
+        trykksondering_observasjon: list[TrykksonderingData] | Unset = UNSET
+        if _trykksondering_observasjon is not UNSET:
+            trykksondering_observasjon = []
+            for trykksondering_observasjon_item_data in _trykksondering_observasjon:
+                trykksondering_observasjon_item = TrykksonderingData.from_dict(trykksondering_observasjon_item_data)
 
-            trykksondering_observasjon.append(trykksondering_observasjon_item)
+                trykksondering_observasjon.append(trykksondering_observasjon_item)
 
-        dissipasjon_observasjon = []
         _dissipasjon_observasjon = d.pop("dissipasjonObservasjon", UNSET)
-        for dissipasjon_observasjon_item_data in _dissipasjon_observasjon or []:
-            dissipasjon_observasjon_item = DissipasjonData.from_dict(dissipasjon_observasjon_item_data)
+        dissipasjon_observasjon: list[DissipasjonData] | Unset = UNSET
+        if _dissipasjon_observasjon is not UNSET:
+            dissipasjon_observasjon = []
+            for dissipasjon_observasjon_item_data in _dissipasjon_observasjon:
+                dissipasjon_observasjon_item = DissipasjonData.from_dict(dissipasjon_observasjon_item_data)
 
-            dissipasjon_observasjon.append(dissipasjon_observasjon_item)
+                dissipasjon_observasjon.append(dissipasjon_observasjon_item)
 
         trykksondering = cls(
             json_type=json_type,

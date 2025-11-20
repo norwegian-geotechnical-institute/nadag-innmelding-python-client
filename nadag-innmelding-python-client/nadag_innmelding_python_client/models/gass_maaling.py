@@ -148,12 +148,14 @@ class GassMaaling:
 
         bygg_nummer = d.pop("byggNummer", UNSET)
 
-        gass_observasjon = []
         _gass_observasjon = d.pop("gassObservasjon", UNSET)
-        for gass_observasjon_item_data in _gass_observasjon or []:
-            gass_observasjon_item = GassData.from_dict(gass_observasjon_item_data)
+        gass_observasjon: list[GassData] | Unset = UNSET
+        if _gass_observasjon is not UNSET:
+            gass_observasjon = []
+            for gass_observasjon_item_data in _gass_observasjon:
+                gass_observasjon_item = GassData.from_dict(gass_observasjon_item_data)
 
-            gass_observasjon.append(gass_observasjon_item)
+                gass_observasjon.append(gass_observasjon_item)
 
         gass_maaling = cls(
             json_type=json_type,

@@ -147,14 +147,16 @@ class KombinasjonSondering:
 
         maks_last = d.pop("maksLast", UNSET)
 
-        kombinasjon_sondering_observasjon = []
         _kombinasjon_sondering_observasjon = d.pop("kombinasjonSonderingObservasjon", UNSET)
-        for kombinasjon_sondering_observasjon_item_data in _kombinasjon_sondering_observasjon or []:
-            kombinasjon_sondering_observasjon_item = KombinasjonSonderingData.from_dict(
-                kombinasjon_sondering_observasjon_item_data
-            )
+        kombinasjon_sondering_observasjon: list[KombinasjonSonderingData] | Unset = UNSET
+        if _kombinasjon_sondering_observasjon is not UNSET:
+            kombinasjon_sondering_observasjon = []
+            for kombinasjon_sondering_observasjon_item_data in _kombinasjon_sondering_observasjon:
+                kombinasjon_sondering_observasjon_item = KombinasjonSonderingData.from_dict(
+                    kombinasjon_sondering_observasjon_item_data
+                )
 
-            kombinasjon_sondering_observasjon.append(kombinasjon_sondering_observasjon_item)
+                kombinasjon_sondering_observasjon.append(kombinasjon_sondering_observasjon_item)
 
         kombinasjon_sondering = cls(
             json_type=json_type,
