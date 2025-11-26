@@ -5839,6 +5839,6 @@ paths:
                 $ref: "#/components/schemas/GeotekniskBorehull"
 info:
   title: Nadag innmelding API
-  version: 2025.11.03
+  version: 2025.11.20
 servers:
 - url: http://nadag-innmelding-api:8080

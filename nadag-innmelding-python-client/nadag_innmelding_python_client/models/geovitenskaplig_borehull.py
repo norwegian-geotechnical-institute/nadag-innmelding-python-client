@@ -220,12 +220,14 @@ class GeovitenskapligBorehull:
         else:
             boret_lengde_til_berg = BorlengdeTilBerg.from_dict(_boret_lengde_til_berg)
 
-        gjennomboret_medium = []
         _gjennomboret_medium = d.pop("gjennomboretMedium", UNSET)
-        for gjennomboret_medium_item_data in _gjennomboret_medium or []:
-            gjennomboret_medium_item = GjennomboretMedium(gjennomboret_medium_item_data)
+        gjennomboret_medium: list[GjennomboretMedium] | Unset = UNSET
+        if _gjennomboret_medium is not UNSET:
+            gjennomboret_medium = []
+            for gjennomboret_medium_item_data in _gjennomboret_medium:
+                gjennomboret_medium_item = GjennomboretMedium(gjennomboret_medium_item_data)
 
-            gjennomboret_medium.append(gjennomboret_medium_item)
+                gjennomboret_medium.append(gjennomboret_medium_item)
 
         _posisjon = d.pop("posisjon", UNSET)
         posisjon: Point | Unset

@@ -168,12 +168,14 @@ class Vingeboring:
 
         vinge_identitet = d.pop("vingeIdentitet", UNSET)
 
-        vingeboring_observasjon = []
         _vingeboring_observasjon = d.pop("vingeboringObservasjon", UNSET)
-        for vingeboring_observasjon_item_data in _vingeboring_observasjon or []:
-            vingeboring_observasjon_item = VingeboringData.from_dict(vingeboring_observasjon_item_data)
+        vingeboring_observasjon: list[VingeboringData] | Unset = UNSET
+        if _vingeboring_observasjon is not UNSET:
+            vingeboring_observasjon = []
+            for vingeboring_observasjon_item_data in _vingeboring_observasjon:
+                vingeboring_observasjon_item = VingeboringData.from_dict(vingeboring_observasjon_item_data)
 
-            vingeboring_observasjon.append(vingeboring_observasjon_item)
+                vingeboring_observasjon.append(vingeboring_observasjon_item)
 
         vingeboring = cls(
             json_type=json_type,

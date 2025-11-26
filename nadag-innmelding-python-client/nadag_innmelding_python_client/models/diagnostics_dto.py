@@ -63,12 +63,14 @@ class DiagnosticsDto:
         else:
             max_severity = Severity(_max_severity)
 
-        diagnostics = []
         _diagnostics = d.pop("diagnostics", UNSET)
-        for diagnostics_item_data in _diagnostics or []:
-            diagnostics_item = DiagnosticDto.from_dict(diagnostics_item_data)
+        diagnostics: list[DiagnosticDto] | Unset = UNSET
+        if _diagnostics is not UNSET:
+            diagnostics = []
+            for diagnostics_item_data in _diagnostics:
+                diagnostics_item = DiagnosticDto.from_dict(diagnostics_item_data)
 
-            diagnostics.append(diagnostics_item)
+                diagnostics.append(diagnostics_item)
 
         diagnostics_dto = cls(
             max_severity=max_severity,

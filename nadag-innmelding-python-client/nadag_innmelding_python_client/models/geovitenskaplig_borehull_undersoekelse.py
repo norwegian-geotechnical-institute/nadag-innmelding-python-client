@@ -321,12 +321,14 @@ class GeovitenskapligBorehullUndersoekelse:
 
         bore_beskrivelse = d.pop("boreBeskrivelse", UNSET)
 
-        borehull_forl_ø_p = []
         _borehull_forl_ø_p = d.pop("borehullForløp", UNSET)
-        for componentsschemas_line_string_item_data in _borehull_forl_ø_p or []:
-            componentsschemas_line_string_item = Point.from_dict(componentsschemas_line_string_item_data)
+        borehull_forl_ø_p: list[Point] | Unset = UNSET
+        if _borehull_forl_ø_p is not UNSET:
+            borehull_forl_ø_p = []
+            for componentsschemas_line_string_item_data in _borehull_forl_ø_p:
+                componentsschemas_line_string_item = Point.from_dict(componentsschemas_line_string_item_data)
 
-            borehull_forl_ø_p.append(componentsschemas_line_string_item)
+                borehull_forl_ø_p.append(componentsschemas_line_string_item)
 
         boret_azimuth = d.pop("boretAzimuth", UNSET)
 

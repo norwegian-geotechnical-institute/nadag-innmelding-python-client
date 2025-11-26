@@ -49,12 +49,14 @@ class GeovitenskapeligUndersoekelseDelomraadeGrense:
         from ..models.point import Point
 
         d = dict(src_dict)
-        grense = []
         _grense = d.pop("grense", UNSET)
-        for componentsschemas_line_string_item_data in _grense or []:
-            componentsschemas_line_string_item = Point.from_dict(componentsschemas_line_string_item_data)
+        grense: list[Point] | Unset = UNSET
+        if _grense is not UNSET:
+            grense = []
+            for componentsschemas_line_string_item_data in _grense:
+                componentsschemas_line_string_item = Point.from_dict(componentsschemas_line_string_item_data)
 
-            grense.append(componentsschemas_line_string_item)
+                grense.append(componentsschemas_line_string_item)
 
         geovitenskapelig_undersoekelse_delomraade_grense = cls(
             grense=grense,

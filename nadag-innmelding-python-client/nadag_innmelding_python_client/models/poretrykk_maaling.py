@@ -257,12 +257,14 @@ class PoretrykkMaaling:
 
         m_å_ler_type = d.pop("målerType", UNSET)
 
-        poretrykk_observasjon = []
         _poretrykk_observasjon = d.pop("poretrykkObservasjon", UNSET)
-        for poretrykk_observasjon_item_data in _poretrykk_observasjon or []:
-            poretrykk_observasjon_item = PoretrykkData.from_dict(poretrykk_observasjon_item_data)
+        poretrykk_observasjon: list[PoretrykkData] | Unset = UNSET
+        if _poretrykk_observasjon is not UNSET:
+            poretrykk_observasjon = []
+            for poretrykk_observasjon_item_data in _poretrykk_observasjon:
+                poretrykk_observasjon_item = PoretrykkData.from_dict(poretrykk_observasjon_item_data)
 
-            poretrykk_observasjon.append(poretrykk_observasjon_item)
+                poretrykk_observasjon.append(poretrykk_observasjon_item)
 
         poretrykk_maaling = cls(
             json_type=json_type,

@@ -188,12 +188,14 @@ class GeotekniskProeveserie:
 
         er_uforstyrret = d.pop("erUforstyrret", UNSET)
 
-        har_pr_ø_verseriedel = []
         _har_pr_ø_verseriedel = d.pop("harPrøverseriedel", UNSET)
-        for har_pr_ø_verseriedel_item_data in _har_pr_ø_verseriedel or []:
-            har_pr_ø_verseriedel_item = GeotekniskProeveseriedel.from_dict(har_pr_ø_verseriedel_item_data)
+        har_pr_ø_verseriedel: list[GeotekniskProeveseriedel] | Unset = UNSET
+        if _har_pr_ø_verseriedel is not UNSET:
+            har_pr_ø_verseriedel = []
+            for har_pr_ø_verseriedel_item_data in _har_pr_ø_verseriedel:
+                har_pr_ø_verseriedel_item = GeotekniskProeveseriedel.from_dict(har_pr_ø_verseriedel_item_data)
 
-            har_pr_ø_verseriedel.append(har_pr_ø_verseriedel_item)
+                har_pr_ø_verseriedel.append(har_pr_ø_verseriedel_item)
 
         geoteknisk_proeveserie = cls(
             json_type=json_type,

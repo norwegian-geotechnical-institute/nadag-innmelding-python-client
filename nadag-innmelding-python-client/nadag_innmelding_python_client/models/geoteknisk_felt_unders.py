@@ -212,12 +212,14 @@ class GeotekniskFeltUnders:
 
         feltunders_nr = d.pop("feltundersNr", UNSET)
 
-        har_dokument = []
         _har_dokument = d.pop("harDokument", UNSET)
-        for har_dokument_item_data in _har_dokument or []:
-            har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
+        har_dokument: list[GeotekniskDokument] | Unset = UNSET
+        if _har_dokument is not UNSET:
+            har_dokument = []
+            for har_dokument_item_data in _har_dokument:
+                har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
 
-            har_dokument.append(har_dokument_item)
+                har_dokument.append(har_dokument_item)
 
         geoteknisk_felt_unders = cls(
             identifikasjon=identifikasjon,

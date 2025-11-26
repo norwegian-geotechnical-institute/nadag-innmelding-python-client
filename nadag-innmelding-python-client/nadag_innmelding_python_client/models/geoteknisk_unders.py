@@ -331,33 +331,41 @@ class GeotekniskUnders:
 
         unders_ø_kelse_å_r_antatt = d.pop("undersøkelseÅrAntatt", UNSET)
 
-        felt_unders = []
         _felt_unders = d.pop("feltUnders", UNSET)
-        for felt_unders_item_data in _felt_unders or []:
-            felt_unders_item = GeotekniskFeltUnders.from_dict(felt_unders_item_data)
+        felt_unders: list[GeotekniskFeltUnders] | Unset = UNSET
+        if _felt_unders is not UNSET:
+            felt_unders = []
+            for felt_unders_item_data in _felt_unders:
+                felt_unders_item = GeotekniskFeltUnders.from_dict(felt_unders_item_data)
 
-            felt_unders.append(felt_unders_item)
+                felt_unders.append(felt_unders_item)
 
-        unders_pkt = []
         _unders_pkt = d.pop("undersPkt", UNSET)
-        for unders_pkt_item_data in _unders_pkt or []:
-            unders_pkt_item = GeotekniskBorehull.from_dict(unders_pkt_item_data)
+        unders_pkt: list[GeotekniskBorehull] | Unset = UNSET
+        if _unders_pkt is not UNSET:
+            unders_pkt = []
+            for unders_pkt_item_data in _unders_pkt:
+                unders_pkt_item = GeotekniskBorehull.from_dict(unders_pkt_item_data)
 
-            unders_pkt.append(unders_pkt_item)
+                unders_pkt.append(unders_pkt_item)
 
-        har_tolkning = []
         _har_tolkning = d.pop("harTolkning", UNSET)
-        for har_tolkning_item_data in _har_tolkning or []:
-            har_tolkning_item = GeotekniskTolketPunkt.from_dict(har_tolkning_item_data)
+        har_tolkning: list[GeotekniskTolketPunkt] | Unset = UNSET
+        if _har_tolkning is not UNSET:
+            har_tolkning = []
+            for har_tolkning_item_data in _har_tolkning:
+                har_tolkning_item = GeotekniskTolketPunkt.from_dict(har_tolkning_item_data)
 
-            har_tolkning.append(har_tolkning_item)
+                har_tolkning.append(har_tolkning_item)
 
-        har_dokument = []
         _har_dokument = d.pop("harDokument", UNSET)
-        for har_dokument_item_data in _har_dokument or []:
-            har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
+        har_dokument: list[GeotekniskDokument] | Unset = UNSET
+        if _har_dokument is not UNSET:
+            har_dokument = []
+            for har_dokument_item_data in _har_dokument:
+                har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
 
-            har_dokument.append(har_dokument_item)
+                har_dokument.append(har_dokument_item)
 
         geoteknisk_unders = cls(
             identifikasjon=identifikasjon,

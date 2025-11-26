@@ -89,12 +89,14 @@ class GeotekniskProeveseriedel:
 
         pr_ø_veseriedel_id = d.pop("prøveseriedelId", UNSET)
 
-        har_data = []
         _har_data = d.pop("harData", UNSET)
-        for har_data_item_data in _har_data or []:
-            har_data_item = GeotekniskProeveseriedelData.from_dict(har_data_item_data)
+        har_data: list[GeotekniskProeveseriedelData] | Unset = UNSET
+        if _har_data is not UNSET:
+            har_data = []
+            for har_data_item_data in _har_data:
+                har_data_item = GeotekniskProeveseriedelData.from_dict(har_data_item_data)
 
-            har_data.append(har_data_item)
+                har_data.append(har_data_item)
 
         geoteknisk_proeveseriedel = cls(
             pr_ø_ve_metode=pr_ø_ve_metode,

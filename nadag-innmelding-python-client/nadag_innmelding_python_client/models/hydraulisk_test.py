@@ -160,12 +160,14 @@ class HydrauliskTest:
 
         r_ø_r_type = d.pop("rørType", UNSET)
 
-        hydraulisk_observasjon = []
         _hydraulisk_observasjon = d.pop("hydrauliskObservasjon", UNSET)
-        for hydraulisk_observasjon_item_data in _hydraulisk_observasjon or []:
-            hydraulisk_observasjon_item = HydrauliskeData.from_dict(hydraulisk_observasjon_item_data)
+        hydraulisk_observasjon: list[HydrauliskeData] | Unset = UNSET
+        if _hydraulisk_observasjon is not UNSET:
+            hydraulisk_observasjon = []
+            for hydraulisk_observasjon_item_data in _hydraulisk_observasjon:
+                hydraulisk_observasjon_item = HydrauliskeData.from_dict(hydraulisk_observasjon_item_data)
 
-            hydraulisk_observasjon.append(hydraulisk_observasjon_item)
+                hydraulisk_observasjon.append(hydraulisk_observasjon_item)
 
         hydraulisk_test = cls(
             json_type=json_type,

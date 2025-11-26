@@ -117,12 +117,16 @@ class StatiskSondering:
 
         telenivå = d.pop("telenivå", UNSET)
 
-        statisk_sondering_observasjon = []
         _statisk_sondering_observasjon = d.pop("statiskSonderingObservasjon", UNSET)
-        for statisk_sondering_observasjon_item_data in _statisk_sondering_observasjon or []:
-            statisk_sondering_observasjon_item = StatiskSonderingData.from_dict(statisk_sondering_observasjon_item_data)
+        statisk_sondering_observasjon: list[StatiskSonderingData] | Unset = UNSET
+        if _statisk_sondering_observasjon is not UNSET:
+            statisk_sondering_observasjon = []
+            for statisk_sondering_observasjon_item_data in _statisk_sondering_observasjon:
+                statisk_sondering_observasjon_item = StatiskSonderingData.from_dict(
+                    statisk_sondering_observasjon_item_data
+                )
 
-            statisk_sondering_observasjon.append(statisk_sondering_observasjon_item)
+                statisk_sondering_observasjon.append(statisk_sondering_observasjon_item)
 
         statisk_sondering = cls(
             json_type=json_type,

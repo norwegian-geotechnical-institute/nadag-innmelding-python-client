@@ -335,12 +335,14 @@ class GeotekniskBorehull:
         else:
             boret_lengde_til_berg = BorlengdeTilBerg.from_dict(_boret_lengde_til_berg)
 
-        gjennomboret_medium = []
         _gjennomboret_medium = d.pop("gjennomboretMedium", UNSET)
-        for gjennomboret_medium_item_data in _gjennomboret_medium or []:
-            gjennomboret_medium_item = GjennomboretMedium(gjennomboret_medium_item_data)
+        gjennomboret_medium: list[GjennomboretMedium] | Unset = UNSET
+        if _gjennomboret_medium is not UNSET:
+            gjennomboret_medium = []
+            for gjennomboret_medium_item_data in _gjennomboret_medium:
+                gjennomboret_medium_item = GjennomboretMedium(gjennomboret_medium_item_data)
 
-            gjennomboret_medium.append(gjennomboret_medium_item)
+                gjennomboret_medium.append(gjennomboret_medium_item)
 
         _posisjon = d.pop("posisjon", UNSET)
         posisjon: Point | Unset
@@ -387,33 +389,41 @@ class GeotekniskBorehull:
 
         maks_boret_lengde = d.pop("maksBoretLengde", UNSET)
 
-        har_observasjon = []
         _har_observasjon = d.pop("harObservasjon", UNSET)
-        for har_observasjon_item_data in _har_observasjon or []:
-            har_observasjon_item = DeformasjonMaaling.from_dict(har_observasjon_item_data)
+        har_observasjon: list[DeformasjonMaaling] | Unset = UNSET
+        if _har_observasjon is not UNSET:
+            har_observasjon = []
+            for har_observasjon_item_data in _har_observasjon:
+                har_observasjon_item = DeformasjonMaaling.from_dict(har_observasjon_item_data)
 
-            har_observasjon.append(har_observasjon_item)
+                har_observasjon.append(har_observasjon_item)
 
-        har_unders_ø_kelse = []
         _har_unders_ø_kelse = d.pop("harUndersøkelse", UNSET)
-        for har_unders_ø_kelse_item_data in _har_unders_ø_kelse or []:
-            har_unders_ø_kelse_item = GeotekniskBorehullUnders.from_dict(har_unders_ø_kelse_item_data)
+        har_unders_ø_kelse: list[GeotekniskBorehullUnders] | Unset = UNSET
+        if _har_unders_ø_kelse is not UNSET:
+            har_unders_ø_kelse = []
+            for har_unders_ø_kelse_item_data in _har_unders_ø_kelse:
+                har_unders_ø_kelse_item = GeotekniskBorehullUnders.from_dict(har_unders_ø_kelse_item_data)
 
-            har_unders_ø_kelse.append(har_unders_ø_kelse_item)
+                har_unders_ø_kelse.append(har_unders_ø_kelse_item)
 
-        har_tolkning = []
         _har_tolkning = d.pop("harTolkning", UNSET)
-        for har_tolkning_item_data in _har_tolkning or []:
-            har_tolkning_item = GeotekniskTolketPunkt.from_dict(har_tolkning_item_data)
+        har_tolkning: list[GeotekniskTolketPunkt] | Unset = UNSET
+        if _har_tolkning is not UNSET:
+            har_tolkning = []
+            for har_tolkning_item_data in _har_tolkning:
+                har_tolkning_item = GeotekniskTolketPunkt.from_dict(har_tolkning_item_data)
 
-            har_tolkning.append(har_tolkning_item)
+                har_tolkning.append(har_tolkning_item)
 
-        har_dokument = []
         _har_dokument = d.pop("harDokument", UNSET)
-        for har_dokument_item_data in _har_dokument or []:
-            har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
+        har_dokument: list[GeotekniskDokument] | Unset = UNSET
+        if _har_dokument is not UNSET:
+            har_dokument = []
+            for har_dokument_item_data in _har_dokument:
+                har_dokument_item = GeotekniskDokument.from_dict(har_dokument_item_data)
 
-            har_dokument.append(har_dokument_item)
+                har_dokument.append(har_dokument_item)
 
         geoteknisk_borehull = cls(
             datafangstdato=datafangstdato,

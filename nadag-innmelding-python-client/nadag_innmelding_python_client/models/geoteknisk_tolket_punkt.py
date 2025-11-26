@@ -145,12 +145,14 @@ class GeotekniskTolketPunkt:
         else:
             h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
-        har_tolket_lag = []
         _har_tolket_lag = d.pop("harTolketLag", UNSET)
-        for har_tolket_lag_item_data in _har_tolket_lag or []:
-            har_tolket_lag_item = GeotekniskTolketLag.from_dict(har_tolket_lag_item_data)
+        har_tolket_lag: list[GeotekniskTolketLag] | Unset = UNSET
+        if _har_tolket_lag is not UNSET:
+            har_tolket_lag = []
+            for har_tolket_lag_item_data in _har_tolket_lag:
+                har_tolket_lag_item = GeotekniskTolketLag.from_dict(har_tolket_lag_item_data)
 
-            har_tolket_lag.append(har_tolket_lag_item)
+                har_tolket_lag.append(har_tolket_lag_item)
 
         geoteknisk_tolket_punkt = cls(
             identifikasjon=identifikasjon,
