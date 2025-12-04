@@ -5372,28 +5372,6 @@ components:
       bearerFormat: JWT
 paths:
   /nadag/innmelding/v1/GeotekniskBorehull:
-    post:
-      summary: Fetches a GeotekniskBorehull by external id.
-      description: Fetches a GeotekniskBorehull by external id. Returns the most recent
-        one.
-      requestBody:
-        description: The eksternIdentifikasjon of the GeotekniskBorehull to fetch.
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/EksternIdentifikasjon"
-      responses:
-        "401":
-          description: Unauthorized Error
-        "404":
-          description: GeotekniskBorehull not found
-        "200":
-          description: Returns the GeotekniskBorehull you want to fetch
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GeotekniskBorehull"
     get:
       summary: Fetches a GeotekniskBorehull by external id.
       description: Fetches a GeotekniskBorehull by external id. Returns the most recent
@@ -5456,6 +5434,35 @@ paths:
               schema:
                 $ref: "#/components/schemas/DiagnosticsDto"
   /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/undersPkt/{geotekniskBorehullId}:
+    get:
+      summary: Gets a GeotekniskBorehull owned by the latest versjon of a GeotekniskUnders.
+      description: Gets a GeotekniskBorehull.
+      parameters:
+      - description: The GeotekniskBorehull id.
+        required: true
+        name: geotekniskBorehullId
+        in: path
+        schema:
+          type: string
+      - description: The GeotekniskUnders owner of the new GeotekniskBorehull.
+        required: true
+        name: geotekniskUndersId
+        in: path
+        schema:
+          type: string
+      responses:
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: GeotekniskBorehull not found
+        "200":
+          description: Returns the GeotekniskBorehull you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskBorehull"
+      security:
+      - Authentication: []
     put:
       summary: Updates a GeotekniskBorehull.
       description: Updates a GeotekniskBorehull.
@@ -5492,35 +5499,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
-      security:
-      - Authentication: []
-    get:
-      summary: Gets a GeotekniskBorehull owned by the latest versjon of a GeotekniskUnders.
-      description: Gets a GeotekniskBorehull.
-      parameters:
-      - description: The GeotekniskBorehull id.
-        required: true
-        name: geotekniskBorehullId
-        in: path
-        schema:
-          type: string
-      - description: The GeotekniskUnders owner of the new GeotekniskBorehull.
-        required: true
-        name: geotekniskUndersId
-        in: path
-        schema:
-          type: string
-      responses:
-        "401":
-          description: Unauthorized Error
-        "404":
-          description: GeotekniskBorehull not found
-        "200":
-          description: Returns the GeotekniskBorehull you want to fetch
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GeotekniskBorehull"
       security:
       - Authentication: []
     delete:
@@ -5688,6 +5666,40 @@ paths:
               schema:
                 $ref: "#/components/schemas/DiagnosticsDto"
   /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}:
+    get:
+      summary: Fetches the latest GeotekniskUnders given the lokalId.
+      description: Fetches a GeotekniskUnders by id.
+      parameters:
+      - description: The GeotekniskUnders to fetch.
+        required: true
+        name: geotekniskUndersId
+        in: path
+        schema:
+          type: string
+      - description: Whether to include metode-data.
+        required: false
+        name: includeMetode
+        in: query
+        schema:
+          type: boolean
+      - description: The versjonId of the GeotekniskUnders to fetch.
+        required: false
+        name: versjonId
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: Not Found Error
+        "200":
+          description: Returns the GeotekniskUnders you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
     put:
       summary: Updates a GeotekniskUnders.
       description: Updates a GeotekniskUnders.
@@ -5724,40 +5736,6 @@ paths:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
       security:
       - Authentication: []
-    get:
-      summary: Fetches the latest GeotekniskUnders given the lokalId.
-      description: Fetches a GeotekniskUnders by id.
-      parameters:
-      - description: The GeotekniskUnders to fetch.
-        required: true
-        name: geotekniskUndersId
-        in: path
-        schema:
-          type: string
-      - description: Whether to include metode-data.
-        required: false
-        name: includeMetode
-        in: query
-        schema:
-          type: boolean
-      - description: The versjonId of the GeotekniskUnders to fetch.
-        required: false
-        name: versjonId
-        in: query
-        schema:
-          type: integer
-          format: int64
-      responses:
-        "401":
-          description: Unauthorized Error
-        "404":
-          description: Not Found Error
-        "200":
-          description: Returns the GeotekniskUnders you want to fetch
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GeotekniskUnders"
     delete:
       summary: Deletes a GeotekniskUnders.
       description: Deletes a GeotekniskUnders.
@@ -5839,6 +5817,6 @@ paths:
                 $ref: "#/components/schemas/GeotekniskBorehull"
 info:
   title: Nadag innmelding API
-  version: 2025.11.20
+  version: 2025.12.3
 servers:
 - url: http://nadag-innmelding-api:8080
