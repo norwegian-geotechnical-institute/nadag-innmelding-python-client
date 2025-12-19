@@ -20,8 +20,8 @@ class DilatometerTestData:
 
         Attributes:
             boret_dybde (float | Unset): dybde fra 0 nivå, hvor z verdien til undersøkelsens posisjon er satt til 0. Angir
-                hvor dypt det er boret.
-                <engelsk>depth from zero level, the z value of investigation start point is 0. drilling depth [m]
+                hvor dypt det er boret [m]
+                <engelsk>depth from zero level, the z value of investigation start point is 0. drilling depth
                 </engelsk>
             observasjon_merknad (str | Unset): tekst som beskriver observasjonen <engelsk>description of the
                 observation</engelsk>
@@ -30,15 +30,14 @@ class DilatometerTestData:
                 GeotekniskBoreObservasjonskode.<engelsk>observation code according to valid codes. The codes are (0..*) numeric
                 codes given in a text string with spaces between each code if more than 1. The codes are described in the code
                 list GeotekniskBoreObservasjonskode. </engelsk>
-            kontakt_trykk_p0 (float | Unset): gasstrykk når membran ikke lenger har kontakt <engelsk>membrane lift-off
+            kontakt_trykk_p0 (float | Unset): gasstrykk når membran ikke lenger har kontakt [kPa] <engelsk>membrane lift-off
                 pressure</engelsk>
-            ekspansjon_trykk_p1 (float | Unset): gasstrykk når senter av membran har flyttet seg 1,1 mm <engelsk>gass
+            ekspansjon_trykk_p1 (float | Unset): gasstrykk når senter av membran har flyttet seg 1,1 mm [kPa] <engelsk>gass
                 pressure when membrane has moved 1,1 mm</engelsk>
-            horisontal_kraft (float | Unset): horisontal last<engelsk>horizontal load</engelsk>
+            horisontal_kraft (float | Unset): horisontal last [kN] <engelsk>horizontal load</engelsk>
             poretrykk (float | Unset): trykket i porevannet angitt som kraft pr. flateenhet, med atmosfæretrykket som
-                nullpunkt
-
-                <engelsk>registered pore pressure [kPa]</engelsk>
+                nullpunkt [kPa]
+                <engelsk>registered pore pressure (kPa)</engelsk>
     """
 
     boret_dybde: float | Unset = UNSET

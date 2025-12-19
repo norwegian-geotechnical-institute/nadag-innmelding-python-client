@@ -5,31 +5,13 @@ components:
     AkviferType:
       type: string
       enum:
-      - ÅPEN
       - ARTESISK
       - LUKKET
       - UTETT
+      - ÅPEN
       - IKKE_ANGITT
       description: oversikt over mulige akvifertyper for grunnvannsmålinger<engelsk>overview
         of possible aquifer types for ground water measurements</engelsk>
-    AttachmentInfoDto:
-      type: object
-      description: Attachment info result
-      properties:
-        attachmentId:
-          type: string
-          description: Identifier for the attachment
-        uniqId:
-          type: string
-          description: Uniq identifier for the attachment (base64 encoded)
-    AttachmentInfosDto:
-      type: object
-      description: Attachment infos result
-      properties:
-        attachmentInfos:
-          type: array
-          items:
-            $ref: "#/components/schemas/AttachmentInfoDto"
     BlokkProeve:
       type: object
       description: "fysisk prøvemateriale manuelt skjært ut fra bunnen av en utgravning\
@@ -63,8 +45,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -200,8 +182,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -328,7 +309,7 @@ components:
           type: number
           format: double
           description: "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter\
-            \ (mm)\t of a predrilled hole in a borehole investigation</engelsk>"
+            \ (mm)     of a predrilled hole in a borehole investigation</engelsk>"
         forboretLengde:
           type: number
           format: double
@@ -528,7 +509,7 @@ components:
         dilatometerModulus:
           type: number
           format: double
-          description: dilatometer modulus<engelsk>dilatometer modulus</engelsk>
+          description: dilatometer modulus (enhetsløs) <engelsk>dilatometer modulus</engelsk>
         dilatometerObservasjon:
           type: array
           items:
@@ -545,9 +526,9 @@ components:
           type: number
           format: double
           description: "dybde fra 0 nivå, hvor z verdien til undersøkelsens posisjon\
-            \ er satt til 0. Angir hvor dypt det er boret.\r\n<engelsk>depth from\
+            \ er satt til 0. Angir hvor dypt det er boret [m] \r\n<engelsk>depth from\
             \ zero level, the z value of investigation start point is 0. drilling\
-            \ depth [m]\r\n</engelsk>"
+            \ depth\r\n</engelsk>"
         observasjonMerknad:
           type: string
           maxLength: 255
@@ -564,23 +545,23 @@ components:
         kontaktTrykkP0:
           type: number
           format: double
-          description: gasstrykk når membran ikke lenger har kontakt <engelsk>membrane
-            lift-off pressure</engelsk>
+          description: "gasstrykk når membran ikke lenger har kontakt [kPa] <engelsk>membrane\
+            \ lift-off pressure</engelsk>"
         ekspansjonTrykkP1:
           type: number
           format: double
-          description: "gasstrykk når senter av membran har flyttet seg 1,1 mm <engelsk>gass\
-            \ pressure when membrane has moved 1,1 mm</engelsk>"
+          description: "gasstrykk når senter av membran har flyttet seg 1,1 mm [kPa]\
+            \ <engelsk>gass pressure when membrane has moved 1,1 mm</engelsk>"
         horisontalKraft:
           type: number
           format: double
-          description: horisontal last<engelsk>horizontal load</engelsk>
+          description: "horisontal last [kN] <engelsk>horizontal load</engelsk>"
         poretrykk:
           type: number
           format: double
           description: "trykket i porevannet angitt som kraft pr. flateenhet, med\
-            \ atmosfæretrykket som nullpunkt \r\n\r\n<engelsk>registered pore pressure\
-            \ [kPa]</engelsk>"
+            \ atmosfæretrykket som nullpunkt [kPa]\r\n<engelsk>registered pore pressure\
+            \ (kPa)</engelsk>"
     DissipasjonData:
       type: object
       description: "data fra måling av dissipasjon (drenasje) i felt, aktuelt ved\
@@ -590,27 +571,28 @@ components:
         boretDybde:
           type: number
           format: double
-          description: nivå for utførelse av dissipasjonstest<engelsk>depth below
-            the terrain surface or any other given reference level</engelsk>
+          description: "nivå for utførelse av dissipasjonstest [m] <engelsk>depth\
+            \ below the terrain surface or any other given reference level</engelsk>"
         dissipasjonsPoretrykkU1:
           type: number
           format: double
-          description: reduksjon av poretrykk i filterposisjon 1 (spiss) som funksjon
-            av tid i dissipasjonstest<engelsk>reduction of pore pressure at filter
-            location 1 (tip) as a function of time in a dissipation test</engelsk>
+          description: "reduksjon av poretrykk i filterposisjon 1 (spiss) som funksjon\
+            \ av tid i dissipasjonstest [kPa] <engelsk>reduction of pore pressure\
+            \ at filter location 1 (tip) as a function of time in a dissipation test</engelsk>"
         dissipasjonsPoretrykkU2:
           type: number
           format: double
-          description: reduksjon av poretrykk i filterposisjon 2 (bak spiss) som funksjon
-            av tid i dissipasjonstest<engelsk>reduction of pore pressure at filter
-            location 2 (behind the tip) as a function of time in a dissipation test</engelsk>
+          description: "reduksjon av poretrykk i filterposisjon 2 (bak spiss) som\
+            \ funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore\
+            \ pressure at filter location 2 (behind the tip) as a function of time\
+            \ in a dissipation test</engelsk>"
         dissipasjonsPoretrykkU3:
           type: number
           format: double
-          description: reduksjon av poretrykk i filterposisjon 3 (bak friksjonshylse)
-            som funksjon av tid i dissipasjonstest<engelsk>reduction of pore pressure
-            at filter location 3 (behind the friction sleeve) as a function of time
-            in a dissipation test</engelsk>
+          description: "reduksjon av poretrykk i filterposisjon 3 (bak friksjonshylse)\
+            \ som funksjon av tid i dissipasjonstest [kPa] <engelsk>reduction of pore\
+            \ pressure at filter location 3 (behind the friction sleeve) as a function\
+            \ of time in a dissipation test</engelsk>"
         dissipasjonsTidspunkt:
           type: string
           format: date-time
@@ -621,10 +603,10 @@ components:
         friksjon:
           type: number
           format: double
-          description: målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft
-            dividert med areal av friksjonshylse)<engelsk>measured sleeve friction
-            during penetration of the probe (friction sleeve force divided by area
-            of the friction sleeve)</engelsk>
+          description: "målt sidefriksjon ved nedpressing av trykksonde (friksjonskraft\
+            \ dividert med areal av friksjonshylse) [kPa] <engelsk>measured sleeve\
+            \ friction during penetration of the probe (friction sleeve force divided\
+            \ by area of the friction sleeve)</engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i dissipasjonstesten.\
@@ -642,28 +624,28 @@ components:
         poretrykk1:
           type: number
           format: double
-          description: poretrykk som utvikles i filterposisjon 1 (spiss) ved nedpressing
-            av trykksonde <engelsk>pore pressure generated at filter position 1 (tip)
-            during penetration of the probe</engelsk>
+          description: "poretrykk som utvikles i filterposisjon 1 (spiss) ved nedpressing\
+            \ av trykksonde [kPa] <engelsk>pore pressure generated at filter position\
+            \ 1 (tip) during penetration of the probe</engelsk>"
         poretrykk2:
           type: number
           format: double
-          description: poretrykk som utvikles i filterposisjon 2 (bak spiss) ved nedpressing
-            av trykksonde <engelsk>pore pressure generated at filter position 2 (behind
-            the tip) during penetration of the probe</engelsk>
+          description: "poretrykk som utvikles i filterposisjon 2 (bak spiss) ved\
+            \ nedpressing av trykksonde [kPa] <engelsk>pore pressure generated at\
+            \ filter position 2 (behind the tip) during penetration of the probe</engelsk>"
         poretrykk3:
           type: number
           format: double
-          description: poretrykk som utvikles i filterposisjon 3 (bak friksjonshylse)
-            ved nedpressing av trykksonde <engelsk>pore pressure generated at filter
-            position 3 (behind the sleeve) during penetration of the probe</engelsk>
+          description: "poretrykk som utvikles i filterposisjon 3 (bak friksjonshylse)\
+            \ ved nedpressing av trykksonde  [kPa] <engelsk>pore pressure generated\
+            \ at filter position 3 (behind the sleeve) during penetration of the probe</engelsk>"
         spissmotstand:
           type: number
           format: double
-          description: målt spissmotstand ved nedpressing av trykksonde (spisskraft
-            dividert med tverrsnittsareal av trykksonde)<engelsk>measured cone resistance
-            during penetration of the probe (point load divided by cross-sectional
-            area of probe)</engelsk>
+          description: "målt spissmotstand ved nedpressing av trykksonde (spisskraft\
+            \ dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured\
+            \ cone resistance during penetration of the probe (point load divided\
+            \ by cross-sectional area of probe)</engelsk>"
     DynamiskSondering:
       type: object
       description: "sondering som benytter slag på borstrengen ved penetrasjon, benevnes\
@@ -725,8 +707,9 @@ components:
         fallHøyde:
           type: number
           format: double
-          description: høyde for slagenhet over topp av stangsystemet i sonderingen<engelsk>level
-            of the percussive unit above the top of the rod system during sounding</engelsk>
+          description: "høyde for slagenhet over topp av stangsystemet i sonderingen\
+            \ [m] <engelsk>level of the percussive unit above the top of the rod system\
+            \ during sounding</engelsk>"
         harRotasjon:
           type: boolean
           description: "markering av rotasjon ved penetrasjon av borstreng\r\n<engelsk>marking\
@@ -734,9 +717,9 @@ components:
         nedpressingTid:
           type: integer
           format: int32
-          description: "tidsangivelse ved nedpressing av stangsystemet [sek/m] <engelsk>\
-            \ time record during penetration of the rod system, referring to the previous\
-            \ depth</engelsk>"
+          description: "tidsregistrering under nedpressing av stangsystemet, målt\
+            \ per meter [sek/m] <engelsk> time record during penetration of the rod\
+            \ system, referring to the previous depth /engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
@@ -759,9 +742,10 @@ components:
         ramMotstand:
           type: number
           format: double
-          description: penetrasjonsmotstand mot ramming av borstrengen uttrykt i synk
-            per antall påførte slag<engelsk>penetration resistance on the hammered
-            drill string expressed in sink per number of applied strokes</engelsk>
+          description: "penetrasjonsmotstand mot ramming av borstrengen uttrykt i\
+            \ synk per antall påførte slag [slag/0,2m] <engelsk>penetration resistance\
+            \ on the hammered drill string expressed in sink per number of applied\
+            \ strokes</engelsk>"
         rotasjonHastighet:
           type: number
           format: double
@@ -946,8 +930,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -1020,8 +1004,8 @@ components:
       - TERRENGOVERFLATE
       - TIDLIGERESTOPP
       - TIDSANGIVELSE
-      - TØRRSKORPE
       - TORV
+      - TØRRSKORPE
       - UBESTEMTJORDART
       - UORGANISKKOHESJONSJORD
       - URENMAKADAM
@@ -1067,8 +1051,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -1207,8 +1190,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -1652,8 +1634,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -1780,7 +1761,7 @@ components:
           type: number
           format: double
           description: "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter\
-            \ (mm)\t of a predrilled hole in a borehole investigation</engelsk>"
+            \ (mm)     of a predrilled hole in a borehole investigation</engelsk>"
         forboretLengde:
           type: number
           format: double
@@ -1831,8 +1812,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -1959,7 +1939,7 @@ components:
           type: number
           format: double
           description: "diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter\
-            \ (mm)\t of a predrilled hole in a borehole investigation</engelsk>"
+            \ (mm)     of a predrilled hole in a borehole investigation</engelsk>"
         forboretLengde:
           type: number
           format: double
@@ -1983,8 +1963,8 @@ components:
             \ started<engelsk>"
     GeotekniskProeveserie:
       type: object
-      description: "Undersøkelse gjort i et borehull i form av en prøveserie<engelsk>\
-        \ Soil\t test </engelsk>"
+      description: Undersøkelse gjort i et borehull i form av en prøveserie<engelsk>
+        Soil     test </engelsk>
       properties:
         jsonType:
           const: GeotekniskProeveserie
@@ -2013,8 +1993,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -2114,8 +2094,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space [kN/m3]</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         erOmrørt:
           type: boolean
           description: om prøvserien er omrørt<engelsk>indicating whether a soil test
@@ -2220,8 +2200,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -2365,6 +2345,30 @@ components:
           $ref: "#/components/schemas/NADAG_Hoeyderef"
           type: string
           description: "Referansesystem for høydeangivelse, som EPSG-kode."
+        digitaliseringsmålestokk:
+          type: integer
+          format: int32
+          description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
+            \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+        kvalitet:
+          $ref: "#/components/schemas/PosisjonskvalitetNADAG"
+          type: object
+          description: beskrivelse av kvaliteten på stedfestingen
+        oppdateringsdato:
+          type: string
+          format: date-time
+          examples:
+          - 2022-03-10T12:15:50-04:00
+          description: "dato for siste endring på objektetdataene \r\n\r\nMerknad:\
+            \ \r\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data\
+            \ som er registrert kan bufres en kortere eller lengre periode før disse\
+            \ legges inn i datasystemet (databasen).\r\n\r\n-Definition-\r\nDate and\
+            \ time at which this version of the spatial object was inserted or changed\
+            \ in the spatial data set. "
+        beskrivelse:
+          type: string
+          description: "kort tilleggsinformasjon om punktet for tolkning/er \r\n<engelsk>\r\
+            \na short description</engelsk>"
         harTolketLag:
           type: array
           items:
@@ -2564,8 +2568,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -2764,8 +2767,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -2845,8 +2847,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -2968,8 +2969,8 @@ components:
       enum:
       - BERG
       - IS
-      - LØSMASSE
       - LUFT
+      - LØSMASSE
       - USPESIFISERT
       - VANN
       description: "angir hvilket medium en boring er foretatt i\r\n\r\n<engelsk>\
@@ -3006,8 +3007,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3274,13 +3275,13 @@ components:
         rørBunn:
           type: number
           format: double
-          description: nivå (høyde) for bunn av målerør<engelsk>level (height) for
-            the base of the measurement tube</engelsk>
+          description: "nivå (høyde) for bunn av målerør [m] <engelsk>level (height)\
+            \ for the base of the measurement tube</engelsk>"
         rørTopp:
           type: number
           format: double
-          description: nivå (høyde) for topp av målerør<engelsk>level (height) for
-            the top of the measurement tube</engelsk>
+          description: "nivå (høyde) for topp av målerør [m] <engelsk>level (height)\
+            \ for the top of the measurement tube</engelsk>"
         rørType:
           type: string
           description: type målerør for utførelse av hydraulisk måling<engelsk>type
@@ -3317,13 +3318,13 @@ components:
         hydrauliskKonduktivitet:
           $ref: "#/components/schemas/HydrauliskKonduktivitet"
           type: string
-          description: jordparameter som beskriver hydraulisk ledningsevne <engelsk>soil
-            parameter which describes hydraulic conductivity</engelsk>
+          description: "jordparameter som beskriver hydraulisk ledningsevne [m/s]\
+            \ <engelsk>soil parameter which describes hydraulic conductivity</engelsk>"
         dybdeGrunnvannstand:
           type: number
           format: double
-          description: angivelse av vannstand i grunnen og/eller i målerør<engelsk>water
-            level in the ground and / or inside a measurement tube</engelsk>
+          description: "angivelse av vannstand i grunnen og/eller i målerør [m] <engelsk>water\
+            \ level in the ground and / or inside a measurement tube</engelsk>"
     Identifikasjon:
       type: object
       required:
@@ -3398,8 +3399,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3438,8 +3439,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3601,8 +3602,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -3710,14 +3711,14 @@ components:
           type: number
           format: double
           description: "nedpressingskraft påført stangsystemet ved penetrasjon og\
-            \ rotasjon av borstrengen [MPa] <engelsk>penetration force applied on\
-            \ the rod system during penetration and rotation of the drill string</engelsk>"
+            \ rotasjon av borstrengen [kN] <engelsk>penetration force applied on the\
+            \ rod system during penetration and rotation of the drill string</engelsk>"
         nedpressingTid:
           type: integer
           format: int32
-          description: "tidsangivelse ved nedpressing av stangsystemet, regnet siden\
-            \ forrige dybde [sek/min] <engelsk>time record during penetration of the\
-            \ rod system, referring to the previous depth</engelsk>"
+          description: "tidsregistrering under nedpressing av stangsystemet, målt\
+            \ per meter [sek/m] <engelsk> time record during penetration of the rod\
+            \ system, referring to the previous depth </engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
@@ -3958,8 +3959,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4006,8 +4007,8 @@ components:
       - NN2000
       - NN54
       - UKJENT_HØYDEREFERANSE
-      description: "Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder\
-        \ benyttes. \t"
+      description: 'Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder
+        benyttes.     '
     NaverProeve:
       type: object
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
@@ -4040,8 +4041,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4194,41 +4195,41 @@ components:
         avlesing0Kontroll:
           type: number
           format: double
-          description: nullavlesning for poretrykksmåler <engelsk>zero reading for
-            pore pressure transducer</engelsk>
+          description: "nullavlesning for poretrykksmåler [kPa] <engelsk>zero reading\
+            \ for pore pressure transducer</engelsk>"
         avlesingEtter0Kontroll:
           type: number
           format: double
-          description: "kontrollverdi for nullavlesning etter utført måling <engelsk>control\
-            \ value for zero reading after completed test\r\n</engelsk>"
+          description: "kontrollverdi for nullavlesning etter utført måling [kPa]\
+            \ <engelsk>control value for zero reading after completed test\r\n</engelsk>"
         avlesingFør0Kontroll:
           type: number
           format: double
-          description: kontrollverdi for nullavlesning før utført måling <engelsk>control
-            value of zero reading before testing</engelsk>
+          description: "kontrollverdi for nullavlesning før utført måling [kPa] <engelsk>control\
+            \ value of zero reading before testing</engelsk>"
         avstandManometerFilterspiss:
           type: number
           format: double
-          description: distanse mellom manometer (trykkmåler) på toppen av røret og
-            filterspiss <engelsk>distance between manometer (pressure gauge) on top
-            of the measuring hose and the filter tip</engelsk>
+          description: "distanse mellom manometer (trykkmåler) på toppen av røret\
+            \ og filterspiss [m] <engelsk>distance between manometer (pressure gauge)\
+            \ on top of the measuring hose and the filter tip</engelsk>"
         avstandToppSlangeTilVannstand:
           type: number
           format: double
-          description: "distanse mellom topp måleslange til vannstand i slangen\r\n\
-            <engelsk>distance between top of measuring hose and the water level in\
-            \ the hose</engelsk>"
+          description: "distanse mellom topp måleslange til vannstand i slangen [m]\r\
+            \n<engelsk>distance between top of measuring hose and the water level\
+            \ in the hose</engelsk>"
         barometerTrykk:
           type: number
           format: double
-          description: "trykkmåler for avlesning av lufttrykk (atmosfæretrykk)\r\n\
-            <engelsk>pressure gauge for recording of atmospheric pressure</engelsk>"
+          description: "trykkmåler for avlesning av lufttrykk (atmosfæretrykk) [kPa]\
+            \ \r\n<engelsk>pressure gauge for recording of atmospheric pressure</engelsk>"
         dybdeGrunnvannstand:
           type: number
           format: double
           description: "dybde til grunnvannsnivå (vannstand i slangen), regnet fra\
-            \ terrengnivå eller annet angitt referansenivå\r\n<engelsk>depth to the\
-            \ ground water table (water level in the hose), referring to the terrain\
+            \ terrengnivå eller annet angitt referansenivå [m]\r\n<engelsk>depth to\
+            \ the ground water table (water level in the hose), referring to the terrain\
             \ level or any other given reference level</engelsk>"
         måleDato:
           type: string
@@ -4245,13 +4246,13 @@ components:
             \ measurements</engelsk>"
         observasjonKode:
           type: string
-          description: "observasjonskoder for markering av hendelser i poretrykksmå\
-            lingen. Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom\
-            \ mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.\
-            \ <engelsk>observation codes for marking of incidents during pore pressure\
-            \ measurements. The codes are (0..*)\t numeric codes given in a text string\
-            \ with spaces between each code if more than 1. The codes are described\
-            \ in the code list GeotekniskBoreObservasjonskode.</engelsk>"
+          description: observasjonskoder for markering av hendelser i poretrykksmålingen.
+            Kodene er (0..*) tallkoder gitt i en tekststreng med mellomrom mellom
+            hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten GeotekniskBoreObservasjonskode.
+            <engelsk>observation codes for marking of incidents during pore pressure
+            measurements. The codes are (0..*)     numeric codes given in a text string
+            with spaces between each code if more than 1. The codes are described
+            in the code list GeotekniskBoreObservasjonskode.</engelsk>
         observasjonMerknad:
           type: string
           maxLength: 255
@@ -4261,16 +4262,16 @@ components:
           type: number
           format: double
           description: "vanntrykket i porevannet i grunnen, med atmosfæretrykket som\
-            \ referanse <engelsk>the pressure in the pore water, with the atmospheric\
+            \ referanse [kPa] <engelsk>the pressure in the pore water, with the atmospheric\
             \ pressure as reference</engelsk>"
         trykkhøyde:
           type: number
           format: double
           description: "stigehøyde (mm vannsøyle) i åpent vannstandsrør som følge\
             \ av trykknivå i porevannet, gitt ved avstand mellom vannstand i slangen\
-            \ og filternivå <engelsk>Elevation head (mm water column) in an open water\
-            \ pipe due to the pressure level in the pore water, defined by the distance\
-            \ between the water level in the hose and the filter level</engelsk>"
+            \ og filternivå [mm] <engelsk>Elevation head (mm water column) in an open\
+            \ water pipe due to the pressure level in the pore water, defined by the\
+            \ distance between the water level in the hose and the filter level</engelsk>"
     PoretrykkDataInsitu:
       type: object
       description: "data fra måling av trykktilstanden i porevannet, angitt som kraft\
@@ -4320,7 +4321,8 @@ components:
         tyngde:
           type: number
           format: double
-          description: "Verdi for målt tyngde [kN/m3]"
+          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
+            \ space (kN/m3) "
     PoretrykkMaaleKategori:
       type: string
       enum:
@@ -4379,13 +4381,13 @@ components:
         filterLengde:
           type: number
           format: double
-          description: lengde på  filter i poretrykksmåler<engelsk>length of filter
-            in the pore pressure device</engelsk>
+          description: "lengde på  filter i poretrykksmåler [m]<engelsk>length of\
+            \ filter in the pore pressure device</engelsk>"
         koteSpiss:
           type: number
           format: double
-          description: kotenivå for spiss av poretrykksmåler<engelsk>elevation for
-            the tip of the pore pressure device</engelsk>
+          description: "kotenivå for spiss av poretrykksmåler [m]<engelsk>elevation\
+            \ for the tip of the pore pressure device</engelsk>"
         filterType:
           type: string
           description: type filter i poretrykksmåler<engelsk>type of filter in the
@@ -4393,27 +4395,27 @@ components:
         rørToppFilter:
           type: number
           format: double
-          description: "høyde z-verdi ved filterets topp i forhold til vertikal referanse\
-            \ (m)\r\n\r\n<engelsk>\r\nheight Z-level at the top of filter in relation\
-            \ to vertical reference  [m] </engelsk>"
+          description: "høyde z-verdi ved filterets topp i forhold til vertikal referanse[m]\r\
+            \n\r\n<engelsk>\r\nheight Z-level at the top of filter in relation to\
+            \ vertical reference  (m)  </engelsk>"
         rørToppSlange:
           type: number
           format: double
           description: "høyde z-verdi ved slangens topp i forhold til vertikal referanse\
-            \ (m)\r\n\r\n<engelsk>\r\nheight Z-level at the top of tube in relation\
-            \ to vertical reference  [m] </engelsk>"
+            \ [m] \r\n\r\n<engelsk>\r\nheight Z-level at the top of tube in relation\
+            \ to vertical reference (m)  </engelsk>"
         rørTopp:
           type: number
           format: double
           description: "høyde z-verdi ved rørets topp i forhold til vertikal referanse\
-            \ (m)\r\n\r\n<engelsk>\r\nheight Z-level at the top of pipe in relation\
-            \ to vertical reference  [m] </engelsk>"
+            \ [m] \r\n\r\n<engelsk>\r\nheight Z-level at the top of pipe in relation\
+            \ to vertical reference (m) </engelsk>"
         rørBunn:
           type: number
           format: double
           description: "høyde z-verdi ved rørets bunn i forhold til vertikal referanse\
-            \ (m)\r\n\r\n<engelsk>\r\nheight Z-level at the bottom of pipe in relation\
-            \ to vertical reference  [m] </engelsk>"
+            \ [m]\r\n\r\n<engelsk>\r\nheight Z-level at the bottom of pipe in relation\
+            \ to vertical reference  (m) </engelsk>"
         målerspissNummer:
           type: string
           description: identifikasjon av poretrykksmåler/måleapparat<engelsk>identification
@@ -4489,14 +4491,14 @@ components:
         nøyaktighet:
           type: integer
           format: int32
-          description: punktstandardavviket i grunnriss for punkter samt tverravvik
-            for linjer
+          description: "punktstandardavviket i grunnriss for punkter samt tverravvik\
+            \ for linjer\r\nMerknad:\r\nOppgitt i [cm]"
           maximum: 999999
           minimum: 0
         nøyaktighetHøyde:
           type: integer
           format: int32
-          description: nøyaktighet for høyden i cm
+          description: "nøyaktighet for høyden i [cm]"
           maximum: 999999
           minimum: 0
     ProevetakingType:
@@ -4545,8 +4547,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4595,8 +4597,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4640,8 +4642,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4727,14 +4729,14 @@ components:
         nedpressingTid:
           type: integer
           format: int32
-          description: "tidsangivelse ved nedpressing av stangsystemet, regnet siden\
-            \ forrige dybde [sek/m] <engelsk>time record during penetration of the\
-            \ rod system, referring to the previous depth</engelsk>"
+          description: "tidsregistrering under nedpressing av stangsystemet, målt\
+            \ per meter [sek/m] <engelsk> time record during penetration of the rod\
+            \ system, referring to the previous depth </engelsk>"
         nedsynkningHastighet:
           type: number
           format: double
-          description: "antall slag per enhet synk [m/min] <engelsk>penetration of\
-            \ the rod system per unit time (rate of penetration)</engelsk>"
+          description: "nedpressing av stangsystemet per tidsenhet [m/min] <engelsk>penetration\
+            \ of the rod system per unit time (rate of penetration)  </engelsk>"
         observasjonKode:
           type: string
           description: "observasjonskoder for markering av hendelser i sonderingen.\
@@ -4804,8 +4806,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -4863,8 +4865,7 @@ components:
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
-          description: "beskrivelse av kvaliteten på stedfestingen\r\n\r\nMerknad:\
-            \ Denne er identisk med ..KVALITET i tidligere versjoner av SOSI."
+          description: beskrivelse av kvaliteten på stedfestingen
         oppdateringsdato:
           type: string
           format: date-time
@@ -4955,7 +4956,7 @@ components:
           type: number
           format: double
           description: "referanseverdi for spissmotstand ved start av måling (eksempel\
-            \ ved start dissipasjonstest) [kPa] <engelsk>reference value cone resistance\
+            \ ved start dissipasjonstest) [MPa] <engelsk>reference value cone resistance\
             \ at the start of the test (e.g. at the start of a dissipation test)</engelsk>"
         metningsMedium:
           type: string
@@ -4964,20 +4965,19 @@ components:
         nedpressingsKapasitet:
           $ref: "#/components/schemas/NedpressingsKapasitet"
           type: string
-          description: kapasitet for anvendt nedpressingsutstyr<engelsk>capacity for
-            applied thrust machine</engelsk>
+          description: "kapasitet for anvendt nedpressingsutstyr [kN] <engelsk>capacity\
+            \ for applied thrust machine</engelsk>"
         nedpressningsHastighet:
           type: number
           format: double
-          description: nedpressingshastighet ved penetrasjon av trykksonderingsstenger
-            (2 cm per sekund)<engelsk>rate of penetration for rod system (2 cm per
-            second)</engelsk>
+          description: "nedpressingshastighet ved penetrasjon av trykksonderingsstenger\
+            \ (standard er 20 mm/s ± 5 mm/s) [mm/s] <engelsk>rate of penetration for\
+            \ rod system (standard is 20 mm/s ± 5 mm/s)</engelsk>"
         nullpunktsKorreksjon:
           type: number
           format: double
-          description: "korreksjon for registrert nullpunktsavvik før og etter sondering\
-            \ [MPa] <engelsk>correction for recorded zero load drift before and after\
-            \ sounding</engelsk>"
+          description: korreksjon for registrert nullpunktsavvik før og etter sondering
+            <engelsk>correction for recorded zero load drift before and after sounding</engelsk>
         rørKappeKorreksjonsFaktor:
           type: number
           format: double
@@ -5101,19 +5101,19 @@ components:
           type: number
           format: double
           description: "korrigert last på overflaten for nedpressing av trykksonde\
-            \ med stenger [kPa] <engelsk>corrected load on the surface for penetration\
+            \ med stenger [kN] <engelsk>corrected load on the surface for penetration\
             \ of the test rods and probe</engelsk>"
         nedpressingHastighet:
           type: number
           format: double
-          description: nedpressingsdistanse for trykksonde per tidsenhet (2 cm/sek)
-            <engelsk>penetration rate for probe (2 cm/sec)</engelsk>
+          description: "nedpressingsdistanse for trykksonde per tidsenhet (standard\
+            \ er 2 cm/sek) [m/min] <engelsk>penetration rate for probe (2 cm/sec)</engelsk>"
         nedpressingsKraft:
           type: number
           format: double
-          description: anvendt last på overflaten for nedpressing av trykksonde med
-            stenger <engelsk>applied thrust load on the surface for penetration of
-            the test rods and probe</engelsk>
+          description: "anvendt last på overflaten for nedpressing av trykksonde med\
+            \ stenger [kN] <engelsk>applied thrust load on the surface for penetration\
+            \ of the test rods and probe</engelsk>"
         nedpressingsTid:
           type: integer
           format: int32
@@ -5169,8 +5169,8 @@ components:
           $ref: "#/components/schemas/GeotekniskUnders"
         diagnostics:
           $ref: "#/components/schemas/DiagnosticsDto"
-        attachmentInfos:
-          $ref: "#/components/schemas/AttachmentInfosDto"
+        status:
+          type: string
     VannProeve:
       type: object
       description: vannprøve<engelsk>water sample</engelsk>
@@ -5202,8 +5202,8 @@ components:
         densitetPrøvetaking:
           type: number
           format: double
-          description: "tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of\
-            \ space (kN/m3)</engelsk>"
+          description: "vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space\
+            \ (kg/m3)</engelsk>"
         miljøtekniskUndersøkelse:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
@@ -5298,7 +5298,7 @@ components:
         effektivDensitet:
           type: number
           format: double
-          description: "densitet for jordlagene, redusert for oppdriftseffekter [kN/m3]\
+          description: "densitet for jordlagene, redusert for oppdriftseffekter [kg/m3]\
             \ <engelsk>density for soil layers, reduced for buoyancy effects</engelsk>"
         korrigertSkjærfasthet:
           type: number
@@ -5359,10 +5359,12 @@ components:
         plastisitetIndeks:
           type: number
           format: double
-          description: "angis i [%]<engelsk>Gets or sets the index of the plasticy,\
-            \ the difference between the liquid and plastic limits for a remoulded\
-            \ clay sample, which defines the plastic area of the clay in % water content\
-            \ (%).</engelsk>"
+          description: "Numerisk forskjell mellom flyte- og plastisitetsgrense for\
+            \ finstoffholdige jordarter, angir utstrekningen på det plastiske områ\
+            det for jordarten i prosent vanninnhold [%] <engelsk>Gets or sets the\
+            \ index of the plasticy, the difference between the liquid and plastic\
+            \ limits for a remoulded clay sample, which defines the plastic area of\
+            \ the clay in % water content </engelsk>"
   securitySchemes:
     Authentication:
       type: http
@@ -5494,11 +5496,21 @@ paths:
               $ref: "#/components/schemas/GeotekniskBorehull"
       responses:
         "200":
-          description: OK
+          description: The GeotekniskUnders is updated
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: Not Found Error
+        "422":
+          description: "Unprocessable Entity Error, with diagnostics details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsDto"
       security:
       - Authentication: []
     delete:
@@ -5608,14 +5620,20 @@ paths:
             schema:
               $ref: "#/components/schemas/GeotekniskUnders"
       responses:
-        "401":
-          description: Unauthorized Error
         "200":
           description: The GeotekniskUnders is created
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+        "401":
+          description: Unauthorized Error
+        "422":
+          description: "Unprocessable Entity Error, with diagnostics details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsDto"
       security:
       - Authentication: []
   /kodeliste/{codeListName}:
@@ -5724,16 +5742,22 @@ paths:
             schema:
               $ref: "#/components/schemas/GeotekniskUnders"
       responses:
-        "401":
-          description: Unauthorized Error
-        "404":
-          description: Not Found Error
         "200":
           description: The GeotekniskUnders is updated
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: Not Found Error
+        "422":
+          description: "Unprocessable Entity Error, with diagnostics details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsDto"
       security:
       - Authentication: []
     delete:
@@ -5780,11 +5804,21 @@ paths:
                 $ref: "#/components/schemas/GeotekniskBorehull"
       responses:
         "200":
-          description: OK
+          description: The GeotekniskUnders is updated
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: Not Found Error
+        "422":
+          description: "Unprocessable Entity Error, with diagnostics details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsDto"
       security:
       - Authentication: []
   /nadag/innmelding/v1/GeotekniskBorehull/{geotekniskBorehullId}:
@@ -5817,6 +5851,6 @@ paths:
                 $ref: "#/components/schemas/GeotekniskBorehull"
 info:
   title: Nadag innmelding API
-  version: 2025.12.3
+  version: 2025.12.19
 servers:
-- url: http://nadag-innmelding-api:8080
+- url: http://0.0.0.0:8080/

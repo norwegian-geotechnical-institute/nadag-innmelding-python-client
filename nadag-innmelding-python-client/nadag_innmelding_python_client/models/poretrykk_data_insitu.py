@@ -39,7 +39,7 @@ class PoretrykkDataInsitu:
             boret_lengde (float | Unset): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
-            tyngde (float | Unset): Verdi for målt tyngde [kN/m3]
+            tyngde (float | Unset): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space (kN/m3)
     """
 
     boret_dybde: float | Unset = UNSET

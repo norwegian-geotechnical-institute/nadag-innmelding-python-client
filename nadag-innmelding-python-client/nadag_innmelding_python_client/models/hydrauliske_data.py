@@ -32,8 +32,8 @@ class HydrauliskeData:
                 Merknad: Kalles også hydraulisk ledningsevne og avhenger av både vannets og mediets egenskaper.
 
                 <engelsk>proportionality constant which relates water permeability through a medium with the gradient</engelsk>
-            dybde_grunnvannstand (float | Unset): angivelse av vannstand i grunnen og/eller i målerør<engelsk>water level in
-                the ground and / or inside a measurement tube</engelsk>
+            dybde_grunnvannstand (float | Unset): angivelse av vannstand i grunnen og/eller i målerør [m] <engelsk>water
+                level in the ground and / or inside a measurement tube</engelsk>
     """
 
     m_å_le_dato: datetime.date | Unset = UNSET

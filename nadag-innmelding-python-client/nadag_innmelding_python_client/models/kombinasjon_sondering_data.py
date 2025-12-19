@@ -26,10 +26,10 @@ class KombinasjonSonderingData:
             nedpressing_hastighet (float | Unset): penetrasjonshastighet for stangsystemet ved nedpressing [m/min]
                 <engelsk>penetration of the rod system per unit time (rate of penetration)</engelsk>
             nedpressing_kraft (float | Unset): nedpressingskraft påført stangsystemet ved penetrasjon og rotasjon av
-                borstrengen [MPa] <engelsk>penetration force applied on the rod system during penetration and rotation of the
+                borstrengen [kN] <engelsk>penetration force applied on the rod system during penetration and rotation of the
                 drill string</engelsk>
-            nedpressing_tid (int | Unset): tidsangivelse ved nedpressing av stangsystemet, regnet siden forrige dybde
-                [sek/min] <engelsk>time record during penetration of the rod system, referring to the previous depth</engelsk>
+            nedpressing_tid (int | Unset): tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m]
+                <engelsk> time record during penetration of the rod system, referring to the previous depth </engelsk>
             observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*)
                 tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
                 GeotekniskBoreObservasjonskode.

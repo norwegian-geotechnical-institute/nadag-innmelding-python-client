@@ -26,7 +26,9 @@ class PosisjonskvalitetNADAG:
                 method on which registration of position is based
             m_å_lemetode_hø_yde (MaalemetodeHoeyde | Unset): metode for å måle objekttypens høydeverdi
             nøyaktighet (int | Unset): punktstandardavviket i grunnriss for punkter samt tverravvik for linjer
-            n_ø_yaktighet_hø_yde (int | Unset): nøyaktighet for høyden i cm
+                Merknad:
+                Oppgitt i [cm]
+            n_ø_yaktighet_hø_yde (int | Unset): nøyaktighet for høyden i [cm]
     """
 
     målemetode: Maalemetode

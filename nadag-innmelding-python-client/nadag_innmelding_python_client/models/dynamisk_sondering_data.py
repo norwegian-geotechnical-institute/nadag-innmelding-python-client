@@ -21,12 +21,12 @@ class DynamiskSonderingData:
                 <engelsk>drilled depth related to the terrain surface or any other given reference level</engelsk>
             dreie_moment (float | Unset): anvendt dreiemoment på borstrengen ved penetrasjon og rotasjon av stangsystemet
                 [kNm] <engelsk>torque applied on the rod system during penetration and rotation of the drill string</engelsk>
-            fall_hø_yde (float | Unset): høyde for slagenhet over topp av stangsystemet i sonderingen<engelsk>level of the
-                percussive unit above the top of the rod system during sounding</engelsk>
+            fall_hø_yde (float | Unset): høyde for slagenhet over topp av stangsystemet i sonderingen [m] <engelsk>level of
+                the percussive unit above the top of the rod system during sounding</engelsk>
             har_rotasjon (bool | Unset): markering av rotasjon ved penetrasjon av borstreng
                 <engelsk>marking of rotation during penetration of the drill string</engelsk>
-            nedpressing_tid (int | Unset): tidsangivelse ved nedpressing av stangsystemet [sek/m] <engelsk> time record
-                during penetration of the rod system, referring to the previous depth</engelsk>
+            nedpressing_tid (int | Unset): tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m]
+                <engelsk> time record during penetration of the rod system, referring to the previous depth /engelsk>
             observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*)
                 tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
                 GeotekniskBoreObservasjonskode.
@@ -38,8 +38,8 @@ class DynamiskSonderingData:
             pr_ø_veuttak_nummer (str | Unset): markering av prøvenummer ved opptak av fysisk prøvemateriale under
                 sonderingen<engelsk>marking of sample number in collection of sampled material during sounding</engelsk>
             ram_motstand (float | Unset): penetrasjonsmotstand mot ramming av borstrengen uttrykt i synk per antall påførte
-                slag<engelsk>penetration resistance on the hammered drill string expressed in sink per number of applied
-                strokes</engelsk>
+                slag [slag/0,2m] <engelsk>penetration resistance on the hammered drill string expressed in sink per number of
+                applied strokes</engelsk>
             rotasjon_hastighet (float | Unset): antall omdreininger av stangsystemet per tidsenhet ved penetrasjon av
                 borstrengen [omdr/min] <engelsk>number of turns of the rod system per time unit during penetration of the drill
                 string</engelsk>

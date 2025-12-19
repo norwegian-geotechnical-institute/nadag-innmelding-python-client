@@ -18,22 +18,22 @@ class PoretrykkData:
     """data fra måling av poretrykk <engelsk>data from measurements of pore pressure</engelsk>
 
     Attributes:
-        avlesing_0_kontroll (float | Unset): nullavlesning for poretrykksmåler <engelsk>zero reading for pore pressure
-            transducer</engelsk>
-        avlesing_etter_0_kontroll (float | Unset): kontrollverdi for nullavlesning etter utført måling <engelsk>control
-            value for zero reading after completed test
+        avlesing_0_kontroll (float | Unset): nullavlesning for poretrykksmåler [kPa] <engelsk>zero reading for pore
+            pressure transducer</engelsk>
+        avlesing_etter_0_kontroll (float | Unset): kontrollverdi for nullavlesning etter utført måling [kPa]
+            <engelsk>control value for zero reading after completed test
             </engelsk>
-        avlesing_fø_r_0_kontroll (float | Unset): kontrollverdi for nullavlesning før utført måling <engelsk>control
-            value of zero reading before testing</engelsk>
+        avlesing_fø_r_0_kontroll (float | Unset): kontrollverdi for nullavlesning før utført måling [kPa]
+            <engelsk>control value of zero reading before testing</engelsk>
         avstand_manometer_filterspiss (float | Unset): distanse mellom manometer (trykkmåler) på toppen av røret og
-            filterspiss <engelsk>distance between manometer (pressure gauge) on top of the measuring hose and the filter
+            filterspiss [m] <engelsk>distance between manometer (pressure gauge) on top of the measuring hose and the filter
             tip</engelsk>
-        avstand_topp_slange_til_vannstand (float | Unset): distanse mellom topp måleslange til vannstand i slangen
+        avstand_topp_slange_til_vannstand (float | Unset): distanse mellom topp måleslange til vannstand i slangen [m]
             <engelsk>distance between top of measuring hose and the water level in the hose</engelsk>
-        barometer_trykk (float | Unset): trykkmåler for avlesning av lufttrykk (atmosfæretrykk)
+        barometer_trykk (float | Unset): trykkmåler for avlesning av lufttrykk (atmosfæretrykk) [kPa]
             <engelsk>pressure gauge for recording of atmospheric pressure</engelsk>
         dybde_grunnvannstand (float | Unset): dybde til grunnvannsnivå (vannstand i slangen), regnet fra terrengnivå
-            eller annet angitt referansenivå
+            eller annet angitt referansenivå [m]
             <engelsk>depth to the ground water table (water level in the hose), referring to the terrain level or any other
             given reference level</engelsk>
         m_å_le_dato (datetime.date | Unset): dato for utførelse av målingen
@@ -43,16 +43,16 @@ class PoretrykkData:
         observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i poretrykksmålingen. Kodene er
             (0..*) tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i
             kodelisten GeotekniskBoreObservasjonskode. <engelsk>observation codes for marking of incidents during pore
-            pressure measurements. The codes are (0..*)	 numeric codes given in a text string with spaces between each code
-            if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>
+            pressure measurements. The codes are (0..*)     numeric codes given in a text string with spaces between each
+            code if more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>
         observasjon_merknad (str | Unset): merknad til observasjoner i poretrykksmålingen
             <engelsk>remarks to observations made during pore pressure measurements</engelsk>
-        poretrykk (float | Unset): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse <engelsk>the
-            pressure in the pore water, with the atmospheric pressure as reference</engelsk>
+        poretrykk (float | Unset): vanntrykket i porevannet i grunnen, med atmosfæretrykket som referanse [kPa]
+            <engelsk>the pressure in the pore water, with the atmospheric pressure as reference</engelsk>
         trykkhøyde (float | Unset): stigehøyde (mm vannsøyle) i åpent vannstandsrør som følge av trykknivå i porevannet,
-            gitt ved avstand mellom vannstand i slangen og filternivå <engelsk>Elevation head (mm water column) in an open
-            water pipe due to the pressure level in the pore water, defined by the distance between the water level in the
-            hose and the filter level</engelsk>
+            gitt ved avstand mellom vannstand i slangen og filternivå [mm] <engelsk>Elevation head (mm water column) in an
+            open water pipe due to the pressure level in the pore water, defined by the distance between the water level in
+            the hose and the filter level</engelsk>
     """
 
     avlesing_0_kontroll: float | Unset = UNSET

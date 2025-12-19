@@ -19,7 +19,7 @@ T = TypeVar("T", bound="GeotekniskProeveserie")
 
 @_attrs_define
 class GeotekniskProeveserie:
-    """Undersøkelse gjort i et borehull i form av en prøveserie<engelsk> Soil	 test </engelsk>
+    """Undersøkelse gjort i et borehull i form av en prøveserie<engelsk> Soil     test </engelsk>
 
     Attributes:
         json_type (Literal['GeotekniskProeveserie'] | Unset):
@@ -37,8 +37,8 @@ class GeotekniskProeveserie:
         prøvetype (ProevetakingType | Unset): inndeling av fysisk prøvemateriale i prøvetype, avhengig av
             prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample
             type classes, depending on sampling method and/or storage method for the sampled material</engelsk>
-        densitet_pr_ø_vetaking (float | Unset): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+        densitet_pr_ø_vetaking (float | Unset): vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space
+            (kg/m3)</engelsk>
         milj_ø_teknisk_unders_ø_kelse (str | Unset): beskrivelse og resultater fra miljøteknisk undersøkelse
             <engelsk>description and results from environmental investigation<engelsk>
         prøvegrop (bool | Unset): om det er benyttet prøvegrop<engelsk> indicating whether a soil test has a bag

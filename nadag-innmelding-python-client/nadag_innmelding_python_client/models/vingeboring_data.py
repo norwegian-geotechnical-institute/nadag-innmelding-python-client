@@ -20,7 +20,7 @@ class VingeboringData:
             boret_dybde (float | Unset): boret dybde i forhold til terrengoverflaten eller annet angitt referansenivå [m]
                 <engelsk>depth below the terrain surface or any other given reference level</engelsk>
                 <engelsk> depth from zero level, the z value of investigation start point is 0. drilling depth[m]</engelsk>
-            effektiv_densitet (float | Unset): densitet for jordlagene, redusert for oppdriftseffekter [kN/m3]
+            effektiv_densitet (float | Unset): densitet for jordlagene, redusert for oppdriftseffekter [kg/m3]
                 <engelsk>density for soil layers, reduced for buoyancy effects</engelsk>
             korrigert_skj_æ_rfasthet (float | Unset): skjærfasthet korrigert for plastisitet og effektivt overlagringstrykk
                 [kPa] <engelsk>shear strength corrected for plasticity and effective overburden stress</engelsk>
@@ -47,9 +47,10 @@ class VingeboringData:
             boret_lengde (float | Unset): total lengde av borehullets forløp, tilsvarer dyp ved vertikal boring [m]
                 <engelsk>total length of the investigation in the physical borehole, the same as depth in a vertical
                 borehole</engelsk>
-            plastisitet_indeks (float | Unset): angis i [%]<engelsk>Gets or sets the index of the plasticy, the difference
-                between the liquid and plastic limits for a remoulded clay sample, which defines the plastic area of the clay in
-                % water content (%).</engelsk>
+            plastisitet_indeks (float | Unset): Numerisk forskjell mellom flyte- og plastisitetsgrense for finstoffholdige
+                jordarter, angir utstrekningen på det plastiske området for jordarten i prosent vanninnhold [%] <engelsk>Gets or
+                sets the index of the plasticy, the difference between the liquid and plastic limits for a remoulded clay
+                sample, which defines the plastic area of the clay in % water content </engelsk>
     """
 
     boret_dybde: float | Unset = UNSET

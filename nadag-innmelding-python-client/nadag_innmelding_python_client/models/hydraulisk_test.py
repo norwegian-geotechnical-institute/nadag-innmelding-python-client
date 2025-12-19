@@ -40,9 +40,9 @@ class HydrauliskTest:
                 time for in situ testing</engelsk>
             insitu_test_slutt_tidspunkt (datetime.datetime | Unset): tidspunkt for stopp av in situ prøvningen<engelsk>stop
                 time for in situ testing</engelsk>
-            r_ø_r_bunn (float | Unset): nivå (høyde) for bunn av målerør<engelsk>level (height) for the base of the
+            r_ø_r_bunn (float | Unset): nivå (høyde) for bunn av målerør [m] <engelsk>level (height) for the base of the
                 measurement tube</engelsk>
-            r_ø_r_topp (float | Unset): nivå (høyde) for topp av målerør<engelsk>level (height) for the top of the
+            r_ø_r_topp (float | Unset): nivå (høyde) for topp av målerør [m] <engelsk>level (height) for the top of the
                 measurement tube</engelsk>
             r_ø_r_type (str | Unset): type målerør for utførelse av hydraulisk måling<engelsk>type of measurement tube for
                 hydraulic measurements</engelsk>
