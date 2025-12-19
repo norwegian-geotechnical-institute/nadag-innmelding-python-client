@@ -38,10 +38,10 @@ class TrykksonderingData:
                 during penetration of the probe (friction sleeve force divided by area of the friction sleeve, corrected for
                 pore pressure effects)</engelsk>
             korrigert_nedpressnings_kraft (float | Unset): korrigert last på overflaten for nedpressing av trykksonde med
-                stenger [kPa] <engelsk>corrected load on the surface for penetration of the test rods and probe</engelsk>
-            nedpressing_hastighet (float | Unset): nedpressingsdistanse for trykksonde per tidsenhet (2 cm/sek)
-                <engelsk>penetration rate for probe (2 cm/sec)</engelsk>
-            nedpressings_kraft (float | Unset): anvendt last på overflaten for nedpressing av trykksonde med stenger
+                stenger [kN] <engelsk>corrected load on the surface for penetration of the test rods and probe</engelsk>
+            nedpressing_hastighet (float | Unset): nedpressingsdistanse for trykksonde per tidsenhet (standard er 2 cm/sek)
+                [m/min] <engelsk>penetration rate for probe (2 cm/sec)</engelsk>
+            nedpressings_kraft (float | Unset): anvendt last på overflaten for nedpressing av trykksonde med stenger [kN]
                 <engelsk>applied thrust load on the surface for penetration of the test rods and probe</engelsk>
             nedpressings_tid (int | Unset): tid for nedpressing av sonden til ønsket eller annen angitt dybde, regnet fra
                 forrige dybde [sek]

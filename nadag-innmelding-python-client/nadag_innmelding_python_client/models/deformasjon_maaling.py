@@ -132,7 +132,7 @@ class DeformasjonMaaling:
                 level in the ground where all voids are saturated with water, and where the pore pressure starts to
                 increase</engelsk>
             forboret_diameter (float | Unset): diameter [mm] av forboret hull i en borhullundersøkelse <engelsk>diameter
-                (mm)	 of a predrilled hole in a borehole investigation</engelsk>
+                (mm)     of a predrilled hole in a borehole investigation</engelsk>
             forboret_lengde (float | Unset): Lengde[m] av forboret hull i en borhullundersøkelse <engelsk>Length[m] of a
                 predrilled borehole in a borehole investigation<engelsk>
             forboring_metode (str | Unset): metode brukt til boring uten registrering av data<engelsk>pre boring

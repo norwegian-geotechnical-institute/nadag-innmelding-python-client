@@ -28,8 +28,8 @@ class GeotekniskProeveseriedelData:
             composition, a text containing a detailed layer composition</engelsk>
         skj_æ_rfasthet_omr_ø_rt (float | Unset): skjærfasthet for en kohesjonsjordart med fullstendig omrørt struktur
             [kPa] <engelsk>the shear strength for a remoulded test material (suo) [kPa]</engelsk>
-        densitet_pr_ø_vetaking (float | Unset): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
-            [kN/m3]</engelsk>
+        densitet_pr_ø_vetaking (float | Unset): vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space
+            (kg/m3)</engelsk>
         er_omr_ø_rt (bool | Unset): om prøvserien er omrørt<engelsk>indicating whether a soil test is
             disturbed</engelsk>
         lab_analyse (bool | Unset): om prøven har blitt analysert på laboratorium

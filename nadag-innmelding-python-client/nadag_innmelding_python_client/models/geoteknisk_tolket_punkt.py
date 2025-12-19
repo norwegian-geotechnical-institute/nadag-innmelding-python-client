@@ -15,6 +15,7 @@ if TYPE_CHECKING:
     from ..models.geoteknisk_tolket_lag import GeotekniskTolketLag
     from ..models.identifikasjon import Identifikasjon
     from ..models.point import Point
+    from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
 
 
 T = TypeVar("T", bound="GeotekniskTolketPunkt")
@@ -39,6 +40,23 @@ class GeotekniskTolketPunkt:
         høyde (float | Unset): Terrenghøyde overflate for punkt med tolkning(/er)[m]
         h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
             koder benyttes.
+        digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
+
+            Eksempel: 1:50 000 = 50000.
+        kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
+            Grunnundersøkelser).
+            (En realisering av den generelle Posisjonskvalitet)
+        oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
+
+            Merknad:
+            Oppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere
+            eller lengre periode før disse legges inn i datasystemet (databasen).
+
+            -Definition-
+            Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+        beskrivelse (str | Unset): kort tilleggsinformasjon om punktet for tolkning/er
+            <engelsk>
+            a short description</engelsk>
         har_tolket_lag (list[GeotekniskTolketLag] | Unset):
     """
 
@@ -49,6 +67,10 @@ class GeotekniskTolketPunkt:
     posisjon: Point | Unset = UNSET
     høyde: float | Unset = UNSET
     h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
+    digitaliseringsmålestokk: int | Unset = UNSET
+    kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
+    oppdateringsdato: datetime.datetime | Unset = UNSET
+    beskrivelse: str | Unset = UNSET
     har_tolket_lag: list[GeotekniskTolketLag] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -75,6 +97,18 @@ class GeotekniskTolketPunkt:
         if not isinstance(self.h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
+        digitaliseringsmålestokk = self.digitaliseringsmålestokk
+
+        kvalitet: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.kvalitet, Unset):
+            kvalitet = self.kvalitet.to_dict()
+
+        oppdateringsdato: str | Unset = UNSET
+        if not isinstance(self.oppdateringsdato, Unset):
+            oppdateringsdato = self.oppdateringsdato.isoformat()
+
+        beskrivelse = self.beskrivelse
+
         har_tolket_lag: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_tolket_lag, Unset):
             har_tolket_lag = []
@@ -99,6 +133,14 @@ class GeotekniskTolketPunkt:
             field_dict["høyde"] = høyde
         if h_ø_yde_referanse is not UNSET:
             field_dict["høydeReferanse"] = h_ø_yde_referanse
+        if digitaliseringsmålestokk is not UNSET:
+            field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
+        if kvalitet is not UNSET:
+            field_dict["kvalitet"] = kvalitet
+        if oppdateringsdato is not UNSET:
+            field_dict["oppdateringsdato"] = oppdateringsdato
+        if beskrivelse is not UNSET:
+            field_dict["beskrivelse"] = beskrivelse
         if har_tolket_lag is not UNSET:
             field_dict["harTolketLag"] = har_tolket_lag
 
@@ -109,6 +151,7 @@ class GeotekniskTolketPunkt:
         from ..models.geoteknisk_tolket_lag import GeotekniskTolketLag
         from ..models.identifikasjon import Identifikasjon
         from ..models.point import Point
+        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
 
         d = dict(src_dict)
         _identifikasjon = d.pop("identifikasjon", UNSET)
@@ -145,6 +188,24 @@ class GeotekniskTolketPunkt:
         else:
             h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
+        digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
+
+        _kvalitet = d.pop("kvalitet", UNSET)
+        kvalitet: PosisjonskvalitetNADAG | Unset
+        if isinstance(_kvalitet, Unset):
+            kvalitet = UNSET
+        else:
+            kvalitet = PosisjonskvalitetNADAG.from_dict(_kvalitet)
+
+        _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
+        oppdateringsdato: datetime.datetime | Unset
+        if isinstance(_oppdateringsdato, Unset):
+            oppdateringsdato = UNSET
+        else:
+            oppdateringsdato = isoparse(_oppdateringsdato)
+
+        beskrivelse = d.pop("beskrivelse", UNSET)
+
         _har_tolket_lag = d.pop("harTolketLag", UNSET)
         har_tolket_lag: list[GeotekniskTolketLag] | Unset = UNSET
         if _har_tolket_lag is not UNSET:
@@ -162,6 +223,10 @@ class GeotekniskTolketPunkt:
             posisjon=posisjon,
             høyde=høyde,
             h_ø_yde_referanse=h_ø_yde_referanse,
+            digitaliseringsmålestokk=digitaliseringsmålestokk,
+            kvalitet=kvalitet,
+            oppdateringsdato=oppdateringsdato,
+            beskrivelse=beskrivelse,
             har_tolket_lag=har_tolket_lag,
         )
 

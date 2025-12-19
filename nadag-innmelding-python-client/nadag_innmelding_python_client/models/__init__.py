@@ -1,8 +1,6 @@
 """Contains all the data models used in inputs/outputs"""
 
 from .akvifer_type import AkviferType
-from .attachment_info_dto import AttachmentInfoDto
-from .attachment_infos_dto import AttachmentInfosDto
 from .blokk_proeve import BlokkProeve
 from .borlengde_til_berg import BorlengdeTilBerg
 from .deformasjon_maale_data import DeformasjonMaaleData
@@ -116,8 +114,6 @@ from .vingeboring_data import VingeboringData
 
 __all__ = (
     "AkviferType",
-    "AttachmentInfoDto",
-    "AttachmentInfosDto",
     "BlokkProeve",
     "BorlengdeTilBerg",
     "DeformasjonMaaleData",

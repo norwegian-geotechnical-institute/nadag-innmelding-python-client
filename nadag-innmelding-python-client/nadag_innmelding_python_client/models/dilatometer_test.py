@@ -44,7 +44,7 @@ class DilatometerTest:
                 time for in situ testing</engelsk>
             material_indeks (float | Unset): materialindeks<engelsk>material index</engelsk>
             horisontal_spenning_indeks (float | Unset): horisontalspenning index<engelsk>horizontal stress index</engelsk>
-            dilatometer_modulus (float | Unset): dilatometer modulus<engelsk>dilatometer modulus</engelsk>
+            dilatometer_modulus (float | Unset): dilatometer modulus (enhetsløs) <engelsk>dilatometer modulus</engelsk>
             dilatometer_observasjon (list[DilatometerTestData] | Unset):
     """
 

@@ -6,6 +6,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.diagnostics_dto import DiagnosticsDto
 from ...models.epsg_code import EpsgCode
 from ...models.geoteknisk_unders import GeotekniskUnders
 from ...models.validated_geoteknisk_unders import ValidatedGeotekniskUnders
@@ -45,7 +46,7 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | ValidatedGeotekniskUnders | None:
+) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     if response.status_code == 200:
         response_200 = ValidatedGeotekniskUnders.from_dict(response.json())
 
@@ -59,6 +60,11 @@ def _parse_response(
         response_404 = cast(Any, None)
         return response_404
 
+    if response.status_code == 422:
+        response_422 = DiagnosticsDto.from_dict(response.json())
+
+        return response_422
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -67,7 +73,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | ValidatedGeotekniskUnders]:
+) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -82,7 +88,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-) -> Response[Any | ValidatedGeotekniskUnders]:
+) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Updates a GeotekniskUnders.
 
      Updates a GeotekniskUnders.
@@ -99,7 +105,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ValidatedGeotekniskUnders]
+        Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]
     """
 
     kwargs = _get_kwargs(
@@ -121,7 +127,7 @@ def sync(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-) -> Any | ValidatedGeotekniskUnders | None:
+) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Updates a GeotekniskUnders.
 
      Updates a GeotekniskUnders.
@@ -138,7 +144,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ValidatedGeotekniskUnders
+        Any | DiagnosticsDto | ValidatedGeotekniskUnders
     """
 
     return sync_detailed(
@@ -155,7 +161,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-) -> Response[Any | ValidatedGeotekniskUnders]:
+) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Updates a GeotekniskUnders.
 
      Updates a GeotekniskUnders.
@@ -172,7 +178,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | ValidatedGeotekniskUnders]
+        Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]
     """
 
     kwargs = _get_kwargs(
@@ -192,7 +198,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-) -> Any | ValidatedGeotekniskUnders | None:
+) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Updates a GeotekniskUnders.
 
      Updates a GeotekniskUnders.
@@ -209,7 +215,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | ValidatedGeotekniskUnders
+        Any | DiagnosticsDto | ValidatedGeotekniskUnders
     """
 
     return (

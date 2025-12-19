@@ -25,10 +25,10 @@ class StatiskSonderingData:
                 <engelsk>number of half turns of the rod system, referring to the previous depth</engelsk>
             med_slag (bool | Unset): markering av slag på borstrengen under sonderingen<engelsk>marking of strokes on the
                 drill rods during sounding</engelsk>
-            nedpressing_tid (int | Unset): tidsangivelse ved nedpressing av stangsystemet, regnet siden forrige dybde
-                [sek/m] <engelsk>time record during penetration of the rod system, referring to the previous depth</engelsk>
-            nedsynkning_hastighet (float | Unset): antall slag per enhet synk [m/min] <engelsk>penetration of the rod system
-                per unit time (rate of penetration)</engelsk>
+            nedpressing_tid (int | Unset): tidsregistrering under nedpressing av stangsystemet, målt per meter [sek/m]
+                <engelsk> time record during penetration of the rod system, referring to the previous depth </engelsk>
+            nedsynkning_hastighet (float | Unset): nedpressing av stangsystemet per tidsenhet [m/min] <engelsk>penetration
+                of the rod system per unit time (rate of penetration)  </engelsk>
             observasjon_kode (str | Unset): observasjonskoder for markering av hendelser i sonderingen. Kodene er (0..*)
                 tallkoder gitt i en tekststreng med mellomrom mellom hver kode hvis mer enn 1. Kodene er beskrevet i kodelisten
                 GeotekniskBoreObservasjonskode.

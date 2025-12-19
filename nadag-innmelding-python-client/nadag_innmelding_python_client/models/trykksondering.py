@@ -57,15 +57,16 @@ class Trykksondering:
                 spaltefilter)<engelsk>type of filter for measurement of pore pressure (porous filter, pre-saturated filter, slot
                 filter)</engelsk>
             initiell_spissmotstand (float | Unset): referanseverdi for spissmotstand ved start av måling (eksempel ved start
-                dissipasjonstest) [kPa] <engelsk>reference value cone resistance at the start of the test (e.g. at the start of
+                dissipasjonstest) [MPa] <engelsk>reference value cone resistance at the start of the test (e.g. at the start of
                 a dissipation test)</engelsk>
             metnings_medium (str | Unset): medium som benyttes for metting av målesystem for poretrykk<engelsk>medium used
                 for saturation of measuring system for pore pressure</engelsk>
             nedpressings_kapasitet (NedpressingsKapasitet | Unset): oversikt over lastkapasiteter for vanlige trykksonder i
                 CPT/CPTU <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>
-            nedpressnings_hastighet (float | Unset): nedpressingshastighet ved penetrasjon av trykksonderingsstenger (2 cm
-                per sekund)<engelsk>rate of penetration for rod system (2 cm per second)</engelsk>
-            nullpunkts_korreksjon (float | Unset): korreksjon for registrert nullpunktsavvik før og etter sondering [MPa]
+            nedpressnings_hastighet (float | Unset): nedpressingshastighet ved penetrasjon av trykksonderingsstenger
+                (standard er 20 mm/s ± 5 mm/s) [mm/s] <engelsk>rate of penetration for rod system (standard is 20 mm/s ± 5
+                mm/s)</engelsk>
+            nullpunkts_korreksjon (float | Unset): korreksjon for registrert nullpunktsavvik før og etter sondering
                 <engelsk>correction for recorded zero load drift before and after sounding</engelsk>
             r_ø_r_kappe_korreksjons_faktor (float | Unset): korreksjonsfaktor for bruk av friksjonsreduksjonsring
                 <engelsk>correction factor for use of friction reducer</engelsk>

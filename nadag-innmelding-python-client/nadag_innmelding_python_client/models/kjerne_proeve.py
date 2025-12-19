@@ -37,8 +37,8 @@ class KjerneProeve:
         prøvetype (ProevetakingType | Unset): inndeling av fysisk prøvemateriale i prøvetype, avhengig av
             prøvetakingsmetode og/eller lagringsmetode for prøvematerialet<engelsk>separation of physical samples in sample
             type classes, depending on sampling method and/or storage method for the sampled material</engelsk>
-        densitet_pr_ø_vetaking (float | Unset): tyngde pr. volumenhet [kN/m3] <engelsk>gravity by unit of space
-            (kN/m3)</engelsk>
+        densitet_pr_ø_vetaking (float | Unset): vekt pr. volumenhet [kg/m3] <engelsk>weight by unit of space
+            (kg/m3)</engelsk>
         milj_ø_teknisk_unders_ø_kelse (str | Unset): beskrivelse og resultater fra miljøteknisk undersøkelse
             <engelsk>description and results from environmental investigation<engelsk>
         boret_lengde_til_berg (BorlengdeTilBerg | Unset): dybde til fjell som ikke er målt men basert på tolkning

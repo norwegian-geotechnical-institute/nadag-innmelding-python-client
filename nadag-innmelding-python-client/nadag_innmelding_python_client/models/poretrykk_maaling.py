@@ -45,28 +45,28 @@ class PoretrykkMaaling:
                 time for in situ testing</engelsk>
             installasjon_tidspunkt (datetime.datetime | Unset): tidspunktet poretrykksmåleren ble installert<engelsk>time of
                 installation of the pore pressure device</engelsk>
-            filter_lengde (float | Unset): lengde på  filter i poretrykksmåler<engelsk>length of filter in the pore pressure
-                device</engelsk>
-            kote_spiss (float | Unset): kotenivå for spiss av poretrykksmåler<engelsk>elevation for the tip of the pore
+            filter_lengde (float | Unset): lengde på  filter i poretrykksmåler [m]<engelsk>length of filter in the pore
+                pressure device</engelsk>
+            kote_spiss (float | Unset): kotenivå for spiss av poretrykksmåler [m]<engelsk>elevation for the tip of the pore
                 pressure device</engelsk>
             filter_type (str | Unset): type filter i poretrykksmåler<engelsk>type of filter in the pore pressure
                 device</engelsk>
-            r_ø_r_topp_filter (float | Unset): høyde z-verdi ved filterets topp i forhold til vertikal referanse (m)
+            r_ø_r_topp_filter (float | Unset): høyde z-verdi ved filterets topp i forhold til vertikal referanse[m]
 
                 <engelsk>
-                height Z-level at the top of filter in relation to vertical reference  [m] </engelsk>
-            r_ø_r_topp_slange (float | Unset): høyde z-verdi ved slangens topp i forhold til vertikal referanse (m)
+                height Z-level at the top of filter in relation to vertical reference  (m)  </engelsk>
+            r_ø_r_topp_slange (float | Unset): høyde z-verdi ved slangens topp i forhold til vertikal referanse [m]
 
                 <engelsk>
-                height Z-level at the top of tube in relation to vertical reference  [m] </engelsk>
-            r_ø_r_topp (float | Unset): høyde z-verdi ved rørets topp i forhold til vertikal referanse (m)
+                height Z-level at the top of tube in relation to vertical reference (m)  </engelsk>
+            r_ø_r_topp (float | Unset): høyde z-verdi ved rørets topp i forhold til vertikal referanse [m]
 
                 <engelsk>
-                height Z-level at the top of pipe in relation to vertical reference  [m] </engelsk>
-            r_ø_r_bunn (float | Unset): høyde z-verdi ved rørets bunn i forhold til vertikal referanse (m)
+                height Z-level at the top of pipe in relation to vertical reference (m) </engelsk>
+            r_ø_r_bunn (float | Unset): høyde z-verdi ved rørets bunn i forhold til vertikal referanse [m]
 
                 <engelsk>
-                height Z-level at the bottom of pipe in relation to vertical reference  [m] </engelsk>
+                height Z-level at the bottom of pipe in relation to vertical reference  (m) </engelsk>
             m_å_lerspiss_nummer (str | Unset): identifikasjon av poretrykksmåler/måleapparat<engelsk>identification of the
                 pore pressure device/measuring unit</engelsk>
             m_å_ler_kategori (PoretrykkMaaleKategori | Unset): oversikt over aktuelle typer
