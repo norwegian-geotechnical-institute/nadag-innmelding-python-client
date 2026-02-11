@@ -15,6 +15,7 @@ def _get_kwargs(
     ekstern_navnerom: str,
     ekstern_versjon_id: str | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["eksternId"] = ekstern_id

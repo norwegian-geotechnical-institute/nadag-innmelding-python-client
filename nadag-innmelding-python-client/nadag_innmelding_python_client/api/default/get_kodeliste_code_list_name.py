@@ -13,6 +13,7 @@ from ...types import Response
 def _get_kwargs(
     code_list_name: str,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/kodeliste/{code_list_name}".format(

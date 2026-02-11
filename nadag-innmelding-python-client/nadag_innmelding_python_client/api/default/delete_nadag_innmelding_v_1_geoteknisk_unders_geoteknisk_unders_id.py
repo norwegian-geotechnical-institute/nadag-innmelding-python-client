@@ -12,6 +12,7 @@ from ...types import Response
 def _get_kwargs(
     geoteknisk_unders_id: str,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "delete",
         "url": "/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}".format(

@@ -1,6 +1,5 @@
 from http import HTTPStatus
 from typing import Any, cast
-from urllib.parse import quote
 
 import httpx
 
@@ -14,14 +13,13 @@ from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
-    geoteknisk_unders_id: str,
     *,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-    ignore_felt_unders: bool | Unset = UNSET,
-    ignore_har_dokument: bool | Unset = UNSET,
-    ignore_har_tolkning: bool | Unset = UNSET,
-    ignore_unders_pkt: bool | Unset = UNSET,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
+    include_metode: bool | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -30,21 +28,19 @@ def _get_kwargs(
     json_epsg_code = epsg_code.value
     params["epsgCode"] = json_epsg_code
 
-    params["ignoreFeltUnders"] = ignore_felt_unders
+    params["includeHarDokument"] = include_har_dokument
 
-    params["ignoreHarDokument"] = ignore_har_dokument
+    params["includeHarTolkning"] = include_har_tolkning
 
-    params["ignoreHarTolkning"] = ignore_har_tolkning
+    params["includeHarUndersøkelse"] = include_har_unders_ø_kelse
 
-    params["ignoreUndersPkt"] = ignore_unders_pkt
+    params["includeMetode"] = include_metode
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
-        "method": "put",
-        "url": "/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}".format(
-            geoteknisk_unders_id=quote(str(geoteknisk_unders_id), safe=""),
-        ),
+        "method": "post",
+        "url": "/nadag/innmelding/v1/validation/GeotekniskUnders",
         "params": params,
     }
 
@@ -67,10 +63,6 @@ def _parse_response(
     if response.status_code == 401:
         response_401 = cast(Any, None)
         return response_401
-
-    if response.status_code == 404:
-        response_404 = cast(Any, None)
-        return response_404
 
     if response.status_code == 422:
         response_422 = DiagnosticsDto.from_dict(response.json())
@@ -95,27 +87,25 @@ def _build_response(
 
 
 def sync_detailed(
-    geoteknisk_unders_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-    ignore_felt_unders: bool | Unset = UNSET,
-    ignore_har_dokument: bool | Unset = UNSET,
-    ignore_har_tolkning: bool | Unset = UNSET,
-    ignore_unders_pkt: bool | Unset = UNSET,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
+    include_metode: bool | Unset = UNSET,
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
-    """Updates a GeotekniskUnders.
+    """Validates a new GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Validates a new GeotekniskUnders. Returns the id of the newly validated GeotekniskUnders.
 
     Args:
-        geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        ignore_felt_unders (bool | Unset):
-        ignore_har_dokument (bool | Unset):
-        ignore_har_tolkning (bool | Unset):
-        ignore_unders_pkt (bool | Unset):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
+        include_metode (bool | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -129,13 +119,12 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        geoteknisk_unders_id=geoteknisk_unders_id,
         body=body,
         epsg_code=epsg_code,
-        ignore_felt_unders=ignore_felt_unders,
-        ignore_har_dokument=ignore_har_dokument,
-        ignore_har_tolkning=ignore_har_tolkning,
-        ignore_unders_pkt=ignore_unders_pkt,
+        include_har_dokument=include_har_dokument,
+        include_har_tolkning=include_har_tolkning,
+        include_har_unders_ø_kelse=include_har_unders_ø_kelse,
+        include_metode=include_metode,
     )
 
     response = client.get_httpx_client().request(
@@ -146,27 +135,25 @@ def sync_detailed(
 
 
 def sync(
-    geoteknisk_unders_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-    ignore_felt_unders: bool | Unset = UNSET,
-    ignore_har_dokument: bool | Unset = UNSET,
-    ignore_har_tolkning: bool | Unset = UNSET,
-    ignore_unders_pkt: bool | Unset = UNSET,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
+    include_metode: bool | Unset = UNSET,
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
-    """Updates a GeotekniskUnders.
+    """Validates a new GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Validates a new GeotekniskUnders. Returns the id of the newly validated GeotekniskUnders.
 
     Args:
-        geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        ignore_felt_unders (bool | Unset):
-        ignore_har_dokument (bool | Unset):
-        ignore_har_tolkning (bool | Unset):
-        ignore_unders_pkt (bool | Unset):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
+        include_metode (bool | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -180,39 +167,36 @@ def sync(
     """
 
     return sync_detailed(
-        geoteknisk_unders_id=geoteknisk_unders_id,
         client=client,
         body=body,
         epsg_code=epsg_code,
-        ignore_felt_unders=ignore_felt_unders,
-        ignore_har_dokument=ignore_har_dokument,
-        ignore_har_tolkning=ignore_har_tolkning,
-        ignore_unders_pkt=ignore_unders_pkt,
+        include_har_dokument=include_har_dokument,
+        include_har_tolkning=include_har_tolkning,
+        include_har_unders_ø_kelse=include_har_unders_ø_kelse,
+        include_metode=include_metode,
     ).parsed
 
 
 async def asyncio_detailed(
-    geoteknisk_unders_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-    ignore_felt_unders: bool | Unset = UNSET,
-    ignore_har_dokument: bool | Unset = UNSET,
-    ignore_har_tolkning: bool | Unset = UNSET,
-    ignore_unders_pkt: bool | Unset = UNSET,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
+    include_metode: bool | Unset = UNSET,
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
-    """Updates a GeotekniskUnders.
+    """Validates a new GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Validates a new GeotekniskUnders. Returns the id of the newly validated GeotekniskUnders.
 
     Args:
-        geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        ignore_felt_unders (bool | Unset):
-        ignore_har_dokument (bool | Unset):
-        ignore_har_tolkning (bool | Unset):
-        ignore_unders_pkt (bool | Unset):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
+        include_metode (bool | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -226,13 +210,12 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        geoteknisk_unders_id=geoteknisk_unders_id,
         body=body,
         epsg_code=epsg_code,
-        ignore_felt_unders=ignore_felt_unders,
-        ignore_har_dokument=ignore_har_dokument,
-        ignore_har_tolkning=ignore_har_tolkning,
-        ignore_unders_pkt=ignore_unders_pkt,
+        include_har_dokument=include_har_dokument,
+        include_har_tolkning=include_har_tolkning,
+        include_har_unders_ø_kelse=include_har_unders_ø_kelse,
+        include_metode=include_metode,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -241,27 +224,25 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    geoteknisk_unders_id: str,
     *,
-    client: AuthenticatedClient,
+    client: AuthenticatedClient | Client,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
-    ignore_felt_unders: bool | Unset = UNSET,
-    ignore_har_dokument: bool | Unset = UNSET,
-    ignore_har_tolkning: bool | Unset = UNSET,
-    ignore_unders_pkt: bool | Unset = UNSET,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
+    include_metode: bool | Unset = UNSET,
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
-    """Updates a GeotekniskUnders.
+    """Validates a new GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Validates a new GeotekniskUnders. Returns the id of the newly validated GeotekniskUnders.
 
     Args:
-        geoteknisk_unders_id (str):
         epsg_code (EpsgCode):
-        ignore_felt_unders (bool | Unset):
-        ignore_har_dokument (bool | Unset):
-        ignore_har_tolkning (bool | Unset):
-        ignore_unders_pkt (bool | Unset):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
+        include_metode (bool | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -276,13 +257,12 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            geoteknisk_unders_id=geoteknisk_unders_id,
             client=client,
             body=body,
             epsg_code=epsg_code,
-            ignore_felt_unders=ignore_felt_unders,
-            ignore_har_dokument=ignore_har_dokument,
-            ignore_har_tolkning=ignore_har_tolkning,
-            ignore_unders_pkt=ignore_unders_pkt,
+            include_har_dokument=include_har_dokument,
+            include_har_tolkning=include_har_tolkning,
+            include_har_unders_ø_kelse=include_har_unders_ø_kelse,
+            include_metode=include_metode,
         )
     ).parsed

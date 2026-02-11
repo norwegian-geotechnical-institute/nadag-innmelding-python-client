@@ -9,12 +9,11 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
-from ..models.severity import Severity
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.diagnostic_dto_root_owner import DiagnosticDtoRootOwner
-    from ..models.diagnostic_dto_target import DiagnosticDtoTarget
+    from ..models.diagnostic_dto_severity import DiagnosticDtoSeverity
+    from ..models.object_ref import ObjectRef
 
 
 T = TypeVar("T", bound="DiagnosticDto")
@@ -26,20 +25,20 @@ class DiagnosticDto:
 
     Attributes:
         validation_id (UUID | Unset): Identifier for the validation
-        target (DiagnosticDtoTarget | Unset): Reference (identifier) for the target domain model object
+        target (ObjectRef | Unset):
         property_ (str | Unset): The property of the target domain model object that was checked
-        severity (Severity | Unset):
+        severity (DiagnosticDtoSeverity | Unset): The severity of the diagnostic
         description (str | Unset): The human-readable description of the diagnostic
-        root_owner (DiagnosticDtoRootOwner | Unset): Reference (identifier) for the root owner of the target
+        root_owner (ObjectRef | Unset):
         timestamp (datetime.datetime | Unset): The timestamp of the validation
     """
 
     validation_id: UUID | Unset = UNSET
-    target: DiagnosticDtoTarget | Unset = UNSET
+    target: ObjectRef | Unset = UNSET
     property_: str | Unset = UNSET
-    severity: Severity | Unset = UNSET
+    severity: DiagnosticDtoSeverity | Unset = UNSET
     description: str | Unset = UNSET
-    root_owner: DiagnosticDtoRootOwner | Unset = UNSET
+    root_owner: ObjectRef | Unset = UNSET
     timestamp: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -54,9 +53,9 @@ class DiagnosticDto:
 
         property_ = self.property_
 
-        severity: str | Unset = UNSET
+        severity: dict[str, Any] | Unset = UNSET
         if not isinstance(self.severity, Unset):
-            severity = self.severity.value
+            severity = self.severity.to_dict()
 
         description = self.description
 
@@ -90,8 +89,8 @@ class DiagnosticDto:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.diagnostic_dto_root_owner import DiagnosticDtoRootOwner
-        from ..models.diagnostic_dto_target import DiagnosticDtoTarget
+        from ..models.diagnostic_dto_severity import DiagnosticDtoSeverity
+        from ..models.object_ref import ObjectRef
 
         d = dict(src_dict)
         _validation_id = d.pop("validationId", UNSET)
@@ -102,29 +101,29 @@ class DiagnosticDto:
             validation_id = UUID(_validation_id)
 
         _target = d.pop("target", UNSET)
-        target: DiagnosticDtoTarget | Unset
+        target: ObjectRef | Unset
         if isinstance(_target, Unset):
             target = UNSET
         else:
-            target = DiagnosticDtoTarget.from_dict(_target)
+            target = ObjectRef.from_dict(_target)
 
         property_ = d.pop("property", UNSET)
 
         _severity = d.pop("severity", UNSET)
-        severity: Severity | Unset
+        severity: DiagnosticDtoSeverity | Unset
         if isinstance(_severity, Unset):
             severity = UNSET
         else:
-            severity = Severity(_severity)
+            severity = DiagnosticDtoSeverity.from_dict(_severity)
 
         description = d.pop("description", UNSET)
 
         _root_owner = d.pop("rootOwner", UNSET)
-        root_owner: DiagnosticDtoRootOwner | Unset
+        root_owner: ObjectRef | Unset
         if isinstance(_root_owner, Unset):
             root_owner = UNSET
         else:
-            root_owner = DiagnosticDtoRootOwner.from_dict(_root_owner)
+            root_owner = ObjectRef.from_dict(_root_owner)
 
         _timestamp = d.pop("timestamp", UNSET)
         timestamp: datetime.datetime | Unset

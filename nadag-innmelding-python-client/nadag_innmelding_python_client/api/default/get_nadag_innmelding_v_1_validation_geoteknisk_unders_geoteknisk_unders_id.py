@@ -6,7 +6,6 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.epsg_code import EpsgCode
 from ...models.geoteknisk_unders import GeotekniskUnders
 from ...types import UNSET, Response, Unset
 
@@ -14,15 +13,20 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     geoteknisk_unders_id: str,
     *,
-    epsg_code: EpsgCode,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
     include_metode: bool | Unset = UNSET,
     versjon_id: int | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
 
-    json_epsg_code = epsg_code.value
-    params["epsgCode"] = json_epsg_code
+    params["includeHarDokument"] = include_har_dokument
+
+    params["includeHarTolkning"] = include_har_tolkning
+
+    params["includeHarUndersøkelse"] = include_har_unders_ø_kelse
 
     params["includeMetode"] = include_metode
 
@@ -32,7 +36,7 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}".format(
+        "url": "/nadag/innmelding/v1/validation/GeotekniskUnders/{geoteknisk_unders_id}".format(
             geoteknisk_unders_id=quote(str(geoteknisk_unders_id), safe=""),
         ),
         "params": params,
@@ -76,7 +80,9 @@ def sync_detailed(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
-    epsg_code: EpsgCode,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
     include_metode: bool | Unset = UNSET,
     versjon_id: int | Unset = UNSET,
 ) -> Response[Any | GeotekniskUnders]:
@@ -86,7 +92,9 @@ def sync_detailed(
 
     Args:
         geoteknisk_unders_id (str):
-        epsg_code (EpsgCode):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
         include_metode (bool | Unset):
         versjon_id (int | Unset):
 
@@ -100,7 +108,9 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
-        epsg_code=epsg_code,
+        include_har_dokument=include_har_dokument,
+        include_har_tolkning=include_har_tolkning,
+        include_har_unders_ø_kelse=include_har_unders_ø_kelse,
         include_metode=include_metode,
         versjon_id=versjon_id,
     )
@@ -116,7 +126,9 @@ def sync(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
-    epsg_code: EpsgCode,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
     include_metode: bool | Unset = UNSET,
     versjon_id: int | Unset = UNSET,
 ) -> Any | GeotekniskUnders | None:
@@ -126,7 +138,9 @@ def sync(
 
     Args:
         geoteknisk_unders_id (str):
-        epsg_code (EpsgCode):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
         include_metode (bool | Unset):
         versjon_id (int | Unset):
 
@@ -141,7 +155,9 @@ def sync(
     return sync_detailed(
         geoteknisk_unders_id=geoteknisk_unders_id,
         client=client,
-        epsg_code=epsg_code,
+        include_har_dokument=include_har_dokument,
+        include_har_tolkning=include_har_tolkning,
+        include_har_unders_ø_kelse=include_har_unders_ø_kelse,
         include_metode=include_metode,
         versjon_id=versjon_id,
     ).parsed
@@ -151,7 +167,9 @@ async def asyncio_detailed(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
-    epsg_code: EpsgCode,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
     include_metode: bool | Unset = UNSET,
     versjon_id: int | Unset = UNSET,
 ) -> Response[Any | GeotekniskUnders]:
@@ -161,7 +179,9 @@ async def asyncio_detailed(
 
     Args:
         geoteknisk_unders_id (str):
-        epsg_code (EpsgCode):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
         include_metode (bool | Unset):
         versjon_id (int | Unset):
 
@@ -175,7 +195,9 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
-        epsg_code=epsg_code,
+        include_har_dokument=include_har_dokument,
+        include_har_tolkning=include_har_tolkning,
+        include_har_unders_ø_kelse=include_har_unders_ø_kelse,
         include_metode=include_metode,
         versjon_id=versjon_id,
     )
@@ -189,7 +211,9 @@ async def asyncio(
     geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
-    epsg_code: EpsgCode,
+    include_har_dokument: bool | Unset = UNSET,
+    include_har_tolkning: bool | Unset = UNSET,
+    include_har_unders_ø_kelse: bool | Unset = UNSET,
     include_metode: bool | Unset = UNSET,
     versjon_id: int | Unset = UNSET,
 ) -> Any | GeotekniskUnders | None:
@@ -199,7 +223,9 @@ async def asyncio(
 
     Args:
         geoteknisk_unders_id (str):
-        epsg_code (EpsgCode):
+        include_har_dokument (bool | Unset):
+        include_har_tolkning (bool | Unset):
+        include_har_unders_ø_kelse (bool | Unset):
         include_metode (bool | Unset):
         versjon_id (int | Unset):
 
@@ -215,7 +241,9 @@ async def asyncio(
         await asyncio_detailed(
             geoteknisk_unders_id=geoteknisk_unders_id,
             client=client,
-            epsg_code=epsg_code,
+            include_har_dokument=include_har_dokument,
+            include_har_tolkning=include_har_tolkning,
+            include_har_unders_ø_kelse=include_har_unders_ø_kelse,
             include_metode=include_metode,
             versjon_id=versjon_id,
         )

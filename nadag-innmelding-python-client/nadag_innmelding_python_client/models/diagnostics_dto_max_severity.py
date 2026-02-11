@@ -6,16 +6,17 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="DiagnosticDtoRootOwner")
+T = TypeVar("T", bound="DiagnosticsDtoMaxSeverity")
 
 
 @_attrs_define
-class DiagnosticDtoRootOwner:
-    """Reference (identifier) for the root owner of the target"""
+class DiagnosticsDtoMaxSeverity:
+    """The max severity of the diagnostics, determines the overall status of the submission."""
 
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
 
@@ -24,10 +25,10 @@ class DiagnosticDtoRootOwner:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        diagnostic_dto_root_owner = cls()
+        diagnostics_dto_max_severity = cls()
 
-        diagnostic_dto_root_owner.additional_properties = d
-        return diagnostic_dto_root_owner
+        diagnostics_dto_max_severity.additional_properties = d
+        return diagnostics_dto_max_severity
 
     @property
     def additional_keys(self) -> list[str]:
