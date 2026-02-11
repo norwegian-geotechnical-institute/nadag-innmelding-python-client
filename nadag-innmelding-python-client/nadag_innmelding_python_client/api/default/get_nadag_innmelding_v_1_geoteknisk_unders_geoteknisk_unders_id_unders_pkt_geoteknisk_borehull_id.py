@@ -14,6 +14,7 @@ def _get_kwargs(
     geoteknisk_unders_id: str,
     geoteknisk_borehull_id: str,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/nadag/innmelding/v1/GeotekniskUnders/{geoteknisk_unders_id}/undersPkt/{geoteknisk_borehull_id}".format(

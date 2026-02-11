@@ -5,6 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.epsg_code import EpsgCode
 from ...models.geoteknisk_unders import GeotekniskUnders
 from ...types import UNSET, Response, Unset
 
@@ -14,7 +15,10 @@ def _get_kwargs(
     ekstern_id: str,
     ekstern_navnerom: str,
     ekstern_versjon_id: str | Unset = UNSET,
+    epsg_code: EpsgCode,
+    include_metode: bool | Unset = UNSET,
 ) -> dict[str, Any]:
+
     params: dict[str, Any] = {}
 
     params["eksternId"] = ekstern_id
@@ -22,6 +26,11 @@ def _get_kwargs(
     params["eksternNavnerom"] = ekstern_navnerom
 
     params["eksternVersjonId"] = ekstern_versjon_id
+
+    json_epsg_code = epsg_code.value
+    params["epsgCode"] = json_epsg_code
+
+    params["includeMetode"] = include_metode
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -61,6 +70,8 @@ def sync_detailed(
     ekstern_id: str,
     ekstern_navnerom: str,
     ekstern_versjon_id: str | Unset = UNSET,
+    epsg_code: EpsgCode,
+    include_metode: bool | Unset = UNSET,
 ) -> Response[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
@@ -70,6 +81,8 @@ def sync_detailed(
         ekstern_id (str):
         ekstern_navnerom (str):
         ekstern_versjon_id (str | Unset):
+        epsg_code (EpsgCode):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -83,6 +96,8 @@ def sync_detailed(
         ekstern_id=ekstern_id,
         ekstern_navnerom=ekstern_navnerom,
         ekstern_versjon_id=ekstern_versjon_id,
+        epsg_code=epsg_code,
+        include_metode=include_metode,
     )
 
     response = client.get_httpx_client().request(
@@ -98,6 +113,8 @@ def sync(
     ekstern_id: str,
     ekstern_navnerom: str,
     ekstern_versjon_id: str | Unset = UNSET,
+    epsg_code: EpsgCode,
+    include_metode: bool | Unset = UNSET,
 ) -> GeotekniskUnders | None:
     """Fetches a GeotekniskUnders by external id.
 
@@ -107,6 +124,8 @@ def sync(
         ekstern_id (str):
         ekstern_navnerom (str):
         ekstern_versjon_id (str | Unset):
+        epsg_code (EpsgCode):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -121,6 +140,8 @@ def sync(
         ekstern_id=ekstern_id,
         ekstern_navnerom=ekstern_navnerom,
         ekstern_versjon_id=ekstern_versjon_id,
+        epsg_code=epsg_code,
+        include_metode=include_metode,
     ).parsed
 
 
@@ -130,6 +151,8 @@ async def asyncio_detailed(
     ekstern_id: str,
     ekstern_navnerom: str,
     ekstern_versjon_id: str | Unset = UNSET,
+    epsg_code: EpsgCode,
+    include_metode: bool | Unset = UNSET,
 ) -> Response[GeotekniskUnders]:
     """Fetches a GeotekniskUnders by external id.
 
@@ -139,6 +162,8 @@ async def asyncio_detailed(
         ekstern_id (str):
         ekstern_navnerom (str):
         ekstern_versjon_id (str | Unset):
+        epsg_code (EpsgCode):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -152,6 +177,8 @@ async def asyncio_detailed(
         ekstern_id=ekstern_id,
         ekstern_navnerom=ekstern_navnerom,
         ekstern_versjon_id=ekstern_versjon_id,
+        epsg_code=epsg_code,
+        include_metode=include_metode,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -165,6 +192,8 @@ async def asyncio(
     ekstern_id: str,
     ekstern_navnerom: str,
     ekstern_versjon_id: str | Unset = UNSET,
+    epsg_code: EpsgCode,
+    include_metode: bool | Unset = UNSET,
 ) -> GeotekniskUnders | None:
     """Fetches a GeotekniskUnders by external id.
 
@@ -174,6 +203,8 @@ async def asyncio(
         ekstern_id (str):
         ekstern_navnerom (str):
         ekstern_versjon_id (str | Unset):
+        epsg_code (EpsgCode):
+        include_metode (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -189,5 +220,7 @@ async def asyncio(
             ekstern_id=ekstern_id,
             ekstern_navnerom=ekstern_navnerom,
             ekstern_versjon_id=ekstern_versjon_id,
+            epsg_code=epsg_code,
+            include_metode=include_metode,
         )
     ).parsed

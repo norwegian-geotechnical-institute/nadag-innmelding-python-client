@@ -424,19 +424,20 @@ components:
           pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
           description: Identifier for the validation
         target:
+          $ref: "#/components/schemas/ObjectRef"
           type: object
           description: Reference (identifier) for the target domain model object
         property:
           type: string
           description: The property of the target domain model object that was checked
         severity:
-          $ref: "#/components/schemas/Severity"
-          type: string
+          type: object
           description: The severity of the diagnostic
         description:
           type: string
           description: The human-readable description of the diagnostic
         rootOwner:
+          $ref: "#/components/schemas/ObjectRef"
           type: object
           description: Reference (identifier) for the root owner of the target
         timestamp:
@@ -450,8 +451,7 @@ components:
       description: "A Dto for Diagnostic instances, with a list of DiagnosticDto instances."
       properties:
         maxSeverity:
-          $ref: "#/components/schemas/Severity"
-          type: string
+          type: object
           description: "The max severity of the diagnostics, determines the overall\
             \ status of the submission."
         diagnostics:
@@ -4055,6 +4055,20 @@ components:
       - _50_KN
       description: oversikt over lastkapasiteter for vanlige trykksonder i CPT/CPTU
         <engelsk>overview of load capacity for common CPT/CPTU probes</engelsk>
+    ObjectRef:
+      type: object
+      properties:
+        lokalId:
+          type: string
+          format: uuid
+          pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
+        navnerom:
+          type: string
+        versjonId:
+          type: integer
+          format: int64
+        typeName:
+          type: string
     OvervaakningData:
       type: object
       description: "data fra overvåkning av setningsmåling, grunnvannsstand, poretrykk,\
@@ -4603,13 +4617,6 @@ components:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
             and results from environmental investigation<engelsk>
-    Severity:
-      type: string
-      enum:
-      - OK
-      - WARNING
-      - ERROR
-      - FATAL
     SkovlProeve:
       type: object
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
@@ -5157,10 +5164,6 @@ components:
             \ dividert med tverrsnittsareal av trykksonde) [MPa] <engelsk>measured\
             \ cone resistance during penetration of the probe (point load divided\
             \ by cross-sectional area of probe) [MPa].</engelsk>"
-    UUID:
-      type: string
-      format: uuid
-      pattern: "[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}"
     ValidatedGeotekniskUnders:
       type: object
       description: GeotekniskUnders med valideringsresultat
@@ -5408,33 +5411,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeotekniskBorehull"
-  /validation/diagnosticsFromTarget/{targetLokalId}/{targetVersjonId}:
-    get:
-      summary: Fetches diagnostics for a target ID.
-      description: Fetches all diagnostics from the Identifikasjon of a target.
-      parameters:
-      - description: The target UUID of the diagnostics to fetch
-        required: true
-        schema:
-          $ref: "#/components/schemas/UUID"
-        name: targetLokalId
-        in: path
-      - description: The target versjonId of the diagnostics to fetch
-        required: true
-        schema:
-          type: integer
-          format: int64
-        name: targetVersjonId
-        in: path
-      responses:
-        "401":
-          description: Unauthorized Error
-        "200":
-          description: Returns the diagnostics you want to fetch
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DiagnosticsDto"
   /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}/undersPkt/{geotekniskBorehullId}:
     get:
       summary: Gets a GeotekniskBorehull owned by the latest versjon of a GeotekniskUnders.
@@ -5544,6 +5520,93 @@ paths:
                 $ref: "#/components/schemas/ValidatedGeotekniskUnders"
       security:
       - Authentication: []
+  /nadag/innmelding/v1/open/GeotekniskUnders/{geotekniskUndersId}:
+    get:
+      summary: Fetches the latest GeotekniskUnders given the lokalId.
+      description: Fetches a GeotekniskUnders by id.
+      parameters:
+      - description: The GeotekniskUnders to fetch.
+        required: true
+        name: geotekniskUndersId
+        in: path
+        schema:
+          type: string
+      - description: The target epsg code.
+        required: true
+        name: epsgCode
+        in: query
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+      - description: Whether to include metode-data.
+        required: false
+        name: includeMetode
+        in: query
+        schema:
+          type: boolean
+      responses:
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: Not Found Error
+        "200":
+          description: Returns the GeotekniskUnders you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
+  /nadag/innmelding/v1/validation/GeotekniskUnders/{geotekniskUndersId}:
+    get:
+      summary: Fetches the latest GeotekniskUnders given the lokalId.
+      description: Fetches a GeotekniskUnders by id.
+      parameters:
+      - description: The GeotekniskUnders to fetch.
+        required: true
+        name: geotekniskUndersId
+        in: path
+        schema:
+          type: string
+      - description: Whether to include GeotekniskDokument.
+        required: false
+        name: includeHarDokument
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to include GeotekniskTolketPunkt.
+        required: false
+        name: includeHarTolkning
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to include GeotekniskBorehullUnders.
+        required: false
+        name: includeHarUndersøkelse
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to include metode-data.
+        required: false
+        name: includeMetode
+        in: query
+        schema:
+          type: boolean
+      - description: The versjonId of the GeotekniskUnders to fetch.
+        required: false
+        name: versjonId
+        in: query
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "401":
+          description: Unauthorized Error
+        "404":
+          description: Not Found Error
+        "200":
+          description: Returns the GeotekniskUnders you want to fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
   /kodeliste/{codeListName}/{codeName}:
     get:
       summary: Retrieves a code in a code list.
@@ -5594,6 +5657,18 @@ paths:
         in: query
         schema:
           type: string
+      - description: The target epsg code.
+        required: true
+        name: epsgCode
+        in: query
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+      - description: Whether to include metode-data.
+        required: false
+        name: includeMetode
+        in: query
+        schema:
+          type: boolean
       responses:
         "200":
           description: OK
@@ -5636,6 +5711,43 @@ paths:
                 $ref: "#/components/schemas/DiagnosticsDto"
       security:
       - Authentication: []
+  /nadag/innmelding/v1/open/GeotekniskUnders:
+    get:
+      summary: Fetches a GeotekniskUnders by external id.
+      description: Fetches a GeotekniskUnders by external id. Returns the most recent
+        one.
+      parameters:
+      - description: The externId of the GeotekniskUnders to fetch.
+        required: true
+        name: eksternId
+        in: query
+        schema:
+          type: string
+      - description: The externNavnerom of the GeotekniskUnders to fetch.
+        required: true
+        name: eksternNavnerom
+        in: query
+        schema:
+          type: string
+      - description: The target epsg code.
+        required: true
+        name: epsgCode
+        in: query
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+      - description: Whether to include metode-data.
+        required: false
+        name: includeMetode
+        in: query
+        schema:
+          type: boolean
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GeotekniskUnders"
   /kodeliste/{codeListName}:
     get:
       summary: Retrieves a list of codes and their labels.
@@ -5656,33 +5768,6 @@ paths:
                 $ref: "#/components/schemas/GeotekniskUnders"
         "404":
           description: Not Found Error
-  /validation/diagnosticsFromRoot/{rootLokalId}/{rootVersjonId}:
-    get:
-      summary: Fetches a DiagnosticsDto from root ID.
-      description: Fetches all diagnostics from the Identifikasjon of a root.
-      parameters:
-      - description: The root UUID of the diagnostics to fetch
-        required: true
-        schema:
-          $ref: "#/components/schemas/UUID"
-        name: rootLokalId
-        in: path
-      - description: The root versjonId of the diagnostics to fetch
-        required: true
-        schema:
-          type: integer
-          format: int64
-        name: rootVersjonId
-        in: path
-      responses:
-        "401":
-          description: Unauthorized Error
-        "200":
-          description: Returns the diagnostics you want to fetch
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DiagnosticsDto"
   /nadag/innmelding/v1/GeotekniskUnders/{geotekniskUndersId}:
     get:
       summary: Fetches the latest GeotekniskUnders given the lokalId.
@@ -5694,6 +5779,12 @@ paths:
         in: path
         schema:
           type: string
+      - description: The target epsg code.
+        required: true
+        name: epsgCode
+        in: query
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
       - description: Whether to include metode-data.
         required: false
         name: includeMetode
@@ -5734,6 +5825,30 @@ paths:
         in: query
         schema:
           $ref: "#/components/schemas/EpsgCode"
+      - description: Whether to ignore feltUnders.
+        required: false
+        name: ignoreFeltUnders
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to ignore harDokument.
+        required: false
+        name: ignoreHarDokument
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to ignore harTolkning.
+        required: false
+        name: ignoreHarTolkning
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to ignore undersPkt.
+        required: false
+        name: ignoreUndersPkt
+        in: query
+        schema:
+          type: boolean
       requestBody:
         description: The new version of the GeotekniskUnders.
         required: true
@@ -5849,8 +5964,66 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/GeotekniskBorehull"
+  /nadag/innmelding/v1/validation/GeotekniskUnders:
+    post:
+      summary: Validates a new GeotekniskUnders.
+      description: Validates a new GeotekniskUnders. Returns the id of the newly validated
+        GeotekniskUnders.
+      parameters:
+      - description: The epsg code of the geometry.
+        required: true
+        name: epsgCode
+        in: query
+        schema:
+          $ref: "#/components/schemas/EpsgCode"
+      - description: Whether to include GeotekniskDokument.
+        required: false
+        name: includeHarDokument
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to include GeotekniskTolketPunkt.
+        required: false
+        name: includeHarTolkning
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to include GeotekniskBorehullUnders.
+        required: false
+        name: includeHarUndersøkelse
+        in: query
+        schema:
+          type: boolean
+      - description: Whether to include metode-data.
+        required: false
+        name: includeMetode
+        in: query
+        schema:
+          type: boolean
+      requestBody:
+        description: The GeotekniskUnders to store.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GeotekniskUnders"
+      responses:
+        "200":
+          description: The GeotekniskUnders is validated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidatedGeotekniskUnders"
+        "401":
+          description: Unauthorized Error
+        "422":
+          description: "Unprocessable Entity Error, with diagnostics details"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DiagnosticsDto"
 info:
   title: Nadag innmelding API
-  version: 2025.12.19
+  version: 2026.02.10
 servers:
-- url: http://0.0.0.0:8080/
+- url: http://0.0.0.0:8080

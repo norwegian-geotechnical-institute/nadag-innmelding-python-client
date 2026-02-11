@@ -8,9 +8,9 @@ from .deformasjon_maaling import DeformasjonMaaling
 from .deformasjon_observasjon_kode import DeformasjonObservasjonKode
 from .deformasjon_overvaakning_data import DeformasjonOvervaakningData
 from .diagnostic_dto import DiagnosticDto
-from .diagnostic_dto_root_owner import DiagnosticDtoRootOwner
-from .diagnostic_dto_target import DiagnosticDtoTarget
+from .diagnostic_dto_severity import DiagnosticDtoSeverity
 from .diagnostics_dto import DiagnosticsDto
+from .diagnostics_dto_max_severity import DiagnosticsDtoMaxSeverity
 from .dilatometer_test import DilatometerTest
 from .dilatometer_test_data import DilatometerTestData
 from .dissipasjon_data import DissipasjonData
@@ -79,6 +79,7 @@ from .nadag_dokument_type import NADAGDokumentType
 from .nadag_hoeyderef import NADAGHoeyderef
 from .naver_proeve import NaverProeve
 from .nedpressings_kapasitet import NedpressingsKapasitet
+from .object_ref import ObjectRef
 from .overvaakning_data import OvervaakningData
 from .platebelastning import Platebelastning
 from .platebelastning_data import PlatebelastningData
@@ -94,7 +95,6 @@ from .proevetaking_type import ProevetakingType
 from .ram_proeve import RamProeve
 from .representasjon_kvalitet import RepresentasjonKvalitet
 from .sediment_proeve import SedimentProeve
-from .severity import Severity
 from .skovl_proeve import SkovlProeve
 from .sonde_kvalitets_klasse import SondeKvalitetsKlasse
 from .statisk_sondering import StatiskSondering
@@ -121,9 +121,9 @@ __all__ = (
     "DeformasjonObservasjonKode",
     "DeformasjonOvervaakningData",
     "DiagnosticDto",
-    "DiagnosticDtoRootOwner",
-    "DiagnosticDtoTarget",
+    "DiagnosticDtoSeverity",
     "DiagnosticsDto",
+    "DiagnosticsDtoMaxSeverity",
     "DilatometerTest",
     "DilatometerTestData",
     "DissipasjonData",
@@ -192,6 +192,7 @@ __all__ = (
     "NADAGHoeyderef",
     "NaverProeve",
     "NedpressingsKapasitet",
+    "ObjectRef",
     "OvervaakningData",
     "Platebelastning",
     "PlatebelastningData",
@@ -207,7 +208,6 @@ __all__ = (
     "RamProeve",
     "RepresentasjonKvalitet",
     "SedimentProeve",
-    "Severity",
     "SkovlProeve",
     "SondeKvalitetsKlasse",
     "StatiskSondering",

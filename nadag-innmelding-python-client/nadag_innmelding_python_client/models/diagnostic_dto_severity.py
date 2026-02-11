@@ -6,16 +6,17 @@ from typing import Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="DiagnosticDtoTarget")
+T = TypeVar("T", bound="DiagnosticDtoSeverity")
 
 
 @_attrs_define
-class DiagnosticDtoTarget:
-    """Reference (identifier) for the target domain model object"""
+class DiagnosticDtoSeverity:
+    """The severity of the diagnostic"""
 
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
 
@@ -24,10 +25,10 @@ class DiagnosticDtoTarget:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         d = dict(src_dict)
-        diagnostic_dto_target = cls()
+        diagnostic_dto_severity = cls()
 
-        diagnostic_dto_target.additional_properties = d
-        return diagnostic_dto_target
+        diagnostic_dto_severity.additional_properties = d
+        return diagnostic_dto_severity
 
     @property
     def additional_keys(self) -> list[str]:

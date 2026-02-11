@@ -6,17 +6,22 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.geoteknisk_borehull import GeotekniskBorehull
+from ...models.epsg_code import EpsgCode
+from ...models.geoteknisk_unders import GeotekniskUnders
 from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
-    geoteknisk_borehull_id: str,
+    geoteknisk_unders_id: str,
     *,
+    epsg_code: EpsgCode,
     include_metode: bool | Unset = UNSET,
 ) -> dict[str, Any]:
 
     params: dict[str, Any] = {}
+
+    json_epsg_code = epsg_code.value
+    params["epsgCode"] = json_epsg_code
 
     params["includeMetode"] = include_metode
 
@@ -24,8 +29,8 @@ def _get_kwargs(
 
     _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": "/nadag/innmelding/v1/GeotekniskBorehull/{geoteknisk_borehull_id}".format(
-            geoteknisk_borehull_id=quote(str(geoteknisk_borehull_id), safe=""),
+        "url": "/nadag/innmelding/v1/open/GeotekniskUnders/{geoteknisk_unders_id}".format(
+            geoteknisk_unders_id=quote(str(geoteknisk_unders_id), safe=""),
         ),
         "params": params,
     }
@@ -33,11 +38,9 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Any | GeotekniskBorehull | None:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Any | GeotekniskUnders | None:
     if response.status_code == 200:
-        response_200 = GeotekniskBorehull.from_dict(response.json())
+        response_200 = GeotekniskUnders.from_dict(response.json())
 
         return response_200
 
@@ -57,7 +60,7 @@ def _parse_response(
 
 def _build_response(
     *, client: AuthenticatedClient | Client, response: httpx.Response
-) -> Response[Any | GeotekniskBorehull]:
+) -> Response[Any | GeotekniskUnders]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -67,17 +70,19 @@ def _build_response(
 
 
 def sync_detailed(
-    geoteknisk_borehull_id: str,
+    geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
+    epsg_code: EpsgCode,
     include_metode: bool | Unset = UNSET,
-) -> Response[Any | GeotekniskBorehull]:
-    """Fetches a GeotekniskBorehull by id.
+) -> Response[Any | GeotekniskUnders]:
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
-     Fetches a GeotekniskBorehull by id.
+     Fetches a GeotekniskUnders by id.
 
     Args:
-        geoteknisk_borehull_id (str):
+        geoteknisk_unders_id (str):
+        epsg_code (EpsgCode):
         include_metode (bool | Unset):
 
     Raises:
@@ -85,11 +90,12 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GeotekniskBorehull]
+        Response[Any | GeotekniskUnders]
     """
 
     kwargs = _get_kwargs(
-        geoteknisk_borehull_id=geoteknisk_borehull_id,
+        geoteknisk_unders_id=geoteknisk_unders_id,
+        epsg_code=epsg_code,
         include_metode=include_metode,
     )
 
@@ -101,17 +107,19 @@ def sync_detailed(
 
 
 def sync(
-    geoteknisk_borehull_id: str,
+    geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
+    epsg_code: EpsgCode,
     include_metode: bool | Unset = UNSET,
-) -> Any | GeotekniskBorehull | None:
-    """Fetches a GeotekniskBorehull by id.
+) -> Any | GeotekniskUnders | None:
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
-     Fetches a GeotekniskBorehull by id.
+     Fetches a GeotekniskUnders by id.
 
     Args:
-        geoteknisk_borehull_id (str):
+        geoteknisk_unders_id (str):
+        epsg_code (EpsgCode):
         include_metode (bool | Unset):
 
     Raises:
@@ -119,28 +127,31 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GeotekniskBorehull
+        Any | GeotekniskUnders
     """
 
     return sync_detailed(
-        geoteknisk_borehull_id=geoteknisk_borehull_id,
+        geoteknisk_unders_id=geoteknisk_unders_id,
         client=client,
+        epsg_code=epsg_code,
         include_metode=include_metode,
     ).parsed
 
 
 async def asyncio_detailed(
-    geoteknisk_borehull_id: str,
+    geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
+    epsg_code: EpsgCode,
     include_metode: bool | Unset = UNSET,
-) -> Response[Any | GeotekniskBorehull]:
-    """Fetches a GeotekniskBorehull by id.
+) -> Response[Any | GeotekniskUnders]:
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
-     Fetches a GeotekniskBorehull by id.
+     Fetches a GeotekniskUnders by id.
 
     Args:
-        geoteknisk_borehull_id (str):
+        geoteknisk_unders_id (str):
+        epsg_code (EpsgCode):
         include_metode (bool | Unset):
 
     Raises:
@@ -148,11 +159,12 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Any | GeotekniskBorehull]
+        Response[Any | GeotekniskUnders]
     """
 
     kwargs = _get_kwargs(
-        geoteknisk_borehull_id=geoteknisk_borehull_id,
+        geoteknisk_unders_id=geoteknisk_unders_id,
+        epsg_code=epsg_code,
         include_metode=include_metode,
     )
 
@@ -162,17 +174,19 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    geoteknisk_borehull_id: str,
+    geoteknisk_unders_id: str,
     *,
     client: AuthenticatedClient | Client,
+    epsg_code: EpsgCode,
     include_metode: bool | Unset = UNSET,
-) -> Any | GeotekniskBorehull | None:
-    """Fetches a GeotekniskBorehull by id.
+) -> Any | GeotekniskUnders | None:
+    """Fetches the latest GeotekniskUnders given the lokalId.
 
-     Fetches a GeotekniskBorehull by id.
+     Fetches a GeotekniskUnders by id.
 
     Args:
-        geoteknisk_borehull_id (str):
+        geoteknisk_unders_id (str):
+        epsg_code (EpsgCode):
         include_metode (bool | Unset):
 
     Raises:
@@ -180,13 +194,14 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Any | GeotekniskBorehull
+        Any | GeotekniskUnders
     """
 
     return (
         await asyncio_detailed(
-            geoteknisk_borehull_id=geoteknisk_borehull_id,
+            geoteknisk_unders_id=geoteknisk_unders_id,
             client=client,
+            epsg_code=epsg_code,
             include_metode=include_metode,
         )
     ).parsed

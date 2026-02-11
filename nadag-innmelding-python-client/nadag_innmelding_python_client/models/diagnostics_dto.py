@@ -6,11 +6,11 @@ from typing import TYPE_CHECKING, Any, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..models.severity import Severity
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.diagnostic_dto import DiagnosticDto
+    from ..models.diagnostics_dto_max_severity import DiagnosticsDtoMaxSeverity
 
 
 T = TypeVar("T", bound="DiagnosticsDto")
@@ -21,18 +21,19 @@ class DiagnosticsDto:
     """A Dto for Diagnostic instances, with a list of DiagnosticDto instances.
 
     Attributes:
-        max_severity (Severity | Unset):
+        max_severity (DiagnosticsDtoMaxSeverity | Unset): The max severity of the diagnostics, determines the overall
+            status of the submission.
         diagnostics (list[DiagnosticDto] | Unset): The list of diagnostics, with details about each diagnostic.
     """
 
-    max_severity: Severity | Unset = UNSET
+    max_severity: DiagnosticsDtoMaxSeverity | Unset = UNSET
     diagnostics: list[DiagnosticDto] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        max_severity: str | Unset = UNSET
+        max_severity: dict[str, Any] | Unset = UNSET
         if not isinstance(self.max_severity, Unset):
-            max_severity = self.max_severity.value
+            max_severity = self.max_severity.to_dict()
 
         diagnostics: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.diagnostics, Unset):
@@ -54,14 +55,15 @@ class DiagnosticsDto:
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.diagnostic_dto import DiagnosticDto
+        from ..models.diagnostics_dto_max_severity import DiagnosticsDtoMaxSeverity
 
         d = dict(src_dict)
         _max_severity = d.pop("maxSeverity", UNSET)
-        max_severity: Severity | Unset
+        max_severity: DiagnosticsDtoMaxSeverity | Unset
         if isinstance(_max_severity, Unset):
             max_severity = UNSET
         else:
-            max_severity = Severity(_max_severity)
+            max_severity = DiagnosticsDtoMaxSeverity.from_dict(_max_severity)
 
         _diagnostics = d.pop("diagnostics", UNSET)
         diagnostics: list[DiagnosticDto] | Unset = UNSET

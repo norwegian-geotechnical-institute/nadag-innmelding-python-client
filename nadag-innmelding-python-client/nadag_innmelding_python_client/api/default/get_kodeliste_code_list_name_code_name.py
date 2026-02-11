@@ -14,6 +14,7 @@ def _get_kwargs(
     code_list_name: str,
     code_name: str,
 ) -> dict[str, Any]:
+
     _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/kodeliste/{code_list_name}/{code_name}".format(
