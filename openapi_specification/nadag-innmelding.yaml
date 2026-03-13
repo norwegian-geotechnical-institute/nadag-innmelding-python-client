@@ -431,7 +431,8 @@ components:
           type: string
           description: The property of the target domain model object that was checked
         severity:
-          type: object
+          $ref: "#/components/schemas/Severity"
+          type: string
           description: The severity of the diagnostic
         description:
           type: string
@@ -451,7 +452,8 @@ components:
       description: "A Dto for Diagnostic instances, with a list of DiagnosticDto instances."
       properties:
         maxSeverity:
-          type: object
+          $ref: "#/components/schemas/Severity"
+          type: string
           description: "The max severity of the diagnostics, determines the overall\
             \ status of the submission."
         diagnostics:
@@ -4617,6 +4619,13 @@ components:
           type: string
           description: beskrivelse og resultater fra miljøteknisk undersøkelse <engelsk>description
             and results from environmental investigation<engelsk>
+    Severity:
+      type: string
+      enum:
+      - OK
+      - WARNING
+      - ERROR
+      - FATAL
     SkovlProeve:
       type: object
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
@@ -6024,6 +6033,6 @@ paths:
                 $ref: "#/components/schemas/DiagnosticsDto"
 info:
   title: Nadag innmelding API
-  version: 2026.02.10
+  version: 2026.03.13
 servers:
 - url: http://0.0.0.0:8080
