@@ -9,10 +9,10 @@ from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 from dateutil.parser import isoparse
 
+from ..models.severity import Severity
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.diagnostic_dto_severity import DiagnosticDtoSeverity
     from ..models.object_ref import ObjectRef
 
 
@@ -27,7 +27,7 @@ class DiagnosticDto:
         validation_id (UUID | Unset): Identifier for the validation
         target (ObjectRef | Unset):
         property_ (str | Unset): The property of the target domain model object that was checked
-        severity (DiagnosticDtoSeverity | Unset): The severity of the diagnostic
+        severity (Severity | Unset):
         description (str | Unset): The human-readable description of the diagnostic
         root_owner (ObjectRef | Unset):
         timestamp (datetime.datetime | Unset): The timestamp of the validation
@@ -36,7 +36,7 @@ class DiagnosticDto:
     validation_id: UUID | Unset = UNSET
     target: ObjectRef | Unset = UNSET
     property_: str | Unset = UNSET
-    severity: DiagnosticDtoSeverity | Unset = UNSET
+    severity: Severity | Unset = UNSET
     description: str | Unset = UNSET
     root_owner: ObjectRef | Unset = UNSET
     timestamp: datetime.datetime | Unset = UNSET
@@ -53,9 +53,9 @@ class DiagnosticDto:
 
         property_ = self.property_
 
-        severity: dict[str, Any] | Unset = UNSET
+        severity: str | Unset = UNSET
         if not isinstance(self.severity, Unset):
-            severity = self.severity.to_dict()
+            severity = self.severity.value
 
         description = self.description
 
@@ -89,7 +89,6 @@ class DiagnosticDto:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.diagnostic_dto_severity import DiagnosticDtoSeverity
         from ..models.object_ref import ObjectRef
 
         d = dict(src_dict)
@@ -110,11 +109,11 @@ class DiagnosticDto:
         property_ = d.pop("property", UNSET)
 
         _severity = d.pop("severity", UNSET)
-        severity: DiagnosticDtoSeverity | Unset
+        severity: Severity | Unset
         if isinstance(_severity, Unset):
             severity = UNSET
         else:
-            severity = DiagnosticDtoSeverity.from_dict(_severity)
+            severity = Severity(_severity)
 
         description = d.pop("description", UNSET)
 
