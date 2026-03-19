@@ -6,24 +6,14 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.epsg_code import EpsgCode
 from ...models.validated_geoteknisk_unders import ValidatedGeotekniskUnders
-from ...types import UNSET, Response
+from ...types import Response
 
 
 def _get_kwargs(
     geoteknisk_unders_id: str,
     geoteknisk_borehull_id: str,
-    *,
-    epsg_code: EpsgCode,
 ) -> dict[str, Any]:
-
-    params: dict[str, Any] = {}
-
-    json_epsg_code = epsg_code.value
-    params["epsgCode"] = json_epsg_code
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
     _kwargs: dict[str, Any] = {
         "method": "delete",
@@ -31,7 +21,6 @@ def _get_kwargs(
             geoteknisk_unders_id=quote(str(geoteknisk_unders_id), safe=""),
             geoteknisk_borehull_id=quote(str(geoteknisk_borehull_id), safe=""),
         ),
-        "params": params,
     }
 
     return _kwargs
@@ -67,7 +56,6 @@ def sync_detailed(
     geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    epsg_code: EpsgCode,
 ) -> Response[ValidatedGeotekniskUnders]:
     """Deletes a GeotekniskBorehull.
 
@@ -76,7 +64,6 @@ def sync_detailed(
     Args:
         geoteknisk_unders_id (str):
         geoteknisk_borehull_id (str):
-        epsg_code (EpsgCode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -89,7 +76,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
         geoteknisk_borehull_id=geoteknisk_borehull_id,
-        epsg_code=epsg_code,
     )
 
     response = client.get_httpx_client().request(
@@ -104,7 +90,6 @@ def sync(
     geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    epsg_code: EpsgCode,
 ) -> ValidatedGeotekniskUnders | None:
     """Deletes a GeotekniskBorehull.
 
@@ -113,7 +98,6 @@ def sync(
     Args:
         geoteknisk_unders_id (str):
         geoteknisk_borehull_id (str):
-        epsg_code (EpsgCode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -127,7 +111,6 @@ def sync(
         geoteknisk_unders_id=geoteknisk_unders_id,
         geoteknisk_borehull_id=geoteknisk_borehull_id,
         client=client,
-        epsg_code=epsg_code,
     ).parsed
 
 
@@ -136,7 +119,6 @@ async def asyncio_detailed(
     geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    epsg_code: EpsgCode,
 ) -> Response[ValidatedGeotekniskUnders]:
     """Deletes a GeotekniskBorehull.
 
@@ -145,7 +127,6 @@ async def asyncio_detailed(
     Args:
         geoteknisk_unders_id (str):
         geoteknisk_borehull_id (str):
-        epsg_code (EpsgCode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -158,7 +139,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         geoteknisk_unders_id=geoteknisk_unders_id,
         geoteknisk_borehull_id=geoteknisk_borehull_id,
-        epsg_code=epsg_code,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -171,7 +151,6 @@ async def asyncio(
     geoteknisk_borehull_id: str,
     *,
     client: AuthenticatedClient,
-    epsg_code: EpsgCode,
 ) -> ValidatedGeotekniskUnders | None:
     """Deletes a GeotekniskBorehull.
 
@@ -180,7 +159,6 @@ async def asyncio(
     Args:
         geoteknisk_unders_id (str):
         geoteknisk_borehull_id (str):
-        epsg_code (EpsgCode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -195,6 +173,5 @@ async def asyncio(
             geoteknisk_unders_id=geoteknisk_unders_id,
             geoteknisk_borehull_id=geoteknisk_borehull_id,
             client=client,
-            epsg_code=epsg_code,
         )
     ).parsed

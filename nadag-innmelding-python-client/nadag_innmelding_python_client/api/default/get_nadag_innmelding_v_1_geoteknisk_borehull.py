@@ -77,7 +77,8 @@ def sync_detailed(
 ) -> Response[Any | GeotekniskBorehull]:
     """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a GeotekniskBorehull by external id.Returns the most recent one, if not deleted from its
+    GeotekniskUnders.
 
     Args:
         ekstern_id (str):
@@ -114,7 +115,8 @@ def sync(
 ) -> Any | GeotekniskBorehull | None:
     """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a GeotekniskBorehull by external id.Returns the most recent one, if not deleted from its
+    GeotekniskUnders.
 
     Args:
         ekstern_id (str):
@@ -146,7 +148,8 @@ async def asyncio_detailed(
 ) -> Response[Any | GeotekniskBorehull]:
     """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a GeotekniskBorehull by external id.Returns the most recent one, if not deleted from its
+    GeotekniskUnders.
 
     Args:
         ekstern_id (str):
@@ -181,7 +184,8 @@ async def asyncio(
 ) -> Any | GeotekniskBorehull | None:
     """Fetches a GeotekniskBorehull by external id.
 
-     Fetches a GeotekniskBorehull by external id. Returns the most recent one.
+     Fetches a GeotekniskBorehull by external id.Returns the most recent one, if not deleted from its
+    GeotekniskUnders.
 
     Args:
         ekstern_id (str):

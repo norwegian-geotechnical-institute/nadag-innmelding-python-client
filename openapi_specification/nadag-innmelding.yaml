@@ -5388,8 +5388,8 @@ paths:
   /nadag/innmelding/v1/GeotekniskBorehull:
     get:
       summary: Fetches a GeotekniskBorehull by external id.
-      description: Fetches a GeotekniskBorehull by external id. Returns the most recent
-        one.
+      description: "Fetches a GeotekniskBorehull by external id.Returns the most recent\
+        \ one, if not deleted from its GeotekniskUnders."
       parameters:
       - description: The externId of the GeotekniskBorehull to fetch.
         required: true
@@ -5413,7 +5413,7 @@ paths:
         "401":
           description: Unauthorized Error
         "404":
-          description: GeotekniskBorehull not found
+          description: GeotekniskBorehull not found (or deleted)
         "200":
           description: Returns the GeotekniskBorehull you want to fetch
           content:
@@ -5514,12 +5514,6 @@ paths:
         in: path
         schema:
           type: string
-      - description: The epsg code of the geometry.
-        required: true
-        name: epsgCode
-        in: query
-        schema:
-          $ref: "#/components/schemas/EpsgCode"
       responses:
         "200":
           description: OK
@@ -6033,6 +6027,6 @@ paths:
                 $ref: "#/components/schemas/DiagnosticsDto"
 info:
   title: Nadag innmelding API
-  version: 2026.03.13
+  version: 2026.03.19
 servers:
 - url: http://0.0.0.0:8080
