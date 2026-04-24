@@ -8,14 +8,16 @@ from ...client import AuthenticatedClient, Client
 from ...models.diagnostics_dto import DiagnosticsDto
 from ...models.epsg_code import EpsgCode
 from ...models.geoteknisk_unders import GeotekniskUnders
+from ...models.severity import Severity
 from ...models.validated_geoteknisk_unders import ValidatedGeotekniskUnders
-from ...types import UNSET, Response
+from ...types import UNSET, Response, Unset
 
 
 def _get_kwargs(
     *,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -23,6 +25,12 @@ def _get_kwargs(
 
     json_epsg_code = epsg_code.value
     params["epsgCode"] = json_epsg_code
+
+    json_severity_threshold: str | Unset = UNSET
+    if not isinstance(severity_threshold, Unset):
+        json_severity_threshold = severity_threshold.value
+
+    params["severityThreshold"] = json_severity_threshold
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -79,6 +87,7 @@ def sync_detailed(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Creates a new GeotekniskUnders.
 
@@ -86,6 +95,7 @@ def sync_detailed(
 
     Args:
         epsg_code (EpsgCode):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -101,6 +111,7 @@ def sync_detailed(
     kwargs = _get_kwargs(
         body=body,
         epsg_code=epsg_code,
+        severity_threshold=severity_threshold,
     )
 
     response = client.get_httpx_client().request(
@@ -115,6 +126,7 @@ def sync(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Creates a new GeotekniskUnders.
 
@@ -122,6 +134,7 @@ def sync(
 
     Args:
         epsg_code (EpsgCode):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -138,6 +151,7 @@ def sync(
         client=client,
         body=body,
         epsg_code=epsg_code,
+        severity_threshold=severity_threshold,
     ).parsed
 
 
@@ -146,6 +160,7 @@ async def asyncio_detailed(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Creates a new GeotekniskUnders.
 
@@ -153,6 +168,7 @@ async def asyncio_detailed(
 
     Args:
         epsg_code (EpsgCode):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -168,6 +184,7 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         body=body,
         epsg_code=epsg_code,
+        severity_threshold=severity_threshold,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -180,6 +197,7 @@ async def asyncio(
     client: AuthenticatedClient,
     body: GeotekniskUnders,
     epsg_code: EpsgCode,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Creates a new GeotekniskUnders.
 
@@ -187,6 +205,7 @@ async def asyncio(
 
     Args:
         epsg_code (EpsgCode):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -204,5 +223,6 @@ async def asyncio(
             client=client,
             body=body,
             epsg_code=epsg_code,
+            severity_threshold=severity_threshold,
         )
     ).parsed
