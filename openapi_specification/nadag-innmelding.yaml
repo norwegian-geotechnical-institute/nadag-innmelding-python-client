@@ -5472,6 +5472,12 @@ paths:
         in: query
         schema:
           $ref: "#/components/schemas/EpsgCode"
+      - description: The fatal severity threshold for validation.
+        required: false
+        name: severityThreshold
+        in: query
+        schema:
+          $ref: "#/components/schemas/Severity"
       requestBody:
         description: The GeotekniskBorehull to store.
         required: true
@@ -5690,6 +5696,12 @@ paths:
         in: query
         schema:
           $ref: "#/components/schemas/EpsgCode"
+      - description: The fatal severity threshold for validation.
+        required: false
+        name: severityThreshold
+        in: query
+        schema:
+          $ref: "#/components/schemas/Severity"
       requestBody:
         description: The GeotekniskUnders to store.
         required: true
@@ -5852,6 +5864,12 @@ paths:
         in: query
         schema:
           type: boolean
+      - description: The fatal severity threshold for validation.
+        required: false
+        name: severityThreshold
+        in: query
+        schema:
+          $ref: "#/components/schemas/Severity"
       requestBody:
         description: The new version of the GeotekniskUnders.
         required: true
@@ -5911,6 +5929,12 @@ paths:
         in: query
         schema:
           $ref: "#/components/schemas/EpsgCode"
+      - description: The fatal severity threshold for validation.
+        required: false
+        name: severityThreshold
+        in: query
+        schema:
+          $ref: "#/components/schemas/Severity"
       requestBody:
         description: The GeotekniskBorehull objects to store.
         required: true
@@ -6027,6 +6051,6 @@ paths:
                 $ref: "#/components/schemas/DiagnosticsDto"
 info:
   title: Nadag innmelding API
-  version: 2026.03.19
+  version: 2026.04.24
 servers:
 - url: http://0.0.0.0:8080

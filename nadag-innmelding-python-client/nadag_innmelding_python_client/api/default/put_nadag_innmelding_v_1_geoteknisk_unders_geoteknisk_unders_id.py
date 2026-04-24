@@ -9,6 +9,7 @@ from ...client import AuthenticatedClient, Client
 from ...models.diagnostics_dto import DiagnosticsDto
 from ...models.epsg_code import EpsgCode
 from ...models.geoteknisk_unders import GeotekniskUnders
+from ...models.severity import Severity
 from ...models.validated_geoteknisk_unders import ValidatedGeotekniskUnders
 from ...types import UNSET, Response, Unset
 
@@ -22,6 +23,7 @@ def _get_kwargs(
     ignore_har_dokument: bool | Unset = UNSET,
     ignore_har_tolkning: bool | Unset = UNSET,
     ignore_unders_pkt: bool | Unset = UNSET,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> dict[str, Any]:
     headers: dict[str, Any] = {}
 
@@ -37,6 +39,12 @@ def _get_kwargs(
     params["ignoreHarTolkning"] = ignore_har_tolkning
 
     params["ignoreUndersPkt"] = ignore_unders_pkt
+
+    json_severity_threshold: str | Unset = UNSET
+    if not isinstance(severity_threshold, Unset):
+        json_severity_threshold = severity_threshold.value
+
+    params["severityThreshold"] = json_severity_threshold
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -104,6 +112,7 @@ def sync_detailed(
     ignore_har_dokument: bool | Unset = UNSET,
     ignore_har_tolkning: bool | Unset = UNSET,
     ignore_unders_pkt: bool | Unset = UNSET,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Updates a GeotekniskUnders.
 
@@ -116,6 +125,7 @@ def sync_detailed(
         ignore_har_dokument (bool | Unset):
         ignore_har_tolkning (bool | Unset):
         ignore_unders_pkt (bool | Unset):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -136,6 +146,7 @@ def sync_detailed(
         ignore_har_dokument=ignore_har_dokument,
         ignore_har_tolkning=ignore_har_tolkning,
         ignore_unders_pkt=ignore_unders_pkt,
+        severity_threshold=severity_threshold,
     )
 
     response = client.get_httpx_client().request(
@@ -155,6 +166,7 @@ def sync(
     ignore_har_dokument: bool | Unset = UNSET,
     ignore_har_tolkning: bool | Unset = UNSET,
     ignore_unders_pkt: bool | Unset = UNSET,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Updates a GeotekniskUnders.
 
@@ -167,6 +179,7 @@ def sync(
         ignore_har_dokument (bool | Unset):
         ignore_har_tolkning (bool | Unset):
         ignore_unders_pkt (bool | Unset):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -188,6 +201,7 @@ def sync(
         ignore_har_dokument=ignore_har_dokument,
         ignore_har_tolkning=ignore_har_tolkning,
         ignore_unders_pkt=ignore_unders_pkt,
+        severity_threshold=severity_threshold,
     ).parsed
 
 
@@ -201,6 +215,7 @@ async def asyncio_detailed(
     ignore_har_dokument: bool | Unset = UNSET,
     ignore_har_tolkning: bool | Unset = UNSET,
     ignore_unders_pkt: bool | Unset = UNSET,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Updates a GeotekniskUnders.
 
@@ -213,6 +228,7 @@ async def asyncio_detailed(
         ignore_har_dokument (bool | Unset):
         ignore_har_tolkning (bool | Unset):
         ignore_unders_pkt (bool | Unset):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -233,6 +249,7 @@ async def asyncio_detailed(
         ignore_har_dokument=ignore_har_dokument,
         ignore_har_tolkning=ignore_har_tolkning,
         ignore_unders_pkt=ignore_unders_pkt,
+        severity_threshold=severity_threshold,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -250,6 +267,7 @@ async def asyncio(
     ignore_har_dokument: bool | Unset = UNSET,
     ignore_har_tolkning: bool | Unset = UNSET,
     ignore_unders_pkt: bool | Unset = UNSET,
+    severity_threshold: Severity | Unset = UNSET,
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Updates a GeotekniskUnders.
 
@@ -262,6 +280,7 @@ async def asyncio(
         ignore_har_dokument (bool | Unset):
         ignore_har_tolkning (bool | Unset):
         ignore_unders_pkt (bool | Unset):
+        severity_threshold (Severity | Unset):
         body (GeotekniskUnders): geografisk område hvor det finnes eller er planlagt geotekniske
             borehull tilhørende et gitt prosjekt <engelsk>geographical area where there are or are
             planned geotechnical boreholes for a given project</engelsk>
@@ -284,5 +303,6 @@ async def asyncio(
             ignore_har_dokument=ignore_har_dokument,
             ignore_har_tolkning=ignore_har_tolkning,
             ignore_unders_pkt=ignore_unders_pkt,
+            severity_threshold=severity_threshold,
         )
     ).parsed
