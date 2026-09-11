@@ -7,7 +7,6 @@ from uuid import UUID
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.severity import Severity
 from ..types import UNSET, Unset
@@ -89,7 +88,7 @@ class DiagnosticDto:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.object_ref import ObjectRef
+        from ..models.object_ref import ObjectRef  # noqa: PLC0415
 
         d = dict(src_dict)
         _validation_id = d.pop("validationId", UNSET)
@@ -129,7 +128,7 @@ class DiagnosticDto:
         if isinstance(_timestamp, Unset):
             timestamp = UNSET
         else:
-            timestamp = isoparse(_timestamp)
+            timestamp = datetime.datetime.fromisoformat(_timestamp)
 
         diagnostic_dto = cls(
             validation_id=validation_id,

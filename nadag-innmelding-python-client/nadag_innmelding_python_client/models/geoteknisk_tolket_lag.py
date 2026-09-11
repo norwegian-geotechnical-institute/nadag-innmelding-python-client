@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.hoved_lag_klassifisering import HovedLagKlassifisering
 from ..models.klassifiserings_metode import KlassifiseringsMetode
@@ -26,6 +25,7 @@ class GeotekniskTolketLag:
     """Lag med geoteknisk tolkning
 
     Attributes:
+        posisjon (Point):
         tolket_lag_id (str | Unset): Unik nøkkel for tolktet lag
         klassifisering_metode (KlassifiseringsMetode | Unset): oversikt over klassifiseringsmetoder for bestemmelse av
             grunnforhold<engelsk>overview of classification methods for determination of ground conditions</engelsk>
@@ -42,12 +42,12 @@ class GeotekniskTolketLag:
         under_terreng_overflate (bool | Unset): Om tolkning er under terrengoverflate
         ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
             leverandør inn til NADAG.
-        posisjon (Point | Unset):
         høyde (float | Unset): Laghøyde for tolkning [m]
         h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
             koder benyttes.
     """
 
+    posisjon: Point
     tolket_lag_id: str | Unset = UNSET
     klassifisering_metode: KlassifiseringsMetode | Unset = UNSET
     hoved_lag_klassifiserings_kode: HovedLagKlassifisering | Unset = UNSET
@@ -60,12 +60,13 @@ class GeotekniskTolketLag:
     vurdering: float | Unset = UNSET
     under_terreng_overflate: bool | Unset = UNSET
     ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
-    posisjon: Point | Unset = UNSET
     høyde: float | Unset = UNSET
     h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        posisjon = self.posisjon.to_dict()
+
         tolket_lag_id = self.tolket_lag_id
 
         klassifisering_metode: str | Unset = UNSET
@@ -98,10 +99,6 @@ class GeotekniskTolketLag:
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
-        posisjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.posisjon, Unset):
-            posisjon = self.posisjon.to_dict()
-
         høyde = self.høyde
 
         h_ø_yde_referanse: str | Unset = UNSET
@@ -110,7 +107,11 @@ class GeotekniskTolketLag:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "posisjon": posisjon,
+            }
+        )
         if tolket_lag_id is not UNSET:
             field_dict["tolketLagID"] = tolket_lag_id
         if klassifisering_metode is not UNSET:
@@ -135,8 +136,6 @@ class GeotekniskTolketLag:
             field_dict["underTerrengOverflate"] = under_terreng_overflate
         if ekstern_identifikasjon is not UNSET:
             field_dict["eksternIdentifikasjon"] = ekstern_identifikasjon
-        if posisjon is not UNSET:
-            field_dict["posisjon"] = posisjon
         if høyde is not UNSET:
             field_dict["høyde"] = høyde
         if h_ø_yde_referanse is not UNSET:
@@ -146,10 +145,12 @@ class GeotekniskTolketLag:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.ekstern_identifikasjon import EksternIdentifikasjon
-        from ..models.point import Point
+        from ..models.ekstern_identifikasjon import EksternIdentifikasjon  # noqa: PLC0415
+        from ..models.point import Point  # noqa: PLC0415
 
         d = dict(src_dict)
+        posisjon = Point.from_dict(d.pop("posisjon"))
+
         tolket_lag_id = d.pop("tolketLagID", UNSET)
 
         _klassifisering_metode = d.pop("klassifiseringMetode", UNSET)
@@ -175,7 +176,7 @@ class GeotekniskTolketLag:
         if isinstance(_tolket_tidspunkt, Unset):
             tolket_tidspunkt = UNSET
         else:
-            tolket_tidspunkt = isoparse(_tolket_tidspunkt)
+            tolket_tidspunkt = datetime.datetime.fromisoformat(_tolket_tidspunkt)
 
         tolkning_merknad = d.pop("tolkningMerknad", UNSET)
 
@@ -194,13 +195,6 @@ class GeotekniskTolketLag:
         else:
             ekstern_identifikasjon = EksternIdentifikasjon.from_dict(_ekstern_identifikasjon)
 
-        _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Point | Unset
-        if isinstance(_posisjon, Unset):
-            posisjon = UNSET
-        else:
-            posisjon = Point.from_dict(_posisjon)
-
         høyde = d.pop("høyde", UNSET)
 
         _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
@@ -211,6 +205,7 @@ class GeotekniskTolketLag:
             h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         geoteknisk_tolket_lag = cls(
+            posisjon=posisjon,
             tolket_lag_id=tolket_lag_id,
             klassifisering_metode=klassifisering_metode,
             hoved_lag_klassifiserings_kode=hoved_lag_klassifiserings_kode,
@@ -223,7 +218,6 @@ class GeotekniskTolketLag:
             vurdering=vurdering,
             under_terreng_overflate=under_terreng_overflate,
             ekstern_identifikasjon=ekstern_identifikasjon,
-            posisjon=posisjon,
             høyde=høyde,
             h_ø_yde_referanse=h_ø_yde_referanse,
         )

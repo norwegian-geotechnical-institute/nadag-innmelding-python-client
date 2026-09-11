@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class KlassifiseringsMetode(str, Enum):
+class KlassifiseringsMetode(StrEnum):
     BEREGNETFRATERRENGOVERFLATEN = "BEREGNETFRATERRENGOVERFLATEN"
     OBSERVASJON = "OBSERVASJON"
     TOLKETBERGBORING = "TOLKETBERGBORING"

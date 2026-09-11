@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.felt_unders_type_kode import FeltUndersTypeKode
 from ..models.geoteknisk_felt_unders_metode_kode import GeotekniskFeltUndersMetodeKode
@@ -29,14 +28,14 @@ class GeotekniskFeltUnders:
     """Geoteknisk feltundersøkelse
 
     Attributes:
-        identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+        identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
             produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
             NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        posisjon (Point | Unset):
+        posisjon (Point):
         geoteknisk_felt_unders_metode (GeotekniskFeltUndersMetodeKode | Unset): Koder for metoder benyttet ved
             geotekniske feltundersøkelser
         eksternidentifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
@@ -52,8 +51,8 @@ class GeotekniskFeltUnders:
         har_dokument (list[GeotekniskDokument] | Unset):
     """
 
-    identifikasjon: Identifikasjon | Unset = UNSET
-    posisjon: Point | Unset = UNSET
+    identifikasjon: Identifikasjon
+    posisjon: Point
     geoteknisk_felt_unders_metode: GeotekniskFeltUndersMetodeKode | Unset = UNSET
     eksternidentifikasjon: EksternIdentifikasjon | Unset = UNSET
     opprettet_dato: datetime.datetime | Unset = UNSET
@@ -67,13 +66,9 @@ class GeotekniskFeltUnders:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon = self.identifikasjon.to_dict()
 
-        posisjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.posisjon, Unset):
-            posisjon = self.posisjon.to_dict()
+        posisjon = self.posisjon.to_dict()
 
         geoteknisk_felt_unders_metode: str | Unset = UNSET
         if not isinstance(self.geoteknisk_felt_unders_metode, Unset):
@@ -114,11 +109,12 @@ class GeotekniskFeltUnders:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
-        if posisjon is not UNSET:
-            field_dict["posisjon"] = posisjon
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+                "posisjon": posisjon,
+            }
+        )
         if geoteknisk_felt_unders_metode is not UNSET:
             field_dict["geotekniskFeltUndersMetode"] = geoteknisk_felt_unders_metode
         if eksternidentifikasjon is not UNSET:
@@ -144,25 +140,15 @@ class GeotekniskFeltUnders:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.ekstern_identifikasjon import EksternIdentifikasjon
-        from ..models.geoteknisk_dokument import GeotekniskDokument
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.point import Point
+        from ..models.ekstern_identifikasjon import EksternIdentifikasjon  # noqa: PLC0415
+        from ..models.geoteknisk_dokument import GeotekniskDokument  # noqa: PLC0415
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.point import Point  # noqa: PLC0415
 
         d = dict(src_dict)
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
 
-        _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Point | Unset
-        if isinstance(_posisjon, Unset):
-            posisjon = UNSET
-        else:
-            posisjon = Point.from_dict(_posisjon)
+        posisjon = Point.from_dict(d.pop("posisjon"))
 
         _geoteknisk_felt_unders_metode = d.pop("geotekniskFeltUndersMetode", UNSET)
         geoteknisk_felt_unders_metode: GeotekniskFeltUndersMetodeKode | Unset
@@ -183,7 +169,7 @@ class GeotekniskFeltUnders:
         if isinstance(_opprettet_dato, Unset):
             opprettet_dato = UNSET
         else:
-            opprettet_dato = isoparse(_opprettet_dato)
+            opprettet_dato = datetime.datetime.fromisoformat(_opprettet_dato)
 
         _feltunders_type = d.pop("feltundersType", UNSET)
         feltunders_type: FeltUndersTypeKode | Unset

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class HovedLagKlassifisering(str, Enum):
+class HovedLagKlassifisering(StrEnum):
     ANNETORGANISKMATERIALE = "ANNETORGANISKMATERIALE"
     ANTATTFORURENSNING = "ANTATTFORURENSNING"
     BERG = "BERG"

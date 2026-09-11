@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class HydrauliskKonduktivitet(str, Enum):
+class HydrauliskKonduktivitet(StrEnum):
     DÅRLIG_VANNGIVER = "DÅRLIG_VANNGIVER"
     GANSKE_DÅRLIG_VANNGIVER = "GANSKE_DÅRLIG_VANNGIVER"
     GOD_VANNGIVER = "GOD_VANNGIVER"

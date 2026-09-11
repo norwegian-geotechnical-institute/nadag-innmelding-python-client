@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "nadag-innmelding-python-client"
-version = "2026.04.24"
-description = "A client library for accessing Nadag innmelding API"
+version = "2026.09.07"
+description = "<openapi_python_client.schema.untrusted_string.UntrustedString object at 0x7fc7f94a39d0>"
 license = "MIT"
 authors = ["Jiyang Ye <jiyang.ye@ngi.no>"]
 maintainers = ["Jiyang Ye <jiyang.ye@ngi.no>", "Jostein Leira <jostein.leira@ngi.no>"]

@@ -116,7 +116,7 @@ def sync_detailed(
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Updates a GeotekniskUnders. Identifikasjon of original GeotekniskUnders must be filled in.
 
     Args:
         geoteknisk_unders_id (str):
@@ -170,7 +170,7 @@ def sync(
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Updates a GeotekniskUnders. Identifikasjon of original GeotekniskUnders must be filled in.
 
     Args:
         geoteknisk_unders_id (str):
@@ -219,7 +219,7 @@ async def asyncio_detailed(
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Updates a GeotekniskUnders. Identifikasjon of original GeotekniskUnders must be filled in.
 
     Args:
         geoteknisk_unders_id (str):
@@ -271,7 +271,7 @@ async def asyncio(
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Updates a GeotekniskUnders.
 
-     Updates a GeotekniskUnders.
+     Updates a GeotekniskUnders. Identifikasjon of original GeotekniskUnders must be filled in.
 
     Args:
         geoteknisk_unders_id (str):

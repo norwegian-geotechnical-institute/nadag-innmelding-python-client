@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class FeltUndersTypeKode(str, Enum):
+class FeltUndersTypeKode(StrEnum):
     FELTUNDERSMETODE = "FELTUNDERSMETODE"
     TOLKET = "TOLKET"
     TOLKETBERGHØYDE = "TOLKETBERGHØYDE"

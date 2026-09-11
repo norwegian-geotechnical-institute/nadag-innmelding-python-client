@@ -49,7 +49,7 @@ class GeometryCollection:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.geometry import Geometry
+        from ..models.geometry import Geometry  # noqa: PLC0415
 
         d = dict(src_dict)
         type_ = cast(Literal["GeometryCollection"] | Unset, d.pop("type", UNSET))

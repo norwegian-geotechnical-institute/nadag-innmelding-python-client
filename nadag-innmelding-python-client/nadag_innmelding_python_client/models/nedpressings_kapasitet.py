@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class NedpressingsKapasitet(str, Enum):
+class NedpressingsKapasitet(StrEnum):
     VALUE_0 = "_10_KN"
     VALUE_1 = "_100_KN"
     VALUE_2 = "_50_KN"

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class GjennomboretMedium(str, Enum):
+class GjennomboretMedium(StrEnum):
     BERG = "BERG"
     IS = "IS"
     LUFT = "LUFT"

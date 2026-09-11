@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class VannProeveKilde(str, Enum):
+class VannProeveKilde(StrEnum):
     GRUNNVANN = "GRUNNVANN"
     OVERFLATEVANN = "OVERFLATEVANN"
     POREVANN = "POREVANN"

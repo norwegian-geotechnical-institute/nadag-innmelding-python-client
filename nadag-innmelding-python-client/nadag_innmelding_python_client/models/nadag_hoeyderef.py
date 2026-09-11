@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class NADAGHoeyderef(str, Enum):
+class NADAGHoeyderef(StrEnum):
     NN2000 = "NN2000"
     NN54 = "NN54"
     UKJENT_HØYDEREFERANSE = "UKJENT_HØYDEREFERANSE"

@@ -6,7 +6,6 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -64,7 +63,7 @@ class Kopidata:
         d = dict(src_dict)
         original_datavert = d.pop("originalDatavert")
 
-        kopidato = isoparse(d.pop("kopidato"))
+        kopidato = datetime.datetime.fromisoformat(d.pop("kopidato"))
 
         omr_å_de_id = d.pop("områdeId", UNSET)
 

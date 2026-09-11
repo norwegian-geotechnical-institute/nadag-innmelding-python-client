@@ -91,7 +91,8 @@ def sync_detailed(
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Creates a new GeotekniskUnders.
 
-     Creates a new GeotekniskUnders. Returns the id of the newly created GeotekniskUnders.
+     Creates a new GeotekniskUnders. Identifikasjon and dates must be blank, they will be generated.
+    Returns the newly created GeotekniskUnders with identifikasjon and dates filled in.
 
     Args:
         epsg_code (EpsgCode):
@@ -130,7 +131,8 @@ def sync(
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Creates a new GeotekniskUnders.
 
-     Creates a new GeotekniskUnders. Returns the id of the newly created GeotekniskUnders.
+     Creates a new GeotekniskUnders. Identifikasjon and dates must be blank, they will be generated.
+    Returns the newly created GeotekniskUnders with identifikasjon and dates filled in.
 
     Args:
         epsg_code (EpsgCode):
@@ -164,7 +166,8 @@ async def asyncio_detailed(
 ) -> Response[Any | DiagnosticsDto | ValidatedGeotekniskUnders]:
     """Creates a new GeotekniskUnders.
 
-     Creates a new GeotekniskUnders. Returns the id of the newly created GeotekniskUnders.
+     Creates a new GeotekniskUnders. Identifikasjon and dates must be blank, they will be generated.
+    Returns the newly created GeotekniskUnders with identifikasjon and dates filled in.
 
     Args:
         epsg_code (EpsgCode):
@@ -201,7 +204,8 @@ async def asyncio(
 ) -> Any | DiagnosticsDto | ValidatedGeotekniskUnders | None:
     """Creates a new GeotekniskUnders.
 
-     Creates a new GeotekniskUnders. Returns the id of the newly created GeotekniskUnders.
+     Creates a new GeotekniskUnders. Identifikasjon and dates must be blank, they will be generated.
+    Returns the newly created GeotekniskUnders with identifikasjon and dates filled in.
 
     Args:
         epsg_code (EpsgCode):

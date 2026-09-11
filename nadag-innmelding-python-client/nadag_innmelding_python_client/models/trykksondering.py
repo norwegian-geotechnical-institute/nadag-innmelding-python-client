@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.nedpressings_kapasitet import NedpressingsKapasitet
 from ..models.sonde_kvalitets_klasse import SondeKvalitetsKlasse
@@ -31,14 +30,14 @@ class Trykksondering:
     soil</engelsk>
 
         Attributes:
-            json_type (Literal['Trykksondering'] | Unset):
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
+            json_type (Literal['Trykksondering'] | Unset):
             fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
             til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
@@ -92,8 +91,8 @@ class Trykksondering:
             dissipasjon_observasjon (list[DissipasjonData] | Unset):
     """
 
+    identifikasjon: Identifikasjon
     json_type: Literal["Trykksondering"] | Unset = UNSET
-    identifikasjon: Identifikasjon | Unset = UNSET
     fra_borlengde: float | Unset = UNSET
     til_borlengde: float | Unset = UNSET
     insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
@@ -121,11 +120,9 @@ class Trykksondering:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        json_type = self.json_type
+        identifikasjon = self.identifikasjon.to_dict()
 
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        json_type = self.json_type
 
         fra_borlengde = self.fra_borlengde
 
@@ -202,11 +199,13 @@ class Trykksondering:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+            }
+        )
         if json_type is not UNSET:
             field_dict["jsonType"] = json_type
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
         if fra_borlengde is not UNSET:
             field_dict["fraBorlengde"] = fra_borlengde
         if til_borlengde is not UNSET:
@@ -260,22 +259,17 @@ class Trykksondering:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.dissipasjon_data import DissipasjonData
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.poretrykk_data_insitu import PoretrykkDataInsitu
-        from ..models.trykksondering_data import TrykksonderingData
+        from ..models.dissipasjon_data import DissipasjonData  # noqa: PLC0415
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.poretrykk_data_insitu import PoretrykkDataInsitu  # noqa: PLC0415
+        from ..models.trykksondering_data import TrykksonderingData  # noqa: PLC0415
 
         d = dict(src_dict)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+
         json_type = cast(Literal["Trykksondering"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "Trykksondering" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'Trykksondering', got '{json_type}'")
-
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         fra_borlengde = d.pop("fraBorlengde", UNSET)
 
@@ -286,14 +280,14 @@ class Trykksondering:
         if isinstance(_insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = UNSET
         else:
-            insitu_test_start_tidspunkt = isoparse(_insitu_test_start_tidspunkt)
+            insitu_test_start_tidspunkt = datetime.datetime.fromisoformat(_insitu_test_start_tidspunkt)
 
         _insitu_test_slutt_tidspunkt = d.pop("insituTestSluttTidspunkt", UNSET)
         insitu_test_slutt_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = UNSET
         else:
-            insitu_test_slutt_tidspunkt = isoparse(_insitu_test_slutt_tidspunkt)
+            insitu_test_slutt_tidspunkt = datetime.datetime.fromisoformat(_insitu_test_slutt_tidspunkt)
 
         alpha = d.pop("alpha", UNSET)
 
@@ -327,7 +321,7 @@ class Trykksondering:
         if isinstance(_sonde_kalibrering_dato, Unset):
             sonde_kalibrering_dato = UNSET
         else:
-            sonde_kalibrering_dato = isoparse(_sonde_kalibrering_dato)
+            sonde_kalibrering_dato = datetime.datetime.fromisoformat(_sonde_kalibrering_dato)
 
         _sonde_kvalitet_klasse = d.pop("sondeKvalitetKlasse", UNSET)
         sonde_kvalitet_klasse: SondeKvalitetsKlasse | Unset
@@ -374,8 +368,8 @@ class Trykksondering:
                 dissipasjon_observasjon.append(dissipasjon_observasjon_item)
 
         trykksondering = cls(
-            json_type=json_type,
             identifikasjon=identifikasjon,
+            json_type=json_type,
             fra_borlengde=fra_borlengde,
             til_borlengde=til_borlengde,
             insitu_test_start_tidspunkt=insitu_test_start_tidspunkt,

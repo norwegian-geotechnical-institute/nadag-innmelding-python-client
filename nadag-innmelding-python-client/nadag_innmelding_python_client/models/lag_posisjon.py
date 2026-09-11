@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class LagPosisjon(str, Enum):
+class LagPosisjon(StrEnum):
     HØYRE = "HØYRE"
     IKKEANGITT = "IKKEANGITT"
     MIDTEN = "MIDTEN"

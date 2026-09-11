@@ -6,7 +6,6 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.akvifer_type import AkviferType
 from ..types import UNSET, Unset
@@ -96,7 +95,7 @@ class OvervaakningData:
         if isinstance(_m_å_le_tidspunkt, Unset):
             m_å_le_tidspunkt = UNSET
         else:
-            m_å_le_tidspunkt = isoparse(_m_å_le_tidspunkt)
+            m_å_le_tidspunkt = datetime.datetime.fromisoformat(_m_å_le_tidspunkt)
 
         nedre_alarm_niv_å = d.pop("nedreAlarmNivå", UNSET)
 
@@ -107,7 +106,7 @@ class OvervaakningData:
         if isinstance(_m_å_le_dato, Unset):
             m_å_le_dato = UNSET
         else:
-            m_å_le_dato = isoparse(_m_å_le_dato).date()
+            m_å_le_dato = datetime.date.fromisoformat(_m_å_le_dato)
 
         observasjon_merknad = d.pop("observasjonMerknad", UNSET)
 

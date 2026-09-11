@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class TolkningMetodeKode(str, Enum):
+class TolkningMetodeKode(StrEnum):
     BG = "BG"
     BH = "BH"
     F = "F"

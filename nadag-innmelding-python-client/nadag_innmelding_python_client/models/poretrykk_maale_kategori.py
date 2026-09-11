@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class PoretrykkMaaleKategori(str, Enum):
+class PoretrykkMaaleKategori(StrEnum):
     ELEKTRISK = "ELEKTRISK"
     HYDRAULISK = "HYDRAULISK"
 

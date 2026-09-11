@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -25,7 +24,7 @@ class SupertypeGeoteknObjOmr:
     Spesielt i produktspesifikasjonsarbeid vil en velge egenskaper og av grensningslinjer fra denne klassen.
 
         Attributes:
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
@@ -42,14 +41,12 @@ class SupertypeGeoteknObjOmr:
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
     """
 
-    identifikasjon: Identifikasjon | Unset = UNSET
+    identifikasjon: Identifikasjon
     oppdateringsdato: datetime.datetime | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon = self.identifikasjon.to_dict()
 
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
@@ -57,9 +54,11 @@ class SupertypeGeoteknObjOmr:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+            }
+        )
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
 
@@ -67,22 +66,17 @@ class SupertypeGeoteknObjOmr:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identifikasjon import Identifikasjon
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
 
         d = dict(src_dict)
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
         oppdateringsdato: datetime.datetime | Unset
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
-            oppdateringsdato = isoparse(_oppdateringsdato)
+            oppdateringsdato = datetime.datetime.fromisoformat(_oppdateringsdato)
 
         supertype_geotekn_obj_omr = cls(
             identifikasjon=identifikasjon,

@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class GeotekniskMetodeKode(str, Enum):
+class GeotekniskMetodeKode(StrEnum):
     BERGKONTROLLBORING = "BERGKONTROLLBORING"
     BLOKKPRØVE = "BLOKKPRØVE"
     DILATOMETERTEST = "DILATOMETERTEST"
