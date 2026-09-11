@@ -1,26 +1,30 @@
-[tool.poetry]
+[project]
 name = "nadag-innmelding-python-client"
 version = "2026.09.07"
-description = "<openapi_python_client.schema.untrusted_string.UntrustedString object at 0x7fc7f94a39d0>"
+description = "A client library for accessing Nadag innmelding API"
 license = "MIT"
-authors = ["Jiyang Ye <jiyang.ye@ngi.no>"]
-maintainers = ["Jiyang Ye <jiyang.ye@ngi.no>", "Jostein Leira <jostein.leira@ngi.no>"]
-readme = "README.md"
-packages = [
-    {include = "nadag_innmelding_python_client"},
+authors = [
+    { name = "Jiyang Ye", email = "jiyang.ye@ngi.no" },
 ]
-include = ["CHANGELOG.md", "nadag_innmelding_python_client/py.typed"]
+maintainers = [
+    { name = "Jiyang Ye", email = "jiyang.ye@ngi.no" },
+    { name = "Jostein Leira", email = "jostein.leira@ngi.no" },
+]
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "httpx>=0.20.0,<0.29.0",
+    "attrs>=22.2.0",
+    "python-dateutil>=2.8.0,<3",
+]
 
-
-[tool.poetry.dependencies]
-python = "^3.13"
-httpx = ">=0.20.0,<0.29.0"
-attrs = ">=22.2.0"
-python-dateutil = "^2.8.0"
+[tool.uv.build-backend]
+module-name = "nadag_innmelding_python_client"
+module-root = ""
 
 [build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+requires = ["uv_build>=0.12.0,<0.13.0"]
+build-backend = "uv_build"
 
 [tool.ruff]
 line-length = 120

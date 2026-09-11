@@ -1,4 +1,4 @@
 project_name_override: nadag-innmelding-python-client
 package_name_override: nadag_innmelding_python_client
 post_hooks:
-  # - "bash -c 'cd field-manager-python-client && poetry install'"
+  # - "bash -c 'cd nadag-innmelding-python-client && uv sync'"

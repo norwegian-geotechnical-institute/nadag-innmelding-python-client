@@ -69,11 +69,10 @@ Rationale for PR-based flow:
 To replicate the regeneration locally:
 
 ```bash
-pip install openapi-python-client
-python scripts/update_from_spec.py
+uvx openapi-python-client generate --path openapi_specification/nadag-innmelding.yaml --overwrite --custom-template-path templates --config config.yaml --meta uv
 ```
 
-This will download the latest spec, regenerate the client, and bump the package version. You can then open a PR or tag manually.
+This regenerates the client from the committed specification and uses its version for the package. Update the specification first if you need to pull in a newer API release.
 
 ## Developer installation
 

@@ -1,5 +1,5 @@
 # nadag-innmelding-python-client
-<openapi_python_client.schema.untrusted_string.UntrustedString object at 0x7fc7f94a39d0>
+A client library for accessing Nadag innmelding API
 
 ## Usage
 First, create a client:
@@ -90,15 +90,12 @@ client.set_httpx_client(httpx.Client(base_url="https://api.example.com", proxies
 ```
 
 ## Building / publishing this package
-This project uses [Poetry](https://python-poetry.org/) to manage dependencies  and packaging.  Here are the basics:
-1. Update the metadata in pyproject.toml (e.g. authors, version)
-1. If you're using a private repository, configure it with Poetry
-    1. `poetry config repositories.<your-repository-name> <url-to-your-repository>`
-    1. `poetry config http-basic.<your-repository-name> <username> <password>`
-1. Publish the client with `poetry publish --build -r <your-repository-name>` or, if for public PyPI, just `poetry publish --build`
+This project uses [uv](https://docs.astral.sh/uv/) to manage dependencies and packaging. Here are the basics:
+1. Update the metadata in `pyproject.toml` (e.g. authors, version).
+2. Run `uv sync` to create the environment and install dependencies.
+3. Build the source and wheel distributions with `uv build`.
+4. Publish them with `uv publish`.
 
 If you want to install this client into another project without publishing it (e.g. for development) then:
-1. If that project **is using Poetry**, you can simply do `poetry add <path-to-this-client>` from that project
-1. If that project is not using Poetry:
-    1. Build a wheel with `poetry build -f wheel`
-    1. Install that wheel from the other project `pip install <path-to-wheel>`
+1. In a uv project, run `uv add <path-to-this-client>`.
+2. Otherwise, run `uv build --wheel` and install the resulting wheel with pip.
