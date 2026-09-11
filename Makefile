@@ -7,10 +7,10 @@ OPENAPI_SPEC=./openapi_specification/nadag-innmelding.yaml
 # Please note that his is now a yaml file and not json as before (no file extension)
 OPENAPI_SPEC_URL=https://test.ngu.no/api/nadag/innmelding/openapi/v1
 
-# Install the required library using pipx
-install:  ## Install openapi-python-client using pipx
-	pipx install openapi-python-client --include-deps
-	openapi-python-client --install-completion
+# Install the required library using uv
+install:  ## Install openapi-python-client using uv
+	uv tool install openapi-python-client
+	uv tool run openapi-python-client --install-completion
 
 # Install jq
 install_jq:  ## Install jq command-line tool
@@ -47,8 +47,8 @@ get_version:  ## Get the version from openapi.json and save to openapi_specifica
 # Run the openapi-python-client generate command
 generate: clear_log get_version  ## Generate API client from OpenAPI spec
 	@echo "Generating API client..."
-	openapi-python-client --version > logs/log 2>&1
-	openapi-python-client generate --path $(OPENAPI_SPEC) --overwrite --custom-template-path=templates --config config.yaml >> logs/log 2>&1
+	uvx openapi-python-client --version > logs/log 2>&1
+	uvx openapi-python-client generate --path $(OPENAPI_SPEC) --overwrite --custom-template-path=templates --config config.yaml --meta uv >> logs/log 2>&1
 
 # A shortcut to install dependencies and then generate the client
 all: install install_jq generate  ## Install dependencies and generate client

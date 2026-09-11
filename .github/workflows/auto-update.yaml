@@ -26,15 +26,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up uv
+        uses: astral-sh/setup-uv@v7
         with:
           python-version: '3.13'
-
-      - name: Install generator
-        run: |
-          python -m pip install --upgrade pip
-          pip install openapi-python-client jq
+          enable-cache: true
 
       - name: Download latest spec
         id: download
@@ -75,11 +71,12 @@ jobs:
           echo "Spec version changed. Regenerating client..." >&2
           mv new_spec.yaml "$SPEC_PATH"
           # Run generator (using overwrite & custom templates/config)
-          openapi-python-client generate \
+          uvx openapi-python-client generate \
             --path "$SPEC_PATH" \
             --overwrite \
             --custom-template-path templates \
-            --config config.yaml
+            --config config.yaml \
+            --meta uv
           NEW_VERSION='${{ steps.download.outputs.new_version }}'
           # Bump package version in pyproject to the spec version
           if [ -f "$PACKAGE_PYPROJECT" ]; then
