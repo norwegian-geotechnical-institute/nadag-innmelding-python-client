@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -29,7 +28,7 @@ class GeovitenskapeligUndersoekelse:
     </engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
@@ -78,7 +77,7 @@ class GeovitenskapeligUndersoekelse:
                 </engelsk>
     """
 
-    identifikasjon: Identifikasjon | Unset = UNSET
+    identifikasjon: Identifikasjon
     oppdateringsdato: datetime.datetime | Unset = UNSET
     beskrivelse: str | Unset = UNSET
     område: Polygon | Unset = UNSET
@@ -91,9 +90,7 @@ class GeovitenskapeligUndersoekelse:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon = self.identifikasjon.to_dict()
 
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
@@ -125,9 +122,11 @@ class GeovitenskapeligUndersoekelse:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+            }
+        )
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
         if beskrivelse is not UNSET:
@@ -151,24 +150,19 @@ class GeovitenskapeligUndersoekelse:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.multi_polygon import MultiPolygon
-        from ..models.polygon import Polygon
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.multi_polygon import MultiPolygon  # noqa: PLC0415
+        from ..models.polygon import Polygon  # noqa: PLC0415
 
         d = dict(src_dict)
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
         oppdateringsdato: datetime.datetime | Unset
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
-            oppdateringsdato = isoparse(_oppdateringsdato)
+            oppdateringsdato = datetime.datetime.fromisoformat(_oppdateringsdato)
 
         beskrivelse = d.pop("beskrivelse", UNSET)
 
@@ -190,7 +184,7 @@ class GeovitenskapeligUndersoekelse:
         if isinstance(_unders_ø_kelse_periode_fra, Unset):
             unders_ø_kelse_periode_fra = UNSET
         else:
-            unders_ø_kelse_periode_fra = isoparse(_unders_ø_kelse_periode_fra)
+            unders_ø_kelse_periode_fra = datetime.datetime.fromisoformat(_unders_ø_kelse_periode_fra)
 
         _sammensattområde = d.pop("sammensattområde", UNSET)
         sammensattområde: MultiPolygon | Unset
@@ -204,7 +198,7 @@ class GeovitenskapeligUndersoekelse:
         if isinstance(_unders_ø_kelse_periode_til, Unset):
             unders_ø_kelse_periode_til = UNSET
         else:
-            unders_ø_kelse_periode_til = isoparse(_unders_ø_kelse_periode_til)
+            unders_ø_kelse_periode_til = datetime.datetime.fromisoformat(_unders_ø_kelse_periode_til)
 
         geovitenskapelig_undersoekelse = cls(
             identifikasjon=identifikasjon,

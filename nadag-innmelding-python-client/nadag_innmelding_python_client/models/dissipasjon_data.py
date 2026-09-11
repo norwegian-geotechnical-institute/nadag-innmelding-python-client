@@ -6,7 +6,6 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -143,7 +142,7 @@ class DissipasjonData:
         if isinstance(_dissipasjons_tidspunkt, Unset):
             dissipasjons_tidspunkt = UNSET
         else:
-            dissipasjons_tidspunkt = isoparse(_dissipasjons_tidspunkt)
+            dissipasjons_tidspunkt = datetime.datetime.fromisoformat(_dissipasjons_tidspunkt)
 
         friksjon = d.pop("friksjon", UNSET)
 

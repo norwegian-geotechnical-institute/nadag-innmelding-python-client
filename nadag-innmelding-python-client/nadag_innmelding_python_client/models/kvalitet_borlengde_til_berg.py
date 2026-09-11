@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class KvalitetBorlengdeTilBerg(str, Enum):
+class KvalitetBorlengdeTilBerg(StrEnum):
     ANTATT = "ANTATT"
     PÅVIST = "PÅVIST"
 

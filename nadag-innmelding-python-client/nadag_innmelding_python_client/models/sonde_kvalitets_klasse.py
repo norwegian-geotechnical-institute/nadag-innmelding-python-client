@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class SondeKvalitetsKlasse(str, Enum):
+class SondeKvalitetsKlasse(StrEnum):
     KLASSE_1 = "KLASSE_1"
     KLASSE_2 = "KLASSE_2"
     KLASSE_3 = "KLASSE_3"

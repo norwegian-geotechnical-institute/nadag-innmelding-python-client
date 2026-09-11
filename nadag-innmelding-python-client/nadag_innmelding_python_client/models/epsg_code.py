@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class EpsgCode(str, Enum):
+class EpsgCode(StrEnum):
     EPSG_25831 = "epsg_25831"
     EPSG_25832 = "epsg_25832"
     EPSG_25833 = "epsg_25833"

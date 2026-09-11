@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class AkviferType(str, Enum):
+class AkviferType(StrEnum):
     ARTESISK = "ARTESISK"
     IKKE_ANGITT = "IKKE_ANGITT"
     LUKKET = "LUKKET"

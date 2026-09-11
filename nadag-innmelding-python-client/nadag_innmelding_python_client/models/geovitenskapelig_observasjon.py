@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -28,6 +27,14 @@ class GeovitenskapeligObservasjon:
     </engelsk>
 
         Attributes:
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
+
+                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
+                f.eks bygningsnummer.
+
+                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
+            posisjon (Point):
             datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
 
@@ -37,13 +44,6 @@ class GeovitenskapeligObservasjon:
             digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
-                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
-
-                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
-                f.eks bygningsnummer.
-
-                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
                 Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
@@ -55,7 +55,6 @@ class GeovitenskapeligObservasjon:
 
                 -Definition-
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
-            posisjon (Point | Unset):
             observasjon_start (datetime.datetime | Unset): startdato for observasjon
 
                 <engelsk>
@@ -84,12 +83,12 @@ class GeovitenskapeligObservasjon:
                 </engelsk>
     """
 
+    identifikasjon: Identifikasjon
+    posisjon: Point
     datafangstdato: datetime.datetime | Unset = UNSET
     digitaliseringsmålestokk: int | Unset = UNSET
-    identifikasjon: Identifikasjon | Unset = UNSET
     kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
-    posisjon: Point | Unset = UNSET
     observasjon_start: datetime.datetime | Unset = UNSET
     observasjon_slutt: datetime.datetime | Unset = UNSET
     observatør: str | Unset = UNSET
@@ -97,15 +96,15 @@ class GeovitenskapeligObservasjon:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        identifikasjon = self.identifikasjon.to_dict()
+
+        posisjon = self.posisjon.to_dict()
+
         datafangstdato: str | Unset = UNSET
         if not isinstance(self.datafangstdato, Unset):
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
-
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
 
         kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
@@ -114,10 +113,6 @@ class GeovitenskapeligObservasjon:
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
-
-        posisjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.posisjon, Unset):
-            posisjon = self.posisjon.to_dict()
 
         observasjon_start: str | Unset = UNSET
         if not isinstance(self.observasjon_start, Unset):
@@ -133,19 +128,20 @@ class GeovitenskapeligObservasjon:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+                "posisjon": posisjon,
+            }
+        )
         if datafangstdato is not UNSET:
             field_dict["datafangstdato"] = datafangstdato
         if digitaliseringsmålestokk is not UNSET:
             field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
         if kvalitet is not UNSET:
             field_dict["kvalitet"] = kvalitet
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
-        if posisjon is not UNSET:
-            field_dict["posisjon"] = posisjon
         if observasjon_start is not UNSET:
             field_dict["observasjonStart"] = observasjon_start
         if observasjon_slutt is not UNSET:
@@ -159,26 +155,23 @@ class GeovitenskapeligObservasjon:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.point import Point
-        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.point import Point  # noqa: PLC0415
+        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG  # noqa: PLC0415
 
         d = dict(src_dict)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+
+        posisjon = Point.from_dict(d.pop("posisjon"))
+
         _datafangstdato = d.pop("datafangstdato", UNSET)
         datafangstdato: datetime.datetime | Unset
         if isinstance(_datafangstdato, Unset):
             datafangstdato = UNSET
         else:
-            datafangstdato = isoparse(_datafangstdato)
+            datafangstdato = datetime.datetime.fromisoformat(_datafangstdato)
 
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
-
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
         kvalitet: PosisjonskvalitetNADAG | Unset
@@ -192,40 +185,33 @@ class GeovitenskapeligObservasjon:
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
-            oppdateringsdato = isoparse(_oppdateringsdato)
-
-        _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Point | Unset
-        if isinstance(_posisjon, Unset):
-            posisjon = UNSET
-        else:
-            posisjon = Point.from_dict(_posisjon)
+            oppdateringsdato = datetime.datetime.fromisoformat(_oppdateringsdato)
 
         _observasjon_start = d.pop("observasjonStart", UNSET)
         observasjon_start: datetime.datetime | Unset
         if isinstance(_observasjon_start, Unset):
             observasjon_start = UNSET
         else:
-            observasjon_start = isoparse(_observasjon_start)
+            observasjon_start = datetime.datetime.fromisoformat(_observasjon_start)
 
         _observasjon_slutt = d.pop("observasjonSlutt", UNSET)
         observasjon_slutt: datetime.datetime | Unset
         if isinstance(_observasjon_slutt, Unset):
             observasjon_slutt = UNSET
         else:
-            observasjon_slutt = isoparse(_observasjon_slutt)
+            observasjon_slutt = datetime.datetime.fromisoformat(_observasjon_slutt)
 
         observatør = d.pop("observatør", UNSET)
 
         opphav = d.pop("opphav", UNSET)
 
         geovitenskapelig_observasjon = cls(
+            identifikasjon=identifikasjon,
+            posisjon=posisjon,
             datafangstdato=datafangstdato,
             digitaliseringsmålestokk=digitaliseringsmålestokk,
-            identifikasjon=identifikasjon,
             kvalitet=kvalitet,
             oppdateringsdato=oppdateringsdato,
-            posisjon=posisjon,
             observasjon_start=observasjon_start,
             observasjon_slutt=observasjon_slutt,
             observatør=observatør,

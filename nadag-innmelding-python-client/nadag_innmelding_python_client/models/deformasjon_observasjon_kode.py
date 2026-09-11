@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class DeformasjonObservasjonKode(str, Enum):
+class DeformasjonObservasjonKode(StrEnum):
     HINDRING = "HINDRING"
     IKKESPESIFISERT = "IKKESPESIFISERT"
     SKADET = "SKADET"

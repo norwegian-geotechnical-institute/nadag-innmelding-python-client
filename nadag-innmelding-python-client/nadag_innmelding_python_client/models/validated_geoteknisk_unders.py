@@ -58,8 +58,8 @@ class ValidatedGeotekniskUnders:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.diagnostics_dto import DiagnosticsDto
-        from ..models.geoteknisk_unders import GeotekniskUnders
+        from ..models.diagnostics_dto import DiagnosticsDto  # noqa: PLC0415
+        from ..models.geoteknisk_unders import GeotekniskUnders  # noqa: PLC0415
 
         d = dict(src_dict)
         _geoteknisk_unders = d.pop("geotekniskUnders", UNSET)

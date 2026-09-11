@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, Literal, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.geoteknisk_stoppkode import GeotekniskStoppkode
 from ..models.nadag_hoeyderef import NADAGHoeyderef
@@ -31,6 +30,15 @@ class DeformasjonMaaling:
     and deformations in the field</engelsk>
 
         Attributes:
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
+
+                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
+                f.eks bygningsnummer.
+
+                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
+            posisjon (Point):
+            opprettet_dato (datetime.datetime): Når objektet ble opprettet i database (Nadag)
             json_type (Literal['DeformasjonMaaling'] | Unset):
             datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
@@ -41,13 +49,6 @@ class DeformasjonMaaling:
             digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
-                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
-
-                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
-                f.eks bygningsnummer.
-
-                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
                 Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
@@ -59,7 +60,6 @@ class DeformasjonMaaling:
 
                 -Definition-
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
-            posisjon (Point | Unset):
             observasjon_start (datetime.datetime | Unset): startdato for observasjon
 
                 <engelsk>
@@ -126,7 +126,6 @@ class DeformasjonMaaling:
             unders_ø_kelse_nr (str | Unset): Nummer på observasjon benyttet i den geotekniske undersøkelsen
             ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
                 leverandør inn til NADAG.
-            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
             dybde_grunnvannstand (float | Unset): dybde [m] fra terrengoverflaten til det nivå i grunnen der alle porene i
                 jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface to the
                 level in the ground where all voids are saturated with water, and where the pore pressure starts to
@@ -157,13 +156,14 @@ class DeformasjonMaaling:
             har_setning_observasjon (list[DeformasjonMaaleData] | Unset):
     """
 
+    identifikasjon: Identifikasjon
+    posisjon: Point
+    opprettet_dato: datetime.datetime
     json_type: Literal["DeformasjonMaaling"] | Unset = UNSET
     datafangstdato: datetime.datetime | Unset = UNSET
     digitaliseringsmålestokk: int | Unset = UNSET
-    identifikasjon: Identifikasjon | Unset = UNSET
     kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
-    posisjon: Point | Unset = UNSET
     observasjon_start: datetime.datetime | Unset = UNSET
     observasjon_slutt: datetime.datetime | Unset = UNSET
     observatør: str | Unset = UNSET
@@ -181,7 +181,6 @@ class DeformasjonMaaling:
     h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
     unders_ø_kelse_nr: str | Unset = UNSET
     ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
-    opprettet_dato: datetime.datetime | Unset = UNSET
     dybde_grunnvannstand: float | Unset = UNSET
     forboret_diameter: float | Unset = UNSET
     forboret_lengde: float | Unset = UNSET
@@ -198,6 +197,12 @@ class DeformasjonMaaling:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        identifikasjon = self.identifikasjon.to_dict()
+
+        posisjon = self.posisjon.to_dict()
+
+        opprettet_dato = self.opprettet_dato.isoformat()
+
         json_type = self.json_type
 
         datafangstdato: str | Unset = UNSET
@@ -206,10 +211,6 @@ class DeformasjonMaaling:
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
-
         kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
             kvalitet = self.kvalitet.to_dict()
@@ -217,10 +218,6 @@ class DeformasjonMaaling:
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
-
-        posisjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.posisjon, Unset):
-            posisjon = self.posisjon.to_dict()
 
         observasjon_start: str | Unset = UNSET
         if not isinstance(self.observasjon_start, Unset):
@@ -266,10 +263,6 @@ class DeformasjonMaaling:
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
 
-        opprettet_dato: str | Unset = UNSET
-        if not isinstance(self.opprettet_dato, Unset):
-            opprettet_dato = self.opprettet_dato.isoformat()
-
         dybde_grunnvannstand = self.dybde_grunnvannstand
 
         forboret_diameter = self.forboret_diameter
@@ -312,21 +305,23 @@ class DeformasjonMaaling:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+                "posisjon": posisjon,
+                "opprettetDato": opprettet_dato,
+            }
+        )
         if json_type is not UNSET:
             field_dict["jsonType"] = json_type
         if datafangstdato is not UNSET:
             field_dict["datafangstdato"] = datafangstdato
         if digitaliseringsmålestokk is not UNSET:
             field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
         if kvalitet is not UNSET:
             field_dict["kvalitet"] = kvalitet
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
-        if posisjon is not UNSET:
-            field_dict["posisjon"] = posisjon
         if observasjon_start is not UNSET:
             field_dict["observasjonStart"] = observasjon_start
         if observasjon_slutt is not UNSET:
@@ -361,8 +356,6 @@ class DeformasjonMaaling:
             field_dict["undersøkelseNr"] = unders_ø_kelse_nr
         if ekstern_identifikasjon is not UNSET:
             field_dict["eksternIdentifikasjon"] = ekstern_identifikasjon
-        if opprettet_dato is not UNSET:
-            field_dict["opprettetDato"] = opprettet_dato
         if dybde_grunnvannstand is not UNSET:
             field_dict["dybdeGrunnvannstand"] = dybde_grunnvannstand
         if forboret_diameter is not UNSET:
@@ -394,15 +387,21 @@ class DeformasjonMaaling:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.borlengde_til_berg import BorlengdeTilBerg
-        from ..models.deformasjon_maale_data import DeformasjonMaaleData
-        from ..models.deformasjon_overvaakning_data import DeformasjonOvervaakningData
-        from ..models.ekstern_identifikasjon import EksternIdentifikasjon
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.point import Point
-        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
+        from ..models.borlengde_til_berg import BorlengdeTilBerg  # noqa: PLC0415
+        from ..models.deformasjon_maale_data import DeformasjonMaaleData  # noqa: PLC0415
+        from ..models.deformasjon_overvaakning_data import DeformasjonOvervaakningData  # noqa: PLC0415
+        from ..models.ekstern_identifikasjon import EksternIdentifikasjon  # noqa: PLC0415
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.point import Point  # noqa: PLC0415
+        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG  # noqa: PLC0415
 
         d = dict(src_dict)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+
+        posisjon = Point.from_dict(d.pop("posisjon"))
+
+        opprettet_dato = datetime.datetime.fromisoformat(d.pop("opprettetDato"))
+
         json_type = cast(Literal["DeformasjonMaaling"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "DeformasjonMaaling" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'DeformasjonMaaling', got '{json_type}'")
@@ -412,16 +411,9 @@ class DeformasjonMaaling:
         if isinstance(_datafangstdato, Unset):
             datafangstdato = UNSET
         else:
-            datafangstdato = isoparse(_datafangstdato)
+            datafangstdato = datetime.datetime.fromisoformat(_datafangstdato)
 
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
-
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
         kvalitet: PosisjonskvalitetNADAG | Unset
@@ -435,28 +427,21 @@ class DeformasjonMaaling:
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
-            oppdateringsdato = isoparse(_oppdateringsdato)
-
-        _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Point | Unset
-        if isinstance(_posisjon, Unset):
-            posisjon = UNSET
-        else:
-            posisjon = Point.from_dict(_posisjon)
+            oppdateringsdato = datetime.datetime.fromisoformat(_oppdateringsdato)
 
         _observasjon_start = d.pop("observasjonStart", UNSET)
         observasjon_start: datetime.datetime | Unset
         if isinstance(_observasjon_start, Unset):
             observasjon_start = UNSET
         else:
-            observasjon_start = isoparse(_observasjon_start)
+            observasjon_start = datetime.datetime.fromisoformat(_observasjon_start)
 
         _observasjon_slutt = d.pop("observasjonSlutt", UNSET)
         observasjon_slutt: datetime.datetime | Unset
         if isinstance(_observasjon_slutt, Unset):
             observasjon_slutt = UNSET
         else:
-            observasjon_slutt = isoparse(_observasjon_slutt)
+            observasjon_slutt = datetime.datetime.fromisoformat(_observasjon_slutt)
 
         observatør = d.pop("observatør", UNSET)
 
@@ -503,13 +488,6 @@ class DeformasjonMaaling:
         else:
             ekstern_identifikasjon = EksternIdentifikasjon.from_dict(_ekstern_identifikasjon)
 
-        _opprettet_dato = d.pop("opprettetDato", UNSET)
-        opprettet_dato: datetime.datetime | Unset
-        if isinstance(_opprettet_dato, Unset):
-            opprettet_dato = UNSET
-        else:
-            opprettet_dato = isoparse(_opprettet_dato)
-
         dybde_grunnvannstand = d.pop("dybdeGrunnvannstand", UNSET)
 
         forboret_diameter = d.pop("forboretDiameter", UNSET)
@@ -534,7 +512,7 @@ class DeformasjonMaaling:
         if isinstance(_installasjon_tidspunkt, Unset):
             installasjon_tidspunkt = UNSET
         else:
-            installasjon_tidspunkt = isoparse(_installasjon_tidspunkt)
+            installasjon_tidspunkt = datetime.datetime.fromisoformat(_installasjon_tidspunkt)
 
         installasjon_niv_å = d.pop("installasjonNivå", UNSET)
 
@@ -563,13 +541,14 @@ class DeformasjonMaaling:
                 har_setning_observasjon.append(har_setning_observasjon_item)
 
         deformasjon_maaling = cls(
+            identifikasjon=identifikasjon,
+            posisjon=posisjon,
+            opprettet_dato=opprettet_dato,
             json_type=json_type,
             datafangstdato=datafangstdato,
             digitaliseringsmålestokk=digitaliseringsmålestokk,
-            identifikasjon=identifikasjon,
             kvalitet=kvalitet,
             oppdateringsdato=oppdateringsdato,
-            posisjon=posisjon,
             observasjon_start=observasjon_start,
             observasjon_slutt=observasjon_slutt,
             observatør=observatør,
@@ -587,7 +566,6 @@ class DeformasjonMaaling:
             h_ø_yde_referanse=h_ø_yde_referanse,
             unders_ø_kelse_nr=unders_ø_kelse_nr,
             ekstern_identifikasjon=ekstern_identifikasjon,
-            opprettet_dato=opprettet_dato,
             dybde_grunnvannstand=dybde_grunnvannstand,
             forboret_diameter=forboret_diameter,
             forboret_lengde=forboret_lengde,

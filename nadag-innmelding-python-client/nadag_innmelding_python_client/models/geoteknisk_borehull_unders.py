@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.geoteknisk_metode_kode import GeotekniskMetodeKode
 from ..models.geoteknisk_stoppkode import GeotekniskStoppkode
@@ -57,6 +56,16 @@ class GeotekniskBorehullUnders:
     observations have been carried out</engelsk>
 
         Attributes:
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
+
+                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
+                f.eks bygningsnummer.
+
+                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
+            posisjon (Point):
+            opprettet_dato (datetime.datetime): Når objektet ble opprettet i database (Nadag)
+            geoteknisk_metode (GeotekniskMetodeKode): Kode for metoder benyttet ved geotekniske borehullundersøkelser
             datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
 
@@ -66,13 +75,6 @@ class GeotekniskBorehullUnders:
             digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
-                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
-
-                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
-                f.eks bygningsnummer.
-
-                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
                 Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
@@ -84,7 +86,6 @@ class GeotekniskBorehullUnders:
 
                 -Definition-
                 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
-            posisjon (Point | Unset):
             bore_beskrivelse (str | Unset): forklaring av hva som er utført og/eller observert i denne undersøkelsen
 
                 <engelsk>
@@ -179,9 +180,6 @@ class GeotekniskBorehullUnders:
             unders_ø_kelse_nr (str | Unset): Nummer på borehullundersøkelse benyttet i den geotekniske undersøkelsen
             ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
                 leverandør inn til NADAG.
-            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
-            geoteknisk_metode (GeotekniskMetodeKode | Unset): Kode for metoder benyttet ved geotekniske
-                borehullundersøkelser
             dybde_grunnvannstand (float | Unset): dybde [m] fra terrengoverflaten til det nivå i grunnen der alle porene i
                 jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface to the
                 level in the ground where all voids are saturated with water, and where the pore pressure starts to
@@ -204,12 +202,14 @@ class GeotekniskBorehullUnders:
             har_dokument (list[GeotekniskDokument] | Unset):
     """
 
+    identifikasjon: Identifikasjon
+    posisjon: Point
+    opprettet_dato: datetime.datetime
+    geoteknisk_metode: GeotekniskMetodeKode
     datafangstdato: datetime.datetime | Unset = UNSET
     digitaliseringsmålestokk: int | Unset = UNSET
-    identifikasjon: Identifikasjon | Unset = UNSET
     kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
-    posisjon: Point | Unset = UNSET
     bore_beskrivelse: str | Unset = UNSET
     borehull_forl_ø_p: list[Point] | Unset = UNSET
     boret_azimuth: float | Unset = UNSET
@@ -227,8 +227,6 @@ class GeotekniskBorehullUnders:
     h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
     unders_ø_kelse_nr: str | Unset = UNSET
     ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
-    opprettet_dato: datetime.datetime | Unset = UNSET
-    geoteknisk_metode: GeotekniskMetodeKode | Unset = UNSET
     dybde_grunnvannstand: float | Unset = UNSET
     forboret_diameter: float | Unset = UNSET
     forboret_lengde: float | Unset = UNSET
@@ -269,40 +267,44 @@ class GeotekniskBorehullUnders:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        from ..models.blokk_proeve import BlokkProeve
-        from ..models.dilatometer_test import DilatometerTest
-        from ..models.dynamisk_sondering import DynamiskSondering
-        from ..models.gass_maaling import GassMaaling
-        from ..models.gass_proeve import GassProeve
-        from ..models.geoteknisk_proeveserie import GeotekniskProeveserie
-        from ..models.grave_proeve import GraveProeve
-        from ..models.grunnvann_maaling import GrunnvannMaaling
-        from ..models.hydraulisk_test import HydrauliskTest
-        from ..models.kanne_proeve import KanneProeve
-        from ..models.kjerne_boring import KjerneBoring
-        from ..models.kjerne_proeve import KjerneProeve
-        from ..models.kombinasjon_sondering import KombinasjonSondering
-        from ..models.miljoe_undersoekelse import MiljoeUndersoekelse
-        from ..models.naver_proeve import NaverProeve
-        from ..models.platebelastning import Platebelastning
-        from ..models.poretrykk_maaling import PoretrykkMaaling
-        from ..models.ram_proeve import RamProeve
-        from ..models.sediment_proeve import SedimentProeve
-        from ..models.skovl_proeve import SkovlProeve
-        from ..models.statisk_sondering import StatiskSondering
-        from ..models.stempel_proeve import StempelProeve
-        from ..models.trykksondering import Trykksondering
-        from ..models.vann_proeve import VannProeve
+        from ..models.blokk_proeve import BlokkProeve  # noqa: PLC0415
+        from ..models.dilatometer_test import DilatometerTest  # noqa: PLC0415
+        from ..models.dynamisk_sondering import DynamiskSondering  # noqa: PLC0415
+        from ..models.gass_maaling import GassMaaling  # noqa: PLC0415
+        from ..models.gass_proeve import GassProeve  # noqa: PLC0415
+        from ..models.geoteknisk_proeveserie import GeotekniskProeveserie  # noqa: PLC0415
+        from ..models.grave_proeve import GraveProeve  # noqa: PLC0415
+        from ..models.grunnvann_maaling import GrunnvannMaaling  # noqa: PLC0415
+        from ..models.hydraulisk_test import HydrauliskTest  # noqa: PLC0415
+        from ..models.kanne_proeve import KanneProeve  # noqa: PLC0415
+        from ..models.kjerne_boring import KjerneBoring  # noqa: PLC0415
+        from ..models.kjerne_proeve import KjerneProeve  # noqa: PLC0415
+        from ..models.kombinasjon_sondering import KombinasjonSondering  # noqa: PLC0415
+        from ..models.miljoe_undersoekelse import MiljoeUndersoekelse  # noqa: PLC0415
+        from ..models.naver_proeve import NaverProeve  # noqa: PLC0415
+        from ..models.platebelastning import Platebelastning  # noqa: PLC0415
+        from ..models.poretrykk_maaling import PoretrykkMaaling  # noqa: PLC0415
+        from ..models.ram_proeve import RamProeve  # noqa: PLC0415
+        from ..models.sediment_proeve import SedimentProeve  # noqa: PLC0415
+        from ..models.skovl_proeve import SkovlProeve  # noqa: PLC0415
+        from ..models.statisk_sondering import StatiskSondering  # noqa: PLC0415
+        from ..models.stempel_proeve import StempelProeve  # noqa: PLC0415
+        from ..models.trykksondering import Trykksondering  # noqa: PLC0415
+        from ..models.vann_proeve import VannProeve  # noqa: PLC0415
+
+        identifikasjon = self.identifikasjon.to_dict()
+
+        posisjon = self.posisjon.to_dict()
+
+        opprettet_dato = self.opprettet_dato.isoformat()
+
+        geoteknisk_metode = self.geoteknisk_metode.value
 
         datafangstdato: str | Unset = UNSET
         if not isinstance(self.datafangstdato, Unset):
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
-
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
 
         kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
@@ -311,10 +313,6 @@ class GeotekniskBorehullUnders:
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
             oppdateringsdato = self.oppdateringsdato.isoformat()
-
-        posisjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.posisjon, Unset):
-            posisjon = self.posisjon.to_dict()
 
         bore_beskrivelse = self.bore_beskrivelse
 
@@ -364,14 +362,6 @@ class GeotekniskBorehullUnders:
         ekstern_identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
-
-        opprettet_dato: str | Unset = UNSET
-        if not isinstance(self.opprettet_dato, Unset):
-            opprettet_dato = self.opprettet_dato.isoformat()
-
-        geoteknisk_metode: str | Unset = UNSET
-        if not isinstance(self.geoteknisk_metode, Unset):
-            geoteknisk_metode = self.geoteknisk_metode.value
 
         dybde_grunnvannstand = self.dybde_grunnvannstand
 
@@ -454,19 +444,22 @@ class GeotekniskBorehullUnders:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+                "posisjon": posisjon,
+                "opprettetDato": opprettet_dato,
+                "geotekniskMetode": geoteknisk_metode,
+            }
+        )
         if datafangstdato is not UNSET:
             field_dict["datafangstdato"] = datafangstdato
         if digitaliseringsmålestokk is not UNSET:
             field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
         if kvalitet is not UNSET:
             field_dict["kvalitet"] = kvalitet
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
-        if posisjon is not UNSET:
-            field_dict["posisjon"] = posisjon
         if bore_beskrivelse is not UNSET:
             field_dict["boreBeskrivelse"] = bore_beskrivelse
         if borehull_forl_ø_p is not UNSET:
@@ -501,10 +494,6 @@ class GeotekniskBorehullUnders:
             field_dict["undersøkelseNr"] = unders_ø_kelse_nr
         if ekstern_identifikasjon is not UNSET:
             field_dict["eksternIdentifikasjon"] = ekstern_identifikasjon
-        if opprettet_dato is not UNSET:
-            field_dict["opprettetDato"] = opprettet_dato
-        if geoteknisk_metode is not UNSET:
-            field_dict["geotekniskMetode"] = geoteknisk_metode
         if dybde_grunnvannstand is not UNSET:
             field_dict["dybdeGrunnvannstand"] = dybde_grunnvannstand
         if forboret_diameter is not UNSET:
@@ -526,54 +515,55 @@ class GeotekniskBorehullUnders:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.blokk_proeve import BlokkProeve
-        from ..models.borlengde_til_berg import BorlengdeTilBerg
-        from ..models.dilatometer_test import DilatometerTest
-        from ..models.dynamisk_sondering import DynamiskSondering
-        from ..models.ekstern_identifikasjon import EksternIdentifikasjon
-        from ..models.gass_maaling import GassMaaling
-        from ..models.gass_proeve import GassProeve
-        from ..models.geoteknisk_dokument import GeotekniskDokument
-        from ..models.geoteknisk_proeveserie import GeotekniskProeveserie
-        from ..models.grave_proeve import GraveProeve
-        from ..models.grunnvann_maaling import GrunnvannMaaling
-        from ..models.hydraulisk_test import HydrauliskTest
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.kanne_proeve import KanneProeve
-        from ..models.kjerne_boring import KjerneBoring
-        from ..models.kjerne_proeve import KjerneProeve
-        from ..models.kombinasjon_sondering import KombinasjonSondering
-        from ..models.miljoe_undersoekelse import MiljoeUndersoekelse
-        from ..models.naver_proeve import NaverProeve
-        from ..models.platebelastning import Platebelastning
-        from ..models.point import Point
-        from ..models.poretrykk_maaling import PoretrykkMaaling
-        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
-        from ..models.ram_proeve import RamProeve
-        from ..models.sediment_proeve import SedimentProeve
-        from ..models.skovl_proeve import SkovlProeve
-        from ..models.statisk_sondering import StatiskSondering
-        from ..models.stempel_proeve import StempelProeve
-        from ..models.trykksondering import Trykksondering
-        from ..models.vann_proeve import VannProeve
-        from ..models.vingeboring import Vingeboring
+        from ..models.blokk_proeve import BlokkProeve  # noqa: PLC0415
+        from ..models.borlengde_til_berg import BorlengdeTilBerg  # noqa: PLC0415
+        from ..models.dilatometer_test import DilatometerTest  # noqa: PLC0415
+        from ..models.dynamisk_sondering import DynamiskSondering  # noqa: PLC0415
+        from ..models.ekstern_identifikasjon import EksternIdentifikasjon  # noqa: PLC0415
+        from ..models.gass_maaling import GassMaaling  # noqa: PLC0415
+        from ..models.gass_proeve import GassProeve  # noqa: PLC0415
+        from ..models.geoteknisk_dokument import GeotekniskDokument  # noqa: PLC0415
+        from ..models.geoteknisk_proeveserie import GeotekniskProeveserie  # noqa: PLC0415
+        from ..models.grave_proeve import GraveProeve  # noqa: PLC0415
+        from ..models.grunnvann_maaling import GrunnvannMaaling  # noqa: PLC0415
+        from ..models.hydraulisk_test import HydrauliskTest  # noqa: PLC0415
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.kanne_proeve import KanneProeve  # noqa: PLC0415
+        from ..models.kjerne_boring import KjerneBoring  # noqa: PLC0415
+        from ..models.kjerne_proeve import KjerneProeve  # noqa: PLC0415
+        from ..models.kombinasjon_sondering import KombinasjonSondering  # noqa: PLC0415
+        from ..models.miljoe_undersoekelse import MiljoeUndersoekelse  # noqa: PLC0415
+        from ..models.naver_proeve import NaverProeve  # noqa: PLC0415
+        from ..models.platebelastning import Platebelastning  # noqa: PLC0415
+        from ..models.point import Point  # noqa: PLC0415
+        from ..models.poretrykk_maaling import PoretrykkMaaling  # noqa: PLC0415
+        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG  # noqa: PLC0415
+        from ..models.ram_proeve import RamProeve  # noqa: PLC0415
+        from ..models.sediment_proeve import SedimentProeve  # noqa: PLC0415
+        from ..models.skovl_proeve import SkovlProeve  # noqa: PLC0415
+        from ..models.statisk_sondering import StatiskSondering  # noqa: PLC0415
+        from ..models.stempel_proeve import StempelProeve  # noqa: PLC0415
+        from ..models.trykksondering import Trykksondering  # noqa: PLC0415
+        from ..models.vann_proeve import VannProeve  # noqa: PLC0415
+        from ..models.vingeboring import Vingeboring  # noqa: PLC0415
 
         d = dict(src_dict)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+
+        posisjon = Point.from_dict(d.pop("posisjon"))
+
+        opprettet_dato = datetime.datetime.fromisoformat(d.pop("opprettetDato"))
+
+        geoteknisk_metode = GeotekniskMetodeKode(d.pop("geotekniskMetode"))
+
         _datafangstdato = d.pop("datafangstdato", UNSET)
         datafangstdato: datetime.datetime | Unset
         if isinstance(_datafangstdato, Unset):
             datafangstdato = UNSET
         else:
-            datafangstdato = isoparse(_datafangstdato)
+            datafangstdato = datetime.datetime.fromisoformat(_datafangstdato)
 
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
-
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
         kvalitet: PosisjonskvalitetNADAG | Unset
@@ -587,14 +577,7 @@ class GeotekniskBorehullUnders:
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
-            oppdateringsdato = isoparse(_oppdateringsdato)
-
-        _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Point | Unset
-        if isinstance(_posisjon, Unset):
-            posisjon = UNSET
-        else:
-            posisjon = Point.from_dict(_posisjon)
+            oppdateringsdato = datetime.datetime.fromisoformat(_oppdateringsdato)
 
         bore_beskrivelse = d.pop("boreBeskrivelse", UNSET)
 
@@ -633,14 +616,14 @@ class GeotekniskBorehullUnders:
         if isinstance(_unders_ø_kelse_slutt, Unset):
             unders_ø_kelse_slutt = UNSET
         else:
-            unders_ø_kelse_slutt = isoparse(_unders_ø_kelse_slutt)
+            unders_ø_kelse_slutt = datetime.datetime.fromisoformat(_unders_ø_kelse_slutt)
 
         _unders_ø_kelse_start = d.pop("undersøkelseStart", UNSET)
         unders_ø_kelse_start: datetime.datetime | Unset
         if isinstance(_unders_ø_kelse_start, Unset):
             unders_ø_kelse_start = UNSET
         else:
-            unders_ø_kelse_start = isoparse(_unders_ø_kelse_start)
+            unders_ø_kelse_start = datetime.datetime.fromisoformat(_unders_ø_kelse_start)
 
         v_æ_rforhold_ved_boring = d.pop("værforholdVedBoring", UNSET)
 
@@ -661,20 +644,6 @@ class GeotekniskBorehullUnders:
             ekstern_identifikasjon = UNSET
         else:
             ekstern_identifikasjon = EksternIdentifikasjon.from_dict(_ekstern_identifikasjon)
-
-        _opprettet_dato = d.pop("opprettetDato", UNSET)
-        opprettet_dato: datetime.datetime | Unset
-        if isinstance(_opprettet_dato, Unset):
-            opprettet_dato = UNSET
-        else:
-            opprettet_dato = isoparse(_opprettet_dato)
-
-        _geoteknisk_metode = d.pop("geotekniskMetode", UNSET)
-        geoteknisk_metode: GeotekniskMetodeKode | Unset
-        if isinstance(_geoteknisk_metode, Unset):
-            geoteknisk_metode = UNSET
-        else:
-            geoteknisk_metode = GeotekniskMetodeKode(_geoteknisk_metode)
 
         dybde_grunnvannstand = d.pop("dybdeGrunnvannstand", UNSET)
 
@@ -969,12 +938,14 @@ class GeotekniskBorehullUnders:
                 har_dokument.append(har_dokument_item)
 
         geoteknisk_borehull_unders = cls(
+            identifikasjon=identifikasjon,
+            posisjon=posisjon,
+            opprettet_dato=opprettet_dato,
+            geoteknisk_metode=geoteknisk_metode,
             datafangstdato=datafangstdato,
             digitaliseringsmålestokk=digitaliseringsmålestokk,
-            identifikasjon=identifikasjon,
             kvalitet=kvalitet,
             oppdateringsdato=oppdateringsdato,
-            posisjon=posisjon,
             bore_beskrivelse=bore_beskrivelse,
             borehull_forl_ø_p=borehull_forl_ø_p,
             boret_azimuth=boret_azimuth,
@@ -992,8 +963,6 @@ class GeotekniskBorehullUnders:
             h_ø_yde_referanse=h_ø_yde_referanse,
             unders_ø_kelse_nr=unders_ø_kelse_nr,
             ekstern_identifikasjon=ekstern_identifikasjon,
-            opprettet_dato=opprettet_dato,
-            geoteknisk_metode=geoteknisk_metode,
             dybde_grunnvannstand=dybde_grunnvannstand,
             forboret_diameter=forboret_diameter,
             forboret_lengde=forboret_lengde,

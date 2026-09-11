@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class GeotekniskGrunnvannObservasjonKode(str, Enum):
+class GeotekniskGrunnvannObservasjonKode(StrEnum):
     ERSTATTET = "ERSTATTET"
     FERDIG = "FERDIG"
     FROSSET = "FROSSET"

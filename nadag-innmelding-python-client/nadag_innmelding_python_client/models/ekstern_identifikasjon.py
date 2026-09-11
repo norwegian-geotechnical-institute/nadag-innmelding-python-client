@@ -6,7 +6,6 @@ from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -73,7 +72,7 @@ class EksternIdentifikasjon:
         if isinstance(_ekstern_levering_dato, Unset):
             ekstern_levering_dato = UNSET
         else:
-            ekstern_levering_dato = isoparse(_ekstern_levering_dato)
+            ekstern_levering_dato = datetime.datetime.fromisoformat(_ekstern_levering_dato)
 
         ekstern_identifikasjon = cls(
             ekstern_id=ekstern_id,

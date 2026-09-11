@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -24,7 +23,7 @@ class GeotekniskInsituTest:
     soil layers</engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
@@ -41,7 +40,7 @@ class GeotekniskInsituTest:
                 time for in situ testing</engelsk>
     """
 
-    identifikasjon: Identifikasjon | Unset = UNSET
+    identifikasjon: Identifikasjon
     fra_borlengde: float | Unset = UNSET
     til_borlengde: float | Unset = UNSET
     insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
@@ -49,9 +48,7 @@ class GeotekniskInsituTest:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon = self.identifikasjon.to_dict()
 
         fra_borlengde = self.fra_borlengde
 
@@ -67,9 +64,11 @@ class GeotekniskInsituTest:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+            }
+        )
         if fra_borlengde is not UNSET:
             field_dict["fraBorlengde"] = fra_borlengde
         if til_borlengde is not UNSET:
@@ -83,15 +82,10 @@ class GeotekniskInsituTest:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identifikasjon import Identifikasjon
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
 
         d = dict(src_dict)
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
 
         fra_borlengde = d.pop("fraBorlengde", UNSET)
 
@@ -102,14 +96,14 @@ class GeotekniskInsituTest:
         if isinstance(_insitu_test_start_tidspunkt, Unset):
             insitu_test_start_tidspunkt = UNSET
         else:
-            insitu_test_start_tidspunkt = isoparse(_insitu_test_start_tidspunkt)
+            insitu_test_start_tidspunkt = datetime.datetime.fromisoformat(_insitu_test_start_tidspunkt)
 
         _insitu_test_slutt_tidspunkt = d.pop("insituTestSluttTidspunkt", UNSET)
         insitu_test_slutt_tidspunkt: datetime.datetime | Unset
         if isinstance(_insitu_test_slutt_tidspunkt, Unset):
             insitu_test_slutt_tidspunkt = UNSET
         else:
-            insitu_test_slutt_tidspunkt = isoparse(_insitu_test_slutt_tidspunkt)
+            insitu_test_slutt_tidspunkt = datetime.datetime.fromisoformat(_insitu_test_slutt_tidspunkt)
 
         geoteknisk_insitu_test = cls(
             identifikasjon=identifikasjon,

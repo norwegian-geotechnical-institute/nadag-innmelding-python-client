@@ -20,25 +20,27 @@ class GeotekniskProeveseriedel:
     """delprøve av en  prøveserie<engelsk> Soil test part </engelsk>
 
     Attributes:
+        pr_ø_veseriedel_id (str): Primærnøkkel for relasjon
         pr_ø_ve_metode (str | Unset): metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
         pr_ø_veseriedel_navn (str | Unset): navn på prøveseriedelen<engelsk>name</engelsk>
         fra_lengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>the start length, the depth at top of the specimen[m]</engelsk>
         til_lengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>the length of the stop, the lower depth limitation of the sample [m]</engelsk>
-        pr_ø_veseriedel_id (str | Unset): Primærnøkkel for relasjon
         har_data (list[GeotekniskProeveseriedelData] | Unset):
     """
 
+    pr_ø_veseriedel_id: str
     pr_ø_ve_metode: str | Unset = UNSET
     pr_ø_veseriedel_navn: str | Unset = UNSET
     fra_lengde: float | Unset = UNSET
     til_lengde: float | Unset = UNSET
-    pr_ø_veseriedel_id: str | Unset = UNSET
     har_data: list[GeotekniskProeveseriedelData] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        pr_ø_veseriedel_id = self.pr_ø_veseriedel_id
+
         pr_ø_ve_metode = self.pr_ø_ve_metode
 
         pr_ø_veseriedel_navn = self.pr_ø_veseriedel_navn
@@ -46,8 +48,6 @@ class GeotekniskProeveseriedel:
         fra_lengde = self.fra_lengde
 
         til_lengde = self.til_lengde
-
-        pr_ø_veseriedel_id = self.pr_ø_veseriedel_id
 
         har_data: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.har_data, Unset):
@@ -58,7 +58,11 @@ class GeotekniskProeveseriedel:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "prøveseriedelId": pr_ø_veseriedel_id,
+            }
+        )
         if pr_ø_ve_metode is not UNSET:
             field_dict["prøveMetode"] = pr_ø_ve_metode
         if pr_ø_veseriedel_navn is not UNSET:
@@ -67,8 +71,6 @@ class GeotekniskProeveseriedel:
             field_dict["fraLengde"] = fra_lengde
         if til_lengde is not UNSET:
             field_dict["tilLengde"] = til_lengde
-        if pr_ø_veseriedel_id is not UNSET:
-            field_dict["prøveseriedelId"] = pr_ø_veseriedel_id
         if har_data is not UNSET:
             field_dict["harData"] = har_data
 
@@ -76,9 +78,11 @@ class GeotekniskProeveseriedel:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.geoteknisk_proeveseriedel_data import GeotekniskProeveseriedelData
+        from ..models.geoteknisk_proeveseriedel_data import GeotekniskProeveseriedelData  # noqa: PLC0415
 
         d = dict(src_dict)
+        pr_ø_veseriedel_id = d.pop("prøveseriedelId")
+
         pr_ø_ve_metode = d.pop("prøveMetode", UNSET)
 
         pr_ø_veseriedel_navn = d.pop("prøveseriedelNavn", UNSET)
@@ -86,8 +90,6 @@ class GeotekniskProeveseriedel:
         fra_lengde = d.pop("fraLengde", UNSET)
 
         til_lengde = d.pop("tilLengde", UNSET)
-
-        pr_ø_veseriedel_id = d.pop("prøveseriedelId", UNSET)
 
         _har_data = d.pop("harData", UNSET)
         har_data: list[GeotekniskProeveseriedelData] | Unset = UNSET
@@ -99,11 +101,11 @@ class GeotekniskProeveseriedel:
                 har_data.append(har_data_item)
 
         geoteknisk_proeveseriedel = cls(
+            pr_ø_veseriedel_id=pr_ø_veseriedel_id,
             pr_ø_ve_metode=pr_ø_ve_metode,
             pr_ø_veseriedel_navn=pr_ø_veseriedel_navn,
             fra_lengde=fra_lengde,
             til_lengde=til_lengde,
-            pr_ø_veseriedel_id=pr_ø_veseriedel_id,
             har_data=har_data,
         )
 

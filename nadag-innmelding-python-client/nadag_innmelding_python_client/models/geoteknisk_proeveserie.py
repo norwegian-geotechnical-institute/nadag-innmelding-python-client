@@ -22,14 +22,14 @@ class GeotekniskProeveserie:
     """Undersøkelse gjort i et borehull i form av en prøveserie<engelsk> Soil     test </engelsk>
 
     Attributes:
-        json_type (Literal['GeotekniskProeveserie'] | Unset):
-        identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+        identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
             produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
             NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
+        json_type (Literal['GeotekniskProeveserie'] | Unset):
         fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
         til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
@@ -53,11 +53,11 @@ class GeotekniskProeveserie:
             disturbed</engelsk>
         er_uforstyrret (bool | Unset): om prøvserien er uforstyrret<engelsk>indicating whether a soil test is
             undisturbed</engelsk>
-        har_pr_ø_verseriedel (list[GeotekniskProeveseriedel] | Unset):
+        har_pr_ø_veseriedel (list[GeotekniskProeveseriedel] | Unset):
     """
 
+    identifikasjon: Identifikasjon
     json_type: Literal["GeotekniskProeveserie"] | Unset = UNSET
-    identifikasjon: Identifikasjon | Unset = UNSET
     fra_borlengde: float | Unset = UNSET
     til_borlengde: float | Unset = UNSET
     prøvetype: ProevetakingType | Unset = UNSET
@@ -69,15 +69,13 @@ class GeotekniskProeveserie:
     skovelpr_ø_ve_kun: bool | Unset = UNSET
     er_omr_ø_rt: bool | Unset = UNSET
     er_uforstyrret: bool | Unset = UNSET
-    har_pr_ø_verseriedel: list[GeotekniskProeveseriedel] | Unset = UNSET
+    har_pr_ø_veseriedel: list[GeotekniskProeveseriedel] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        json_type = self.json_type
+        identifikasjon = self.identifikasjon.to_dict()
 
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        json_type = self.json_type
 
         fra_borlengde = self.fra_borlengde
 
@@ -103,20 +101,22 @@ class GeotekniskProeveserie:
 
         er_uforstyrret = self.er_uforstyrret
 
-        har_pr_ø_verseriedel: list[dict[str, Any]] | Unset = UNSET
-        if not isinstance(self.har_pr_ø_verseriedel, Unset):
-            har_pr_ø_verseriedel = []
-            for har_pr_ø_verseriedel_item_data in self.har_pr_ø_verseriedel:
-                har_pr_ø_verseriedel_item = har_pr_ø_verseriedel_item_data.to_dict()
-                har_pr_ø_verseriedel.append(har_pr_ø_verseriedel_item)
+        har_pr_ø_veseriedel: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.har_pr_ø_veseriedel, Unset):
+            har_pr_ø_veseriedel = []
+            for har_pr_ø_veseriedel_item_data in self.har_pr_ø_veseriedel:
+                har_pr_ø_veseriedel_item = har_pr_ø_veseriedel_item_data.to_dict()
+                har_pr_ø_veseriedel.append(har_pr_ø_veseriedel_item)
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+            }
+        )
         if json_type is not UNSET:
             field_dict["jsonType"] = json_type
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
         if fra_borlengde is not UNSET:
             field_dict["fraBorlengde"] = fra_borlengde
         if til_borlengde is not UNSET:
@@ -139,27 +139,22 @@ class GeotekniskProeveserie:
             field_dict["erOmrørt"] = er_omr_ø_rt
         if er_uforstyrret is not UNSET:
             field_dict["erUforstyrret"] = er_uforstyrret
-        if har_pr_ø_verseriedel is not UNSET:
-            field_dict["harPrøverseriedel"] = har_pr_ø_verseriedel
+        if har_pr_ø_veseriedel is not UNSET:
+            field_dict["harPrøveseriedel"] = har_pr_ø_veseriedel
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.geoteknisk_proeveseriedel import GeotekniskProeveseriedel
-        from ..models.identifikasjon import Identifikasjon
+        from ..models.geoteknisk_proeveseriedel import GeotekniskProeveseriedel  # noqa: PLC0415
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
 
         d = dict(src_dict)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+
         json_type = cast(Literal["GeotekniskProeveserie"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "GeotekniskProeveserie" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'GeotekniskProeveserie', got '{json_type}'")
-
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         fra_borlengde = d.pop("fraBorlengde", UNSET)
 
@@ -188,18 +183,18 @@ class GeotekniskProeveserie:
 
         er_uforstyrret = d.pop("erUforstyrret", UNSET)
 
-        _har_pr_ø_verseriedel = d.pop("harPrøverseriedel", UNSET)
-        har_pr_ø_verseriedel: list[GeotekniskProeveseriedel] | Unset = UNSET
-        if _har_pr_ø_verseriedel is not UNSET:
-            har_pr_ø_verseriedel = []
-            for har_pr_ø_verseriedel_item_data in _har_pr_ø_verseriedel:
-                har_pr_ø_verseriedel_item = GeotekniskProeveseriedel.from_dict(har_pr_ø_verseriedel_item_data)
+        _har_pr_ø_veseriedel = d.pop("harPrøveseriedel", UNSET)
+        har_pr_ø_veseriedel: list[GeotekniskProeveseriedel] | Unset = UNSET
+        if _har_pr_ø_veseriedel is not UNSET:
+            har_pr_ø_veseriedel = []
+            for har_pr_ø_veseriedel_item_data in _har_pr_ø_veseriedel:
+                har_pr_ø_veseriedel_item = GeotekniskProeveseriedel.from_dict(har_pr_ø_veseriedel_item_data)
 
-                har_pr_ø_verseriedel.append(har_pr_ø_verseriedel_item)
+                har_pr_ø_veseriedel.append(har_pr_ø_veseriedel_item)
 
         geoteknisk_proeveserie = cls(
-            json_type=json_type,
             identifikasjon=identifikasjon,
+            json_type=json_type,
             fra_borlengde=fra_borlengde,
             til_borlengde=til_borlengde,
             prøvetype=prøvetype,
@@ -211,7 +206,7 @@ class GeotekniskProeveserie:
             skovelpr_ø_ve_kun=skovelpr_ø_ve_kun,
             er_omr_ø_rt=er_omr_ø_rt,
             er_uforstyrret=er_uforstyrret,
-            har_pr_ø_verseriedel=har_pr_ø_verseriedel,
+            har_pr_ø_veseriedel=har_pr_ø_veseriedel,
         )
 
         geoteknisk_proeveserie.additional_properties = d

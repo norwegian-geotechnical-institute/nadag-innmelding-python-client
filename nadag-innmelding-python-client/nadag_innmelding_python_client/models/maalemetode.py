@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class Maalemetode(str, Enum):
+class Maalemetode(StrEnum):
     AEROTRIANGULERT = "AEROTRIANGULERT"
     ANALYTISK_PLOTTER = "ANALYTISK_PLOTTER"
     ANNET_DENNE_HAR_INGEN_MENING_BØR_FJERNES = "ANNET_DENNE_HAR_INGEN_MENING_BØR_FJERNES_"

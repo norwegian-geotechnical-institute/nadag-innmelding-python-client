@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class NADAGDokumentType(str, Enum):
+class NADAGDokumentType(StrEnum):
     ANDRE_VEDLEGG_TIL_BOREHULL = "ANDRE_VEDLEGG_TIL_BOREHULL"
     BILDE = "BILDE"
     BILDE_BOREHULLSPROFIL = "BILDE_BOREHULLSPROFIL"

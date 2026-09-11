@@ -14,6 +14,8 @@ components:
         of possible aquifer types for ground water measurements</engelsk>
     BlokkProeve:
       type: object
+      required:
+      - identifikasjon
       description: "fysisk prøvemateriale manuelt skjært ut fra bunnen av en utgravning\
         \ eller ved hjelp av spesialutviklet prøvetakingsutstyr\r\n\r\n<engelsk>physical\
         \ sample manually cut from the bottom of a ditch or with special sample equipment</engelsk>"
@@ -153,6 +155,10 @@ components:
             \ more than 1. The codes are described in the code list GeotekniskBoreObservasjonskode.</engelsk>"
     DeformasjonMaaling:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
+      - opprettetDato
       description: undersøkelse for måling av setninger og deformasjoner i felt<engelsk>investigation
         for measurement of settlements and deformations in the field</engelsk>
       properties:
@@ -173,6 +179,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -220,6 +228,7 @@ components:
             \n</engelsk>"
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\
             \n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\
             \n\r\n<engelsk>\r\nreference to copyright, source, organization/publication\
@@ -270,9 +279,11 @@ components:
           description: den lengden hvor sonderingsutstyret befinner seg i vann
         lenkeTilTileggsinfo:
           type: string
+          maxLength: 255
           description: Lenke til mer informasjon (URL)
         værforholdVedBoring:
           type: string
+          maxLength: 255
           description: "beskrivelse av værforhold under utførelsen av borehullundersø\
             kelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>"
         høyde:
@@ -285,6 +296,7 @@ components:
           description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
+          maxLength: 50
           description: Nummer på observasjon benyttet i den geotekniske undersøkelsen
         eksternIdentifikasjon:
           $ref: "#/components/schemas/EksternIdentifikasjon"
@@ -317,6 +329,7 @@ components:
             \ of a predrilled borehole in a borehole investigation<engelsk>"
         forboringMetode:
           type: string
+          maxLength: 100
           description: metode brukt til boring uten registrering av data<engelsk>pre
             boring method</engelsk>
         stoppKode:
@@ -463,6 +476,8 @@ components:
           description: "The list of diagnostics, with details about each diagnostic."
     DilatometerTest:
       type: object
+      required:
+      - identifikasjon
       description: "en enkel innretning, formet som et flatt blad designet for å trykkes\
         \ ned i bakken. Merknad: ble utviklet for å bestemme modulus for en jordart.\r\
         \n<engelsk>a simple device, shaped in the form of a flat blade designed to\
@@ -650,6 +665,8 @@ components:
             \ by cross-sectional area of probe)</engelsk>"
     DynamiskSondering:
       type: object
+      required:
+      - identifikasjon
       description: "sondering som benytter slag på borstrengen ved penetrasjon, benevnes\
         \ også som ramsondering, flere liknende metoder aktuelle<engelsk>sounding\
         \ using strokes on the drill string during penetration, several similar methods\
@@ -855,6 +872,8 @@ components:
             in pore air</engelsk>
     GassMaaling:
       type: object
+      required:
+      - identifikasjon
       description: måling av  gass<engelsk>measurement of gas</engelsk>
       properties:
         jsonType:
@@ -903,6 +922,8 @@ components:
           description: ""
     GassProeve:
       type: object
+      required:
+      - identifikasjon
       description: gassprøve fra poreluft<engelsk>gas sample from pore air</engelsk>
       properties:
         jsonType:
@@ -1023,6 +1044,10 @@ components:
         \ more than 1 code. </engelsk>"
     GeotekniskBorehull:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
+      - opprettetDato
       description: geografisk område representert ved et punkt som er den logiske
         enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
         <engelsk>geographical area represented by a location which is the logical
@@ -1044,6 +1069,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -1077,6 +1104,7 @@ components:
             \ performed within an reasonable small area (e.g. <5 m or so)</engelsk>"
         beskrivelse:
           type: string
+          maxLength: 2000
           description: "forklaring til objektet og undersøkelser utført på lokaliteten\r\
             \n\r\n<engelsk>\r\na short description of the investigations at the location\
             \ of the borehole</engelsk>"
@@ -1101,6 +1129,7 @@ components:
             \ device</engelsk>"
         boreNr:
           type: string
+          maxLength: 255
           description: Nummer på borehull benyttet i den geotekniske undersøkelsen
         høyde:
           type: number
@@ -1129,12 +1158,14 @@ components:
             rfasthet mindre enn 2 kPa)"
         opprinneligGeotekniskUndersID:
           type: string
+          maxLength: 50
           description: "opprinneligGeotekniskUndersID - LokalID fra opprinnelig Geoteknisk\
             \ undersøkelse. \r\nBenyttes for å identifisere orginal undersøkelse med\
             \ rapporter etc. ved bruk av samme GeotekniskBorehull i flere undersø\
             kelser."
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde"
         maksBoretLengde:
           type: number
@@ -1163,6 +1194,11 @@ components:
           description: ""
     GeotekniskBorehullUnders:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
+      - opprettetDato
+      - geotekniskMetode
       description: "geografisk punkt hvor det er utført feltforsøk, prøvetaking, må\
         ling av poretrykk osv. med tilhørende observasjoner <engelsk>geographical\
         \ location where field tests, sampling, pore pressure measurements etc. with\
@@ -1183,6 +1219,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -1214,6 +1252,7 @@ components:
             \ specified.\r\n</engelsk>"
         boreBeskrivelse:
           type: string
+          maxLength: 2000
           description: "forklaring av hva som er utført og/eller observert i denne\
             \ undersøkelsen\r\n\r\n<engelsk>\r\na general description of actions performed\
             \ and/or observed in this investigation\r\n</engelsk>"
@@ -1280,12 +1319,14 @@ components:
             \ performed from raft or ice.\r\n</engelsk>"
         lenkeTilTileggsinfo:
           type: string
+          maxLength: 255
           description: "lenke til hvor en finner tilleggsinformasjon om borehullsundersø\
             kelsen\r\n\r\nMerknad: URL/URI for aktuelt dokument, bilde, video etc.\
             \ \r\n\r\n<engelsk>\r\nlink to extra information about the borehole investigation\r\
             \nNote: URL/URI for the particular document, picture, video \r\n</engelsk>"
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\
             \n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\
             \n\r\n<engelsk>\r\nreference to copyright, source, organization/publication\
@@ -1307,6 +1348,7 @@ components:
             \ time/date for the investigation\r\n</engelsk>"
         værforholdVedBoring:
           type: string
+          maxLength: 255
           description: "beskrivelse av værforhold under utførelsen av borehullundersø\
             kelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>"
         høyde:
@@ -1319,6 +1361,7 @@ components:
           description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
+          maxLength: 50
           description: Nummer på borehullundersøkelse benyttet i den geotekniske undersøkelsen
         eksternIdentifikasjon:
           $ref: "#/components/schemas/EksternIdentifikasjon"
@@ -1355,6 +1398,7 @@ components:
             \ of a predrilled borehole in a borehole investigation<engelsk>"
         forboringMetode:
           type: string
+          maxLength: 100
           description: metode brukt til boring uten registrering av data<engelsk>pre
             boring method</engelsk>
         stoppKode:
@@ -1381,11 +1425,14 @@ components:
           description: ""
     GeotekniskDokument:
       type: object
+      required:
+      - dokumentType
       description: dokument(er) tilhørende geotekniske undersøkelsesområder og borehull
         <engelsk>accompanying documents to geotechnical investigation areas and boreholes</engelsk>
       properties:
         dokumentID:
           type: string
+          maxLength: 50
           description: Unik nøkkel for dokument.
         dokumentNøkkel:
           type: string
@@ -1396,15 +1443,19 @@ components:
           description: "Type dokument. Feks. Geoteknisk rapport, Profilbilde"
         dokumentFilnavn:
           type: string
+          maxLength: 255
           description: Filnavn på dokumentet.
         dokumentURL:
           type: string
+          maxLength: 255
           description: Komplett URL for dokument med id.
         innholdType:
           type: string
+          maxLength: 255
           description: "Type dokumentformat, feks. Image/png, pdf"
         beskrivelse:
           type: string
+          maxLength: 2000
           description: Kort informasjon om dokumentet
         eksternIdentifikasjon:
           $ref: "#/components/schemas/EksternIdentifikasjon"
@@ -1413,6 +1464,7 @@ components:
             r, som kan benyttes av eksterne applikasjoner som referanse til objektet. "
         dokumentNavn:
           type: string
+          maxLength: 255
           description: Navn på dokument
         opprettetDato:
           type: string
@@ -1422,6 +1474,7 @@ components:
           description: Når objektet ble opprettet i database (Nadag)
         dokumentNr:
           type: string
+          maxLength: 100
           description: Feks. rapportNr.
         dokumentDato:
           type: string
@@ -1431,6 +1484,9 @@ components:
           description: Dato når dokument ble opprettet
     GeotekniskFeltUnders:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
       description: Geoteknisk feltundersøkelse
       properties:
         identifikasjon:
@@ -1478,6 +1534,7 @@ components:
           description: "Referansesystem for høydeangivelse, som EPSG-kode."
         feltundersNr:
           type: string
+          maxLength: 50
           description: Nummer på feltundersøkelse benyttet i den geotekniske undersøkelsen
         harDokument:
           type: array
@@ -1513,6 +1570,8 @@ components:
       description: oversikt over observasjonskoder for grunnvann
     GeotekniskInsituTest:
       type: object
+      required:
+      - identifikasjon
       description: metode som brukes i en geoteknisk borhullundersøkelse for å observere
         og måle egenskaper til de forskjellige jordlag <engelsk>method used in a geotechnical
         borehole investigation to observe and measure properties of the different
@@ -1605,6 +1664,10 @@ components:
       description: Kode for metoder benyttet ved geotekniske borehullundersøkelser
     GeotekniskObservasjon:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
+      - opprettetDato
       oneOf:
       - $ref: "#/components/schemas/DeformasjonMaaling"
       description: 'geografisk punkt hvor det er utført målinger <engelsk> geographical
@@ -1627,6 +1690,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -1674,6 +1739,7 @@ components:
             \n</engelsk>"
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\
             \n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\
             \n\r\n<engelsk>\r\nreference to copyright, source, organization/publication\
@@ -1724,9 +1790,11 @@ components:
           description: den lengden hvor sonderingsutstyret befinner seg i vann
         lenkeTilTileggsinfo:
           type: string
+          maxLength: 255
           description: Lenke til mer informasjon (URL)
         værforholdVedBoring:
           type: string
+          maxLength: 255
           description: "beskrivelse av værforhold under utførelsen av borehullundersø\
             kelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>"
         høyde:
@@ -1739,6 +1807,7 @@ components:
           description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
+          maxLength: 50
           description: Nummer på observasjon benyttet i den geotekniske undersøkelsen
         eksternIdentifikasjon:
           $ref: "#/components/schemas/EksternIdentifikasjon"
@@ -1771,6 +1840,7 @@ components:
             \ of a predrilled borehole in a borehole investigation<engelsk>"
         forboringMetode:
           type: string
+          maxLength: 100
           description: metode brukt til boring uten registrering av data<engelsk>pre
             boring method</engelsk>
         stoppKode:
@@ -1787,6 +1857,10 @@ components:
             \ started<engelsk>"
     GeotekniskObservasjon_NADAG:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
+      - opprettetDato
       description: geografisk punkt hvor det er utført observasjoner <engelsk>geographical
         location where observations have been carried out</engelsk>
       properties:
@@ -1805,6 +1879,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -1852,6 +1928,7 @@ components:
             \n</engelsk>"
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\
             \n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\
             \n\r\n<engelsk>\r\nreference to copyright, source, organization/publication\
@@ -1902,9 +1979,11 @@ components:
           description: den lengden hvor sonderingsutstyret befinner seg i vann
         lenkeTilTileggsinfo:
           type: string
+          maxLength: 255
           description: Lenke til mer informasjon (URL)
         værforholdVedBoring:
           type: string
+          maxLength: 255
           description: "beskrivelse av værforhold under utførelsen av borehullundersø\
             kelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>"
         høyde:
@@ -1917,6 +1996,7 @@ components:
           description: "Referansesystem for høydeangivelse, som EPSG-kode."
         undersøkelseNr:
           type: string
+          maxLength: 50
           description: Nummer på observasjon benyttet i den geotekniske undersøkelsen
         eksternIdentifikasjon:
           $ref: "#/components/schemas/EksternIdentifikasjon"
@@ -1949,6 +2029,7 @@ components:
             \ of a predrilled borehole in a borehole investigation<engelsk>"
         forboringMetode:
           type: string
+          maxLength: 100
           description: metode brukt til boring uten registrering av data<engelsk>pre
             boring method</engelsk>
         stoppKode:
@@ -1965,6 +2046,8 @@ components:
             \ started<engelsk>"
     GeotekniskProeveserie:
       type: object
+      required:
+      - identifikasjon
       description: Undersøkelse gjort i et borehull i form av en prøveserie<engelsk>
         Soil     test </engelsk>
       properties:
@@ -2025,20 +2108,24 @@ components:
           type: boolean
           description: om prøvserien er uforstyrret<engelsk>indicating whether a soil
             test is undisturbed</engelsk>
-        harPrøverseriedel:
+        harPrøveseriedel:
           type: array
           items:
             $ref: "#/components/schemas/GeotekniskProeveseriedel"
           description: ""
     GeotekniskProeveseriedel:
       type: object
+      required:
+      - prøveseriedelId
       description: delprøve av en  prøveserie<engelsk> Soil test part </engelsk>
       properties:
         prøveMetode:
           type: string
+          maxLength: 50
           description: metode benyttet for å ta prøven<engelsk>method identifier</engelsk>
         prøveseriedelNavn:
           type: string
+          maxLength: 255
           description: navn på prøveseriedelen<engelsk>name</engelsk>
         fraLengde:
           type: number
@@ -2053,6 +2140,7 @@ components:
             \ the sample [m]</engelsk>"
         prøveseriedelId:
           type: string
+          maxLength: 50
           description: Primærnøkkel for relasjon
         harData:
           type: array
@@ -2172,6 +2260,8 @@ components:
             observations made during sounding</engelsk>
     GeotekniskProevetaking:
       type: object
+      required:
+      - identifikasjon
       description: "innsamling av fysisk prøvemateriale som inndeles i prøvedeler\
         \ hvor det for hver prøvedel kan utføres ett eller flere geotekniske laboratorieforsø\
         k <engelsk>sampling of physical material separated into sample parts, where\
@@ -2210,6 +2300,8 @@ components:
             and results from environmental investigation<engelsk>
     GeotekniskSondering:
       type: object
+      required:
+      - identifikasjon
       description: metode som brukes i en grunnundersøkelse for å måle penetrasjonsmotstanden
         i de forskjellige jordlag <engelsk>method used in a ground investigation to
         measure the penetration resistance of various soil layers</engelsk>
@@ -2255,10 +2347,13 @@ components:
         <engelsk>overview of codes for termination of boring in a ground investigation</engelsk>
     GeotekniskTolketLag:
       type: object
+      required:
+      - posisjon
       description: Lag med geoteknisk tolkning
       properties:
         tolketLagID:
           type: string
+          maxLength: 50
           description: Unik nøkkel for tolktet lag
         klassifiseringMetode:
           $ref: "#/components/schemas/KlassifiseringsMetode"
@@ -2271,9 +2366,11 @@ components:
             av grunnforhold
         lagBeskrivelse:
           type: string
+          maxLength: 255
           description: Beskrivelse av tolket lag feks. Sand
         tolketAv:
           type: string
+          maxLength: 255
           description: Hvem som har gjort tolkning
         tolketTidspunkt:
           type: string
@@ -2283,9 +2380,11 @@ components:
           description: Når tolkning ble utført
         tolkningMerknad:
           type: string
+          maxLength: 255
           description: Kommentar til tolkning
         navn:
           type: string
+          maxLength: 255
           description: Navn på tolket lag
         påTerrengOverflate:
           type: boolean
@@ -2317,6 +2416,10 @@ components:
           description: "referansesystem for høydeangivelse, som EPSG-kode."
     GeotekniskTolketPunkt:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
+      - høydeReferanse
       description: Punkt med geoteknisk tolkning i GeotekniskTolketLag
       properties:
         identifikasjon:
@@ -2325,6 +2428,7 @@ components:
           description: unik identifikasjon av et objekt
         tolketAv:
           type: string
+          maxLength: 255
           description: Hvem som har tolket punktet
         tolketTidspunkt:
           type: string
@@ -2334,6 +2438,7 @@ components:
           description: Når tolkning ble utført
         navn:
           type: string
+          maxLength: 255
           description: Navn på tolket punkt
         posisjon:
           $ref: "#/components/schemas/Point"
@@ -2352,6 +2457,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         kvalitet:
           $ref: "#/components/schemas/PosisjonskvalitetNADAG"
           type: object
@@ -2369,6 +2476,7 @@ components:
             \ in the spatial data set. "
         beskrivelse:
           type: string
+          maxLength: 2000
           description: "kort tilleggsinformasjon om punktet for tolkning/er \r\n<engelsk>\r\
             \na short description</engelsk>"
         harTolketLag:
@@ -2378,6 +2486,9 @@ components:
           description: ""
     GeotekniskUnders:
       type: object
+      required:
+      - identifikasjon
+      - opprettetDato
       description: geografisk område hvor det finnes eller er planlagt geotekniske
         borehull tilhørende et gitt prosjekt <engelsk>geographical area where there
         are or are planned geotechnical boreholes for a given project</engelsk>
@@ -2401,6 +2512,7 @@ components:
             \ in the spatial data set. "
         beskrivelse:
           type: string
+          maxLength: 2000
           description: "beskrivelse av de geovitenskaplige undersøkelsene\r\n\r\n\
             <engelsk>\r\ndescription of the geoscientific investigations\r\n</engelsk>"
         område:
@@ -2410,16 +2522,19 @@ components:
             \narea coverd by the investigation \r\n</engelsk>"
         oppdragsgiver:
           type: string
+          maxLength: 255
           description: "identifikasjon av bestiller (kunde) og dennes organisasjon\r\
             \n\r\n<engelsk>\r\nidentifikation of the the customer organisation\r\n\
             </engelsk>"
         oppdragstaker:
           type: string
+          maxLength: 255
           description: "identifikasjon av utførende organisasjon\r\n\r\n<engelsk>\r\
             \nidentification of the the organisation responsible for carrying out\
             \ the project\r\n</engelsk>"
         prosjektNavn:
           type: string
+          maxLength: 255
           description: "prosjekt navn og/eller nummer\r\n\r\n<engelsk>\r\nname or\
             \ number of the project - e.g. projectnumber\r\n</engelsk>"
         undersøkelsePeriodeFra:
@@ -2459,9 +2574,11 @@ components:
           description: Når objektet ble opprettet i database (Nadag)
         prosjektNr:
           type: string
+          maxLength: 255
           description: Nummer på prosjekt benyttet for den geotekniske undersøkelsen
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde"
         undersøkelseÅrAntatt:
           type: integer
@@ -2472,6 +2589,8 @@ components:
             egenskapen. Årstallet her er hentet fra ulike kilder i leveransene og
             avhengig av hva for leveranser det er varierer usikkerheten på på det
             antatte årstallet.  '
+          maximum: 9999
+          minimum: 0
         feltUnders:
           type: array
           items:
@@ -2494,6 +2613,8 @@ components:
           description: ""
     GeotekniskUndersoekelseGrense:
       type: object
+      required:
+      - grense
       description: "avgrensning av et område for geotekniske undersøkelser. Merk:\
         \ Benyttes kun for de formater som krever egen geometri for avgrensning av\
         \ flate. <engelsk>demarcation of an area with soil investigations. Only used\
@@ -2505,6 +2626,8 @@ components:
           description: forløp som følger overgang mellom ulike fenomener
     Geotekniskmetode:
       type: object
+      required:
+      - identifikasjon
       oneOf:
       - $ref: "#/components/schemas/BlokkProeve"
       - $ref: "#/components/schemas/DilatometerTest"
@@ -2542,6 +2665,9 @@ components:
           description: 'unik identifikasjon av et objekt '
     GeovitenskapeligObservasjon:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
       description: "andre typer observasjoner som ikke er samlet inn via fysiske borehull\r\
         \n\r\n<engelsk>\r\nobservations collected by other features, i.e. not borehole.\r\
         \n</engelsk>"
@@ -2561,6 +2687,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -2608,6 +2736,7 @@ components:
             \n</engelsk>"
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\
             \n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\
             \n\r\n<engelsk>\r\nreference to copyright, source, organization/publication\
@@ -2615,6 +2744,8 @@ components:
             \n\r\n</engelsk>"
     GeovitenskapeligUndersoekelse:
       type: object
+      required:
+      - identifikasjon
       description: "geovitenskaplig undersøkelse som utføres innen for et gitt områ\
         de og tidsperiode og som ofte er knyttet til et prosjekt \r\n\r\n<engelsk>\r\
         \nsoil geoscientific investigation of a given area and time period and usually\
@@ -2639,6 +2770,7 @@ components:
             \ in the spatial data set. "
         beskrivelse:
           type: string
+          maxLength: 2000
           description: "beskrivelse av de geovitenskaplige undersøkelsene\r\n\r\n\
             <engelsk>\r\ndescription of the geoscientific investigations\r\n</engelsk>"
         område:
@@ -2648,16 +2780,19 @@ components:
             \narea coverd by the investigation \r\n</engelsk>"
         oppdragsgiver:
           type: string
+          maxLength: 255
           description: "identifikasjon av bestiller (kunde) og dennes organisasjon\r\
             \n\r\n<engelsk>\r\nidentifikation of the the customer organisation\r\n\
             </engelsk>"
         oppdragstaker:
           type: string
+          maxLength: 255
           description: "identifikasjon av utførende organisasjon\r\n\r\n<engelsk>\r\
             \nidentification of the the organisation responsible for carrying out\
             \ the project\r\n</engelsk>"
         prosjektNavn:
           type: string
+          maxLength: 255
           description: "prosjekt navn og/eller nummer\r\n\r\n<engelsk>\r\nname or\
             \ number of the project - e.g. projectnumber\r\n</engelsk>"
         undersøkelsePeriodeFra:
@@ -2681,6 +2816,9 @@ components:
             \ of the investigation\r\n</engelsk>"
     GeovitenskapeligUndersoekelseDelomraade:
       type: object
+      required:
+      - identifikasjon
+      - område
       description: "del av et undersøkelsesområde hvor det pågår, skal gjøres eller\
         \ er gjort geovitenskapelige undersøkelser  \r\n\r\nMerknad: Typisk brukt\
         \ offshore hvor et undersøkelsesområde er delt i flere mindre lokaliteter.\
@@ -2707,6 +2845,7 @@ components:
             \ in the spatial data set. "
         beskrivelse:
           type: string
+          maxLength: 255
           description: "forklaring til objektet\r\n<engelsk>\r\ndescription of object\r\
             \n</engelsk>"
         område:
@@ -2716,6 +2855,8 @@ components:
             </engelsk>"
     GeovitenskapeligUndersoekelseDelomraadeGrense:
       type: object
+      required:
+      - grense
       description: "avgrensning av et delområde innenfor en geovitenskapelig undersø\
         kelse\r\n\r\n<engelsk>boundary of a subarea within a geoscientific investigation</engelsk>"
       properties:
@@ -2725,6 +2866,8 @@ components:
           description: forløp som følger overgang mellom ulike fenomener
     GeovitenskapeligUndersoekelseGrense:
       type: object
+      required:
+      - grense
       description: "avgrensning av et område for en geovitenskapelig undersøkelse\
         \ \r\n\r\n<engelsk>boundary of geoscientific investigation</engelsk>"
       properties:
@@ -2734,6 +2877,9 @@ components:
           description: forløp som følger overgang mellom ulike fenomener
     GeovitenskapligBorehull:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
       description: "område representert ved et punkt hvor det skal foretas en eller\
         \ flere borehullundersøkelser - også kalt logisk borehull i motsetning til\
         \ borhullundersøkelse som representerer hvert fysiske borehull\r\n\r\nMerknad:\
@@ -2760,6 +2906,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -2793,6 +2941,7 @@ components:
             \ performed within an reasonable small area (e.g. <5 m or so)</engelsk>"
         beskrivelse:
           type: string
+          maxLength: 2000
           description: "forklaring til objektet og undersøkelser utført på lokaliteten\r\
             \n\r\n<engelsk>\r\na short description of the investigations at the location\
             \ of the borehole</engelsk>"
@@ -2817,6 +2966,9 @@ components:
             \ device</engelsk>"
     GeovitenskapligBorehullUndersoekelse:
       type: object
+      required:
+      - identifikasjon
+      - posisjon
       description: "et enkelt fysisk undersøkelsespunkt som inneholder beskrivelsen\
         \ av borehullforløpet  \r\n\r\nMerknad: Flere undersøkelser kan tilhøre det\
         \ samme borehullet, men det er undersøkelsen som representerer de enkelte\
@@ -2840,6 +2992,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -2871,6 +3025,7 @@ components:
             \ specified.\r\n</engelsk>"
         boreBeskrivelse:
           type: string
+          maxLength: 2000
           description: "forklaring av hva som er utført og/eller observert i denne\
             \ undersøkelsen\r\n\r\n<engelsk>\r\na general description of actions performed\
             \ and/or observed in this investigation\r\n</engelsk>"
@@ -2937,12 +3092,14 @@ components:
             \ performed from raft or ice.\r\n</engelsk>"
         lenkeTilTileggsinfo:
           type: string
+          maxLength: 255
           description: "lenke til hvor en finner tilleggsinformasjon om borehullsundersø\
             kelsen\r\n\r\nMerknad: URL/URI for aktuelt dokument, bilde, video etc.\
             \ \r\n\r\n<engelsk>\r\nlink to extra information about the borehole investigation\r\
             \nNote: URL/URI for the particular document, picture, video \r\n</engelsk>"
         opphav:
           type: string
+          maxLength: 255
           description: "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\r\
             \n\r\nMerknad: \r\nKan også beskrive navn på person og årsak til oppdatering\r\
             \n\r\n<engelsk>\r\nreference to copyright, source, organization/publication\
@@ -2964,6 +3121,7 @@ components:
             \ time/date for the investigation\r\n</engelsk>"
         værforholdVedBoring:
           type: string
+          maxLength: 255
           description: "beskrivelse av værforhold under utførelsen av borehullundersø\
             kelsen\r\n<engelsk>\r\nWeather conditions - general description.\r\n</engelsk>"
     GjennomboretMedium:
@@ -2979,6 +3137,8 @@ components:
         \ \r\ndefine what kind of medium/material the borehole has penetrated.</engelsk>"
     GraveProeve:
       type: object
+      required:
+      - identifikasjon
       description: omrørt fysisk prøvemateriale manuelt gravd ut fra sjakt eller grøft
         <engelsk>disturbed physical soil sample manually digged from a ditch or pit</engelsk>
       properties:
@@ -3094,6 +3254,8 @@ components:
             \ <engelsk> validity of data, if false only to be used as information</engelsk>"
     GrunnvannMaaling:
       type: object
+      required:
+      - identifikasjon
       description: måling av grunnvannstand i felt<engelsk>measurement of the ground
         water table in the field</engelsk>
       properties:
@@ -3238,6 +3400,8 @@ components:
         \ constant which relates water permeability through a medium with the gradient</engelsk>"
     HydrauliskTest:
       type: object
+      required:
+      - identifikasjon
       description: "måling av vannstrømning, vannhastighetsbestemmelse og hydraulisk\
         \ splitting i felt <engelsk>measurement of hydraulic tests (i.e. water flow,\
         \ pulse tests and hydraulic fracturing tests) in the field</engelsk>"
@@ -3369,6 +3533,8 @@ components:
             \ til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId."
     KanneProeve:
       type: object
+      required:
+      - identifikasjon
       description: "omrørt fysisk prøvemateriale tatt i organiske materialer eller\
         \ bløte leirer med enkelt håndoperert utstyr\r\n\r\n<engelsk>disturbed physical\
         \ soil sample taken from organic material or soft clays with simple hand operated\
@@ -3409,6 +3575,8 @@ components:
             and results from environmental investigation<engelsk>
     KjerneBoring:
       type: object
+      required:
+      - identifikasjon
       description: kjerneprøve tatt i fast berg/fjell ved kjerneboring. Ofte dype
         boringer og normalt ikke relevant for geoteknikk. Tatt med i denne produktspesifikasjon
         pga. at data kan finnes sammen med geoteknikkleveranser. Blir eventuelt overført
@@ -3575,6 +3743,8 @@ components:
             \ i vertikalplanet."
     KjerneProeve:
       type: object
+      required:
+      - identifikasjon
       description: kjerneprøve tatt i faste masser eller løst berg <engelsk>core sample</engelsk>
       properties:
         jsonType:
@@ -3632,6 +3802,8 @@ components:
         of classification methods for determination of ground conditions</engelsk>
     KombinasjonSondering:
       type: object
+      required:
+      - identifikasjon
       description: kombinasjon av boremetodene totalsondering og fjellkontrollboring
         som gjør det mulig å bore både i løsmasse og berg<engelsk>combination of the
         boring methods rotary pressure sounding and rock control boring which enables
@@ -3932,6 +4104,8 @@ components:
       description: metode for å måle objekttypens høydeverdi
     MiljoeUndersoekelse:
       type: object
+      required:
+      - identifikasjon
       description: miljøundersøkelse<engelsk>environmental investigation</engelsk>
       properties:
         jsonType:
@@ -4013,6 +4187,8 @@ components:
         benyttes.     '
     NaverProeve:
       type: object
+      required:
+      - identifikasjon
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
         sampling where disturbed samples are colleced</engelsk>
       properties:
@@ -4112,6 +4288,8 @@ components:
             \ data</engelsk>"
     Platebelastning:
       type: object
+      required:
+      - identifikasjon
       description: undersøkelse for måling av in situ deformasjons- og konsolideringsegenskaper
         i friksjonsjordarter<engelsk>investigation for measurement of in situ deformation-
         and consolidation properties in friction soils</engelsk>
@@ -4348,6 +4526,8 @@ components:
         of possible types of pore pressure measurement devices</engelsk>
     PoretrykkMaaling:
       type: object
+      required:
+      - identifikasjon
       description: "måling av poretrykkforhold i grunnen foretatt i løpet av en tidsperiode\
         \ og / eller i flere dybder. poretrykk er trykket i porevannet angitt som\
         \ kraft pr. flateenhet, og med atmosfæretrykket som referanse<engelsk>measurement\
@@ -4532,6 +4712,8 @@ components:
         \ and/or storage method for the sampled material</engelsk>"
     RamProeve:
       type: object
+      required:
+      - identifikasjon
       description: geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede
         masser <engelsk>geotechnical sampling where a sylinder is rammed into compact
         soil</engelsk>
@@ -4584,6 +4766,8 @@ components:
         fysisk representerer.
     SedimentProeve:
       type: object
+      required:
+      - identifikasjon
       description: sedimentprøve<engelsk>sediment sample</engelsk>
       properties:
         jsonType:
@@ -4628,6 +4812,8 @@ components:
       - FATAL
     SkovlProeve:
       type: object
+      required:
+      - identifikasjon
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
         sampling where disturbed samples are colleced</engelsk>
       properties:
@@ -4675,6 +4861,8 @@ components:
         CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>
     StatiskSondering:
       type: object
+      required:
+      - identifikasjon
       description: "sonderingstype som brukes for å bestemme lagdeling i løsmasser\
         \ og dybde til fast grunn, og utføres med en konstant nedpressingshastighet\
         \ og rotasjonshatighet.<engelsk>sounding method used for identification of\
@@ -4790,6 +4978,8 @@ components:
             \ angitt ved antall slag per tidsenhet [slag/m]"
     StempelProeve:
       type: object
+      required:
+      - identifikasjon
       description: "geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede\
         \ masser, og hvor sylinder holdes stengt inntil ønsket dybde\r\n<engelsk>geotechnical\
         \ sampling where a sylinder is rammed into compact soil, and where the sylinder\
@@ -4830,6 +5020,8 @@ components:
             and results from environmental investigation<engelsk>
     Supertype_Geotekn_obj_omr:
       type: object
+      required:
+      - identifikasjon
       description: "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige\
         \ og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid\
         \ vil en velge egenskaper og av grensningslinjer fra denne klassen."
@@ -4853,6 +5045,8 @@ components:
             \ in the spatial data set. "
     Supertype_Geotekn_obj_pkt:
       type: object
+      required:
+      - identifikasjon
       description: "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige\
         \ og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid\
         \ vil en velge egenskaper og av grensningslinjer fra denne klassen."
@@ -4872,6 +5066,8 @@ components:
           format: int32
           description: "kartmålestokk registreringene/ datene er hentet fra/ registrert\
             \ på\r\n\r\nEksempel: 1:50 000 = 50000."
+          maximum: 99999999
+          minimum: 0
         identifikasjon:
           $ref: "#/components/schemas/Identifikasjon"
           type: object
@@ -4911,6 +5107,8 @@ components:
       description: Metoder benyttet for tolkning av geotekniske feltundersøkelser
     Trykksondering:
       type: object
+      required:
+      - identifikasjon
       description: "penetrasjon av en trykksonde på enden av en serie med sylindriske\
         \ trykksonderingsstenger ned i grunnen med konstant hastighet, brukes for\
         \ å bestemme lagdeling og jordart i løsmasser, samt mekaniske egenskaper for\
@@ -5185,6 +5383,8 @@ components:
           type: string
     VannProeve:
       type: object
+      required:
+      - identifikasjon
       description: vannprøve<engelsk>water sample</engelsk>
       properties:
         jsonType:
@@ -5236,6 +5436,8 @@ components:
         sample</engelsk>
     Vingeboring:
       type: object
+      required:
+      - identifikasjon
       description: undersøkelse for måling av in situ udrenert skjærfasthet for uforstyrret
         og omrørt materiale i kohesjonsjordarter<engelsk>investigation for measurements
         of in situ undrained shear strength for undisturbed and remoulded material
@@ -5288,6 +5490,7 @@ components:
           description: "høyde for vingekors [mm] <engelsk>height of the vane</engelsk> "
         vingeIdentitet:
           type: string
+          maxLength: 255
           description: identifikasjon for anvendt vingeborutstyr<engelsk>identification
             of applied vane test equipment</engelsk>
         vingeboringObservasjon:
@@ -5687,8 +5890,9 @@ paths:
                 $ref: "#/components/schemas/GeotekniskUnders"
     post:
       summary: Creates a new GeotekniskUnders.
-      description: Creates a new GeotekniskUnders. Returns the id of the newly created
-        GeotekniskUnders.
+      description: "Creates a new GeotekniskUnders. Identifikasjon and dates must\
+        \ be blank, they will be generated. Returns the newly created GeotekniskUnders\
+        \ with identifikasjon and dates filled in."
       parameters:
       - description: The epsg code of the geometry.
         required: true
@@ -5826,7 +6030,8 @@ paths:
                 $ref: "#/components/schemas/GeotekniskUnders"
     put:
       summary: Updates a GeotekniskUnders.
-      description: Updates a GeotekniskUnders.
+      description: Updates a GeotekniskUnders. Identifikasjon of original GeotekniskUnders
+        must be filled in.
       parameters:
       - description: The GeotekniskUnders id.
         required: true
@@ -5871,7 +6076,8 @@ paths:
         schema:
           $ref: "#/components/schemas/Severity"
       requestBody:
-        description: The new version of the GeotekniskUnders.
+        description: "The new version of the GeotekniskUnders, with Identifikasjon\
+          \ of original GeotekniskUnders filled in."
         required: true
         content:
           application/json:
@@ -6051,6 +6257,6 @@ paths:
                 $ref: "#/components/schemas/DiagnosticsDto"
 info:
   title: Nadag innmelding API
-  version: 2026.04.24
+  version: 2026.09.07
 servers:
 - url: http://0.0.0.0:8080

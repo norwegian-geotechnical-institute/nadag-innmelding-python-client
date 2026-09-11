@@ -1,5 +1,5 @@
 # nadag-innmelding-python-client
-A client library for accessing Nadag innmelding API
+<openapi_python_client.schema.untrusted_string.UntrustedString object at 0x7fc7f94a39d0>
 
 ## Usage
 First, create a client:
@@ -7,13 +7,12 @@ First, create a client:
 ```python
 from nadag_innmelding_python_client import AuthenticatedClient
 
-secret_token = nadag_authenticate() # This you need to implement this yourself
+secret_token = nadag_authenticate()  # This you need to implement this yourself
 
 client = AuthenticatedClient(
     base_url="https://test.ngu.no/api/",
     token=secret_token,
 )
-
 ```
 
 Now call your endpoint and use your models:
@@ -59,12 +58,15 @@ There are more settings on the generated `Client` class which let you control mo
 ```python
 from nadag_innmelding_python_client import Client
 
+
 def log_request(request):
     print(f"Request event hook: {request.method} {request.url} - Waiting for response")
+
 
 def log_response(response):
     request = response.request
     print(f"Response event hook: {request.method} {request.url} - Status {response.status_code}")
+
 
 client = Client(
     base_url="https://api.example.com",

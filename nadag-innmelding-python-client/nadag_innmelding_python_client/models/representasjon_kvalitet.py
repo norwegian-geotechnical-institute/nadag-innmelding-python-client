@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class RepresentasjonKvalitet(str, Enum):
+class RepresentasjonKvalitet(StrEnum):
     POLYGON_FOR_GU_MED_KUN_ET_ENKELT_BOREHULL_100X100M = "POLYGON_FOR_GU_MED_KUN_ET_ENKELT_BOREHULL_100X100M_"
     POLYGON_HENTET_FRA_BOREHULL_I_GU_MIN_OG_MAKS_KOORDINATER = (
         "POLYGON_HENTET_FRA_BOREHULL_I_GU_MIN_OG_MAKS_KOORDINATER_"

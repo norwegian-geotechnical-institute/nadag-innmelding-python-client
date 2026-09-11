@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.nadag_dokument_type import NADAGDokumentType
 from ..types import UNSET, Unset
@@ -24,9 +23,9 @@ class GeotekniskDokument:
     investigation areas and boreholes</engelsk>
 
         Attributes:
+            dokument_type (NADAGDokumentType): Typer av dokument brukt i NADAG forvaltningsløsning.
             dokument_id (str | Unset): Unik nøkkel for dokument.
             dokument_nø_kkel (str | Unset): Benyttes til å angi nøkkelverdi ved kall til Web-api.
-            dokument_type (NADAGDokumentType | Unset): Typer av dokument brukt i NADAG forvaltningsløsning.
             dokument_filnavn (str | Unset): Filnavn på dokumentet.
             dokument_url (str | Unset): Komplett URL for dokument med id.
             innhold_type (str | Unset): Type dokumentformat, feks. Image/png, pdf
@@ -39,9 +38,9 @@ class GeotekniskDokument:
             dokument_dato (datetime.datetime | Unset): Dato når dokument ble opprettet
     """
 
+    dokument_type: NADAGDokumentType
     dokument_id: str | Unset = UNSET
     dokument_nø_kkel: str | Unset = UNSET
-    dokument_type: NADAGDokumentType | Unset = UNSET
     dokument_filnavn: str | Unset = UNSET
     dokument_url: str | Unset = UNSET
     innhold_type: str | Unset = UNSET
@@ -54,13 +53,11 @@ class GeotekniskDokument:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        dokument_type = self.dokument_type.value
+
         dokument_id = self.dokument_id
 
         dokument_nø_kkel = self.dokument_nø_kkel
-
-        dokument_type: str | Unset = UNSET
-        if not isinstance(self.dokument_type, Unset):
-            dokument_type = self.dokument_type.value
 
         dokument_filnavn = self.dokument_filnavn
 
@@ -88,13 +85,15 @@ class GeotekniskDokument:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "dokumentType": dokument_type,
+            }
+        )
         if dokument_id is not UNSET:
             field_dict["dokumentID"] = dokument_id
         if dokument_nø_kkel is not UNSET:
             field_dict["dokumentNøkkel"] = dokument_nø_kkel
-        if dokument_type is not UNSET:
-            field_dict["dokumentType"] = dokument_type
         if dokument_filnavn is not UNSET:
             field_dict["dokumentFilnavn"] = dokument_filnavn
         if dokument_url is not UNSET:
@@ -118,19 +117,14 @@ class GeotekniskDokument:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.ekstern_identifikasjon import EksternIdentifikasjon
+        from ..models.ekstern_identifikasjon import EksternIdentifikasjon  # noqa: PLC0415
 
         d = dict(src_dict)
+        dokument_type = NADAGDokumentType(d.pop("dokumentType"))
+
         dokument_id = d.pop("dokumentID", UNSET)
 
         dokument_nø_kkel = d.pop("dokumentNøkkel", UNSET)
-
-        _dokument_type = d.pop("dokumentType", UNSET)
-        dokument_type: NADAGDokumentType | Unset
-        if isinstance(_dokument_type, Unset):
-            dokument_type = UNSET
-        else:
-            dokument_type = NADAGDokumentType(_dokument_type)
 
         dokument_filnavn = d.pop("dokumentFilnavn", UNSET)
 
@@ -154,7 +148,7 @@ class GeotekniskDokument:
         if isinstance(_opprettet_dato, Unset):
             opprettet_dato = UNSET
         else:
-            opprettet_dato = isoparse(_opprettet_dato)
+            opprettet_dato = datetime.datetime.fromisoformat(_opprettet_dato)
 
         dokument_nr = d.pop("dokumentNr", UNSET)
 
@@ -163,12 +157,12 @@ class GeotekniskDokument:
         if isinstance(_dokument_dato, Unset):
             dokument_dato = UNSET
         else:
-            dokument_dato = isoparse(_dokument_dato)
+            dokument_dato = datetime.datetime.fromisoformat(_dokument_dato)
 
         geoteknisk_dokument = cls(
+            dokument_type=dokument_type,
             dokument_id=dokument_id,
             dokument_nø_kkel=dokument_nø_kkel,
-            dokument_type=dokument_type,
             dokument_filnavn=dokument_filnavn,
             dokument_url=dokument_url,
             innhold_type=innhold_type,

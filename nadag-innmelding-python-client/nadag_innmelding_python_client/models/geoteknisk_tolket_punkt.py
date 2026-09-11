@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..models.nadag_hoeyderef import NADAGHoeyderef
 from ..types import UNSET, Unset
@@ -26,20 +25,20 @@ class GeotekniskTolketPunkt:
     """Punkt med geoteknisk tolkning i GeotekniskTolketLag
 
     Attributes:
-        identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+        identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
             produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
             NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
+        posisjon (Point):
+        h_ø_yde_referanse (NADAGHoeyderef): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder
+            benyttes.
         tolket_av (str | Unset): Hvem som har tolket punktet
         tolket_tidspunkt (datetime.datetime | Unset): Når tolkning ble utført
         navn (str | Unset): Navn på tolket punkt
-        posisjon (Point | Unset):
         høyde (float | Unset): Terrenghøyde overflate for punkt med tolkning(/er)[m]
-        h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
-            koder benyttes.
         digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
             Eksempel: 1:50 000 = 50000.
@@ -60,13 +59,13 @@ class GeotekniskTolketPunkt:
         har_tolket_lag (list[GeotekniskTolketLag] | Unset):
     """
 
-    identifikasjon: Identifikasjon | Unset = UNSET
+    identifikasjon: Identifikasjon
+    posisjon: Point
+    h_ø_yde_referanse: NADAGHoeyderef
     tolket_av: str | Unset = UNSET
     tolket_tidspunkt: datetime.datetime | Unset = UNSET
     navn: str | Unset = UNSET
-    posisjon: Point | Unset = UNSET
     høyde: float | Unset = UNSET
-    h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
     digitaliseringsmålestokk: int | Unset = UNSET
     kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
@@ -75,9 +74,11 @@ class GeotekniskTolketPunkt:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon = self.identifikasjon.to_dict()
+
+        posisjon = self.posisjon.to_dict()
+
+        h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         tolket_av = self.tolket_av
 
@@ -87,15 +88,7 @@ class GeotekniskTolketPunkt:
 
         navn = self.navn
 
-        posisjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.posisjon, Unset):
-            posisjon = self.posisjon.to_dict()
-
         høyde = self.høyde
-
-        h_ø_yde_referanse: str | Unset = UNSET
-        if not isinstance(self.h_ø_yde_referanse, Unset):
-            h_ø_yde_referanse = self.h_ø_yde_referanse.value
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
 
@@ -118,21 +111,21 @@ class GeotekniskTolketPunkt:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+                "posisjon": posisjon,
+                "høydeReferanse": h_ø_yde_referanse,
+            }
+        )
         if tolket_av is not UNSET:
             field_dict["tolketAv"] = tolket_av
         if tolket_tidspunkt is not UNSET:
             field_dict["tolketTidspunkt"] = tolket_tidspunkt
         if navn is not UNSET:
             field_dict["navn"] = navn
-        if posisjon is not UNSET:
-            field_dict["posisjon"] = posisjon
         if høyde is not UNSET:
             field_dict["høyde"] = høyde
-        if h_ø_yde_referanse is not UNSET:
-            field_dict["høydeReferanse"] = h_ø_yde_referanse
         if digitaliseringsmålestokk is not UNSET:
             field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
         if kvalitet is not UNSET:
@@ -148,18 +141,17 @@ class GeotekniskTolketPunkt:
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.geoteknisk_tolket_lag import GeotekniskTolketLag
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.point import Point
-        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG
+        from ..models.geoteknisk_tolket_lag import GeotekniskTolketLag  # noqa: PLC0415
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.point import Point  # noqa: PLC0415
+        from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG  # noqa: PLC0415
 
         d = dict(src_dict)
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+
+        posisjon = Point.from_dict(d.pop("posisjon"))
+
+        h_ø_yde_referanse = NADAGHoeyderef(d.pop("høydeReferanse"))
 
         tolket_av = d.pop("tolketAv", UNSET)
 
@@ -168,25 +160,11 @@ class GeotekniskTolketPunkt:
         if isinstance(_tolket_tidspunkt, Unset):
             tolket_tidspunkt = UNSET
         else:
-            tolket_tidspunkt = isoparse(_tolket_tidspunkt)
+            tolket_tidspunkt = datetime.datetime.fromisoformat(_tolket_tidspunkt)
 
         navn = d.pop("navn", UNSET)
 
-        _posisjon = d.pop("posisjon", UNSET)
-        posisjon: Point | Unset
-        if isinstance(_posisjon, Unset):
-            posisjon = UNSET
-        else:
-            posisjon = Point.from_dict(_posisjon)
-
         høyde = d.pop("høyde", UNSET)
-
-        _h_ø_yde_referanse = d.pop("høydeReferanse", UNSET)
-        h_ø_yde_referanse: NADAGHoeyderef | Unset
-        if isinstance(_h_ø_yde_referanse, Unset):
-            h_ø_yde_referanse = UNSET
-        else:
-            h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
 
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
 
@@ -202,7 +180,7 @@ class GeotekniskTolketPunkt:
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
-            oppdateringsdato = isoparse(_oppdateringsdato)
+            oppdateringsdato = datetime.datetime.fromisoformat(_oppdateringsdato)
 
         beskrivelse = d.pop("beskrivelse", UNSET)
 
@@ -217,12 +195,12 @@ class GeotekniskTolketPunkt:
 
         geoteknisk_tolket_punkt = cls(
             identifikasjon=identifikasjon,
+            posisjon=posisjon,
+            h_ø_yde_referanse=h_ø_yde_referanse,
             tolket_av=tolket_av,
             tolket_tidspunkt=tolket_tidspunkt,
             navn=navn,
-            posisjon=posisjon,
             høyde=høyde,
-            h_ø_yde_referanse=h_ø_yde_referanse,
             digitaliseringsmålestokk=digitaliseringsmålestokk,
             kvalitet=kvalitet,
             oppdateringsdato=oppdateringsdato,

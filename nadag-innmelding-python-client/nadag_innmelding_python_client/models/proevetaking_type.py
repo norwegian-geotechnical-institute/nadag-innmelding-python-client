@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class ProevetakingType(str, Enum):
+class ProevetakingType(StrEnum):
     BLOKK = "BLOKK"
     PLASTRØR = "PLASTRØR"
     POSEPRØVE = "POSEPRØVE"

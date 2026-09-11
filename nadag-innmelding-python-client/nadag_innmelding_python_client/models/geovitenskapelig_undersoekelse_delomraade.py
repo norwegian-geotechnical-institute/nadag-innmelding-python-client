@@ -6,7 +6,6 @@ from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-from dateutil.parser import isoparse
 
 from ..types import UNSET, Unset
 
@@ -28,13 +27,14 @@ class GeovitenskapeligUndersoekelseDelomraade:
     typically used offshore where an investigation is split into smaller parts</engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
+            område (Polygon):
             oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
 
                 Merknad:
@@ -47,19 +47,18 @@ class GeovitenskapeligUndersoekelseDelomraade:
                 <engelsk>
                 description of object
                 </engelsk>
-            område (Polygon | Unset):
     """
 
-    identifikasjon: Identifikasjon | Unset = UNSET
+    identifikasjon: Identifikasjon
+    område: Polygon
     oppdateringsdato: datetime.datetime | Unset = UNSET
     beskrivelse: str | Unset = UNSET
-    område: Polygon | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.identifikasjon, Unset):
-            identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon = self.identifikasjon.to_dict()
+
+        område = self.område.to_dict()
 
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
@@ -67,58 +66,45 @@ class GeovitenskapeligUndersoekelseDelomraade:
 
         beskrivelse = self.beskrivelse
 
-        område: dict[str, Any] | Unset = UNSET
-        if not isinstance(self.område, Unset):
-            område = self.område.to_dict()
-
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if identifikasjon is not UNSET:
-            field_dict["identifikasjon"] = identifikasjon
+        field_dict.update(
+            {
+                "identifikasjon": identifikasjon,
+                "område": område,
+            }
+        )
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
         if beskrivelse is not UNSET:
             field_dict["beskrivelse"] = beskrivelse
-        if område is not UNSET:
-            field_dict["område"] = område
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
-        from ..models.identifikasjon import Identifikasjon
-        from ..models.polygon import Polygon
+        from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
+        from ..models.polygon import Polygon  # noqa: PLC0415
 
         d = dict(src_dict)
-        _identifikasjon = d.pop("identifikasjon", UNSET)
-        identifikasjon: Identifikasjon | Unset
-        if isinstance(_identifikasjon, Unset):
-            identifikasjon = UNSET
-        else:
-            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
+        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+
+        område = Polygon.from_dict(d.pop("område"))
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
         oppdateringsdato: datetime.datetime | Unset
         if isinstance(_oppdateringsdato, Unset):
             oppdateringsdato = UNSET
         else:
-            oppdateringsdato = isoparse(_oppdateringsdato)
+            oppdateringsdato = datetime.datetime.fromisoformat(_oppdateringsdato)
 
         beskrivelse = d.pop("beskrivelse", UNSET)
 
-        _område = d.pop("område", UNSET)
-        område: Polygon | Unset
-        if isinstance(_område, Unset):
-            område = UNSET
-        else:
-            område = Polygon.from_dict(_område)
-
         geovitenskapelig_undersoekelse_delomraade = cls(
             identifikasjon=identifikasjon,
+            område=område,
             oppdateringsdato=oppdateringsdato,
             beskrivelse=beskrivelse,
-            område=område,
         )
 
         geovitenskapelig_undersoekelse_delomraade.additional_properties = d

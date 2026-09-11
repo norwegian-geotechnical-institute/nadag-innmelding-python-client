@@ -1,7 +1,7 @@
-from enum import Enum
+from enum import StrEnum
 
 
-class KvikkleirePaavisningKode(str, Enum):
+class KvikkleirePaavisningKode(StrEnum):
     ANTATT = "ANTATT"
     ANTATTIKKEKVIKK = "ANTATTIKKEKVIKK"
     IKKEVURDERT = "IKKEVURDERT"
