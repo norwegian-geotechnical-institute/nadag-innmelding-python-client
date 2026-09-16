@@ -2,7 +2,7 @@ name: Auto Update from OpenAPI Spec
 
 on:
   schedule:
-    - cron: "0 4,10,12,14 * * MON-FRI" # Every two hours 4-14 UTC Monday to Friday
+    - cron: "0 4,10 * * MON-FRI" # Run at 04:00 and 10:00  UTC Monday to Friday
   workflow_dispatch:
 
 permissions:
@@ -25,12 +25,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      - name: Set up uv
-        uses: astral-sh/setup-uv@v7
-        with:
-          python-version: '3.13'
-          enable-cache: true
 
       - name: Download latest spec
         id: download
@@ -62,6 +56,13 @@ jobs:
           else
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Set up uv
+        if: steps.download.outputs.changed == 'true'
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: '3.13'
+          enable-cache: true
 
       - name: Regenerate client & bump version
         id: regenerate
