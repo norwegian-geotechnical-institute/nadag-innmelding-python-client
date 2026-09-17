@@ -25,16 +25,16 @@ class GeotekniskTolketPunkt:
     """Punkt med geoteknisk tolkning i GeotekniskTolketLag
 
     Attributes:
-        identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+        posisjon (Point):
+        h_ø_yde_referanse (NADAGHoeyderef): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder
+            benyttes.
+        identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
             produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
             NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        posisjon (Point):
-        h_ø_yde_referanse (NADAGHoeyderef): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-koder
-            benyttes.
         tolket_av (str | Unset): Hvem som har tolket punktet
         tolket_tidspunkt (datetime.datetime | Unset): Når tolkning ble utført
         navn (str | Unset): Navn på tolket punkt
@@ -59,9 +59,9 @@ class GeotekniskTolketPunkt:
         har_tolket_lag (list[GeotekniskTolketLag] | Unset):
     """
 
-    identifikasjon: Identifikasjon
     posisjon: Point
     h_ø_yde_referanse: NADAGHoeyderef
+    identifikasjon: Identifikasjon | Unset = UNSET
     tolket_av: str | Unset = UNSET
     tolket_tidspunkt: datetime.datetime | Unset = UNSET
     navn: str | Unset = UNSET
@@ -74,11 +74,13 @@ class GeotekniskTolketPunkt:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
-
         posisjon = self.posisjon.to_dict()
 
         h_ø_yde_referanse = self.h_ø_yde_referanse.value
+
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         tolket_av = self.tolket_av
 
@@ -113,11 +115,12 @@ class GeotekniskTolketPunkt:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "identifikasjon": identifikasjon,
                 "posisjon": posisjon,
                 "høydeReferanse": h_ø_yde_referanse,
             }
         )
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if tolket_av is not UNSET:
             field_dict["tolketAv"] = tolket_av
         if tolket_tidspunkt is not UNSET:
@@ -147,11 +150,16 @@ class GeotekniskTolketPunkt:
         from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
         posisjon = Point.from_dict(d.pop("posisjon"))
 
         h_ø_yde_referanse = NADAGHoeyderef(d.pop("høydeReferanse"))
+
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         tolket_av = d.pop("tolketAv", UNSET)
 
@@ -194,9 +202,9 @@ class GeotekniskTolketPunkt:
                 har_tolket_lag.append(har_tolket_lag_item)
 
         geoteknisk_tolket_punkt = cls(
-            identifikasjon=identifikasjon,
             posisjon=posisjon,
             h_ø_yde_referanse=h_ø_yde_referanse,
+            identifikasjon=identifikasjon,
             tolket_av=tolket_av,
             tolket_tidspunkt=tolket_tidspunkt,
             navn=navn,

@@ -21,7 +21,7 @@ class GeotekniskSondering:
     used in a ground investigation to measure the penetration resistance of various soil layers</engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
@@ -35,14 +35,16 @@ class GeotekniskSondering:
             torv_tykkelse (float | Unset): tykkelse på torvlag i meter [m] <engelsk>thickness of peat in meter</engelsk>
     """
 
-    identifikasjon: Identifikasjon
+    identifikasjon: Identifikasjon | Unset = UNSET
     fra_borlengde: float | Unset = UNSET
     til_borlengde: float | Unset = UNSET
     torv_tykkelse: float | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         fra_borlengde = self.fra_borlengde
 
@@ -52,11 +54,9 @@ class GeotekniskSondering:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "identifikasjon": identifikasjon,
-            }
-        )
+        field_dict.update({})
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if fra_borlengde is not UNSET:
             field_dict["fraBorlengde"] = fra_borlengde
         if til_borlengde is not UNSET:
@@ -71,7 +71,12 @@ class GeotekniskSondering:
         from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         fra_borlengde = d.pop("fraBorlengde", UNSET)
 

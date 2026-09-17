@@ -28,7 +28,7 @@ class GeovitenskapeligUndersoekelse:
     </engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
@@ -77,7 +77,7 @@ class GeovitenskapeligUndersoekelse:
                 </engelsk>
     """
 
-    identifikasjon: Identifikasjon
+    identifikasjon: Identifikasjon | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
     beskrivelse: str | Unset = UNSET
     område: Polygon | Unset = UNSET
@@ -90,7 +90,9 @@ class GeovitenskapeligUndersoekelse:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
@@ -122,11 +124,9 @@ class GeovitenskapeligUndersoekelse:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "identifikasjon": identifikasjon,
-            }
-        )
+        field_dict.update({})
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
         if beskrivelse is not UNSET:
@@ -155,7 +155,12 @@ class GeovitenskapeligUndersoekelse:
         from ..models.polygon import Polygon  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
         oppdateringsdato: datetime.datetime | Unset

@@ -26,14 +26,14 @@ class PoretrykkMaaling:
     in the pore water given as force per area unit, with the atmospheric pressure as reference</engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            json_type (Literal['PoretrykkMaaling'] | Unset):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            json_type (Literal['PoretrykkMaaling'] | Unset):
             fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
                 <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
             til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
@@ -75,8 +75,8 @@ class PoretrykkMaaling:
             poretrykk_observasjon (list[PoretrykkData] | Unset):
     """
 
-    identifikasjon: Identifikasjon
     json_type: Literal["PoretrykkMaaling"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
     fra_borlengde: float | Unset = UNSET
     til_borlengde: float | Unset = UNSET
     insitu_test_start_tidspunkt: datetime.datetime | Unset = UNSET
@@ -96,9 +96,11 @@ class PoretrykkMaaling:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
-
         json_type = self.json_type
+
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         fra_borlengde = self.fra_borlengde
 
@@ -147,13 +149,11 @@ class PoretrykkMaaling:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "identifikasjon": identifikasjon,
-            }
-        )
+        field_dict.update({})
         if json_type is not UNSET:
             field_dict["jsonType"] = json_type
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if fra_borlengde is not UNSET:
             field_dict["fraBorlengde"] = fra_borlengde
         if til_borlengde is not UNSET:
@@ -195,11 +195,16 @@ class PoretrykkMaaling:
         from ..models.poretrykk_data import PoretrykkData  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
         json_type = cast(Literal["PoretrykkMaaling"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "PoretrykkMaaling" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'PoretrykkMaaling', got '{json_type}'")
+
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         fra_borlengde = d.pop("fraBorlengde", UNSET)
 
@@ -261,8 +266,8 @@ class PoretrykkMaaling:
                 poretrykk_observasjon.append(poretrykk_observasjon_item)
 
         poretrykk_maaling = cls(
-            identifikasjon=identifikasjon,
             json_type=json_type,
+            identifikasjon=identifikasjon,
             fra_borlengde=fra_borlengde,
             til_borlengde=til_borlengde,
             insitu_test_start_tidspunkt=insitu_test_start_tidspunkt,

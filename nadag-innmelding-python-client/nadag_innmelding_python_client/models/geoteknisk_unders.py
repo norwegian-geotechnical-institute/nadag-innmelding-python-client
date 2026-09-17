@@ -30,14 +30,13 @@ class GeotekniskUnders:
     <engelsk>geographical area where there are or are planned geotechnical boreholes for a given project</engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            opprettet_dato (datetime.datetime): Når objektet ble opprettet i database (Nadag)
             oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
 
                 Merknad:
@@ -82,6 +81,7 @@ class GeotekniskUnders:
                 leverandør inn til NADAG.
             representasjon_kvalitet (RepresentasjonKvalitet | Unset): Angir hva avgrensningen/polygonen for en geoteknisk
                 undersøkelse fysisk representerer.
+            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
             prosjekt_nr (str | Unset): Nummer på prosjekt benyttet for den geotekniske undersøkelsen
             opphav (str | Unset): referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
             unders_ø_kelse_å_r_antatt (int | Unset): Antatt år for gjennomføring av den geotekniske undersøkelsen. For
@@ -94,8 +94,7 @@ class GeotekniskUnders:
             har_dokument (list[GeotekniskDokument] | Unset):
     """
 
-    identifikasjon: Identifikasjon
-    opprettet_dato: datetime.datetime
+    identifikasjon: Identifikasjon | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
     beskrivelse: str | Unset = UNSET
     område: Polygon | Unset = UNSET
@@ -107,6 +106,7 @@ class GeotekniskUnders:
     unders_ø_kelse_periode_til: datetime.datetime | Unset = UNSET
     ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
     representasjon_kvalitet: RepresentasjonKvalitet | Unset = UNSET
+    opprettet_dato: datetime.datetime | Unset = UNSET
     prosjekt_nr: str | Unset = UNSET
     opphav: str | Unset = UNSET
     unders_ø_kelse_å_r_antatt: int | Unset = UNSET
@@ -117,9 +117,9 @@ class GeotekniskUnders:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
-
-        opprettet_dato = self.opprettet_dato.isoformat()
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
@@ -157,6 +157,10 @@ class GeotekniskUnders:
         if not isinstance(self.representasjon_kvalitet, Unset):
             representasjon_kvalitet = self.representasjon_kvalitet.value
 
+        opprettet_dato: str | Unset = UNSET
+        if not isinstance(self.opprettet_dato, Unset):
+            opprettet_dato = self.opprettet_dato.isoformat()
+
         prosjekt_nr = self.prosjekt_nr
 
         opphav = self.opphav
@@ -193,12 +197,9 @@ class GeotekniskUnders:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "identifikasjon": identifikasjon,
-                "opprettetDato": opprettet_dato,
-            }
-        )
+        field_dict.update({})
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
         if beskrivelse is not UNSET:
@@ -221,6 +222,8 @@ class GeotekniskUnders:
             field_dict["eksternIdentifikasjon"] = ekstern_identifikasjon
         if representasjon_kvalitet is not UNSET:
             field_dict["representasjonKvalitet"] = representasjon_kvalitet
+        if opprettet_dato is not UNSET:
+            field_dict["opprettetDato"] = opprettet_dato
         if prosjekt_nr is not UNSET:
             field_dict["prosjektNr"] = prosjekt_nr
         if opphav is not UNSET:
@@ -250,9 +253,12 @@ class GeotekniskUnders:
         from ..models.polygon import Polygon  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
-        opprettet_dato = datetime.datetime.fromisoformat(d.pop("opprettetDato"))
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
         oppdateringsdato: datetime.datetime | Unset
@@ -311,6 +317,13 @@ class GeotekniskUnders:
         else:
             representasjon_kvalitet = RepresentasjonKvalitet(_representasjon_kvalitet)
 
+        _opprettet_dato = d.pop("opprettetDato", UNSET)
+        opprettet_dato: datetime.datetime | Unset
+        if isinstance(_opprettet_dato, Unset):
+            opprettet_dato = UNSET
+        else:
+            opprettet_dato = datetime.datetime.fromisoformat(_opprettet_dato)
+
         prosjekt_nr = d.pop("prosjektNr", UNSET)
 
         opphav = d.pop("opphav", UNSET)
@@ -355,7 +368,6 @@ class GeotekniskUnders:
 
         geoteknisk_unders = cls(
             identifikasjon=identifikasjon,
-            opprettet_dato=opprettet_dato,
             oppdateringsdato=oppdateringsdato,
             beskrivelse=beskrivelse,
             område=område,
@@ -367,6 +379,7 @@ class GeotekniskUnders:
             unders_ø_kelse_periode_til=unders_ø_kelse_periode_til,
             ekstern_identifikasjon=ekstern_identifikasjon,
             representasjon_kvalitet=representasjon_kvalitet,
+            opprettet_dato=opprettet_dato,
             prosjekt_nr=prosjekt_nr,
             opphav=opphav,
             unders_ø_kelse_å_r_antatt=unders_ø_kelse_å_r_antatt,

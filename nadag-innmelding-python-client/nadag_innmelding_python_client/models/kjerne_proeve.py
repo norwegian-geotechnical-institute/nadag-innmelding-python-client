@@ -22,14 +22,14 @@ class KjerneProeve:
     """kjerneprøve tatt i faste masser eller løst berg <engelsk>core sample</engelsk>
 
     Attributes:
-        identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+        json_type (Literal['KjerneProeve'] | Unset):
+        identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
             produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
             NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
             f.eks bygningsnummer.
 
             NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-        json_type (Literal['KjerneProeve'] | Unset):
         fra_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
             <engelsk>distance measured from the top of  the curve describing the borehole geometry</engelsk>
         til_borlengde (float | Unset): lengde målt fra toppen av kurven/linja som beskriver borehullforløpet [m]
@@ -48,8 +48,8 @@ class KjerneProeve:
             </engelsk>
     """
 
-    identifikasjon: Identifikasjon
     json_type: Literal["KjerneProeve"] | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
     fra_borlengde: float | Unset = UNSET
     til_borlengde: float | Unset = UNSET
     prøvetype: ProevetakingType | Unset = UNSET
@@ -59,9 +59,11 @@ class KjerneProeve:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
-
         json_type = self.json_type
+
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         fra_borlengde = self.fra_borlengde
 
@@ -81,13 +83,11 @@ class KjerneProeve:
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "identifikasjon": identifikasjon,
-            }
-        )
+        field_dict.update({})
         if json_type is not UNSET:
             field_dict["jsonType"] = json_type
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if fra_borlengde is not UNSET:
             field_dict["fraBorlengde"] = fra_borlengde
         if til_borlengde is not UNSET:
@@ -109,11 +109,16 @@ class KjerneProeve:
         from ..models.identifikasjon import Identifikasjon  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
         json_type = cast(Literal["KjerneProeve"] | Unset, d.pop("jsonType", UNSET))
         if json_type != "KjerneProeve" and not isinstance(json_type, Unset):
             raise ValueError(f"jsonType must match const 'KjerneProeve', got '{json_type}'")
+
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         fra_borlengde = d.pop("fraBorlengde", UNSET)
 
@@ -138,8 +143,8 @@ class KjerneProeve:
             boret_lengde_til_berg = BorlengdeTilBerg.from_dict(_boret_lengde_til_berg)
 
         kjerne_proeve = cls(
-            identifikasjon=identifikasjon,
             json_type=json_type,
+            identifikasjon=identifikasjon,
             fra_borlengde=fra_borlengde,
             til_borlengde=til_borlengde,
             prøvetype=prøvetype,

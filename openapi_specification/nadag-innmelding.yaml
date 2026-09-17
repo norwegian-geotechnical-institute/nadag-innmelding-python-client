@@ -14,8 +14,6 @@ components:
         of possible aquifer types for ground water measurements</engelsk>
     BlokkProeve:
       type: object
-      required:
-      - identifikasjon
       description: "fysisk prøvemateriale manuelt skjært ut fra bunnen av en utgravning\
         \ eller ved hjelp av spesialutviklet prøvetakingsutstyr\r\n\r\n<engelsk>physical\
         \ sample manually cut from the bottom of a ditch or with special sample equipment</engelsk>"
@@ -156,9 +154,7 @@ components:
     DeformasjonMaaling:
       type: object
       required:
-      - identifikasjon
       - posisjon
-      - opprettetDato
       description: undersøkelse for måling av setninger og deformasjoner i felt<engelsk>investigation
         for measurement of settlements and deformations in the field</engelsk>
       properties:
@@ -476,8 +472,6 @@ components:
           description: "The list of diagnostics, with details about each diagnostic."
     DilatometerTest:
       type: object
-      required:
-      - identifikasjon
       description: "en enkel innretning, formet som et flatt blad designet for å trykkes\
         \ ned i bakken. Merknad: ble utviklet for å bestemme modulus for en jordart.\r\
         \n<engelsk>a simple device, shaped in the form of a flat blade designed to\
@@ -665,8 +659,6 @@ components:
             \ by cross-sectional area of probe)</engelsk>"
     DynamiskSondering:
       type: object
-      required:
-      - identifikasjon
       description: "sondering som benytter slag på borstrengen ved penetrasjon, benevnes\
         \ også som ramsondering, flere liknende metoder aktuelle<engelsk>sounding\
         \ using strokes on the drill string during penetration, several similar methods\
@@ -872,8 +864,6 @@ components:
             in pore air</engelsk>
     GassMaaling:
       type: object
-      required:
-      - identifikasjon
       description: måling av  gass<engelsk>measurement of gas</engelsk>
       properties:
         jsonType:
@@ -922,8 +912,6 @@ components:
           description: ""
     GassProeve:
       type: object
-      required:
-      - identifikasjon
       description: gassprøve fra poreluft<engelsk>gas sample from pore air</engelsk>
       properties:
         jsonType:
@@ -1045,9 +1033,7 @@ components:
     GeotekniskBorehull:
       type: object
       required:
-      - identifikasjon
       - posisjon
-      - opprettetDato
       description: geografisk område representert ved et punkt som er den logiske
         enhet for tolking av laginndeling og egenskaper til de forskjellige jordlag
         <engelsk>geographical area represented by a location which is the logical
@@ -1195,9 +1181,7 @@ components:
     GeotekniskBorehullUnders:
       type: object
       required:
-      - identifikasjon
       - posisjon
-      - opprettetDato
       - geotekniskMetode
       description: "geografisk punkt hvor det er utført feltforsøk, prøvetaking, må\
         ling av poretrykk osv. med tilhørende observasjoner <engelsk>geographical\
@@ -1485,7 +1469,6 @@ components:
     GeotekniskFeltUnders:
       type: object
       required:
-      - identifikasjon
       - posisjon
       description: Geoteknisk feltundersøkelse
       properties:
@@ -1570,8 +1553,6 @@ components:
       description: oversikt over observasjonskoder for grunnvann
     GeotekniskInsituTest:
       type: object
-      required:
-      - identifikasjon
       description: metode som brukes i en geoteknisk borhullundersøkelse for å observere
         og måle egenskaper til de forskjellige jordlag <engelsk>method used in a geotechnical
         borehole investigation to observe and measure properties of the different
@@ -1665,9 +1646,7 @@ components:
     GeotekniskObservasjon:
       type: object
       required:
-      - identifikasjon
       - posisjon
-      - opprettetDato
       oneOf:
       - $ref: "#/components/schemas/DeformasjonMaaling"
       description: 'geografisk punkt hvor det er utført målinger <engelsk> geographical
@@ -1858,9 +1837,7 @@ components:
     GeotekniskObservasjon_NADAG:
       type: object
       required:
-      - identifikasjon
       - posisjon
-      - opprettetDato
       description: geografisk punkt hvor det er utført observasjoner <engelsk>geographical
         location where observations have been carried out</engelsk>
       properties:
@@ -2046,8 +2023,6 @@ components:
             \ started<engelsk>"
     GeotekniskProeveserie:
       type: object
-      required:
-      - identifikasjon
       description: Undersøkelse gjort i et borehull i form av en prøveserie<engelsk>
         Soil     test </engelsk>
       properties:
@@ -2260,8 +2235,6 @@ components:
             observations made during sounding</engelsk>
     GeotekniskProevetaking:
       type: object
-      required:
-      - identifikasjon
       description: "innsamling av fysisk prøvemateriale som inndeles i prøvedeler\
         \ hvor det for hver prøvedel kan utføres ett eller flere geotekniske laboratorieforsø\
         k <engelsk>sampling of physical material separated into sample parts, where\
@@ -2300,8 +2273,6 @@ components:
             and results from environmental investigation<engelsk>
     GeotekniskSondering:
       type: object
-      required:
-      - identifikasjon
       description: metode som brukes i en grunnundersøkelse for å måle penetrasjonsmotstanden
         i de forskjellige jordlag <engelsk>method used in a ground investigation to
         measure the penetration resistance of various soil layers</engelsk>
@@ -2417,7 +2388,6 @@ components:
     GeotekniskTolketPunkt:
       type: object
       required:
-      - identifikasjon
       - posisjon
       - høydeReferanse
       description: Punkt med geoteknisk tolkning i GeotekniskTolketLag
@@ -2486,9 +2456,6 @@ components:
           description: ""
     GeotekniskUnders:
       type: object
-      required:
-      - identifikasjon
-      - opprettetDato
       description: geografisk område hvor det finnes eller er planlagt geotekniske
         borehull tilhørende et gitt prosjekt <engelsk>geographical area where there
         are or are planned geotechnical boreholes for a given project</engelsk>
@@ -2626,8 +2593,6 @@ components:
           description: forløp som følger overgang mellom ulike fenomener
     Geotekniskmetode:
       type: object
-      required:
-      - identifikasjon
       oneOf:
       - $ref: "#/components/schemas/BlokkProeve"
       - $ref: "#/components/schemas/DilatometerTest"
@@ -2666,7 +2631,6 @@ components:
     GeovitenskapeligObservasjon:
       type: object
       required:
-      - identifikasjon
       - posisjon
       description: "andre typer observasjoner som ikke er samlet inn via fysiske borehull\r\
         \n\r\n<engelsk>\r\nobservations collected by other features, i.e. not borehole.\r\
@@ -2744,8 +2708,6 @@ components:
             \n\r\n</engelsk>"
     GeovitenskapeligUndersoekelse:
       type: object
-      required:
-      - identifikasjon
       description: "geovitenskaplig undersøkelse som utføres innen for et gitt områ\
         de og tidsperiode og som ofte er knyttet til et prosjekt \r\n\r\n<engelsk>\r\
         \nsoil geoscientific investigation of a given area and time period and usually\
@@ -2817,7 +2779,6 @@ components:
     GeovitenskapeligUndersoekelseDelomraade:
       type: object
       required:
-      - identifikasjon
       - område
       description: "del av et undersøkelsesområde hvor det pågår, skal gjøres eller\
         \ er gjort geovitenskapelige undersøkelser  \r\n\r\nMerknad: Typisk brukt\
@@ -2878,7 +2839,6 @@ components:
     GeovitenskapligBorehull:
       type: object
       required:
-      - identifikasjon
       - posisjon
       description: "område representert ved et punkt hvor det skal foretas en eller\
         \ flere borehullundersøkelser - også kalt logisk borehull i motsetning til\
@@ -2967,7 +2927,6 @@ components:
     GeovitenskapligBorehullUndersoekelse:
       type: object
       required:
-      - identifikasjon
       - posisjon
       description: "et enkelt fysisk undersøkelsespunkt som inneholder beskrivelsen\
         \ av borehullforløpet  \r\n\r\nMerknad: Flere undersøkelser kan tilhøre det\
@@ -3137,8 +3096,6 @@ components:
         \ \r\ndefine what kind of medium/material the borehole has penetrated.</engelsk>"
     GraveProeve:
       type: object
-      required:
-      - identifikasjon
       description: omrørt fysisk prøvemateriale manuelt gravd ut fra sjakt eller grøft
         <engelsk>disturbed physical soil sample manually digged from a ditch or pit</engelsk>
       properties:
@@ -3254,8 +3211,6 @@ components:
             \ <engelsk> validity of data, if false only to be used as information</engelsk>"
     GrunnvannMaaling:
       type: object
-      required:
-      - identifikasjon
       description: måling av grunnvannstand i felt<engelsk>measurement of the ground
         water table in the field</engelsk>
       properties:
@@ -3400,8 +3355,6 @@ components:
         \ constant which relates water permeability through a medium with the gradient</engelsk>"
     HydrauliskTest:
       type: object
-      required:
-      - identifikasjon
       description: "måling av vannstrømning, vannhastighetsbestemmelse og hydraulisk\
         \ splitting i felt <engelsk>measurement of hydraulic tests (i.e. water flow,\
         \ pulse tests and hydraulic fracturing tests) in the field</engelsk>"
@@ -3533,8 +3486,6 @@ components:
             \ til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId."
     KanneProeve:
       type: object
-      required:
-      - identifikasjon
       description: "omrørt fysisk prøvemateriale tatt i organiske materialer eller\
         \ bløte leirer med enkelt håndoperert utstyr\r\n\r\n<engelsk>disturbed physical\
         \ soil sample taken from organic material or soft clays with simple hand operated\
@@ -3575,8 +3526,6 @@ components:
             and results from environmental investigation<engelsk>
     KjerneBoring:
       type: object
-      required:
-      - identifikasjon
       description: kjerneprøve tatt i fast berg/fjell ved kjerneboring. Ofte dype
         boringer og normalt ikke relevant for geoteknikk. Tatt med i denne produktspesifikasjon
         pga. at data kan finnes sammen med geoteknikkleveranser. Blir eventuelt overført
@@ -3743,8 +3692,6 @@ components:
             \ i vertikalplanet."
     KjerneProeve:
       type: object
-      required:
-      - identifikasjon
       description: kjerneprøve tatt i faste masser eller løst berg <engelsk>core sample</engelsk>
       properties:
         jsonType:
@@ -3802,8 +3749,6 @@ components:
         of classification methods for determination of ground conditions</engelsk>
     KombinasjonSondering:
       type: object
-      required:
-      - identifikasjon
       description: kombinasjon av boremetodene totalsondering og fjellkontrollboring
         som gjør det mulig å bore både i løsmasse og berg<engelsk>combination of the
         boring methods rotary pressure sounding and rock control boring which enables
@@ -4104,8 +4049,6 @@ components:
       description: metode for å måle objekttypens høydeverdi
     MiljoeUndersoekelse:
       type: object
-      required:
-      - identifikasjon
       description: miljøundersøkelse<engelsk>environmental investigation</engelsk>
       properties:
         jsonType:
@@ -4187,8 +4130,6 @@ components:
         benyttes.     '
     NaverProeve:
       type: object
-      required:
-      - identifikasjon
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
         sampling where disturbed samples are colleced</engelsk>
       properties:
@@ -4288,8 +4229,6 @@ components:
             \ data</engelsk>"
     Platebelastning:
       type: object
-      required:
-      - identifikasjon
       description: undersøkelse for måling av in situ deformasjons- og konsolideringsegenskaper
         i friksjonsjordarter<engelsk>investigation for measurement of in situ deformation-
         and consolidation properties in friction soils</engelsk>
@@ -4526,8 +4465,6 @@ components:
         of possible types of pore pressure measurement devices</engelsk>
     PoretrykkMaaling:
       type: object
-      required:
-      - identifikasjon
       description: "måling av poretrykkforhold i grunnen foretatt i løpet av en tidsperiode\
         \ og / eller i flere dybder. poretrykk er trykket i porevannet angitt som\
         \ kraft pr. flateenhet, og med atmosfæretrykket som referanse<engelsk>measurement\
@@ -4712,8 +4649,6 @@ components:
         \ and/or storage method for the sampled material</engelsk>"
     RamProeve:
       type: object
-      required:
-      - identifikasjon
       description: geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede
         masser <engelsk>geotechnical sampling where a sylinder is rammed into compact
         soil</engelsk>
@@ -4766,8 +4701,6 @@ components:
         fysisk representerer.
     SedimentProeve:
       type: object
-      required:
-      - identifikasjon
       description: sedimentprøve<engelsk>sediment sample</engelsk>
       properties:
         jsonType:
@@ -4812,8 +4745,6 @@ components:
       - FATAL
     SkovlProeve:
       type: object
-      required:
-      - identifikasjon
       description: geoteknisk prøvetaking for opptak av omrørte prøver <engelsk>geotechnical
         sampling where disturbed samples are colleced</engelsk>
       properties:
@@ -4861,8 +4792,6 @@ components:
         CPT/CPTU<engelsk>overview of possible Application classes for CPT/CPTU</engelsk>
     StatiskSondering:
       type: object
-      required:
-      - identifikasjon
       description: "sonderingstype som brukes for å bestemme lagdeling i løsmasser\
         \ og dybde til fast grunn, og utføres med en konstant nedpressingshastighet\
         \ og rotasjonshatighet.<engelsk>sounding method used for identification of\
@@ -4978,8 +4907,6 @@ components:
             \ angitt ved antall slag per tidsenhet [slag/m]"
     StempelProeve:
       type: object
-      required:
-      - identifikasjon
       description: "geoteknisk prøvetaking hvor en sylinder slås ned i fast lagrede\
         \ masser, og hvor sylinder holdes stengt inntil ønsket dybde\r\n<engelsk>geotechnical\
         \ sampling where a sylinder is rammed into compact soil, and where the sylinder\
@@ -5020,8 +4947,6 @@ components:
             and results from environmental investigation<engelsk>
     Supertype_Geotekn_obj_omr:
       type: object
-      required:
-      - identifikasjon
       description: "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige\
         \ og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid\
         \ vil en velge egenskaper og av grensningslinjer fra denne klassen."
@@ -5045,8 +4970,6 @@ components:
             \ in the spatial data set. "
     Supertype_Geotekn_obj_pkt:
       type: object
-      required:
-      - identifikasjon
       description: "abstrakt objekt som bærer en rekke egenskaper som er fagområde-uavhengige\
         \ og kan benyttes for alle objekttyper\r\n\r\nMerknad:\r\nSpesielt i produktspesifikasjonsarbeid\
         \ vil en velge egenskaper og av grensningslinjer fra denne klassen."
@@ -5107,8 +5030,6 @@ components:
       description: Metoder benyttet for tolkning av geotekniske feltundersøkelser
     Trykksondering:
       type: object
-      required:
-      - identifikasjon
       description: "penetrasjon av en trykksonde på enden av en serie med sylindriske\
         \ trykksonderingsstenger ned i grunnen med konstant hastighet, brukes for\
         \ å bestemme lagdeling og jordart i løsmasser, samt mekaniske egenskaper for\
@@ -5383,8 +5304,6 @@ components:
           type: string
     VannProeve:
       type: object
-      required:
-      - identifikasjon
       description: vannprøve<engelsk>water sample</engelsk>
       properties:
         jsonType:
@@ -5436,8 +5355,6 @@ components:
         sample</engelsk>
     Vingeboring:
       type: object
-      required:
-      - identifikasjon
       description: undersøkelse for måling av in situ udrenert skjærfasthet for uforstyrret
         og omrørt materiale i kohesjonsjordarter<engelsk>investigation for measurements
         of in situ undrained shear strength for undisturbed and remoulded material
@@ -6257,6 +6174,6 @@ paths:
                 $ref: "#/components/schemas/DiagnosticsDto"
 info:
   title: Nadag innmelding API
-  version: 2026.09.07
+  version: 2026.09.17
 servers:
 - url: http://0.0.0.0:8080

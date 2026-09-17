@@ -56,15 +56,7 @@ class GeotekniskBorehullUnders:
     observations have been carried out</engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
-                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
-
-                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
-                f.eks bygningsnummer.
-
-                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             posisjon (Point):
-            opprettet_dato (datetime.datetime): Når objektet ble opprettet i database (Nadag)
             geoteknisk_metode (GeotekniskMetodeKode): Kode for metoder benyttet ved geotekniske borehullundersøkelser
             datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
@@ -75,6 +67,13 @@ class GeotekniskBorehullUnders:
             digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
+
+                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
+                f.eks bygningsnummer.
+
+                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
                 Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
@@ -180,6 +179,7 @@ class GeotekniskBorehullUnders:
             unders_ø_kelse_nr (str | Unset): Nummer på borehullundersøkelse benyttet i den geotekniske undersøkelsen
             ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
                 leverandør inn til NADAG.
+            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
             dybde_grunnvannstand (float | Unset): dybde [m] fra terrengoverflaten til det nivå i grunnen der alle porene i
                 jorden er mettet med vann og poretrykket begynner å stige <engelsk>depth [m] from the terrain surface to the
                 level in the ground where all voids are saturated with water, and where the pore pressure starts to
@@ -202,12 +202,11 @@ class GeotekniskBorehullUnders:
             har_dokument (list[GeotekniskDokument] | Unset):
     """
 
-    identifikasjon: Identifikasjon
     posisjon: Point
-    opprettet_dato: datetime.datetime
     geoteknisk_metode: GeotekniskMetodeKode
     datafangstdato: datetime.datetime | Unset = UNSET
     digitaliseringsmålestokk: int | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
     kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
     bore_beskrivelse: str | Unset = UNSET
@@ -227,6 +226,7 @@ class GeotekniskBorehullUnders:
     h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
     unders_ø_kelse_nr: str | Unset = UNSET
     ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
+    opprettet_dato: datetime.datetime | Unset = UNSET
     dybde_grunnvannstand: float | Unset = UNSET
     forboret_diameter: float | Unset = UNSET
     forboret_lengde: float | Unset = UNSET
@@ -292,11 +292,7 @@ class GeotekniskBorehullUnders:
         from ..models.trykksondering import Trykksondering  # noqa: PLC0415
         from ..models.vann_proeve import VannProeve  # noqa: PLC0415
 
-        identifikasjon = self.identifikasjon.to_dict()
-
         posisjon = self.posisjon.to_dict()
-
-        opprettet_dato = self.opprettet_dato.isoformat()
 
         geoteknisk_metode = self.geoteknisk_metode.value
 
@@ -305,6 +301,10 @@ class GeotekniskBorehullUnders:
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
+
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
@@ -362,6 +362,10 @@ class GeotekniskBorehullUnders:
         ekstern_identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
             ekstern_identifikasjon = self.ekstern_identifikasjon.to_dict()
+
+        opprettet_dato: str | Unset = UNSET
+        if not isinstance(self.opprettet_dato, Unset):
+            opprettet_dato = self.opprettet_dato.isoformat()
 
         dybde_grunnvannstand = self.dybde_grunnvannstand
 
@@ -446,9 +450,7 @@ class GeotekniskBorehullUnders:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "identifikasjon": identifikasjon,
                 "posisjon": posisjon,
-                "opprettetDato": opprettet_dato,
                 "geotekniskMetode": geoteknisk_metode,
             }
         )
@@ -456,6 +458,8 @@ class GeotekniskBorehullUnders:
             field_dict["datafangstdato"] = datafangstdato
         if digitaliseringsmålestokk is not UNSET:
             field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if kvalitet is not UNSET:
             field_dict["kvalitet"] = kvalitet
         if oppdateringsdato is not UNSET:
@@ -494,6 +498,8 @@ class GeotekniskBorehullUnders:
             field_dict["undersøkelseNr"] = unders_ø_kelse_nr
         if ekstern_identifikasjon is not UNSET:
             field_dict["eksternIdentifikasjon"] = ekstern_identifikasjon
+        if opprettet_dato is not UNSET:
+            field_dict["opprettetDato"] = opprettet_dato
         if dybde_grunnvannstand is not UNSET:
             field_dict["dybdeGrunnvannstand"] = dybde_grunnvannstand
         if forboret_diameter is not UNSET:
@@ -548,11 +554,7 @@ class GeotekniskBorehullUnders:
         from ..models.vingeboring import Vingeboring  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
         posisjon = Point.from_dict(d.pop("posisjon"))
-
-        opprettet_dato = datetime.datetime.fromisoformat(d.pop("opprettetDato"))
 
         geoteknisk_metode = GeotekniskMetodeKode(d.pop("geotekniskMetode"))
 
@@ -564,6 +566,13 @@ class GeotekniskBorehullUnders:
             datafangstdato = datetime.datetime.fromisoformat(_datafangstdato)
 
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
+
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
         kvalitet: PosisjonskvalitetNADAG | Unset
@@ -644,6 +653,13 @@ class GeotekniskBorehullUnders:
             ekstern_identifikasjon = UNSET
         else:
             ekstern_identifikasjon = EksternIdentifikasjon.from_dict(_ekstern_identifikasjon)
+
+        _opprettet_dato = d.pop("opprettetDato", UNSET)
+        opprettet_dato: datetime.datetime | Unset
+        if isinstance(_opprettet_dato, Unset):
+            opprettet_dato = UNSET
+        else:
+            opprettet_dato = datetime.datetime.fromisoformat(_opprettet_dato)
 
         dybde_grunnvannstand = d.pop("dybdeGrunnvannstand", UNSET)
 
@@ -938,12 +954,11 @@ class GeotekniskBorehullUnders:
                 har_dokument.append(har_dokument_item)
 
         geoteknisk_borehull_unders = cls(
-            identifikasjon=identifikasjon,
             posisjon=posisjon,
-            opprettet_dato=opprettet_dato,
             geoteknisk_metode=geoteknisk_metode,
             datafangstdato=datafangstdato,
             digitaliseringsmålestokk=digitaliseringsmålestokk,
+            identifikasjon=identifikasjon,
             kvalitet=kvalitet,
             oppdateringsdato=oppdateringsdato,
             bore_beskrivelse=bore_beskrivelse,
@@ -963,6 +978,7 @@ class GeotekniskBorehullUnders:
             h_ø_yde_referanse=h_ø_yde_referanse,
             unders_ø_kelse_nr=unders_ø_kelse_nr,
             ekstern_identifikasjon=ekstern_identifikasjon,
+            opprettet_dato=opprettet_dato,
             dybde_grunnvannstand=dybde_grunnvannstand,
             forboret_diameter=forboret_diameter,
             forboret_lengde=forboret_lengde,
