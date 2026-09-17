@@ -27,14 +27,14 @@ class GeovitenskapeligUndersoekelseDelomraade:
     typically used offshore where an investigation is split into smaller parts</engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+            område (Polygon):
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
                 produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
 
                 NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
                 f.eks bygningsnummer.
 
                 NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
-            område (Polygon):
             oppdateringsdato (datetime.datetime | Unset): dato for siste endring på objektetdataene
 
                 Merknad:
@@ -49,16 +49,18 @@ class GeovitenskapeligUndersoekelseDelomraade:
                 </engelsk>
     """
 
-    identifikasjon: Identifikasjon
     område: Polygon
+    identifikasjon: Identifikasjon | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
     beskrivelse: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
-
         område = self.område.to_dict()
+
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         oppdateringsdato: str | Unset = UNSET
         if not isinstance(self.oppdateringsdato, Unset):
@@ -70,10 +72,11 @@ class GeovitenskapeligUndersoekelseDelomraade:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "identifikasjon": identifikasjon,
                 "område": område,
             }
         )
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if oppdateringsdato is not UNSET:
             field_dict["oppdateringsdato"] = oppdateringsdato
         if beskrivelse is not UNSET:
@@ -87,9 +90,14 @@ class GeovitenskapeligUndersoekelseDelomraade:
         from ..models.polygon import Polygon  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
         område = Polygon.from_dict(d.pop("område"))
+
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _oppdateringsdato = d.pop("oppdateringsdato", UNSET)
         oppdateringsdato: datetime.datetime | Unset
@@ -101,8 +109,8 @@ class GeovitenskapeligUndersoekelseDelomraade:
         beskrivelse = d.pop("beskrivelse", UNSET)
 
         geovitenskapelig_undersoekelse_delomraade = cls(
-            identifikasjon=identifikasjon,
             område=område,
+            identifikasjon=identifikasjon,
             oppdateringsdato=oppdateringsdato,
             beskrivelse=beskrivelse,
         )

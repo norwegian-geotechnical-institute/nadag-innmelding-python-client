@@ -34,15 +34,7 @@ class GeotekniskBorehull:
     interpretation of stratification and properties for the different strata </engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
-                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
-
-                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
-                f.eks bygningsnummer.
-
-                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             posisjon (Point):
-            opprettet_dato (datetime.datetime): Når objektet ble opprettet i database (Nadag)
             datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
 
@@ -52,6 +44,13 @@ class GeotekniskBorehull:
             digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
+
+                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
+                f.eks bygningsnummer.
+
+                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
                 Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
@@ -95,6 +94,7 @@ class GeotekniskBorehull:
             høyde (float | Unset): Terrenghøyde ved start borehull [m]
             h_ø_yde_referanse (NADAGHoeyderef | Unset): Brukte høydereferansesystemer i NADAG for egenskapen Høyde. EPSG-
                 koder benyttes.
+            opprettet_dato (datetime.datetime | Unset): Når objektet ble opprettet i database (Nadag)
             ekstern_identifikasjon (EksternIdentifikasjon | Unset): Identifikasjon av et objekt, ivaretatt av den ansvarlige
                 leverandør inn til NADAG.
             kvikkleire_på_visning (KvikkleirePaavisningKode | Unset): Koder for grad av sikkerhet for påvisning av
@@ -111,11 +111,10 @@ class GeotekniskBorehull:
             har_dokument (list[GeotekniskDokument] | Unset):
     """
 
-    identifikasjon: Identifikasjon
     posisjon: Point
-    opprettet_dato: datetime.datetime
     datafangstdato: datetime.datetime | Unset = UNSET
     digitaliseringsmålestokk: int | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
     kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
     antall_borehull_unders_ø_kelser: int | Unset = UNSET
@@ -125,6 +124,7 @@ class GeotekniskBorehull:
     bore_nr: str | Unset = UNSET
     høyde: float | Unset = UNSET
     h_ø_yde_referanse: NADAGHoeyderef | Unset = UNSET
+    opprettet_dato: datetime.datetime | Unset = UNSET
     ekstern_identifikasjon: EksternIdentifikasjon | Unset = UNSET
     kvikkleire_på_visning: KvikkleirePaavisningKode | Unset = UNSET
     opprinnelig_geoteknisk_unders_id: str | Unset = UNSET
@@ -137,17 +137,17 @@ class GeotekniskBorehull:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
-
         posisjon = self.posisjon.to_dict()
-
-        opprettet_dato = self.opprettet_dato.isoformat()
 
         datafangstdato: str | Unset = UNSET
         if not isinstance(self.datafangstdato, Unset):
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
+
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
@@ -179,6 +179,10 @@ class GeotekniskBorehull:
         h_ø_yde_referanse: str | Unset = UNSET
         if not isinstance(self.h_ø_yde_referanse, Unset):
             h_ø_yde_referanse = self.h_ø_yde_referanse.value
+
+        opprettet_dato: str | Unset = UNSET
+        if not isinstance(self.opprettet_dato, Unset):
+            opprettet_dato = self.opprettet_dato.isoformat()
 
         ekstern_identifikasjon: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ekstern_identifikasjon, Unset):
@@ -226,15 +230,15 @@ class GeotekniskBorehull:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "identifikasjon": identifikasjon,
                 "posisjon": posisjon,
-                "opprettetDato": opprettet_dato,
             }
         )
         if datafangstdato is not UNSET:
             field_dict["datafangstdato"] = datafangstdato
         if digitaliseringsmålestokk is not UNSET:
             field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if kvalitet is not UNSET:
             field_dict["kvalitet"] = kvalitet
         if oppdateringsdato is not UNSET:
@@ -253,6 +257,8 @@ class GeotekniskBorehull:
             field_dict["høyde"] = høyde
         if h_ø_yde_referanse is not UNSET:
             field_dict["høydeReferanse"] = h_ø_yde_referanse
+        if opprettet_dato is not UNSET:
+            field_dict["opprettetDato"] = opprettet_dato
         if ekstern_identifikasjon is not UNSET:
             field_dict["eksternIdentifikasjon"] = ekstern_identifikasjon
         if kvikkleire_på_visning is not UNSET:
@@ -287,11 +293,7 @@ class GeotekniskBorehull:
         from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
         posisjon = Point.from_dict(d.pop("posisjon"))
-
-        opprettet_dato = datetime.datetime.fromisoformat(d.pop("opprettetDato"))
 
         _datafangstdato = d.pop("datafangstdato", UNSET)
         datafangstdato: datetime.datetime | Unset
@@ -301,6 +303,13 @@ class GeotekniskBorehull:
             datafangstdato = datetime.datetime.fromisoformat(_datafangstdato)
 
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
+
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
         kvalitet: PosisjonskvalitetNADAG | Unset
@@ -346,6 +355,13 @@ class GeotekniskBorehull:
             h_ø_yde_referanse = UNSET
         else:
             h_ø_yde_referanse = NADAGHoeyderef(_h_ø_yde_referanse)
+
+        _opprettet_dato = d.pop("opprettetDato", UNSET)
+        opprettet_dato: datetime.datetime | Unset
+        if isinstance(_opprettet_dato, Unset):
+            opprettet_dato = UNSET
+        else:
+            opprettet_dato = datetime.datetime.fromisoformat(_opprettet_dato)
 
         _ekstern_identifikasjon = d.pop("eksternIdentifikasjon", UNSET)
         ekstern_identifikasjon: EksternIdentifikasjon | Unset
@@ -404,11 +420,10 @@ class GeotekniskBorehull:
                 har_dokument.append(har_dokument_item)
 
         geoteknisk_borehull = cls(
-            identifikasjon=identifikasjon,
             posisjon=posisjon,
-            opprettet_dato=opprettet_dato,
             datafangstdato=datafangstdato,
             digitaliseringsmålestokk=digitaliseringsmålestokk,
+            identifikasjon=identifikasjon,
             kvalitet=kvalitet,
             oppdateringsdato=oppdateringsdato,
             antall_borehull_unders_ø_kelser=antall_borehull_unders_ø_kelser,
@@ -418,6 +433,7 @@ class GeotekniskBorehull:
             bore_nr=bore_nr,
             høyde=høyde,
             h_ø_yde_referanse=h_ø_yde_referanse,
+            opprettet_dato=opprettet_dato,
             ekstern_identifikasjon=ekstern_identifikasjon,
             kvikkleire_på_visning=kvikkleire_på_visning,
             opprinnelig_geoteknisk_unders_id=opprinnelig_geoteknisk_unders_id,

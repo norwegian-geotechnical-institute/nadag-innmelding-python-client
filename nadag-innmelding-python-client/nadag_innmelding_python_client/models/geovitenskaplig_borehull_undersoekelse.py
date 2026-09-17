@@ -30,13 +30,6 @@ class GeovitenskapligBorehullUndersoekelse:
     belong to the same borehole, and it is the investigation which contain the geometry along the borehole. </engelsk>
 
         Attributes:
-            identifikasjon (Identifikasjon): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
-                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
-
-                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
-                f.eks bygningsnummer.
-
-                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             posisjon (Point):
             datafangstdato (datetime.datetime | Unset): dato når objektet siste gang ble registrert/observert/målt i
                 terrenget
@@ -47,6 +40,13 @@ class GeovitenskapligBorehullUndersoekelse:
             digitaliseringsmålestokk (int | Unset): kartmålestokk registreringene/ datene er hentet fra/ registrert på
 
                 Eksempel: 1:50 000 = 50000.
+            identifikasjon (Identifikasjon | Unset): Unik identifikasjon av et objekt, ivaretatt av den ansvarlige
+                produsent/forvalter, som kan benyttes av eksterne applikasjoner som referanse til objektet.
+
+                NOTE1 Denne eksterne objektidentifikasjonen må ikke forveksles med en tematisk objektidentifikasjon, slik som
+                f.eks bygningsnummer.
+
+                NOTE 2 Denne unike identifikatoren vil ikke endres i løpet av objektets levetid.
             kvalitet (PosisjonskvalitetNADAG | Unset): Posisjonskvalitet slik den brukes i NADAG (Nasjonal Database for
                 Grunnundersøkelser).
                 (En realisering av den generelle Posisjonskvalitet)
@@ -148,10 +148,10 @@ class GeovitenskapligBorehullUndersoekelse:
                 </engelsk>
     """
 
-    identifikasjon: Identifikasjon
     posisjon: Point
     datafangstdato: datetime.datetime | Unset = UNSET
     digitaliseringsmålestokk: int | Unset = UNSET
+    identifikasjon: Identifikasjon | Unset = UNSET
     kvalitet: PosisjonskvalitetNADAG | Unset = UNSET
     oppdateringsdato: datetime.datetime | Unset = UNSET
     bore_beskrivelse: str | Unset = UNSET
@@ -170,8 +170,6 @@ class GeovitenskapligBorehullUndersoekelse:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
-        identifikasjon = self.identifikasjon.to_dict()
-
         posisjon = self.posisjon.to_dict()
 
         datafangstdato: str | Unset = UNSET
@@ -179,6 +177,10 @@ class GeovitenskapligBorehullUndersoekelse:
             datafangstdato = self.datafangstdato.isoformat()
 
         digitaliseringsmålestokk = self.digitaliseringsmålestokk
+
+        identifikasjon: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.identifikasjon, Unset):
+            identifikasjon = self.identifikasjon.to_dict()
 
         kvalitet: dict[str, Any] | Unset = UNSET
         if not isinstance(self.kvalitet, Unset):
@@ -229,7 +231,6 @@ class GeovitenskapligBorehullUndersoekelse:
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "identifikasjon": identifikasjon,
                 "posisjon": posisjon,
             }
         )
@@ -237,6 +238,8 @@ class GeovitenskapligBorehullUndersoekelse:
             field_dict["datafangstdato"] = datafangstdato
         if digitaliseringsmålestokk is not UNSET:
             field_dict["digitaliseringsmålestokk"] = digitaliseringsmålestokk
+        if identifikasjon is not UNSET:
+            field_dict["identifikasjon"] = identifikasjon
         if kvalitet is not UNSET:
             field_dict["kvalitet"] = kvalitet
         if oppdateringsdato is not UNSET:
@@ -278,8 +281,6 @@ class GeovitenskapligBorehullUndersoekelse:
         from ..models.posisjonskvalitet_nadag import PosisjonskvalitetNADAG  # noqa: PLC0415
 
         d = dict(src_dict)
-        identifikasjon = Identifikasjon.from_dict(d.pop("identifikasjon"))
-
         posisjon = Point.from_dict(d.pop("posisjon"))
 
         _datafangstdato = d.pop("datafangstdato", UNSET)
@@ -290,6 +291,13 @@ class GeovitenskapligBorehullUndersoekelse:
             datafangstdato = datetime.datetime.fromisoformat(_datafangstdato)
 
         digitaliseringsmålestokk = d.pop("digitaliseringsmålestokk", UNSET)
+
+        _identifikasjon = d.pop("identifikasjon", UNSET)
+        identifikasjon: Identifikasjon | Unset
+        if isinstance(_identifikasjon, Unset):
+            identifikasjon = UNSET
+        else:
+            identifikasjon = Identifikasjon.from_dict(_identifikasjon)
 
         _kvalitet = d.pop("kvalitet", UNSET)
         kvalitet: PosisjonskvalitetNADAG | Unset
@@ -354,10 +362,10 @@ class GeovitenskapligBorehullUndersoekelse:
         v_æ_rforhold_ved_boring = d.pop("værforholdVedBoring", UNSET)
 
         geovitenskaplig_borehull_undersoekelse = cls(
-            identifikasjon=identifikasjon,
             posisjon=posisjon,
             datafangstdato=datafangstdato,
             digitaliseringsmålestokk=digitaliseringsmålestokk,
+            identifikasjon=identifikasjon,
             kvalitet=kvalitet,
             oppdateringsdato=oppdateringsdato,
             bore_beskrivelse=bore_beskrivelse,
